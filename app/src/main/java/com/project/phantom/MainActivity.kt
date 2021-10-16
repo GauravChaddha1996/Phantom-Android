@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.project.phantom.theme.PhantomTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,11 +24,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 @Preview
 private fun MainScreen() {
-    MaterialTheme {
+    PhantomTheme {
         // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colors.background
+            color = PhantomTheme.colors.background
         ) {
             Box(contentAlignment = Alignment.Center) {
                 Greeting("Android")
@@ -40,8 +40,9 @@ private fun MainScreen() {
 @Composable
 fun Greeting(name: String) {
     Text(
-        text = "Hello $name!",
-        color = MaterialTheme.colors.primary,
-        textAlign = TextAlign.Center
+        text = "Hello\n$name!",
+        color = PhantomTheme.colors.primary,
+        textAlign = TextAlign.Center,
+        style = PhantomTheme.typography.h2
     )
 }
