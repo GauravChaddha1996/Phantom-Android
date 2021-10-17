@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -62,6 +63,28 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     implementation "androidx.compose.runtime:runtime:$compose_version"
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+
+    // Moshi
+    implementation("com.squareup.moshi:moshi:$moshi_version")
+    implementation("com.squareup.moshi:moshi-kotlin:$moshi_version")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshi_version")
+    implementation("com.squareup.moshi:moshi-adapters:$moshi_version")
+
+    // Koin
+    // Koin core features
+    implementation "io.insert-koin:koin-core:$koin_version"
+    // Koin main features for Android (Scope,ViewModel ...)
+    implementation "io.insert-koin:koin-android:$koin_version"
+    // Koin for Jetpack Compose
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    // Coil
+    implementation("io.coil-kt:coil:$coil_version")
+    implementation("io.coil-kt:coil-compose:$coil_version")
 
 
     // Test related

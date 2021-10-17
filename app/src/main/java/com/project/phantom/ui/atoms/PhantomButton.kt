@@ -8,14 +8,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.project.phantom.data.uiModels.atoms.PhantomButtonData
-import com.project.phantom.data.uiModels.merge
-import com.project.phantom.data.uiModels.network.PhantomButtonType
+import com.project.phantom.data.uiModels.atoms.PhantomButtonType
 import com.project.phantom.theme.PhantomTheme
 
 @Composable
 fun PhantomButton(
     data: PhantomButtonData?,
-    modifiers: List<Modifier>? = null,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
 
@@ -40,7 +39,7 @@ fun PhantomButton(
         onClick = {
             onClick.invoke()
         },
-        modifier = modifiers.merge(),
+        modifier = modifier,
         colors = colors,
         elevation = ButtonDefaults.elevation(0.dp, 0.dp, 0.dp)
     ) {

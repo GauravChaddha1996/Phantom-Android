@@ -3,8 +3,15 @@ package com.project.phantom.data.uiModels.atoms
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
-import com.project.phantom.data.uiModels.network.ColorData
+import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomColors
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class ColorData(
+    @Json(name = "name") val name: PhantomColorName? = null
+)
 
 @Stable
 @Immutable

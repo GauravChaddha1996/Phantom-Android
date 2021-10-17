@@ -7,12 +7,11 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import com.project.phantom.data.uiModels.atoms.PhantomTextData
-import com.project.phantom.data.uiModels.merge
 
 @Composable
 fun PhantomText(
     data: PhantomTextData?,
-    modifiers: List<Modifier>? = null,
+    modifier: Modifier = Modifier,
     textDecoration: TextDecoration? = null
 ) {
 
@@ -33,7 +32,7 @@ fun PhantomText(
     // Add the final text
     Text(
         text = finalText,
-        modifier = modifiers.merge(),
+        modifier = modifier,
         color = data.color.resolvedColor,
         style = data.font.resolvedTextStyle,
         textDecoration = textDecoration

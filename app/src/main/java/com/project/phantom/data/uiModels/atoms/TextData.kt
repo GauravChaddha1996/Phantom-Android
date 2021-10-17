@@ -2,8 +2,23 @@ package com.project.phantom.data.uiModels.atoms
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
-import com.project.phantom.data.uiModels.network.MarkdownConfig
-import com.project.phantom.data.uiModels.network.TextData
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class TextData(
+    @Json(name = "text") val text: String? = null,
+    @Json(name = "color") val color: ColorData? = null,
+    @Json(name = "font") val font: FontData? = null,
+    @Json(name = "markdown_config") val markdownConfig: MarkdownConfig? = null
+)
+
+@Stable
+@Immutable
+@JsonClass(generateAdapter = true)
+data class MarkdownConfig(
+    @Json(name = "enabled") val enabled: Boolean? = null
+)
 
 @Stable
 @Immutable

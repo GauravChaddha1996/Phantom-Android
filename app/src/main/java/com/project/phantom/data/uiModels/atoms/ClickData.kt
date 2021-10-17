@@ -2,7 +2,15 @@ package com.project.phantom.data.uiModels.atoms
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
-import com.project.phantom.data.uiModels.network.ClickData
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class ClickData(
+    @Json(name = "type") val type: String? = null,
+    @Json(name = "data") val data: Any? = null
+)
+
 
 @Stable
 @Immutable

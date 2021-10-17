@@ -5,10 +5,12 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import com.project.phantom.theme.PhantomColorName.BLUE_700
+import com.squareup.moshi.Json
 
 @Stable
 @Immutable
 enum class PhantomColorName {
+    @Json(name = "blue_700")
     BLUE_700
 }
 

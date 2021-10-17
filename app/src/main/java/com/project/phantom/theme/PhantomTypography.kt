@@ -12,23 +12,49 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Medium
 import androidx.compose.ui.text.font.FontWeight.Companion.Normal
 import androidx.compose.ui.text.font.FontWeight.Companion.SemiBold
 import com.project.phantom.R
+import com.squareup.moshi.Json
 
 @Stable
 @Immutable
 enum class PhantomFontStyle {
+    @Json(name = "h1")
     H1,
+
+    @Json(name = "h2")
     H2,
+
+    @Json(name = "h3")
     H3,
+
+    @Json(name = "h4")
     H4,
+
+    @Json(name = "h5")
     H5,
+
+    @Json(name = "h6")
     H6,
+
+    @Json(name = "subtitle1")
     SUBTITLE1,
+
+    @Json(name = "subtitle2")
     SUBTITLE2,
+
+    @Json(name = "body1")
     BODY1,
+
+    @Json(name = "body2")
     BODY2,
+
+    @Json(name = "button")
     BUTTON,
+
+    @Json(name = "caption")
     CAPTION,
-    OVERLINE,
+
+    @Json(name = "overline")
+    OVERLINE
 }
 
 object PhantomTypography {

@@ -2,8 +2,13 @@ package com.project.phantom.data.uiModels.atoms
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
-import com.project.phantom.data.uiModels.network.ImageData
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
+data class ImageData(
+    @Json(name = "url") val url: String? = null
+)
 
 @Stable
 @Immutable
