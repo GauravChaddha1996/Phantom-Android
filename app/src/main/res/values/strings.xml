@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Phantom</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="retry">Retry</string>
 </resources>

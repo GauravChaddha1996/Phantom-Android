@@ -1,5 +1,8 @@
 package com.project.phantom.data.uiModels.atoms
 
+import com.project.phantom.theme.PhantomColorName
+import com.project.phantom.theme.PhantomFontStyle
+
 class PhantomLceData(
     val showLoader: Boolean,
     val showError: Boolean,
@@ -22,7 +25,13 @@ class PhantomLceData(
         fun getErrorData(errorMessage: String?) = PhantomLceData(
             showLoader = false,
             showError = true,
-            errorMessage = PhantomTextData.create(TextData(errorMessage))
+            errorMessage = PhantomTextData.create(
+                TextData(
+                    text = errorMessage,
+                    color = ColorData(PhantomColorName.GREY_700),
+                    font = FontData(PhantomFontStyle.SUBTITLE1)
+                )
+            )
         )
     }
 }

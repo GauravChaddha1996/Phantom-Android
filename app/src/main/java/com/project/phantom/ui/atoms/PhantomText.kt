@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import com.project.phantom.data.uiModels.atoms.PhantomTextData
 
@@ -12,7 +13,8 @@ import com.project.phantom.data.uiModels.atoms.PhantomTextData
 fun PhantomText(
     data: PhantomTextData?,
     modifier: Modifier = Modifier,
-    textDecoration: TextDecoration? = null
+    textDecoration: TextDecoration? = null,
+    textAlign: TextAlign? = null
 ) {
 
     // Cases to check for visibility
@@ -35,6 +37,7 @@ fun PhantomText(
         modifier = modifier,
         color = data.color.resolvedColor,
         style = data.font.resolvedTextStyle,
-        textDecoration = textDecoration
+        textDecoration = textDecoration,
+        textAlign = textAlign
     )
 }
