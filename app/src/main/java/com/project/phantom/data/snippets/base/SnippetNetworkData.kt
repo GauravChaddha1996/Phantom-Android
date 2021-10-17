@@ -5,13 +5,13 @@ import com.project.phantom.data.snippets.base.SnippetNetworkData.Companion.SNIPP
 import com.squareup.moshi.Json
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
 
-open class SnippetNetworkData {
+open class SnippetNetworkData(
+    @Json(name = SNIPPET_TYPE)
+    val type: String? = null
+) {
     companion object {
         const val SNIPPET_TYPE = "type"
     }
-
-    @Json(name = SNIPPET_TYPE)
-    val type: String? = null
 }
 
 

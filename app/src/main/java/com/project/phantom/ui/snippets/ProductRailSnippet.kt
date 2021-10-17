@@ -2,6 +2,7 @@ package com.project.phantom.ui.snippets
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,15 +22,17 @@ import com.project.phantom.ui.atoms.PhantomText
 fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSnippetInteraction) {
     data ?: return
 
-    Surface(
-        Modifier
+    Card(
+        modifier = Modifier
             .clickable { interaction.onProductRailSnippetClicked(data) }
-            .fillMaxWidth(0.6f)) {
+            .size(200.dp, 450.dp),
+        elevation = 12.dp
+    ) {
         Column {
             PhantomImage(
                 data = data.imageData, modifier = Modifier
-                    .aspectRatio(0.85f)
                     .padding(8.dp)
+                    .size(184.dp, 270.dp)
             )
             GetTextSection(data)
         }
@@ -40,7 +43,7 @@ fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSn
 @Composable
 private fun GetTextSection(data: ProductRailSnippetData) {
     Row {
-        Column(modifier = Modifier.weight(0f, true)) {
+        Column(Modifier.weight(3f, true)) {
             PhantomText(data = data.name)
             PhantomText(data = data.shortDesc)
             Row {

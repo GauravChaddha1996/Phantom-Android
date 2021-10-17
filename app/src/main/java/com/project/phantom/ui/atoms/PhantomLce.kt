@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -20,7 +21,13 @@ import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomFontStyle
 
 @Composable
-fun PhantomLCE(data: PhantomLceData, interaction: PhantomLceInteraction) {
+fun PhantomLCE(state: State<PhantomLceData?>, interaction: PhantomLceInteraction) {
+    PhantomLCE(data = state.value, interaction = interaction)
+}
+
+@Composable
+fun PhantomLCE(data: PhantomLceData?, interaction: PhantomLceInteraction) {
+    data ?: return
     Box(modifier = Modifier.fillMaxSize()) {
         when {
             data.showLoader -> {
