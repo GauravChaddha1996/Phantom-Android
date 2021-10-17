@@ -1,4 +1,4 @@
-package com.project.phantom.data.uiModels.snippets.base
+package com.project.phantom.data.snippets.base
 
 enum class SnippetType {
     ProductRailSnippet,

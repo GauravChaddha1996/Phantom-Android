@@ -1,4 +1,4 @@
-package com.project.phantom.data.uiModels.snippets.base
+package com.project.phantom.data.snippets.base
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -6,8 +6,8 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 class SnippetSectionData {
     @Json(name = "header_data")
-    val header: SnippetSectionHeader? = null
+    val headerData: SnippetSectionHeaderData? = null
 
     @Json(name = "snippets")
-    val snippets: List<BaseSnippetNetworkData>? = null
+    val snippets: List<SnippetNetworkData>? = null
 }

@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.project.phantom.R
-import com.project.phantom.data.uiModels.atoms.*
+import com.project.phantom.data.atoms.*
 import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomFontStyle
 
@@ -75,7 +75,7 @@ fun TestPhantomLCE() {
         data = s.value,
         interaction = object : PhantomLceInteraction {
             override fun onRetryClicked() {
-                s.value = PhantomLceData.getErrorData("Something went wrong 2")
+                s.value = PhantomLceData.getContentData()
             }
         })
 }

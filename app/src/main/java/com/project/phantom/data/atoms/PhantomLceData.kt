@@ -1,4 +1,4 @@
-package com.project.phantom.data.uiModels.atoms
+package com.project.phantom.data.atoms
 
 import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomFontStyle

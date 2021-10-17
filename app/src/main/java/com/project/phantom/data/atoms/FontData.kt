@@ -1,4 +1,4 @@
-package com.project.phantom.data.uiModels.atoms
+package com.project.phantom.data.atoms
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable

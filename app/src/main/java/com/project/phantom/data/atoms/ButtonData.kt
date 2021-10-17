@@ -1,7 +1,9 @@
-package com.project.phantom.data.uiModels.atoms
+package com.project.phantom.data.atoms
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
+import com.project.phantom.data.atoms.click.ClickData
+import com.project.phantom.data.atoms.click.PhantomClickData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -24,7 +26,7 @@ enum class PhantomButtonType {
 class PhantomButtonData private constructor(
     val text: PhantomTextData,
     val type: PhantomButtonType,
-    val clickData: PhantomClickData
+    val phantomClickData: PhantomClickData
 ) {
     companion object {
         fun create(data: ButtonData?): PhantomButtonData {

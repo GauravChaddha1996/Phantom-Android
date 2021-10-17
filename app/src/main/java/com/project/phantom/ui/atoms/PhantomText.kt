@@ -7,7 +7,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import com.project.phantom.data.uiModels.atoms.PhantomTextData
+import com.project.phantom.data.atoms.PhantomTextData
 
 @Composable
 fun PhantomText(

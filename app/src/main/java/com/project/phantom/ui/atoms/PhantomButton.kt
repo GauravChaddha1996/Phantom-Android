@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import com.project.phantom.data.uiModels.atoms.PhantomButtonData
-import com.project.phantom.data.uiModels.atoms.PhantomButtonType
+import com.project.phantom.data.atoms.PhantomButtonData
+import com.project.phantom.data.atoms.PhantomButtonType
 import com.project.phantom.theme.PhantomTheme
 
 @Composable

@@ -10,8 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.project.phantom.data.uiModels.atoms.ImageData
-import com.project.phantom.data.uiModels.atoms.PhantomImageData
+import com.project.phantom.data.atoms.ImageData
+import com.project.phantom.data.atoms.PhantomImageData
 
 @Composable
 fun PhantomImage(data: PhantomImageData?, modifier: Modifier) {

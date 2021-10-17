@@ -9,7 +9,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.lifecycle.MutableLiveData
-import com.project.phantom.data.uiModels.atoms.*
+import com.project.phantom.data.atoms.*
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomFontStyle
