@@ -7,12 +7,12 @@ import com.project.phantom.data.atoms.TextData
 import com.project.phantom.data.atoms.click.OpenProductClickData
 import com.project.phantom.data.atoms.click.PhantomClickData
 import com.project.phantom.data.snippets.base.SnippetData
-import com.project.phantom.data.snippets.base.SnippetNetworkData
+import com.project.phantom.data.snippets.base.SnippetApiData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class ProductFullSnippetNetworkData(
+class ProductFullSnippetApiData(
     @Json(name = "id") val id: Int,
     @Json(name = "name") val name: TextData? = null,
     @Json(name = "long_desc") val longDesc: TextData? = null,
@@ -20,7 +20,7 @@ class ProductFullSnippetNetworkData(
     @Json(name = "category") val category: TextData? = null,
     @Json(name = "cost") val cost: TextData? = null,
     @Json(name = "image") val imageData: ImageData? = null
-) : SnippetNetworkData()
+) : SnippetApiData()
 
 class ProductFullSnippetData private constructor(
     val name: PhantomTextData,
@@ -32,7 +32,7 @@ class ProductFullSnippetData private constructor(
     val phantomClickData: PhantomClickData
 ) : SnippetData() {
     companion object {
-        fun create(data: ProductFullSnippetNetworkData): ProductFullSnippetData {
+        fun create(data: ProductFullSnippetApiData): ProductFullSnippetData {
             return ProductFullSnippetData(
                 name = PhantomTextData.create(data.name),
                 longDesc = PhantomTextData.create(data.longDesc),

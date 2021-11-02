@@ -14,7 +14,7 @@ import com.project.phantom.data.atoms.ImageData
 import com.project.phantom.data.atoms.PhantomTextData
 import com.project.phantom.data.atoms.TextData
 import com.project.phantom.data.snippets.ProductRailSnippetData
-import com.project.phantom.data.snippets.ProductRailSnippetNetworkData
+import com.project.phantom.data.snippets.ProductRailSnippetApiData
 import com.project.phantom.ui.atoms.PhantomImage
 import com.project.phantom.ui.atoms.PhantomText
 
@@ -77,7 +77,7 @@ private fun TestProductRailSnippet() {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             ProductRailSnippet(
                 data = ProductRailSnippetData.create(
-                    ProductRailSnippetNetworkData(
+                    ProductRailSnippetApiData(
                         1,
                         TextData("Product name"),
                         TextData("Product short desc a  a short desc Productai short desc"),

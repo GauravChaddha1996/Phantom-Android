@@ -9,5 +9,5 @@ class SnippetSectionData(
     val headerData: SnippetSectionHeaderData? = null,
 
     @Json(name = "snippets")
-    val snippetNetworkList: List<SnippetNetworkData>? = null
+    val snippetApiList: List<SnippetApiData>? = null
 )

@@ -14,7 +14,7 @@ import com.project.phantom.data.atoms.ImageData
 import com.project.phantom.data.atoms.PhantomTextData
 import com.project.phantom.data.atoms.TextData
 import com.project.phantom.data.snippets.ProductFullSnippetData
-import com.project.phantom.data.snippets.ProductFullSnippetNetworkData
+import com.project.phantom.data.snippets.ProductFullSnippetApiData
 import com.project.phantom.ui.atoms.PhantomImage
 import com.project.phantom.ui.atoms.PhantomText
 
@@ -79,7 +79,7 @@ private fun TestProductFullSnippet() {
         Box(modifier = Modifier.fillMaxSize()) {
             ProductFullSnippet(
                 data = ProductFullSnippetData.create(
-                    ProductFullSnippetNetworkData(
+                    ProductFullSnippetApiData(
                         1,
                         TextData("Product name"),
                         TextData("Product long descriptio is here"),
