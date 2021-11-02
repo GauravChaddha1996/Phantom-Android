@@ -1,10 +1,7 @@
 package com.project.phantom.screens.base
 
 import com.project.phantom.Utils.isNotNullOrEmpty
-import com.project.phantom.data.snippets.ProductFullSnippetApiData
-import com.project.phantom.data.snippets.ProductFullSnippetData
-import com.project.phantom.data.snippets.ProductRailSnippetApiData
-import com.project.phantom.data.snippets.ProductRailSnippetData
+import com.project.phantom.data.snippets.*
 import com.project.phantom.data.snippets.base.*
 import org.koin.core.component.KoinComponent
 
@@ -46,7 +43,13 @@ class BaseSnippetCurator : KoinComponent {
                     isHorizontalRail = true
                     ProductRailSnippetData.create(apiSnippet)
                 }
-                is ProductFullSnippetApiData -> ProductFullSnippetData.create(apiSnippet)
+                is CategoryRailSnippetApiData -> {
+                    isHorizontalRail = true
+                    CategoryRailSnippetData.create(apiSnippet)
+                }
+                is ProductFullSnippetApiData -> {
+                    ProductFullSnippetData.create(apiSnippet)
+                }
                 else -> null
             }
             snippetData ?: return@forEach
