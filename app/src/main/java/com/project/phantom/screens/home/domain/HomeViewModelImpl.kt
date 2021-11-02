@@ -27,7 +27,7 @@ class HomeViewModelImpl(
         launch {
             lceData.postValue(getLoadingData())
             val response = fetcher.fetchHomePage()
-            val curatedList = curator.curate(response.snippets)
+            val curatedList = curator.curate(response.snippetSectionList)
             if (curatedList.isNotEmpty()) {
                 rvData.postValue(curatedList)
                 lceData.postValue(getContentData())

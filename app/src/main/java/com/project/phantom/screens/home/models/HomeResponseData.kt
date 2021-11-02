@@ -12,6 +12,6 @@ class HomeResponseData(
     @Json(name = "message")
     val message: String? = null,
 
-    @Json(name = "snippets")
-    val snippets: List<SnippetSectionData>? = null
+    @Json(name = "snippet_section_list")
+    val snippetSectionList: List<SnippetSectionData>? = null
 )

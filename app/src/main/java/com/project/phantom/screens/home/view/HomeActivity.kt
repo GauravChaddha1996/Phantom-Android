@@ -5,12 +5,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.tooling.preview.Preview
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.home.domain.HomeViewModel
 import com.project.phantom.theme.PhantomTheme
-import com.project.phantom.ui.atoms.HorizontalList
 import com.project.phantom.ui.atoms.PhantomLCE
 import com.project.phantom.ui.atoms.PhantomLceInteraction
+import com.project.phantom.ui.atoms.VerticalList
 import org.koin.core.component.inject
 
 class HomeActivity : BaseActivity() {
@@ -23,6 +24,7 @@ class HomeActivity : BaseActivity() {
         homeViewModel.loadPage()
     }
 
+    @Preview
     @Composable
     fun HomeScreen() {
         PhantomTheme {
@@ -32,7 +34,7 @@ class HomeActivity : BaseActivity() {
                 val lceState = homeViewModel.lceData.observeAsState()
 
                 // Add views here
-                HorizontalList(rvDataState)
+                VerticalList(rvDataState = rvDataState)
                 PhantomLCE(
                     state = lceState,
                     interaction = object : PhantomLceInteraction {

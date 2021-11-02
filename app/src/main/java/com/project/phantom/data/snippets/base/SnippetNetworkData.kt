@@ -20,7 +20,7 @@ val SnippetNetworkDataPolymorphicAdapter: PolymorphicJsonAdapterFactory<SnippetN
         .withSubtype(CategoryRailSnippetData::class.java, SnippetType.CategoryRailSnippet.name)
         .withSubtype(ImagePagerSnippetData::class.java, SnippetType.ImagePagerSnippet.name)
         .withSubtype(ProductDualSnippetData::class.java, SnippetType.ProductDualSnippet.name)
-        .withSubtype(ProductFullSnippetData::class.java, SnippetType.ProductFullSnippet.name)
+        .withSubtype(ProductFullSnippetNetworkData::class.java, SnippetType.ProductFullSnippet.name)
         .withSubtype(ProductRailSnippetNetworkData::class.java, SnippetType.ProductRailSnippet.name)
         .withSubtype(StepperSnippetData::class.java, SnippetType.StepperSnippet.name)
         .withSubtype(TextSectionSnippetData::class.java, SnippetType.TextSnippet.name)

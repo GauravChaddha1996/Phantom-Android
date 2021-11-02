@@ -12,19 +12,19 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class ProductRailSnippetNetworkData(
+class ProductFullSnippetNetworkData(
     @Json(name = "id") val id: Int,
     @Json(name = "name") val name: TextData? = null,
-    @Json(name = "short_desc") val shortDesc: TextData? = null,
+    @Json(name = "long_desc") val longDesc: TextData? = null,
     @Json(name = "brand") val brand: TextData? = null,
     @Json(name = "category") val category: TextData? = null,
     @Json(name = "cost") val cost: TextData? = null,
     @Json(name = "image") val imageData: ImageData? = null
 ) : SnippetNetworkData()
 
-class ProductRailSnippetData private constructor(
+class ProductFullSnippetData private constructor(
     val name: PhantomTextData,
-    val shortDesc: PhantomTextData,
+    val longDesc: PhantomTextData,
     val brand: PhantomTextData,
     val category: PhantomTextData,
     val cost: PhantomTextData,
@@ -32,10 +32,10 @@ class ProductRailSnippetData private constructor(
     val phantomClickData: PhantomClickData
 ) : SnippetData() {
     companion object {
-        fun create(data: ProductRailSnippetNetworkData): ProductRailSnippetData {
-            return ProductRailSnippetData(
+        fun create(data: ProductFullSnippetNetworkData): ProductFullSnippetData {
+            return ProductFullSnippetData(
                 name = PhantomTextData.create(data.name),
-                shortDesc = PhantomTextData.create(data.shortDesc),
+                longDesc = PhantomTextData.create(data.longDesc),
                 brand = PhantomTextData.create(data.brand),
                 category = PhantomTextData.create(data.category),
                 cost = PhantomTextData.create(data.cost),

@@ -5,25 +5,15 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.unit.dp
-import com.project.phantom.data.snippets.ProductRailSnippetData
-import com.project.phantom.data.snippets.base.SnippetData
-import com.project.phantom.screens.base.SnippetInteractions
-import com.project.phantom.ui.snippets.ProductRailSnippet
+import com.project.phantom.data.snippets.base.HorizontalListData
 
 @Composable
-fun HorizontalList(rvDataState: State<List<SnippetData>?>) {
-    LazyRow(content = {
-        rvDataState.value?.forEach {
-            when (it) {
-                is ProductRailSnippetData -> {
-                    item {
-                        ProductRailSnippet(
-                            data = it,
-                            interaction = SnippetInteractions()
-                        )
-                    }
-                }
-            }
-        }
-    }, contentPadding = PaddingValues(12.dp))
+fun HorizontalList(rvDataState: State<HorizontalListData>) {
+    LazyRow(
+        content = {
+            val list = rvDataState.value.list
+            list.forEach { handleSnippetData(it) }
+        },
+        contentPadding = PaddingValues(12.dp)
+    )
 }
