@@ -38,6 +38,7 @@ class BaseSnippetCurator : KoinComponent {
         val finalList = mutableListOf<SnippetData>()
         var isHorizontalRail = false
         var isGrid = false
+        var gridNumberOfColumns = 1
         apiSnippets?.forEach { apiSnippet ->
             val snippetData: SnippetData? = when (apiSnippet) {
                 is ProductRailSnippetApiData -> {
@@ -53,6 +54,7 @@ class BaseSnippetCurator : KoinComponent {
                 }
                 is ProductDualSnippetApiData -> {
                     isGrid = true
+                    gridNumberOfColumns = 2
                     ProductDualSnippetData.create(apiSnippet)
                 }
                 else -> null
@@ -65,15 +67,8 @@ class BaseSnippetCurator : KoinComponent {
             listOf(HorizontalListData(finalList))
         } else if (isGrid) {
             val gridList = mutableListOf<GridData>()
-            for (i in 0..finalList.size step 2) {
-                gridList.add(
-                    GridData(
-                        listOf(
-                            finalList.getOrNull(i),
-                            finalList.getOrNull(i + 1),
-                        )
-                    )
-                )
+            finalList.windowed(gridNumberOfColumns, gridNumberOfColumns, true) {
+                gridList.add(GridData(gridNumberOfColumns, it.toList()))
             }
             gridList
         } else {

@@ -14,7 +14,7 @@ import com.project.phantom.ui.snippets.ProductFullSnippet
 import com.project.phantom.ui.snippets.ProductRailSnippet
 
 
-internal fun LazyListScope.handleGridSnippetData(it: SnippetData, interaction: SnippetInteractions) {
+internal fun LazyListScope.handleListSnippetData(it: SnippetData, interaction: SnippetInteractions) {
     when (it) {
         is HorizontalListData -> {
             item { HorizontalList(rvDataState = mutableStateOf(it), interaction = interaction) }

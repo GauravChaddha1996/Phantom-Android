@@ -1,10 +1,14 @@
 package com.project.phantom.ui.snippets
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -15,6 +19,9 @@ import com.project.phantom.data.atoms.PhantomTextData
 import com.project.phantom.data.atoms.TextData
 import com.project.phantom.data.snippets.ProductDualSnippetApiData
 import com.project.phantom.data.snippets.ProductDualSnippetData
+import com.project.phantom.data.snippets.base.GridData
+import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.ui.atoms.PhantomGrid
 import com.project.phantom.ui.atoms.PhantomImage
 import com.project.phantom.ui.atoms.PhantomText
 
@@ -88,9 +95,11 @@ private fun TestProductDualSnippet() {
         }
     }
     Surface {
-        Row(Modifier.fillMaxWidth()) {
-            ProductDualSnippet(data = d, interaction = i, modifier = Modifier.weight(1f))
-            ProductDualSnippet(data = d, interaction = i, modifier = Modifier.weight(1f))
-        }
+        PhantomGrid(
+            mutableStateOf(
+                GridData(2, listOf(d, d))
+            ),
+            interaction = SnippetInteractions()
+        )
     }
 }
