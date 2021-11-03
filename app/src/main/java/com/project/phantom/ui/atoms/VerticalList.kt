@@ -14,7 +14,7 @@ fun VerticalList(rvDataState: State<List<SnippetData>?>, interaction: SnippetInt
     LazyColumn(
         content = {
             val list = rvDataState.value
-            list?.forEach { handleSnippetData(it, interaction) }
+            list?.forEach { handleGridSnippetData(it, interaction) }
         },
         verticalArrangement = Arrangement.spacedBy(20.dp)
     )

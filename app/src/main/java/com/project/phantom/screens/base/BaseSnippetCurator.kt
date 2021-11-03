@@ -37,6 +37,7 @@ class BaseSnippetCurator : KoinComponent {
     private fun curateSnippetData(apiSnippets: List<SnippetApiData>?): List<SnippetData> {
         val finalList = mutableListOf<SnippetData>()
         var isHorizontalRail = false
+        var isGrid = false
         apiSnippets?.forEach { apiSnippet ->
             val snippetData: SnippetData? = when (apiSnippet) {
                 is ProductRailSnippetApiData -> {
@@ -50,6 +51,10 @@ class BaseSnippetCurator : KoinComponent {
                 is ProductFullSnippetApiData -> {
                     ProductFullSnippetData.create(apiSnippet)
                 }
+                is ProductDualSnippetApiData -> {
+                    isGrid = true
+                    ProductDualSnippetData.create(apiSnippet)
+                }
                 else -> null
             }
             snippetData ?: return@forEach
@@ -58,6 +63,19 @@ class BaseSnippetCurator : KoinComponent {
 
         return if (isHorizontalRail) {
             listOf(HorizontalListData(finalList))
+        } else if (isGrid) {
+            val gridList = mutableListOf<GridData>()
+            for (i in 0..finalList.size step 2) {
+                gridList.add(
+                    GridData(
+                        listOf(
+                            finalList.getOrNull(i),
+                            finalList.getOrNull(i + 1),
+                        )
+                    )
+                )
+            }
+            gridList
         } else {
             finalList
         }

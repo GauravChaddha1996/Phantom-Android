@@ -13,7 +13,7 @@ fun HorizontalList(rvDataState: State<HorizontalListData>, interaction: SnippetI
     LazyRow(
         content = {
             val list = rvDataState.value.list
-            list.forEach { handleSnippetData(it, interaction) }
+            list.forEach { handleGridSnippetData(it, interaction) }
         },
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     )

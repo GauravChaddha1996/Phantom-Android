@@ -1,10 +1,8 @@
 package com.project.phantom
 
 import android.app.Application
-import android.util.Log
 import coil.Coil
 import coil.ImageLoader
-import coil.util.DebugLogger
 import com.project.phantom.koin.AppModule
 import com.project.phantom.koin.HomeModule
 import org.koin.android.ext.koin.androidContext
@@ -31,9 +29,7 @@ class PhantomApplication : Application(), KoinComponent {
         }
 
         // Setup coil for image loading
-        val imageLoader = ImageLoader.Builder(this)
-            .logger(DebugLogger(Log.VERBOSE))
-            .build()
+        val imageLoader = ImageLoader.Builder(this).build()
         Coil.setImageLoader(imageLoader)
     }
 }

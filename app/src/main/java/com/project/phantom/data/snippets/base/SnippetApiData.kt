@@ -17,10 +17,10 @@ open class SnippetApiData(
 
 val SnippetApiDataPolymorphicAdapter: PolymorphicJsonAdapterFactory<SnippetApiData> =
     PolymorphicJsonAdapterFactory.of(SnippetApiData::class.java, SNIPPET_TYPE)
-        .withSubtype(CategoryRailSnippetApiData::class.java, SnippetType.CategoryRailSnippet.name)
-        .withSubtype(ImagePagerSnippetData::class.java, SnippetType.ImagePagerSnippet.name)
-        .withSubtype(ProductDualSnippetData::class.java, SnippetType.ProductDualSnippet.name)
-        .withSubtype(ProductFullSnippetApiData::class.java, SnippetType.ProductFullSnippet.name)
         .withSubtype(ProductRailSnippetApiData::class.java, SnippetType.ProductRailSnippet.name)
+        .withSubtype(ProductFullSnippetApiData::class.java, SnippetType.ProductFullSnippet.name)
+        .withSubtype(CategoryRailSnippetApiData::class.java, SnippetType.CategoryRailSnippet.name)
+        .withSubtype(ProductDualSnippetApiData::class.java, SnippetType.ProductDualSnippet.name)
+        .withSubtype(ImagePagerSnippetData::class.java, SnippetType.ImagePagerSnippet.name)
         .withSubtype(StepperSnippetData::class.java, SnippetType.StepperSnippet.name)
         .withSubtype(TextSectionSnippetData::class.java, SnippetType.TextSnippet.name)

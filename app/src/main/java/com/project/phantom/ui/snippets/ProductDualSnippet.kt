@@ -13,19 +13,22 @@ import androidx.compose.ui.unit.dp
 import com.project.phantom.data.atoms.ImageData
 import com.project.phantom.data.atoms.PhantomTextData
 import com.project.phantom.data.atoms.TextData
-import com.project.phantom.data.snippets.ProductRailSnippetApiData
-import com.project.phantom.data.snippets.ProductRailSnippetData
+import com.project.phantom.data.snippets.ProductDualSnippetApiData
+import com.project.phantom.data.snippets.ProductDualSnippetData
 import com.project.phantom.ui.atoms.PhantomImage
 import com.project.phantom.ui.atoms.PhantomText
 
 @Composable
-fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSnippetInteraction) {
+fun ProductDualSnippet(
+    data: ProductDualSnippetData?,
+    modifier: Modifier = Modifier,
+    interaction: ProductDualSnippetInteraction
+) {
     data ?: return
 
     Card(
-        modifier = Modifier
-            .clickable { interaction.onProductRailSnippetClicked(data) }
-            .size(200.dp, 450.dp),
+        modifier = modifier
+            .clickable { interaction.onProductDualSnippetClicked(data) },
         elevation = 12.dp
     ) {
         Column {
@@ -41,7 +44,7 @@ fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSn
 }
 
 @Composable
-private fun GetTextSection(data: ProductRailSnippetData) {
+private fun GetTextSection(data: ProductDualSnippetData) {
     Row {
         Column(Modifier.weight(3f, true)) {
             PhantomText(data = data.name)
@@ -49,10 +52,6 @@ private fun GetTextSection(data: ProductRailSnippetData) {
             Row {
                 PhantomText(data = PhantomTextData.create(TextData("By")))
                 PhantomText(data = data.brand)
-            }
-            Row {
-                PhantomText(data = PhantomTextData.create(TextData("In")))
-                PhantomText(data = data.category)
             }
         }
         PhantomText(
@@ -65,33 +64,33 @@ private fun GetTextSection(data: ProductRailSnippetData) {
     }
 }
 
-interface ProductRailSnippetInteraction {
-    fun onProductRailSnippetClicked(data: ProductRailSnippetData?)
+interface ProductDualSnippetInteraction {
+    fun onProductDualSnippetClicked(data: ProductDualSnippetData?)
 }
 
 @Preview
 @Composable
-private fun TestProductRailSnippet() {
+private fun TestProductDualSnippet() {
 
+    val d = ProductDualSnippetData.create(
+        ProductDualSnippetApiData(
+            1,
+            TextData("Product name"),
+            TextData("Product short desc a  a short desc Productai short desc"),
+            TextData("Product brand"),
+            TextData("Cost"),
+            ImageData("url")
+        )
+    )
+    val i = object : ProductDualSnippetInteraction {
+        override fun onProductDualSnippetClicked(data: ProductDualSnippetData?) {
+
+        }
+    }
     Surface {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            ProductRailSnippet(
-                data = ProductRailSnippetData.create(
-                    ProductRailSnippetApiData(
-                        1,
-                        TextData("Product name"),
-                        TextData("Product short desc a  a short desc Productai short desc"),
-                        TextData("Product brand"),
-                        TextData("Product category"),
-                        TextData("COST"),
-                        ImageData("url")
-                    )
-                ),
-                interaction = object : ProductRailSnippetInteraction {
-                    override fun onProductRailSnippetClicked(data: ProductRailSnippetData?) {
-
-                    }
-                })
+        Row(Modifier.fillMaxWidth()) {
+            ProductDualSnippet(data = d, interaction = i, modifier = Modifier.weight(1f))
+            ProductDualSnippet(data = d, interaction = i, modifier = Modifier.weight(1f))
         }
     }
 }
