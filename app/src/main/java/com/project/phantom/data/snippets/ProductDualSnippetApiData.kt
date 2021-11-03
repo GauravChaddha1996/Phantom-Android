@@ -4,7 +4,7 @@ import com.project.phantom.data.atoms.ImageData
 import com.project.phantom.data.atoms.PhantomImageData
 import com.project.phantom.data.atoms.PhantomTextData
 import com.project.phantom.data.atoms.TextData
-import com.project.phantom.data.atoms.click.OpenProductClickData
+import com.project.phantom.data.atoms.click.ClickData
 import com.project.phantom.data.atoms.click.PhantomClickData
 import com.project.phantom.data.snippets.base.SnippetApiData
 import com.project.phantom.data.snippets.base.SnippetData
@@ -18,7 +18,8 @@ class ProductDualSnippetApiData(
     @Json(name = "short_desc") val shortDesc: TextData? = null,
     @Json(name = "brand") val brand: TextData? = null,
     @Json(name = "cost") val cost: TextData? = null,
-    @Json(name = "image") val imageData: ImageData? = null
+    @Json(name = "image") val imageData: ImageData? = null,
+    @Json(name = "click") val clickData: ClickData? = null
 ) : SnippetApiData()
 
 
@@ -38,7 +39,7 @@ class ProductDualSnippetData private constructor(
                 brand = PhantomTextData.create(data.brand),
                 cost = PhantomTextData.create(data.cost),
                 imageData = PhantomImageData.create(data.imageData),
-                phantomClickData = PhantomClickData(OpenProductClickData(data.id))
+                phantomClickData = PhantomClickData(data.clickData)
             )
         }
     }

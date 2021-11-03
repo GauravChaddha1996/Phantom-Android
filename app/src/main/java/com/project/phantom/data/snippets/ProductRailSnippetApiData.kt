@@ -4,10 +4,10 @@ import com.project.phantom.data.atoms.ImageData
 import com.project.phantom.data.atoms.PhantomImageData
 import com.project.phantom.data.atoms.PhantomTextData
 import com.project.phantom.data.atoms.TextData
-import com.project.phantom.data.atoms.click.OpenProductClickData
+import com.project.phantom.data.atoms.click.ClickData
 import com.project.phantom.data.atoms.click.PhantomClickData
-import com.project.phantom.data.snippets.base.SnippetData
 import com.project.phantom.data.snippets.base.SnippetApiData
+import com.project.phantom.data.snippets.base.SnippetData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -19,7 +19,8 @@ class ProductRailSnippetApiData(
     @Json(name = "brand") val brand: TextData? = null,
     @Json(name = "category") val category: TextData? = null,
     @Json(name = "cost") val cost: TextData? = null,
-    @Json(name = "image") val imageData: ImageData? = null
+    @Json(name = "image") val imageData: ImageData? = null,
+    @Json(name = "click") val clickData: ClickData? = null
 ) : SnippetApiData()
 
 class ProductRailSnippetData private constructor(
@@ -40,7 +41,7 @@ class ProductRailSnippetData private constructor(
                 category = PhantomTextData.create(data.category),
                 cost = PhantomTextData.create(data.cost),
                 imageData = PhantomImageData.create(data.imageData),
-                phantomClickData = PhantomClickData(OpenProductClickData(data.id))
+                phantomClickData = PhantomClickData(data.clickData)
             )
         }
     }

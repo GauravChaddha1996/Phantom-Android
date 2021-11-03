@@ -1,11 +1,10 @@
 package com.project.phantom.ui.atoms
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.project.phantom.data.snippets.base.GridData
 import com.project.phantom.screens.base.SnippetInteractions
 
@@ -15,7 +14,10 @@ fun PhantomGrid(gridDataState: State<GridData>, interaction: SnippetInteractions
     val gridList = gridData.list
     val numberOfColumns = gridData.noOfColumns
 
-    Row {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier.padding(horizontal = 12.dp)
+    ) {
         for (index in 0 until numberOfColumns) {
             val snippet = gridList.getOrNull(index)
             if (snippet == null) {

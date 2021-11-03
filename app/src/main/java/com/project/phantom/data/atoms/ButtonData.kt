@@ -11,7 +11,7 @@ import com.squareup.moshi.JsonClass
 data class ButtonData(
     @Json(name = "text") val text: TextData? = null,
     @Json(name = "type") val type: PhantomButtonType? = null,
-    @Json(name = "click_data") val clickData: ClickData? = null
+    @Json(name = "click") val clickData: ClickData? = null
 )
 
 @Stable
