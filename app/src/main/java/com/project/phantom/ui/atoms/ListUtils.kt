@@ -14,9 +14,6 @@ import com.project.phantom.ui.snippets.CategoryRailSnippet
 import com.project.phantom.ui.snippets.ProductFullSnippet
 import com.project.phantom.ui.snippets.ProductRailSnippet
 import com.project.phantom.ui.snippets.SectionHeaderSnippet
-import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.contract
-
 
 internal fun LazyListScope.handleListSnippetData(it: SnippetData, interaction: SnippetInteractions) {
     when (it) {
@@ -51,14 +48,4 @@ internal fun LazyListScope.handleListSnippetData(it: SnippetData, interaction: S
             }
         }
     }
-}
-
-@OptIn(ExperimentalContracts::class)
-@SinceKotlin("1.3")
-public inline fun <T> Collection<T>?.xyz(): Boolean {
-    contract {
-        returns(false) implies (this@xyz != null)
-    }
-
-    return this == null || this.isEmpty()
 }
