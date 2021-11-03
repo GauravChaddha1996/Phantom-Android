@@ -53,7 +53,7 @@ private fun TestCategoryRailSnippet() {
                 data = CategoryRailSnippetData.create(
                     CategoryRailSnippetApiData(
                         1,
-                        TextData("Category name", font = FontData(PhantomFontStyle.H5))
+                        TextData("Category name", font = FontData(PhantomFontStyle.MEDIUM_400))
                     )
                 ),
                 interaction = object : CategoryRailSnippetInteraction {

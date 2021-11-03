@@ -26,7 +26,7 @@ class MainActivity : BaseActivity() {
                 TextData(
                     "Hello world",
                     ColorData(PhantomColorName.BLUE_700),
-                    FontData(PhantomFontStyle.H2)
+                    FontData(PhantomFontStyle.MEDIUM_400)
                 )
             )
         )

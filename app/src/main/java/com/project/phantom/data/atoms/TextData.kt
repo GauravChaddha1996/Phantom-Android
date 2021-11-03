@@ -2,6 +2,7 @@ package com.project.phantom.data.atoms
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
+import com.project.phantom.theme.PhantomFontStyle
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -29,11 +30,11 @@ class PhantomTextData private constructor(
     val markdownConfig: MarkdownConfig? = null
 ) {
     companion object {
-        fun create(data: TextData?): PhantomTextData {
+        fun create(data: TextData?, defaultFontStyle: PhantomFontStyle? = null): PhantomTextData {
             return PhantomTextData(
                 text = data?.text ?: "",
                 color = PhantomColorData.create(data?.color),
-                font = PhantomFontData.create(data?.font),
+                font = PhantomFontData.create(data?.font, defaultFontStyle),
                 markdownConfig = data?.markdownConfig
             )
         }

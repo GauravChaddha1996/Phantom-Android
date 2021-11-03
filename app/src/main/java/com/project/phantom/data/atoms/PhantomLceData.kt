@@ -29,7 +29,7 @@ class PhantomLceData(
                 TextData(
                     text = errorMessage,
                     color = ColorData(PhantomColorName.GREY_700),
-                    font = FontData(PhantomFontStyle.SUBTITLE1)
+                    font = FontData(PhantomFontStyle.MEDIUM_400)
                 )
             )
         )

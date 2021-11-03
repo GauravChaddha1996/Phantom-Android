@@ -45,7 +45,7 @@ fun PhantomLCE(data: PhantomLceData?, interaction: PhantomLceInteraction) {
                     val retryText = LocalContext.current.resources.getString(R.string.retry)
                     val retryTextData = TextData(
                         text = retryText,
-                        font = FontData(PhantomFontStyle.BUTTON),
+                        font = FontData(PhantomFontStyle.SEMIBOLD_300),
                         color = ColorData(PhantomColorName.RED_500)
                     )
 

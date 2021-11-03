@@ -1,13 +1,11 @@
 package com.project.phantom.ui.snippets
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.project.phantom.data.atoms.*
 import com.project.phantom.data.snippets.base.SectionHeaderSnippetData
 import com.project.phantom.screens.base.SnippetInteractions
@@ -19,7 +17,9 @@ fun SectionHeaderSnippet(
     data: SectionHeaderSnippetData?,
     interaction: SectionHeaderSnippetInteraction
 ) {
-    Row {
+    Row(
+        modifier = Modifier.padding(start = 12.dp)
+    ) {
         Column(Modifier.weight(1f)) {
             PhantomText(data = data?.title)
             PhantomText(data = data?.subtitle)

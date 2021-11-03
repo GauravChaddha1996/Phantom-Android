@@ -4,6 +4,7 @@ import com.project.phantom.data.atoms.ButtonData
 import com.project.phantom.data.atoms.PhantomButtonData
 import com.project.phantom.data.atoms.PhantomTextData
 import com.project.phantom.data.atoms.TextData
+import com.project.phantom.theme.PhantomFontStyle
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -22,7 +23,7 @@ class SectionHeaderSnippetData(
     companion object {
         fun create(apiData: SnippetSectionHeaderApiData): SectionHeaderSnippetData {
             return SectionHeaderSnippetData(
-                title = PhantomTextData.create(apiData.title),
+                title = PhantomTextData.create(apiData.title, PhantomFontStyle.SEMIBOLD_600),
                 subtitle = PhantomTextData.create(apiData.subtitle),
                 rightButton = PhantomButtonData.create(apiData.rightButton)
             )

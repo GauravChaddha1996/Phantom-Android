@@ -19,9 +19,9 @@ class PhantomFontData private constructor(
     val resolvedTextStyle: TextStyle
 ) {
     companion object {
-        fun create(data: FontData?): PhantomFontData {
+        fun create(data: FontData?, defaultFontStyle: PhantomFontStyle? = null): PhantomFontData {
             return PhantomFontData(
-                resolvedTextStyle = PhantomTypography.resolve(data?.style)
+                resolvedTextStyle = PhantomTypography.resolve(data?.style ?: defaultFontStyle)
             )
         }
     }

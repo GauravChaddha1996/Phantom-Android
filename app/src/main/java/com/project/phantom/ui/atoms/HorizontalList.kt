@@ -1,6 +1,7 @@
 package com.project.phantom.ui.atoms
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -15,6 +16,7 @@ fun HorizontalList(rvDataState: State<HorizontalListData>, interaction: SnippetI
             val list = rvDataState.value.list
             list.forEach { handleListSnippetData(it, interaction) }
         },
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        contentPadding = PaddingValues(horizontal = 12.dp)
     )
 }
