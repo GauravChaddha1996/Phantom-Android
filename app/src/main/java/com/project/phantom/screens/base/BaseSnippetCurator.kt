@@ -12,7 +12,7 @@ class BaseSnippetCurator : KoinComponent {
         // For each snippet section
         snippetSectionList?.forEach { snippetSection ->
             // Add the section header
-            val headerSnippets = curateHeaderData(snippetSection.headerData)
+            val headerSnippets = curateHeaderData(snippetSection.headerApiData)
             finalList.addAll(headerSnippets)
 
             // Add the section actual stuff
@@ -26,10 +26,10 @@ class BaseSnippetCurator : KoinComponent {
     }
 
 
-    private fun curateHeaderData(headerData: SnippetSectionHeaderData?): List<SnippetData> {
+    private fun curateHeaderData(headerApiData: SnippetSectionHeaderApiData?): List<SnippetData> {
         val headerSnippets = mutableListOf<SnippetData>()
-        headerData?.let {
-
+        headerApiData?.let {
+            headerSnippets.add(SectionHeaderSnippetData.create(it))
         }
         return headerSnippets
     }

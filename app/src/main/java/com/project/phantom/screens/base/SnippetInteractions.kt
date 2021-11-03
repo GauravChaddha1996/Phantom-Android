@@ -4,16 +4,15 @@ import com.project.phantom.data.snippets.CategoryRailSnippetData
 import com.project.phantom.data.snippets.ProductDualSnippetData
 import com.project.phantom.data.snippets.ProductFullSnippetData
 import com.project.phantom.data.snippets.ProductRailSnippetData
-import com.project.phantom.ui.snippets.CategoryRailSnippetInteraction
-import com.project.phantom.ui.snippets.ProductDualSnippetInteraction
-import com.project.phantom.ui.snippets.ProductFullSnippetInteraction
-import com.project.phantom.ui.snippets.ProductRailSnippetInteraction
+import com.project.phantom.data.snippets.base.SectionHeaderSnippetData
+import com.project.phantom.ui.snippets.*
 
 open class SnippetInteractions :
     ProductRailSnippetInteraction,
     ProductFullSnippetInteraction,
     CategoryRailSnippetInteraction,
-    ProductDualSnippetInteraction {
+    ProductDualSnippetInteraction,
+    SectionHeaderSnippetInteraction {
 
     override fun onProductRailSnippetClicked(data: ProductRailSnippetData?) {
         ClickDataResolver.resolve(data?.phantomClickData)
@@ -29,5 +28,9 @@ open class SnippetInteractions :
 
     override fun onProductDualSnippetClicked(data: ProductDualSnippetData?) {
         ClickDataResolver.resolve(data?.phantomClickData)
+    }
+
+    override fun onSectionHeaderSnippetRightButtonClicked(data: SectionHeaderSnippetData?) {
+        ClickDataResolver.resolve(data?.rightButton?.phantomClickData)
     }
 }
