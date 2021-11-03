@@ -13,10 +13,7 @@ internal fun HandleGridSnippetData(
 ) {
     when (snippetData) {
         is ProductDualSnippetData -> {
-            ProductDualSnippet(
-                data = snippetData,
-                interaction = interaction
-            )
+            ProductDualSnippet(data = snippetData, interaction = interaction)
         }
     }
 }
