@@ -10,9 +10,9 @@ import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.home.domain.HomeViewModel
 import com.project.phantom.theme.PhantomTheme
-import com.project.phantom.ui.atoms.PhantomLCE
-import com.project.phantom.ui.atoms.PhantomLceInteraction
-import com.project.phantom.ui.atoms.VerticalList
+import com.project.phantom.ui.lce.PhantomLceInteraction
+import com.project.phantom.ui.lce.PhantomLCE
+import com.project.phantom.ui.list.VerticalList
 import org.koin.core.component.inject
 
 class HomeActivity : BaseActivity() {

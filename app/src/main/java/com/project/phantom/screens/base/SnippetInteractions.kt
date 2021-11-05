@@ -1,11 +1,15 @@
 package com.project.phantom.screens.base
 
-import com.project.phantom.data.snippets.CategoryRailSnippetData
-import com.project.phantom.data.snippets.ProductDualSnippetData
-import com.project.phantom.data.snippets.ProductFullSnippetData
-import com.project.phantom.data.snippets.ProductRailSnippetData
-import com.project.phantom.data.snippets.base.SectionHeaderSnippetData
-import com.project.phantom.ui.snippets.*
+import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
+import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetInteraction
+import com.project.phantom.ui.snippets.productDual.ProductDualSnippetData
+import com.project.phantom.ui.snippets.productDual.ProductDualSnippetInteraction
+import com.project.phantom.ui.snippets.productFull.ProductFullSnippetData
+import com.project.phantom.ui.snippets.productFull.ProductFullSnippetInteraction
+import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
+import com.project.phantom.ui.snippets.productRail.ProductRailSnippetInteraction
+import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
+import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetInteraction
 
 open class SnippetInteractions :
     ProductRailSnippetInteraction,

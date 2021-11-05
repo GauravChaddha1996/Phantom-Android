@@ -1,6 +1,6 @@
 package com.project.phantom.screens.home.models
 
-import com.project.phantom.data.snippets.base.SnippetSectionData
+import com.project.phantom.ui.snippets.commons.SnippetSectionData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

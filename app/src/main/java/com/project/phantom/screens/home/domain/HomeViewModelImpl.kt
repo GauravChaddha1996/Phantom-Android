@@ -1,14 +1,14 @@
 package com.project.phantom.screens.home.domain
 
 import androidx.lifecycle.MutableLiveData
-import com.project.phantom.data.atoms.PhantomLceData
-import com.project.phantom.data.atoms.PhantomLceData.Companion.getContentData
-import com.project.phantom.data.atoms.PhantomLceData.Companion.getErrorData
-import com.project.phantom.data.atoms.PhantomLceData.Companion.getLoadingData
-import com.project.phantom.data.snippets.base.SnippetData
+import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.network.PhantomCEH
 import com.project.phantom.screens.base.BaseSnippetCurator
 import com.project.phantom.screens.base.BaseViewModel
+import com.project.phantom.ui.lce.PhantomLceData
+import com.project.phantom.ui.lce.PhantomLceData.Companion.getContentData
+import com.project.phantom.ui.lce.PhantomLceData.Companion.getErrorData
+import com.project.phantom.ui.lce.PhantomLceData.Companion.getLoadingData
 import kotlinx.coroutines.launch
 
 class HomeViewModelImpl(

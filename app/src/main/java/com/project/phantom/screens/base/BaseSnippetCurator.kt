@@ -1,8 +1,21 @@
 package com.project.phantom.screens.base
 
 import com.project.phantom.Utils.isNotNullOrEmpty
-import com.project.phantom.data.snippets.*
-import com.project.phantom.data.snippets.base.*
+import com.project.phantom.ui.grid.GridData
+import com.project.phantom.ui.list.HorizontalListData
+import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetApiData
+import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
+import com.project.phantom.ui.snippets.commons.SnippetApiData
+import com.project.phantom.ui.snippets.commons.SnippetData
+import com.project.phantom.ui.snippets.commons.SnippetSectionData
+import com.project.phantom.ui.snippets.productDual.ProductDualSnippetApiData
+import com.project.phantom.ui.snippets.productDual.ProductDualSnippetData
+import com.project.phantom.ui.snippets.productFull.ProductFullSnippetApiData
+import com.project.phantom.ui.snippets.productFull.ProductFullSnippetData
+import com.project.phantom.ui.snippets.productRail.ProductRailSnippetApiData
+import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
+import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
+import com.project.phantom.ui.snippets.sectionHeader.SnippetSectionHeaderApiData
 import org.koin.core.component.KoinComponent
 
 class BaseSnippetCurator : KoinComponent {

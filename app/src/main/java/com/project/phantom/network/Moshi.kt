@@ -1,7 +1,7 @@
 package com.project.phantom.network
 
-import com.project.phantom.data.atoms.click.ClickDataPolymorphicAdapter
-import com.project.phantom.data.snippets.base.SnippetApiDataPolymorphicAdapter
+import com.project.phantom.ui.click.ClickDataPolymorphicAdapter
+import com.project.phantom.ui.snippets.commons.SnippetApiDataPolymorphicAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
