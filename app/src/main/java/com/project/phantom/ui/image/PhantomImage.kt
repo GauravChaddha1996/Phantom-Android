@@ -1,21 +1,20 @@
-package com.project.phantom.ui.atoms
+package com.project.phantom.ui.image
 
 import android.graphics.drawable.ColorDrawable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
-import com.project.phantom.ui.image.PhantomImageData
+import com.project.phantom.theme.PhantomColorName.GREY_100
+import com.project.phantom.theme.PhantomColorName.GREY_200
+import com.project.phantom.theme.PhantomColors
 
 @Composable
-fun PhantomImage(data: PhantomImageData?, modifier: Modifier) {
+fun PhantomImage(data: PhantomImageData?, modifier: Modifier = Modifier) {
 
     // Check for visibility
     if (data == null || data.url.isEmpty()) {
@@ -24,14 +23,15 @@ fun PhantomImage(data: PhantomImageData?, modifier: Modifier) {
 
     // Some common stuff for our image request
     val builder: ImageRequest.Builder.() -> Unit = {
-        placeholder(ColorDrawable(android.graphics.Color.DKGRAY))
+        val placeholderColor = PhantomColors.resolve(GREY_200).toArgb()
+        placeholder(ColorDrawable(placeholderColor))
     }
 
     // add the view here
     Image(
         painter = rememberImagePainter(data = data.url, builder = builder),
         contentDescription = null,
-        modifier = modifier
+        modifier = modifier.background(PhantomColors.resolve(GREY_100))
     )
 }
 
@@ -39,10 +39,6 @@ fun PhantomImage(data: PhantomImageData?, modifier: Modifier) {
 @Composable
 fun TestPhantomImage() {
     PhantomImage(
-        data = null,
-        modifier = Modifier
-            .alpha(0.2f)
-            .padding(8.dp)
-            .background(Color.Blue)
+        data = PhantomImageData.create(ImageData("url"))
     )
 }

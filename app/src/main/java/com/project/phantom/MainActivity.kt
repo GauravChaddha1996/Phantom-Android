@@ -14,7 +14,7 @@ import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.theme.PhantomTheme
 import com.project.phantom.ui.button.PhantomButton
-import com.project.phantom.ui.atoms.PhantomText
+import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButtonData
 import com.project.phantom.ui.commons.ColorData

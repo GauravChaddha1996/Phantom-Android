@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.project.phantom.theme.PhantomFontStyle
-import com.project.phantom.ui.atoms.PhantomText
+import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.commons.FontData
 import com.project.phantom.ui.text.TextData
 

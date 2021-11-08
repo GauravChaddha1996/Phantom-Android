@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import com.project.phantom.theme.PhantomTheme
-import com.project.phantom.ui.atoms.PhantomText
+import com.project.phantom.theme.AppTheme
+import com.project.phantom.ui.text.PhantomText
 
 @Composable
 fun PhantomButton(
@@ -25,7 +25,7 @@ fun PhantomButton(
     val colors = when (data.type) {
         PhantomButtonType.TEXT -> ButtonDefaults.buttonColors(
             Color.Transparent,
-            PhantomTheme.colors.primary
+            AppTheme.colors.primary
         )
     }
 

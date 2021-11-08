@@ -5,15 +5,23 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.project.phantom.ui.atoms.PhantomImage
-import com.project.phantom.ui.atoms.PhantomText
+import com.project.phantom.Utils
+import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.theme.AppTheme
+import com.project.phantom.theme.AppTheme.CornerShape
+import com.project.phantom.theme.AppTheme.ElevationStyle
+import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.ui.image.ImageData
-import com.project.phantom.ui.text.PhantomTextData
+import com.project.phantom.ui.image.PhantomImage
+import com.project.phantom.ui.list.HorizontalList
+import com.project.phantom.ui.list.HorizontalListData
+import com.project.phantom.ui.text.MarkdownConfig
+import com.project.phantom.ui.text.MarkdownFontSpan
+import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
 @Composable
@@ -22,45 +30,42 @@ fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSn
 
     Card(
         modifier = Modifier
-            .clickable { interaction.onProductRailSnippetClicked(data) }
-            .size(200.dp, 450.dp),
-        elevation = 12.dp
+            .width(
+                Utils
+                    .getScreenWidth()
+                    .times(0.75f)
+            ),
+        elevation = ElevationStyle.medium,
+        shape = CornerShape.large
     ) {
-        Column {
+        Column(
+            modifier = Modifier.clickable {
+                interaction.onProductRailSnippetClicked(data)
+            },
+        ) {
             PhantomImage(
-                data = data.imageData, modifier = Modifier
-                    .padding(8.dp)
-                    .size(184.dp, 270.dp)
+                data = data.imageData,
+                modifier = Modifier.aspectRatio(1.66f)
             )
-            GetTextSection(data)
+            Row(
+                modifier = Modifier.padding(AppTheme.PaddingStyle.large),
+                verticalAlignment = Alignment.Top
+            ) {
+                Column(
+                    modifier = Modifier
+                        .weight(1f, true)
+                        .padding(end = AppTheme.PaddingStyle.large),
+                    verticalArrangement = Arrangement.spacedBy(AppTheme.PaddingStyle.small)
+                ) {
+                    PhantomText(data = data.name)
+                    PhantomText(data = data.shortDesc)
+                    PhantomText(data = data.brandAndCategory)
+                }
+                PhantomText(data = data.cost)
+            }
         }
     }
 
-}
-
-@Composable
-private fun GetTextSection(data: ProductRailSnippetData) {
-    Row {
-        Column(Modifier.weight(3f, true)) {
-            PhantomText(data = data.name)
-            PhantomText(data = data.shortDesc)
-            Row {
-                PhantomText(data = PhantomTextData.create(TextData("By")))
-                PhantomText(data = data.brand)
-            }
-            Row {
-                PhantomText(data = PhantomTextData.create(TextData("In")))
-                PhantomText(data = data.category)
-            }
-        }
-        PhantomText(
-            data = data.cost,
-            textAlign = TextAlign.End,
-            modifier = Modifier
-                .weight(1f, true)
-                .align(Alignment.CenterVertically)
-        )
-    }
 }
 
 interface ProductRailSnippetInteraction {
@@ -71,25 +76,34 @@ interface ProductRailSnippetInteraction {
 @Composable
 private fun TestProductRailSnippet() {
 
+    val data = ProductRailSnippetData.create(
+        ProductRailSnippetApiData(
+            id = 1,
+            name = TextData("Solid black shirt"),
+            shortDesc = TextData("Soft cotton shirt made by well paid work"),
+            brandAndCategory = TextData(
+                "by Adidas in Shirts", markdownConfig = MarkdownConfig(
+                    true,
+                    listOf(
+                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, 3, 9),
+                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, 13, 19)
+                    )
+                )
+            ),
+            cost = TextData("$200"),
+            imageData = ImageData("url")
+        )
+    )
     Surface {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            ProductRailSnippet(
-                data = ProductRailSnippetData.create(
-                    ProductRailSnippetApiData(
-                        1,
-                        TextData("Product name"),
-                        TextData("Product short desc a  a short desc Productai short desc"),
-                        TextData("Product brand"),
-                        TextData("Product category"),
-                        TextData("COST"),
-                        ImageData("url")
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopStart) {
+            HorizontalList(
+                rvDataState = mutableStateOf(
+                    HorizontalListData(
+                        listOf(data, data)
                     )
                 ),
-                interaction = object : ProductRailSnippetInteraction {
-                    override fun onProductRailSnippetClicked(data: ProductRailSnippetData?) {
-
-                    }
-                })
+                interaction = SnippetInteractions()
+            )
         }
     }
 }

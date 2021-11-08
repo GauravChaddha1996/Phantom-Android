@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.project.phantom.ui.atoms.PhantomImage
-import com.project.phantom.ui.atoms.PhantomText
 import com.project.phantom.ui.image.ImageData
+import com.project.phantom.ui.image.PhantomImage
+import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.PhantomTextData
 import com.project.phantom.ui.text.TextData
 

@@ -16,8 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.ui.atoms.PhantomGrid
-import com.project.phantom.ui.atoms.PhantomImage
-import com.project.phantom.ui.atoms.PhantomText
+import com.project.phantom.ui.image.PhantomImage
+import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.text.PhantomTextData

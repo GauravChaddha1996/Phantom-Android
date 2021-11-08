@@ -20,9 +20,12 @@ class PhantomColorData private constructor(
 ) {
     companion object {
 
-        fun create(data: ColorData?): PhantomColorData {
+        fun create(
+            data: ColorData?,
+            defaultColorName: PhantomColorName? = null
+        ): PhantomColorData {
             return PhantomColorData(
-                resolvedColor = PhantomColors.resolve(data?.name)
+                resolvedColor = PhantomColors.resolve(data?.name ?: defaultColorName)
             )
         }
     }

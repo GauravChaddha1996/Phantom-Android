@@ -1,13 +1,18 @@
-package com.project.phantom.ui.atoms
+package com.project.phantom.ui.text
 
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalFontLoader
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import com.project.phantom.ui.text.PhantomTextData
+
+internal const val DefaultWidthCharCount = 10 // min width for TextField is 10 chars long
+internal val EmptyTextReplacement = "H".repeat(DefaultWidthCharCount) // just a reference character.
 
 @Composable
 fun PhantomText(
@@ -22,22 +27,32 @@ fun PhantomText(
         return
     }
 
-    // Make the final text to be shown
-    val isMarkdownEnabled = data.markdownConfig?.enabled == true
-    var finalText = AnnotatedString(data.text)
-    if (isMarkdownEnabled) {
-        finalText = buildAnnotatedString {
-            append(finalText)
-        }
+    // minLines height logic
+    val density = LocalDensity.current
+    val resourceLoader = LocalFontLoader.current
+    val layoutDirection = LocalLayoutDirection.current
+    val minLineHeight = remember(data, density, resourceLoader, layoutDirection) {
+        minLinesHeight(
+            minLines = data.minLines,
+            textStyle = data.font.resolvedTextStyle,
+            density = density,
+            resourceLoader = resourceLoader,
+            layoutDirection = layoutDirection
+        )
     }
 
     // Add the final text
     Text(
-        text = finalText,
-        modifier = modifier,
+        text = data.text,
+        modifier = modifier
+            .heightIn(min = with(LocalDensity.current) {
+                minLineHeight.toDp()
+            }),
         color = data.color.resolvedColor,
         style = data.font.resolvedTextStyle,
         textDecoration = textDecoration,
-        textAlign = textAlign
+        textAlign = textAlign,
+        maxLines = data.maxLines,
+        overflow = data.overflow
     )
 }

@@ -1,5 +1,7 @@
 package com.project.phantom.ui.snippets.productRail
 
+import com.project.phantom.theme.PhantomColorName.*
+import com.project.phantom.theme.PhantomFontStyle.*
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.click.PhantomClickData
 import com.project.phantom.ui.image.ImageData
@@ -16,8 +18,7 @@ class ProductRailSnippetApiData(
     @Json(name = "id") val id: Int,
     @Json(name = "name") val name: TextData? = null,
     @Json(name = "short_desc") val shortDesc: TextData? = null,
-    @Json(name = "brand") val brand: TextData? = null,
-    @Json(name = "category") val category: TextData? = null,
+    @Json(name = "brand_and_category") val brandAndCategory: TextData? = null,
     @Json(name = "cost") val cost: TextData? = null,
     @Json(name = "image") val imageData: ImageData? = null,
     @Json(name = "click") val clickData: ClickData? = null
@@ -26,8 +27,7 @@ class ProductRailSnippetApiData(
 class ProductRailSnippetData private constructor(
     val name: PhantomTextData,
     val shortDesc: PhantomTextData,
-    val brand: PhantomTextData,
-    val category: PhantomTextData,
+    val brandAndCategory: PhantomTextData,
     val cost: PhantomTextData,
     val imageData: PhantomImageData,
     val phantomClickData: PhantomClickData
@@ -35,11 +35,30 @@ class ProductRailSnippetData private constructor(
     companion object {
         fun create(data: ProductRailSnippetApiData): ProductRailSnippetData {
             return ProductRailSnippetData(
-                name = PhantomTextData.create(data.name),
-                shortDesc = PhantomTextData.create(data.shortDesc),
-                brand = PhantomTextData.create(data.brand),
-                category = PhantomTextData.create(data.category),
-                cost = PhantomTextData.create(data.cost),
+                name = PhantomTextData.create(
+                    data = data.name,
+                    fontStyle = MEDIUM_700,
+                    colorName = GREY_900,
+                    maxLines = 1
+                ),
+                shortDesc = PhantomTextData.create(
+                    data = data.shortDesc,
+                    fontStyle = REGULAR_300,
+                    colorName = GREY_600,
+                    maxLines = 2,
+                    minLines = 2
+                ),
+                brandAndCategory = PhantomTextData.create(
+                    data = data.brandAndCategory,
+                    fontStyle = MEDIUM_300,
+                    colorName = GREY_800,
+                    maxLines = 1
+                ),
+                cost = PhantomTextData.create(
+                    data.cost,
+                    SEMIBOLD_700,
+                    BLACK
+                ),
                 imageData = PhantomImageData.create(data.imageData),
                 phantomClickData = PhantomClickData(data.clickData)
             )
