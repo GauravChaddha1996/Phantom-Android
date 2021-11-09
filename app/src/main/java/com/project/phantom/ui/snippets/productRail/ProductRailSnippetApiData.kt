@@ -55,9 +55,9 @@ class ProductRailSnippetData private constructor(
                     maxLines = 1
                 ),
                 cost = PhantomTextData.create(
-                    data.cost,
-                    SEMIBOLD_700,
-                    BLACK
+                    data = data.cost,
+                    fontStyle = SEMIBOLD_700,
+                    colorName = BLACK
                 ),
                 imageData = PhantomImageData.create(data.imageData),
                 phantomClickData = PhantomClickData(data.clickData)

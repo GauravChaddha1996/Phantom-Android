@@ -25,7 +25,7 @@ class SectionHeaderSnippetData(
     companion object {
         fun create(apiData: SnippetSectionHeaderApiData): SectionHeaderSnippetData {
             return SectionHeaderSnippetData(
-                title = PhantomTextData.create(apiData.title, PhantomFontStyle.SEMIBOLD_600),
+                title = PhantomTextData.create(apiData.title, PhantomFontStyle.SEMIBOLD_700),
                 subtitle = PhantomTextData.create(apiData.subtitle),
                 rightButton = PhantomButtonData.create(apiData.rightButton)
             )

@@ -11,9 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.project.phantom.Utils
 import com.project.phantom.screens.base.SnippetInteractions
-import com.project.phantom.theme.AppTheme
-import com.project.phantom.theme.AppTheme.CornerShape
-import com.project.phantom.theme.AppTheme.ElevationStyle
+import com.project.phantom.theme.CornerStyle
+import com.project.phantom.theme.ElevationStyle
+import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.image.PhantomImage
@@ -36,7 +36,7 @@ fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSn
                     .times(0.75f)
             ),
         elevation = ElevationStyle.medium,
-        shape = CornerShape.large
+        shape = CornerStyle.large
     ) {
         Column(
             modifier = Modifier.clickable {
@@ -45,17 +45,17 @@ fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSn
         ) {
             PhantomImage(
                 data = data.imageData,
-                modifier = Modifier.aspectRatio(1.66f)
+                modifier = Modifier.aspectRatio(1.83f)
             )
             Row(
-                modifier = Modifier.padding(AppTheme.PaddingStyle.large),
+                modifier = Modifier.padding(PaddingStyle.large),
                 verticalAlignment = Alignment.Top
             ) {
                 Column(
                     modifier = Modifier
                         .weight(1f, true)
-                        .padding(end = AppTheme.PaddingStyle.large),
-                    verticalArrangement = Arrangement.spacedBy(AppTheme.PaddingStyle.small)
+                        .padding(end = PaddingStyle.large),
+                    verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
                 ) {
                     PhantomText(data = data.name)
                     PhantomText(data = data.shortDesc)
@@ -75,7 +75,6 @@ interface ProductRailSnippetInteraction {
 @Preview
 @Composable
 private fun TestProductRailSnippet() {
-
     val data = ProductRailSnippetData.create(
         ProductRailSnippetApiData(
             id = 1,

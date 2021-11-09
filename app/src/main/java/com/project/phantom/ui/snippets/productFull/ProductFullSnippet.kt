@@ -7,13 +7,17 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.theme.CornerStyle
+import com.project.phantom.theme.ElevationStyle
+import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.image.PhantomImage
+import com.project.phantom.ui.text.MarkdownConfig
+import com.project.phantom.ui.text.MarkdownFontSpan
 import com.project.phantom.ui.text.PhantomText
-import com.project.phantom.ui.text.PhantomTextData
 import com.project.phantom.ui.text.TextData
 
 @Composable
@@ -21,47 +25,41 @@ fun ProductFullSnippet(data: ProductFullSnippetData?, interaction: ProductFullSn
     data ?: return
 
     Box(
-        Modifier.padding(12.dp)
+        modifier = Modifier.padding(
+            start = PaddingStyle.large,
+            end = PaddingStyle.large,
+            bottom = PaddingStyle.large
+        )
     ) {
         Card(
-            modifier = Modifier.clickable { interaction.onProductFullSnippetClicked(data) },
-            elevation = 12.dp,
+            elevation = ElevationStyle.medium,
+            shape = CornerStyle.large,
         ) {
-            Column(modifier = Modifier.padding(12.dp)) {
+            Column(modifier = Modifier.clickable {
+                interaction.onProductFullSnippetClicked(data = data)
+            }) {
                 PhantomImage(
                     data = data.imageData,
-                    modifier = Modifier
-                        .aspectRatio(1.85f)
+                    modifier = Modifier.aspectRatio(1.66f)
                 )
-                GetTextSection(data)
+                Row(
+                    modifier = Modifier.padding(PaddingStyle.large),
+                    verticalAlignment = Alignment.Top
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .weight(1f, true)
+                            .padding(end = PaddingStyle.large),
+                        verticalArrangement = Arrangement.spacedBy(PaddingStyle.medium)
+                    ) {
+                        PhantomText(data = data.name)
+                        PhantomText(data = data.longDesc)
+                        PhantomText(data = data.brandAndCategory)
+                    }
+                    PhantomText(data = data.cost)
+                }
             }
         }
-    }
-
-}
-
-@Composable
-private fun GetTextSection(data: ProductFullSnippetData) {
-    Row {
-        Column(Modifier.weight(3f, true)) {
-            PhantomText(data = data.name)
-            PhantomText(data = data.longDesc)
-            Row {
-                PhantomText(data = PhantomTextData.create(TextData("By")))
-                PhantomText(data = data.brand)
-            }
-            Row {
-                PhantomText(data = PhantomTextData.create(TextData("In")))
-                PhantomText(data = data.category)
-            }
-        }
-        PhantomText(
-            data = data.cost,
-            textAlign = TextAlign.End,
-            modifier = Modifier
-                .weight(1f, true)
-                .align(Alignment.CenterVertically)
-        )
     }
 }
 
@@ -72,26 +70,30 @@ interface ProductFullSnippetInteraction {
 @Preview
 @Composable
 private fun TestProductFullSnippet() {
-
+    val data = ProductFullSnippetData.create(
+        ProductFullSnippetApiData(
+            1,
+            name = TextData("Solid black shirt"),
+            longDesc = TextData(
+                "Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard " +
+                        ""
+            ),
+            brandAndCategory = TextData(
+                "by Adidas in Shirts", markdownConfig = MarkdownConfig(
+                    true,
+                    listOf(
+                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, 3, 9),
+                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, 13, 19)
+                    )
+                )
+            ),
+            cost = TextData("$200"),
+            imageData = ImageData("url")
+        )
+    )
     Surface {
         Box(modifier = Modifier.fillMaxSize()) {
-            ProductFullSnippet(
-                data = ProductFullSnippetData.create(
-                    ProductFullSnippetApiData(
-                        1,
-                        TextData("Product name"),
-                        TextData("Product long descriptio is here"),
-                        TextData("Product brand"),
-                        TextData("Product category"),
-                        TextData("COST"),
-                        ImageData("url")
-                    )
-                ),
-                interaction = object : ProductFullSnippetInteraction {
-                    override fun onProductFullSnippetClicked(data: ProductFullSnippetData?) {
-
-                    }
-                })
+            ProductFullSnippet(data = data, interaction = SnippetInteractions())
         }
     }
 }
