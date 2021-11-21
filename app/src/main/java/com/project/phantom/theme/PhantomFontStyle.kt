@@ -114,4 +114,10 @@ enum class PhantomFontStyle {
 
     @Json(name = "semibold_900")
     SEMIBOLD_900,
+
+    @Json(name = "semibold_940")
+    SEMIBOLD_940,
+
+    @Json(name = "semibold_950")
+    SEMIBOLD_950
 }

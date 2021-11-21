@@ -1,13 +1,11 @@
-package com.project.phantom.ui.atoms
+package com.project.phantom.ui.grid
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.project.phantom.ui.grid.GridData
 import com.project.phantom.screens.base.SnippetInteractions
-import com.project.phantom.ui.grid.HandleGridSnippetData
 
 @Composable
 fun PhantomGrid(gridDataState: State<GridData>, interaction: SnippetInteractions) {

@@ -8,4 +8,6 @@ object PaddingStyle {
     val small: Dp = 4.dp
     val medium: Dp = 8.dp
     val large: Dp = 12.dp
+    val extra: Dp = 16.dp
+    val huge: Dp = 20.dp
 }

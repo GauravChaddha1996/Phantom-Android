@@ -2,9 +2,9 @@ package com.project.phantom.ui.text
 
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFontLoader
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -19,13 +19,19 @@ fun PhantomText(
     data: PhantomTextData?,
     modifier: Modifier = Modifier,
     textDecoration: TextDecoration? = null,
-    textAlign: TextAlign? = null
+    textAlign: TextAlign? = null,
+    autoSize: Boolean = false
 ) {
 
     // Cases to check for visibility
     if (data == null || data.text.isEmpty()) {
         return
     }
+
+    var finalModifier = modifier
+    var readyToDraw by remember { mutableStateOf(false) }
+    var finalTextStyle by remember { mutableStateOf(data.font.resolvedTextStyle) }
+
 
     // minLines height logic
     val density = LocalDensity.current
@@ -34,25 +40,45 @@ fun PhantomText(
     val minLineHeight = remember(data, density, resourceLoader, layoutDirection) {
         minLinesHeight(
             minLines = data.minLines,
-            textStyle = data.font.resolvedTextStyle,
+            textStyle = finalTextStyle,
             density = density,
             resourceLoader = resourceLoader,
             layoutDirection = layoutDirection
         )
     }
 
+    // autosize handling
+    if (autoSize) {
+        finalModifier = finalModifier.drawWithContent {
+            if (readyToDraw) {
+                drawContent()
+            }
+        }
+    }
+
     // Add the final text
     Text(
         text = data.text,
-        modifier = modifier
+        modifier = finalModifier
             .heightIn(min = with(LocalDensity.current) {
                 minLineHeight.toDp()
             }),
         color = data.color.resolvedColor,
-        style = data.font.resolvedTextStyle,
+        style = finalTextStyle,
         textDecoration = textDecoration,
         textAlign = textAlign,
         maxLines = data.maxLines,
-        overflow = data.overflow
+        overflow = data.overflow,
+        softWrap = !autoSize,
+        onTextLayout = {
+            if (autoSize) {
+                if (it.didOverflowWidth) {
+                    finalTextStyle =
+                        finalTextStyle.copy(fontSize = finalTextStyle.fontSize.times(0.9))
+                } else {
+                    readyToDraw = true
+                }
+            }
+        }
     )
 }

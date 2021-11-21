@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.theme.PaddingStyle
 
 @Composable
 fun HorizontalList(rvDataState: State<HorizontalListData>, interaction: SnippetInteractions) {
@@ -15,7 +15,7 @@ fun HorizontalList(rvDataState: State<HorizontalListData>, interaction: SnippetI
             val list = rvDataState.value.list
             list.forEach { handleListSnippetData(it, interaction) }
         },
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = PaddingValues(horizontal = 12.dp)
+        horizontalArrangement = Arrangement.spacedBy(PaddingStyle.large),
+        contentPadding = PaddingValues(horizontal = PaddingStyle.large)
     )
 }

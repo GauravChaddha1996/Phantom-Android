@@ -1,5 +1,7 @@
 package com.project.phantom.ui.snippets.productDual
 
+import com.project.phantom.theme.PhantomColorName
+import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.click.PhantomClickData
 import com.project.phantom.ui.image.ImageData
@@ -34,12 +36,31 @@ class ProductDualSnippetData private constructor(
     companion object {
         fun create(data: ProductDualSnippetApiData): ProductDualSnippetData {
             return ProductDualSnippetData(
-                name = PhantomTextData.create(data.name),
-                shortDesc = PhantomTextData.create(data.shortDesc),
-                brand = PhantomTextData.create(data.brand),
-                cost = PhantomTextData.create(data.cost),
-                imageData = PhantomImageData.create(data.imageData),
-                phantomClickData = PhantomClickData(data.clickData)
+                name = PhantomTextData.create(
+                    data = data.name,
+                    fontStyle = PhantomFontStyle.MEDIUM_400,
+                    colorName = PhantomColorName.GREY_900,
+                    maxLines = 2
+                ),
+                shortDesc = PhantomTextData.create(
+                    data = data.shortDesc,
+                    fontStyle = PhantomFontStyle.LIGHT_200,
+                    colorName = PhantomColorName.GREY_600,
+                    maxLines = 2
+                ),
+                brand = PhantomTextData.create(
+                    data = data.brand,
+                    fontStyle = PhantomFontStyle.REGULAR_200,
+                    colorName = PhantomColorName.GREY_800,
+                    maxLines = 1
+                ),
+                cost = PhantomTextData.create(
+                    data = data.cost,
+                    fontStyle = PhantomFontStyle.MEDIUM_500,
+                    colorName = PhantomColorName.BLACK
+                ),
+                imageData = PhantomImageData.create(data = data.imageData),
+                phantomClickData = PhantomClickData(clickData = data.clickData)
             )
         }
     }

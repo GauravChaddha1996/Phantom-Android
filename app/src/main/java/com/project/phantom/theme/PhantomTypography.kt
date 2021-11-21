@@ -203,6 +203,16 @@ object PhantomTypography {
                 fontSize = 32.sp,
                 fontFamily = RalewayFontFamily
             )
+            SEMIBOLD_940 -> TextStyle(
+                fontWeight = SemiBold,
+                fontSize = 56.sp,
+                fontFamily = RalewayFontFamily
+            )
+            SEMIBOLD_950 -> TextStyle(
+                fontWeight = SemiBold,
+                fontSize = 192.sp,
+                fontFamily = RalewayFontFamily
+            )
             null -> TextStyle(
                 fontWeight = Normal,
                 fontSize = 13.sp,
