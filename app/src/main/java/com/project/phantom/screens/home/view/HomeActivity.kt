@@ -32,11 +32,11 @@ import com.project.phantom.ui.list.VerticalList
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.PhantomTextData
 import com.project.phantom.ui.text.TextData
-import org.koin.core.component.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity() {
 
-    private val homeViewModel: HomeViewModel by inject()
+    private val homeViewModel: HomeViewModel by viewModel()
     private val appBarHeight = 56.dp
 
     override fun onCreate(savedInstanceState: Bundle?) {

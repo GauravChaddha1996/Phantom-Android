@@ -1,9 +1,10 @@
 package com.project.phantom.screens.home.domain
 
+import com.project.phantom.screens.base.BaseViewModel
 import com.project.phantom.screens.home.view.HomeScreenState
 
-interface HomeViewModel {
-    val state: HomeScreenState
-    fun loadPage()
-    fun refreshPage()
+abstract class HomeViewModel : BaseViewModel() {
+    abstract val state: HomeScreenState
+    abstract fun loadPage()
+    abstract fun refreshPage()
 }

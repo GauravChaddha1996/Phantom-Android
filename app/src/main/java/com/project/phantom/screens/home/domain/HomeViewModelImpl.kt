@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.project.phantom.network.PhantomCEH
 import com.project.phantom.screens.base.BaseSnippetCurator
-import com.project.phantom.screens.base.BaseViewModel
 import com.project.phantom.screens.home.view.HomeScreenState
 import com.project.phantom.ui.lce.PhantomLceData.Companion.getContentData
 import com.project.phantom.ui.lce.PhantomLceData.Companion.getErrorData
@@ -16,7 +15,7 @@ import kotlinx.coroutines.launch
 class HomeViewModelImpl(
     private val fetcher: HomeFetcher,
     private val curator: BaseSnippetCurator
-) : BaseViewModel(), HomeViewModel {
+) : HomeViewModel() {
 
     override val defaultPhantomCEH = PhantomCEH {
         state = state.copy(lceState = getErrorData(it.message), rvDataState = emptyList())
