@@ -2,6 +2,53 @@ package com.project.phantom.theme
 
 import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
+import com.project.phantom.theme.PhantomColorName.BLACK
+import com.project.phantom.theme.PhantomColorName.BLUE_100
+import com.project.phantom.theme.PhantomColorName.BLUE_200
+import com.project.phantom.theme.PhantomColorName.BLUE_300
+import com.project.phantom.theme.PhantomColorName.BLUE_400
+import com.project.phantom.theme.PhantomColorName.BLUE_500
+import com.project.phantom.theme.PhantomColorName.BLUE_600
+import com.project.phantom.theme.PhantomColorName.BLUE_700
+import com.project.phantom.theme.PhantomColorName.BLUE_800
+import com.project.phantom.theme.PhantomColorName.BLUE_900
+import com.project.phantom.theme.PhantomColorName.GREEN_100
+import com.project.phantom.theme.PhantomColorName.GREEN_200
+import com.project.phantom.theme.PhantomColorName.GREEN_300
+import com.project.phantom.theme.PhantomColorName.GREEN_400
+import com.project.phantom.theme.PhantomColorName.GREEN_500
+import com.project.phantom.theme.PhantomColorName.GREEN_600
+import com.project.phantom.theme.PhantomColorName.GREEN_700
+import com.project.phantom.theme.PhantomColorName.GREEN_800
+import com.project.phantom.theme.PhantomColorName.GREEN_900
+import com.project.phantom.theme.PhantomColorName.GREY_100
+import com.project.phantom.theme.PhantomColorName.GREY_200
+import com.project.phantom.theme.PhantomColorName.GREY_300
+import com.project.phantom.theme.PhantomColorName.GREY_400
+import com.project.phantom.theme.PhantomColorName.GREY_500
+import com.project.phantom.theme.PhantomColorName.GREY_600
+import com.project.phantom.theme.PhantomColorName.GREY_700
+import com.project.phantom.theme.PhantomColorName.GREY_800
+import com.project.phantom.theme.PhantomColorName.GREY_900
+import com.project.phantom.theme.PhantomColorName.RED_100
+import com.project.phantom.theme.PhantomColorName.RED_200
+import com.project.phantom.theme.PhantomColorName.RED_300
+import com.project.phantom.theme.PhantomColorName.RED_400
+import com.project.phantom.theme.PhantomColorName.RED_500
+import com.project.phantom.theme.PhantomColorName.RED_600
+import com.project.phantom.theme.PhantomColorName.RED_700
+import com.project.phantom.theme.PhantomColorName.RED_800
+import com.project.phantom.theme.PhantomColorName.RED_900
+import com.project.phantom.theme.PhantomColorName.WHITE
+import com.project.phantom.theme.PhantomColorName.YELLOW_100
+import com.project.phantom.theme.PhantomColorName.YELLOW_200
+import com.project.phantom.theme.PhantomColorName.YELLOW_300
+import com.project.phantom.theme.PhantomColorName.YELLOW_400
+import com.project.phantom.theme.PhantomColorName.YELLOW_500
+import com.project.phantom.theme.PhantomColorName.YELLOW_600
+import com.project.phantom.theme.PhantomColorName.YELLOW_700
+import com.project.phantom.theme.PhantomColorName.YELLOW_800
+import com.project.phantom.theme.PhantomColorName.YELLOW_900
 
 object PhantomColors {
 
