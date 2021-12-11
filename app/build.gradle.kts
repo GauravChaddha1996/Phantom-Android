@@ -2,6 +2,7 @@ import com.project.phantom.buildsrc.Libs
 
 plugins {
     id("com.android.application")
+    id("org.jmailen.kotlinter") version "3.7.0"
     kotlin("android")
     kotlin("kapt")
 }
@@ -81,4 +82,16 @@ dependencies {
     androidTestImplementation(Libs.Test.junitTextExt)
     androidTestImplementation(Libs.Test.espresso)
     androidTestImplementation(Libs.Test.composeTest)
+}
+
+kotlinter {
+    ignoreFailures = false
+    indentSize = 4
+    reporters = arrayOf("checkstyle", "plain")
+    experimentalRules = true
+    disabledRules = emptyArray<String>()
+}
+
+tasks.check {
+    dependsOn("installKotlinterPrePushHook")
 }
