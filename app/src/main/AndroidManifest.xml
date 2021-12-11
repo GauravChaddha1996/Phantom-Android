@@ -3,6 +3,7 @@
     package="com.project.phantom">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".PhantomApplication"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
+        android:allowBackup="false"
         android:theme="@style/Theme.AppCompat">
 
         <activity

@@ -14,7 +14,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class ProductFullSnippetApiData(
+data class ProductFullSnippetApiData(
     @Json(name = "id") val id: Int,
     @Json(name = "name") val name: TextData? = null,
     @Json(name = "long_desc") val longDesc: TextData? = null,

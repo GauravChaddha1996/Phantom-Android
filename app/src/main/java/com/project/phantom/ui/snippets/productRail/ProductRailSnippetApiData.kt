@@ -20,7 +20,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class ProductRailSnippetApiData(
+data class ProductRailSnippetApiData(
     @Json(name = "id") val id: Int,
     @Json(name = "name") val name: TextData? = null,
     @Json(name = "short_desc") val shortDesc: TextData? = null,

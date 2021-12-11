@@ -44,7 +44,7 @@ fun CategoryRailSnippet(
                 data = data.firstCharacter,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .alpha(0.25f)
+                    .alpha(alpha = 0.25f)
             )
             PhantomText(
                 data = data.name,

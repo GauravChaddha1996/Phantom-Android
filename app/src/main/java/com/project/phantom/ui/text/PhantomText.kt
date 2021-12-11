@@ -78,7 +78,7 @@ fun PhantomText(
             if (autoSize) {
                 if (it.didOverflowWidth) {
                     finalTextStyle =
-                        finalTextStyle.copy(fontSize = finalTextStyle.fontSize.times(0.9))
+                        finalTextStyle.copy(fontSize = finalTextStyle.fontSize.times(other = 0.9))
                 } else {
                     readyToDraw = true
                 }

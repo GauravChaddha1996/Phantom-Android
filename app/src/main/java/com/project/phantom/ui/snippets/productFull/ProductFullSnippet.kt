@@ -48,7 +48,7 @@ fun ProductFullSnippet(data: ProductFullSnippetData?, interaction: ProductFullSn
             ) {
                 PhantomImage(
                     data = data.imageData,
-                    modifier = Modifier.aspectRatio(1.66f)
+                    modifier = Modifier.aspectRatio(ratio = .66f)
                 )
                 Row(
                     modifier = Modifier.padding(PaddingStyle.large),
@@ -83,15 +83,17 @@ private fun TestProductFullSnippet() {
             1,
             name = TextData("Solid black shirt"),
             longDesc = TextData(
-                "Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard "
+                "Soft cotton shirt made by well paid hard Soft cotton shirt made by well " +
+                    "paid hard Soft cotton shirt made by well paid hard Soft cotton shirt " +
+                    "made by well paid hard"
             ),
             brandAndCategory = TextData(
                 "by Adidas in Shirts",
                 markdownConfig = MarkdownConfig(
                     true,
                     listOf(
-                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, 3, 9),
-                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, 13, 19)
+                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 3, end = 9),
+                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 13, end = 19)
                     )
                 )
             ),

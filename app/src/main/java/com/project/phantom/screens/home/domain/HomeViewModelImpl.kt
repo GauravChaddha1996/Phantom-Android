@@ -17,6 +17,10 @@ class HomeViewModelImpl(
     private val curator: BaseSnippetCurator
 ) : HomeViewModel() {
 
+    companion object {
+        const val RefreshDelay = 1000L
+    }
+
     override val defaultPhantomCEH = PhantomCEH {
         state = state.copy(lceState = getErrorData(it.message), rvDataState = emptyList())
     }
@@ -31,7 +35,7 @@ class HomeViewModelImpl(
             if (curatedList.isNotEmpty()) {
                 state = state.copy(lceState = getContentData(), rvDataState = curatedList)
             } else {
-                throw Exception("Curated list is empty")
+                throw HomeCurationException()
             }
         }
     }
@@ -39,7 +43,7 @@ class HomeViewModelImpl(
     override fun refreshPage() {
         launch {
             state = state.copy(isRefreshing = true)
-            delay(1000)
+            delay(RefreshDelay)
             val response = fetcher.fetchHomePage()
             val curatedList = curator.curate(response.snippetSectionList)
             if (curatedList.isNotEmpty()) {
@@ -50,7 +54,7 @@ class HomeViewModelImpl(
                 )
             } else {
                 state = state.copy(isRefreshing = false)
-                throw Exception("Curated list is empty")
+                throw HomeCurationException()
             }
         }
     }

@@ -59,6 +59,18 @@ object PhantomTypography {
     val RalewayFontFamily = FontFamily(FontLight, FontRegular, FontMedium, FontSemibold)
 
     fun resolve(fontStyle: PhantomFontStyle?): TextStyle {
+        return resolveLightFontStyle(fontStyle)
+            ?: resolveRegularFontStyle(fontStyle)
+            ?: resolveMediumFontStyle(fontStyle)
+            ?: resolveSemiboldFontStyle(fontStyle)
+            ?: TextStyle(
+                fontWeight = Normal,
+                fontSize = 13.sp,
+                fontFamily = RalewayFontFamily
+            )
+    }
+
+    private fun resolveLightFontStyle(fontStyle: PhantomFontStyle?): TextStyle? {
         return when (fontStyle) {
             LIGHT_100 -> TextStyle(
                 fontWeight = Light,
@@ -105,6 +117,12 @@ object PhantomTypography {
                 fontSize = 32.sp,
                 fontFamily = RalewayFontFamily
             )
+            else -> null
+        }
+    }
+
+    private fun resolveRegularFontStyle(fontStyle: PhantomFontStyle?): TextStyle? {
+        return when (fontStyle) {
             REGULAR_100 -> TextStyle(
                 fontWeight = Normal,
                 fontSize = 10.sp,
@@ -150,6 +168,12 @@ object PhantomTypography {
                 fontSize = 32.sp,
                 fontFamily = RalewayFontFamily
             )
+            else -> null
+        }
+    }
+
+    private fun resolveMediumFontStyle(fontStyle: PhantomFontStyle?): TextStyle? {
+        return when (fontStyle) {
             MEDIUM_100 -> TextStyle(
                 fontWeight = Medium,
                 fontSize = 10.sp,
@@ -195,6 +219,12 @@ object PhantomTypography {
                 fontSize = 32.sp,
                 fontFamily = RalewayFontFamily
             )
+            else -> null
+        }
+    }
+
+    private fun resolveSemiboldFontStyle(fontStyle: PhantomFontStyle?): TextStyle? {
+        return when (fontStyle) {
             SEMIBOLD_100 -> TextStyle(
                 fontWeight = SemiBold,
                 fontSize = 10.sp,
@@ -250,11 +280,7 @@ object PhantomTypography {
                 fontSize = 192.sp,
                 fontFamily = RalewayFontFamily
             )
-            null -> TextStyle(
-                fontWeight = Normal,
-                fontSize = 13.sp,
-                fontFamily = RalewayFontFamily
-            )
+            else -> null
         }
     }
 }

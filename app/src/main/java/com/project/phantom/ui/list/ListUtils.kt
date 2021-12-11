@@ -1,7 +1,6 @@
 package com.project.phantom.ui.list
 
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.runtime.mutableStateOf
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.grid.PhantomGrid
@@ -24,12 +23,12 @@ internal fun LazyListScope.handleListSnippetData(it: SnippetData, interaction: S
         }
         is HorizontalListData -> {
             item {
-                HorizontalList(rvDataState = mutableStateOf(it), interaction = interaction)
+                HorizontalList(rvData = it, interaction = interaction)
             }
         }
         is GridData -> {
             item {
-                PhantomGrid(gridDataState = mutableStateOf(it), interaction = interaction)
+                PhantomGrid(gridData = it, interaction = interaction)
             }
         }
         is ProductFullSnippetData -> {

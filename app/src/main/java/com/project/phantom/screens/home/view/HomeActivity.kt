@@ -172,7 +172,7 @@ class HomeActivity : BaseActivity() {
 
     @Composable
     private fun getTopAppBarHeightAnim(topAppBarShowing: Boolean) = animateDpAsState(
-        targetValue = if (topAppBarShowing) 0.dp else appBarHeight.unaryMinus().times(3),
-        animationSpec = tween(700)
+        targetValue = if (topAppBarShowing) 0.dp else appBarHeight.unaryMinus().times(other = 3),
+        animationSpec = tween(durationMillis = 700)
     )
 }

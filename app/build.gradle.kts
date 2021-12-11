@@ -2,16 +2,17 @@ import com.project.phantom.buildsrc.Libs
 
 plugins {
     id("com.android.application")
-    id("org.jmailen.kotlinter") version "3.7.0"
     kotlin("android")
     kotlin("kapt")
+    id("org.jmailen.kotlinter") version "3.7.0"
+    id("io.gitlab.arturbosch.detekt") version("1.19.0")
 }
 
 android {
     defaultConfig {
         applicationId = "com.project.phantom"
         compileSdk = 31
-        minSdk = 21
+        minSdk = 23
         targetSdk = 30
         versionCode = 1
         versionName = "1.0"
@@ -90,8 +91,4 @@ kotlinter {
     reporters = arrayOf("checkstyle", "plain")
     experimentalRules = true
     disabledRules = emptyArray<String>()
-}
-
-tasks.check {
-    dependsOn("installKotlinterPrePushHook")
 }

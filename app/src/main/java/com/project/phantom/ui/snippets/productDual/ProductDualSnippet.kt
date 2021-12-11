@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,7 +44,7 @@ fun ProductDualSnippet(
         ) {
             PhantomImage(
                 data = data.imageData,
-                modifier = Modifier.aspectRatio(1.05f)
+                modifier = Modifier.aspectRatio(ratio = 1.05f)
             )
             Column(
                 verticalArrangement = Arrangement.spacedBy(PaddingStyle.small),
@@ -93,7 +92,7 @@ private fun TestProductDualSnippet() {
                 "by Adidas",
                 markdownConfig = MarkdownConfig(
                     true,
-                    listOf(MarkdownFontSpan(PhantomFontStyle.MEDIUM_200, 3, 9))
+                    listOf(MarkdownFontSpan(PhantomFontStyle.MEDIUM_200, start = 3, end = 9))
                 )
             ),
             cost = TextData("$200"),
@@ -102,9 +101,7 @@ private fun TestProductDualSnippet() {
     )
     Surface {
         PhantomGrid(
-            mutableStateOf(
-                GridData(2, listOf(data, data))
-            ),
+            GridData(2, listOf(data, data)),
             interaction = SnippetInteractions()
         )
     }

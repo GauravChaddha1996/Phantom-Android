@@ -6,14 +6,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
 
 @Composable
-fun PhantomGrid(gridDataState: State<GridData>, interaction: SnippetInteractions) {
-    val gridData = gridDataState.value
+fun PhantomGrid(gridData: GridData, interaction: SnippetInteractions) {
     val gridList = gridData.list
     val numberOfColumns = gridData.noOfColumns
 

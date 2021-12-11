@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,7 +39,7 @@ fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSn
             .width(
                 Utils
                     .getScreenWidth()
-                    .times(0.75f)
+                    .times(other = 0.75f)
             ),
         elevation = ElevationStyle.medium,
         shape = CornerStyle.large
@@ -52,7 +51,7 @@ fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSn
         ) {
             PhantomImage(
                 data = data.imageData,
-                modifier = Modifier.aspectRatio(1.83f)
+                modifier = Modifier.aspectRatio(ratio = 1.83f)
             )
             Row(
                 modifier = Modifier.padding(PaddingStyle.large),
@@ -91,8 +90,8 @@ private fun TestProductRailSnippet() {
                 markdownConfig = MarkdownConfig(
                     true,
                     listOf(
-                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, 3, 9),
-                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, 13, 19)
+                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 3, end = 9),
+                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 13, end = 19)
                     )
                 )
             ),
@@ -103,10 +102,8 @@ private fun TestProductRailSnippet() {
     Surface {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopStart) {
             HorizontalList(
-                rvDataState = mutableStateOf(
-                    HorizontalListData(
-                        listOf(data, data)
-                    )
+                HorizontalListData(
+                    listOf(data, data)
                 ),
                 interaction = SnippetInteractions()
             )
