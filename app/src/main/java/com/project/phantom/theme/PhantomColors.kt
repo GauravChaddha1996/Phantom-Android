@@ -2,7 +2,6 @@ package com.project.phantom.theme
 
 import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
-import com.project.phantom.theme.PhantomColorName.*
 
 object PhantomColors {
 
@@ -58,7 +57,7 @@ object PhantomColors {
         GREY_600 to Color(0xFF828282),
         GREY_700 to Color(0xFF696969),
         GREY_800 to Color(0xFF4F4F4F),
-        GREY_900 to Color(0xFF363636),
+        GREY_900 to Color(0xFF363636)
     )
 
     fun resolve(colorName: PhantomColorName?): Color {

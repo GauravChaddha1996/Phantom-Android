@@ -38,7 +38,6 @@ class BaseSnippetCurator : KoinComponent {
         return finalList
     }
 
-
     private fun curateHeaderData(headerApiData: SnippetSectionHeaderApiData?): List<SnippetData> {
         val headerSnippets = mutableListOf<SnippetData>()
         headerApiData?.let {

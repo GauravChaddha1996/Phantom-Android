@@ -10,7 +10,6 @@ import androidx.compose.ui.unit.LayoutDirection
 import kotlin.math.ceil
 import kotlin.math.roundToInt
 
-
 internal fun minLinesHeight(
     minLines: Int,
     textStyle: TextStyle,

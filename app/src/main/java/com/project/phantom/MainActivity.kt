@@ -13,12 +13,12 @@ import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.theme.PhantomTheme
-import com.project.phantom.ui.button.PhantomButton
-import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.button.ButtonData
+import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.button.PhantomButtonData
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.commons.FontData
+import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.PhantomTextData
 import com.project.phantom.ui.text.TextData
 

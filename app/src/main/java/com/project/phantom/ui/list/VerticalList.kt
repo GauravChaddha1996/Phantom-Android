@@ -9,7 +9,6 @@ import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.ui.snippets.commons.SnippetData
 
-
 @Composable
 fun VerticalList(
     rvDataState: List<SnippetData>?,
@@ -24,6 +23,6 @@ fun VerticalList(
         },
         verticalArrangement = Arrangement.spacedBy(PaddingStyle.huge),
         contentPadding = contentPadding,
-        modifier = modifier,
+        modifier = modifier
     )
 }

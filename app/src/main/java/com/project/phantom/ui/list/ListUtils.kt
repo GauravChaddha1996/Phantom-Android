@@ -3,8 +3,8 @@ package com.project.phantom.ui.list
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.mutableStateOf
 import com.project.phantom.screens.base.SnippetInteractions
-import com.project.phantom.ui.grid.PhantomGrid
 import com.project.phantom.ui.grid.GridData
+import com.project.phantom.ui.grid.PhantomGrid
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippet
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
 import com.project.phantom.ui.snippets.commons.SnippetData

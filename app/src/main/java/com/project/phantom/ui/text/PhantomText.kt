@@ -2,7 +2,11 @@ package com.project.phantom.ui.text
 
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.platform.LocalDensity
@@ -22,7 +26,6 @@ fun PhantomText(
     textAlign: TextAlign? = null,
     autoSize: Boolean = false
 ) {
-
     // Cases to check for visibility
     if (data == null || data.text.isEmpty()) {
         return
@@ -31,7 +34,6 @@ fun PhantomText(
     var finalModifier = modifier
     var readyToDraw by remember { mutableStateOf(false) }
     var finalTextStyle by remember { mutableStateOf(data.font.resolvedTextStyle) }
-
 
     // minLines height logic
     val density = LocalDensity.current
@@ -60,9 +62,11 @@ fun PhantomText(
     Text(
         text = data.text,
         modifier = finalModifier
-            .heightIn(min = with(LocalDensity.current) {
-                minLineHeight.toDp()
-            }),
+            .heightIn(
+                min = with(LocalDensity.current) {
+                    minLineHeight.toDp()
+                }
+            ),
         color = data.color.resolvedColor,
         style = finalTextStyle,
         textDecoration = textDecoration,

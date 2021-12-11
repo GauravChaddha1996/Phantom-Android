@@ -55,7 +55,6 @@ fun CategoryRailSnippet(
             )
         }
     }
-
 }
 
 interface CategoryRailSnippetInteraction {
@@ -65,7 +64,6 @@ interface CategoryRailSnippetInteraction {
 @Preview
 @Composable
 private fun TestCategoryRailSnippet() {
-
     Surface {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopStart) {
             CategoryRailSnippet(

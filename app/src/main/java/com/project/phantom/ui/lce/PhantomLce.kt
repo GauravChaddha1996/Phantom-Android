@@ -85,5 +85,6 @@ fun TestPhantomLCE() {
             override fun onRetryClicked() {
                 s.value = PhantomLceData.getContentData()
             }
-        })
+        }
+    )
 }

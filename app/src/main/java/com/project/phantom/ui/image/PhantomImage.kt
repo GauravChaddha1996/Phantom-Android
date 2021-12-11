@@ -15,7 +15,6 @@ import com.project.phantom.theme.PhantomColors
 
 @Composable
 fun PhantomImage(data: PhantomImageData?, modifier: Modifier = Modifier) {
-
     // Check for visibility
     if (data == null || data.url.isEmpty()) {
         return

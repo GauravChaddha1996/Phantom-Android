@@ -1,7 +1,14 @@
 package com.project.phantom.ui.snippets.productRail
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -41,7 +48,7 @@ fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSn
         Column(
             modifier = Modifier.clickable {
                 interaction.onProductRailSnippetClicked(data)
-            },
+            }
         ) {
             PhantomImage(
                 data = data.imageData,
@@ -65,7 +72,6 @@ fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSn
             }
         }
     }
-
 }
 
 interface ProductRailSnippetInteraction {
@@ -81,7 +87,8 @@ private fun TestProductRailSnippet() {
             name = TextData("Solid black shirt"),
             shortDesc = TextData("Soft cotton shirt made by well paid work"),
             brandAndCategory = TextData(
-                "by Adidas in Shirts", markdownConfig = MarkdownConfig(
+                "by Adidas in Shirts",
+                markdownConfig = MarkdownConfig(
                     true,
                     listOf(
                         MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, 3, 9),

@@ -1,7 +1,13 @@
 package com.project.phantom.ui.snippets.productFull
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -33,11 +39,13 @@ fun ProductFullSnippet(data: ProductFullSnippetData?, interaction: ProductFullSn
     ) {
         Card(
             elevation = ElevationStyle.medium,
-            shape = CornerStyle.large,
+            shape = CornerStyle.large
         ) {
-            Column(modifier = Modifier.clickable {
-                interaction.onProductFullSnippetClicked(data = data)
-            }) {
+            Column(
+                modifier = Modifier.clickable {
+                    interaction.onProductFullSnippetClicked(data = data)
+                }
+            ) {
                 PhantomImage(
                     data = data.imageData,
                     modifier = Modifier.aspectRatio(1.66f)
@@ -75,11 +83,11 @@ private fun TestProductFullSnippet() {
             1,
             name = TextData("Solid black shirt"),
             longDesc = TextData(
-                "Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard " +
-                        ""
+                "Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard Soft cotton shirt made by well paid hard "
             ),
             brandAndCategory = TextData(
-                "by Adidas in Shirts", markdownConfig = MarkdownConfig(
+                "by Adidas in Shirts",
+                markdownConfig = MarkdownConfig(
                     true,
                     listOf(
                         MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, 3, 9),

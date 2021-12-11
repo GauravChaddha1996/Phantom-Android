@@ -20,7 +20,6 @@ open class SnippetApiData(
     }
 }
 
-
 val SnippetApiDataPolymorphicAdapter: PolymorphicJsonAdapterFactory<SnippetApiData> =
     PolymorphicJsonAdapterFactory.of(SnippetApiData::class.java, SNIPPET_TYPE)
         .withSubtype(ProductRailSnippetApiData::class.java, SnippetType.ProductRailSnippet.name)

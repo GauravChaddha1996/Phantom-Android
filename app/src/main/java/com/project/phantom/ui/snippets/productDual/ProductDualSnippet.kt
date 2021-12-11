@@ -1,7 +1,11 @@
 package com.project.phantom.ui.snippets.productDual
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -37,7 +41,7 @@ fun ProductDualSnippet(
         Column(
             modifier = Modifier.clickable {
                 interaction.onProductDualSnippetClicked(data)
-            },
+            }
         ) {
             PhantomImage(
                 data = data.imageData,
@@ -63,14 +67,12 @@ fun ProductDualSnippet(
                     modifier = Modifier.padding(horizontal = PaddingStyle.large),
                     verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
                 ) {
-
                     PhantomText(data = data.shortDesc)
                     PhantomText(data = data.brand)
                 }
             }
         }
     }
-
 }
 
 interface ProductDualSnippetInteraction {

@@ -1,10 +1,10 @@
 package com.project.phantom.ui.snippets.sectionHeader
 
-import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButtonData
 import com.project.phantom.ui.snippets.commons.SnippetApiData
+import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.PhantomTextData
 import com.project.phantom.ui.text.TextData
 import com.squareup.moshi.Json

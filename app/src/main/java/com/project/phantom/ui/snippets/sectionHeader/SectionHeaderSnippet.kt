@@ -1,17 +1,21 @@
 package com.project.phantom.ui.snippets.sectionHeader
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
-import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.button.PhantomButtonData
 import com.project.phantom.ui.button.PhantomButtonType
+import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.PhantomTextData
 import com.project.phantom.ui.text.TextData
 
@@ -27,10 +31,12 @@ fun SectionHeaderSnippet(
             PhantomText(data = data?.title)
             PhantomText(data = data?.subtitle)
         }
-        PhantomButton(data = data?.rightButton,
+        PhantomButton(
+            data = data?.rightButton,
             onClick = {
                 interaction.onSectionHeaderSnippetRightButtonClicked(data)
-            })
+            }
+        )
     }
 }
 
@@ -53,7 +59,8 @@ fun TestSectionHeaderSnippet() {
                             PhantomButtonType.TEXT
                         )
                     )
-                ), interaction = SnippetInteractions()
+                ),
+                interaction = SnippetInteractions()
             )
         }
     }

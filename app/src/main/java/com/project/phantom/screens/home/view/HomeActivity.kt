@@ -9,7 +9,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
@@ -75,7 +79,8 @@ class HomeActivity : BaseActivity() {
                                 .padding(top = appBarHeight)
                                 .graphicsLayer {
                                     translationY = topAppBarHeightAnim.value
-                                })
+                                }
+                        )
                     }
                 ) {
                     VerticalList(
@@ -93,7 +98,8 @@ class HomeActivity : BaseActivity() {
                             override fun onRetryClicked() {
                                 homeViewModel.loadPage()
                             }
-                        })
+                        }
+                    )
                 }
                 GetTopAppBar(topAppBarShowing)
             }
@@ -144,21 +150,24 @@ class HomeActivity : BaseActivity() {
                         fontStyle = PhantomFontStyle.SEMIBOLD_700
                     )
                 )
-            }, navigationIcon = {
+            },
+            navigationIcon = {
                 PhantomText(
                     data = PhantomTextData.create(
                         TextData("II"),
                         fontStyle = PhantomFontStyle.SEMIBOLD_700
                     )
                 )
-            }, actions = {
+            },
+            actions = {
                 PhantomText(
                     data = PhantomTextData.create(
                         TextData("A1"),
                         fontStyle = PhantomFontStyle.SEMIBOLD_700
                     )
                 )
-            })
+            }
+        )
     }
 
     @Composable

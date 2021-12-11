@@ -17,7 +17,6 @@ fun PhantomButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
-
     // Cases to check for visibility
     if (data == null || data.text.text.isEmpty()) {
         return

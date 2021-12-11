@@ -10,4 +10,3 @@ val AppModule = module {
     single { createOkHttpClient() }
     single { createRetrofit() }
 }
-

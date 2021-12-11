@@ -20,7 +20,7 @@ class CategoryRailSnippetApiData(
     @Json(name = "first_character") val firstCharacter: TextData? = null,
     @Json(name = "name") val name: TextData? = null,
     @Json(name = "bg_color") val bgColor: ColorData? = null,
-    @Json(name = "click") val clickData: ClickData? = null,
+    @Json(name = "click") val clickData: ClickData? = null
 ) : SnippetApiData()
 
 class CategoryRailSnippetData(

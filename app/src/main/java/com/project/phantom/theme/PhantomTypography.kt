@@ -11,7 +11,6 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Normal
 import androidx.compose.ui.text.font.FontWeight.Companion.SemiBold
 import androidx.compose.ui.unit.sp
 import com.project.phantom.R
-import com.project.phantom.theme.PhantomFontStyle.*
 import com.project.phantom.theme.PhantomTypography.RalewayFontFamily
 
 object PhantomTypography {

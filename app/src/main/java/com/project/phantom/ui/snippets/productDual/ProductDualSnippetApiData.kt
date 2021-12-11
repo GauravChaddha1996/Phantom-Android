@@ -24,7 +24,6 @@ class ProductDualSnippetApiData(
     @Json(name = "click") val clickData: ClickData? = null
 ) : SnippetApiData()
 
-
 class ProductDualSnippetData private constructor(
     val name: PhantomTextData,
     val shortDesc: PhantomTextData,

@@ -1,7 +1,13 @@
 package com.project.phantom.ui.snippets.productRail
 
-import com.project.phantom.theme.PhantomColorName.*
-import com.project.phantom.theme.PhantomFontStyle.*
+import com.project.phantom.theme.PhantomColorName.BLACK
+import com.project.phantom.theme.PhantomColorName.GREY_600
+import com.project.phantom.theme.PhantomColorName.GREY_800
+import com.project.phantom.theme.PhantomColorName.GREY_900
+import com.project.phantom.theme.PhantomFontStyle.MEDIUM_300
+import com.project.phantom.theme.PhantomFontStyle.MEDIUM_700
+import com.project.phantom.theme.PhantomFontStyle.REGULAR_300
+import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.click.PhantomClickData
 import com.project.phantom.ui.image.ImageData
