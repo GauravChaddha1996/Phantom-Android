@@ -92,3 +92,7 @@ kotlinter {
     experimentalRules = true
     disabledRules = emptyArray<String>()
 }
+
+afterEvaluate {
+    tasks.findByPath(":app:assembleDebug")?.dependsOn(":copyGitHooks")
+}

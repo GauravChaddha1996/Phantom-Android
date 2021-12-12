@@ -16,3 +16,16 @@ buildscript {
 plugins {
     kotlin("jvm") version "1.5.31"
 }
+
+tasks.register<Copy>("copyGitHooks") {
+    from(layout.projectDirectory.file("scripts/pre-commit.sh"))
+    into(layout.projectDirectory.dir(".git/hooks"))
+    fileMode = 777
+    rename { it.removeSuffix(".sh") }
+    doLast {
+        project.exec {
+            commandLine("chmod", "+x", layout.projectDirectory.file(".git/hooks/pre-commit"))
+        }
+    }
+}
+
