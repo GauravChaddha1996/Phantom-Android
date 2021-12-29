@@ -18,6 +18,7 @@ class HomeViewModelImpl(
 ) : HomeViewModel() {
 
     companion object {
+        const val LoadDelay = 2000L
         const val RefreshDelay = 1000L
     }
 
@@ -27,8 +28,13 @@ class HomeViewModelImpl(
     override var state by mutableStateOf(HomeScreenState())
         private set
 
+    init {
+        loadPage()
+    }
+
     override fun loadPage() {
         launch {
+            delay(LoadDelay)
             state = state.copy(lceState = getLoadingData())
             val response = fetcher.fetchHomePage()
             val curatedList = curator.curate(response.snippetSectionList)

@@ -3,8 +3,7 @@ package com.project.phantom.ui.lce
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,6 +22,8 @@ import com.project.phantom.ui.button.PhantomButtonData
 import com.project.phantom.ui.button.PhantomButtonType
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.commons.FontData
+import com.project.phantom.ui.ghost.PhantomGhost
+import com.project.phantom.ui.ghost.PhantomGhostData
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -32,10 +33,14 @@ fun PhantomLCE(data: PhantomLceData?, interaction: PhantomLceInteraction) {
     Box(modifier = Modifier.fillMaxSize()) {
         when {
             data.showLoader -> {
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .size(60.dp)
+                PhantomGhost(
+                    data = PhantomGhostData(
+                        size = 120.dp.value,
+                        legs = 5,
+                        bgColor = PhantomColorName.RED_300,
+                        eyeColor = PhantomColorName.RED_400
+                    ),
+                    modifier = Modifier.align(Alignment.Center)
                 )
             }
             data.showError -> {
@@ -75,16 +80,16 @@ interface PhantomLceInteraction {
 @Preview
 @Composable
 fun TestPhantomLCE() {
-    val d = PhantomLceData.getErrorData("Something went wrong")
-    val s = remember {
-        mutableStateOf(d)
-    }
-    PhantomLCE(
-        data = s.value,
-        interaction = object : PhantomLceInteraction {
-            override fun onRetryClicked() {
-                s.value = PhantomLceData.getContentData()
+    val data = PhantomLceData.getLoadingData()
+    val state = remember { mutableStateOf(data) }
+    Surface {
+        PhantomLCE(
+            data = state.value,
+            interaction = object : PhantomLceInteraction {
+                override fun onRetryClicked() {
+                    state.value = PhantomLceData.getContentData()
+                }
             }
-        }
-    )
+        )
+    }
 }
