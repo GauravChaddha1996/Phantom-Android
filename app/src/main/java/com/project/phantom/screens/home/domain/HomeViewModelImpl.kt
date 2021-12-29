@@ -23,7 +23,11 @@ class HomeViewModelImpl(
     }
 
     override val defaultPhantomCEH = PhantomCEH {
-        state = state.copy(lceState = getErrorData(it.message), rvDataState = emptyList())
+        state = state.copy(
+            lceState = getErrorData(it.message),
+            rvDataState = emptyList(),
+            isRefreshing = false
+        )
     }
     override var state by mutableStateOf(HomeScreenState())
         private set

@@ -62,6 +62,9 @@ class HomeActivity : BaseActivity() {
                         topAppBarShowing = it
                     }
                 )
+                if (state.lceState.showError) {
+                    topAppBarShowing = true
+                }
 
                 // Add views here
                 val topAppBarHeightAnim by getTopAppBarHeightAnim(topAppBarShowing)
