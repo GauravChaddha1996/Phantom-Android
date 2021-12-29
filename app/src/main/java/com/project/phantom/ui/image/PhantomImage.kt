@@ -14,9 +14,9 @@ import com.project.phantom.theme.PhantomColorName.GREY_200
 import com.project.phantom.theme.PhantomColors
 
 @Composable
-fun PhantomImage(data: PhantomImageData?, modifier: Modifier = Modifier) {
+fun PhantomImage(data: ImageData?, modifier: Modifier = Modifier) {
     // Check for visibility
-    if (data == null || data.url.isEmpty()) {
+    if (data == null || data.url.isNullOrEmpty()) {
         return
     }
 
@@ -38,6 +38,6 @@ fun PhantomImage(data: PhantomImageData?, modifier: Modifier = Modifier) {
 @Composable
 fun TestPhantomImage() {
     PhantomImage(
-        data = PhantomImageData.create(ImageData("url"))
+        data = ImageData("url")
     )
 }

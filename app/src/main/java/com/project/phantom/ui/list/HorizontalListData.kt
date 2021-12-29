@@ -4,4 +4,8 @@ import com.project.phantom.ui.snippets.commons.SnippetData
 
 class HorizontalListData(
     val list: List<SnippetData>
-) : SnippetData()
+) : SnippetData() {
+    override fun setDefaults() {
+        // no-op
+    }
+}

@@ -34,7 +34,6 @@ import com.project.phantom.ui.lce.PhantomLCE
 import com.project.phantom.ui.lce.PhantomLceInteraction
 import com.project.phantom.ui.list.VerticalList
 import com.project.phantom.ui.text.PhantomText
-import com.project.phantom.ui.text.PhantomTextData
 import com.project.phantom.ui.text.TextData
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -145,26 +144,18 @@ class HomeActivity : BaseActivity() {
                 },
             title = {
                 PhantomText(
-                    data = PhantomTextData.create(
-                        TextData("Phantom"),
-                        fontStyle = PhantomFontStyle.SEMIBOLD_700
-                    )
+                    data = TextData("Phantom").setDefaults(fontStyle = PhantomFontStyle.SEMIBOLD_700)
+
                 )
             },
             navigationIcon = {
                 PhantomText(
-                    data = PhantomTextData.create(
-                        TextData("II"),
-                        fontStyle = PhantomFontStyle.SEMIBOLD_700
-                    )
+                    data = TextData("II").setDefaults(fontStyle = PhantomFontStyle.SEMIBOLD_700)
                 )
             },
             actions = {
                 PhantomText(
-                    data = PhantomTextData.create(
-                        TextData("A1"),
-                        fontStyle = PhantomFontStyle.SEMIBOLD_700
-                    )
+                    data = TextData("A1").setDefaults(fontStyle = PhantomFontStyle.SEMIBOLD_700)
                 )
             }
         )

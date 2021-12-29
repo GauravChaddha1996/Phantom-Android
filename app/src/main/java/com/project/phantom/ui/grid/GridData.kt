@@ -5,4 +5,9 @@ import com.project.phantom.ui.snippets.commons.SnippetData
 class GridData(
     val noOfColumns: Int,
     val list: List<SnippetData?>
-) : SnippetData()
+) : SnippetData() {
+
+    override fun setDefaults() {
+        // no-op
+    }
+}

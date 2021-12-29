@@ -19,22 +19,22 @@ open class SnippetInteractions :
     SectionHeaderSnippetInteraction {
 
     override fun onProductRailSnippetClicked(data: ProductRailSnippetData?) {
-        ClickDataResolver.resolve(data?.phantomClickData)
+        ClickDataResolver.resolve(data?.clickData)
     }
 
     override fun onProductFullSnippetClicked(data: ProductFullSnippetData?) {
-        ClickDataResolver.resolve(data?.phantomClickData)
+        ClickDataResolver.resolve(data?.clickData)
     }
 
     override fun onCategoryRailSnippetClicked(data: CategoryRailSnippetData?) {
-        ClickDataResolver.resolve(data?.phantomClickData)
+        ClickDataResolver.resolve(data?.clickData)
     }
 
     override fun onProductDualSnippetClicked(data: ProductDualSnippetData?) {
-        ClickDataResolver.resolve(data?.phantomClickData)
+        ClickDataResolver.resolve(data?.clickData)
     }
 
     override fun onSectionHeaderSnippetRightButtonClicked(data: SectionHeaderSnippetData?) {
-        ClickDataResolver.resolve(data?.rightButton?.phantomClickData)
+        ClickDataResolver.resolve(data?.rightButton?.clickData)
     }
 }

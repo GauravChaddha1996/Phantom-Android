@@ -31,7 +31,10 @@ import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
 @Composable
-fun ProductRailSnippet(data: ProductRailSnippetData?, interaction: ProductRailSnippetInteraction) {
+fun ProductRailSnippet(
+    data: ProductRailSnippetData?,
+    interaction: ProductRailSnippetInteraction
+) {
     data ?: return
 
     Card(
@@ -80,25 +83,24 @@ interface ProductRailSnippetInteraction {
 @Preview
 @Composable
 private fun TestProductRailSnippet() {
-    val data = ProductRailSnippetData.create(
-        ProductRailSnippetApiData(
-            id = 1,
-            name = TextData("Solid black shirt"),
-            shortDesc = TextData("Soft cotton shirt made by well paid work"),
-            brandAndCategory = TextData(
-                "by Adidas in Shirts",
-                markdownConfig = MarkdownConfig(
-                    true,
-                    listOf(
-                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 3, end = 9),
-                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 13, end = 19)
-                    )
+    val data = ProductRailSnippetData(
+        id = 1,
+        name = TextData("Solid black shirt"),
+        shortDesc = TextData("Soft cotton shirt made by well paid work"),
+        brandAndCategory = TextData(
+            "by Adidas in Shirts",
+            markdownConfig = MarkdownConfig(
+                true,
+                listOf(
+                    MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 3, end = 9),
+                    MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 13, end = 19)
                 )
-            ),
-            cost = TextData("$200"),
-            imageData = ImageData("url")
-        )
+            )
+        ),
+        cost = TextData("$200"),
+        imageData = ImageData("url")
     )
+
     Surface {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopStart) {
             HorizontalList(

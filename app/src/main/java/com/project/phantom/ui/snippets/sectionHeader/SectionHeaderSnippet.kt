@@ -13,10 +13,8 @@ import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
-import com.project.phantom.ui.button.PhantomButtonData
 import com.project.phantom.ui.button.PhantomButtonType
 import com.project.phantom.ui.text.PhantomText
-import com.project.phantom.ui.text.PhantomTextData
 import com.project.phantom.ui.text.TextData
 
 @Composable
@@ -51,13 +49,11 @@ fun TestSectionHeaderSnippet() {
         Box(Modifier.fillMaxWidth(1f)) {
             SectionHeaderSnippet(
                 data = SectionHeaderSnippetData(
-                    title = PhantomTextData.create(TextData("Section title")),
-                    subtitle = PhantomTextData.create(TextData("Section subtitle")),
-                    rightButton = PhantomButtonData.create(
-                        ButtonData(
-                            TextData("Button"),
-                            PhantomButtonType.TEXT
-                        )
+                    title = TextData("Section title"),
+                    subtitle = TextData("Section subtitle"),
+                    rightButton = ButtonData(
+                        TextData("Button"),
+                        PhantomButtonType.TEXT
                     )
                 ),
                 interaction = SnippetInteractions()

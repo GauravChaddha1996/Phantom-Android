@@ -63,11 +63,7 @@ object PhantomTypography {
             ?: resolveRegularFontStyle(fontStyle)
             ?: resolveMediumFontStyle(fontStyle)
             ?: resolveSemiboldFontStyle(fontStyle)
-            ?: TextStyle(
-                fontWeight = Normal,
-                fontSize = 13.sp,
-                fontFamily = RalewayFontFamily
-            )
+            ?: resolve(REGULAR_300)
     }
 
     private fun resolveLightFontStyle(fontStyle: PhantomFontStyle?): TextStyle? {

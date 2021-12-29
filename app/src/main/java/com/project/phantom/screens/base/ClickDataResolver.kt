@@ -1,14 +1,14 @@
 package com.project.phantom.screens.base
 
 import android.util.Log
+import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.click.OpenCategoryClickData
 import com.project.phantom.ui.click.OpenProductClickData
-import com.project.phantom.ui.click.PhantomClickData
 
 object ClickDataResolver {
-    fun resolve(phantomClickData: PhantomClickData?) {
-        phantomClickData ?: return
-        when (val clickData = phantomClickData.clickData) {
+    fun resolve(clickData: ClickData?) {
+        clickData ?: return
+        when (clickData) {
             is OpenProductClickData -> {
                 Log.d("phantom", "open product : ${clickData.productId}")
             }

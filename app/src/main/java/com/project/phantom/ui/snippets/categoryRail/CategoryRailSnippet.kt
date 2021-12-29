@@ -20,6 +20,7 @@ import com.project.phantom.theme.ElevationStyle
 import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.ui.commons.ColorData
+import com.project.phantom.ui.commons.getResolvedColor
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -29,7 +30,6 @@ fun CategoryRailSnippet(
     interaction: CategoryRailSnippetInteraction
 ) {
     data ?: return
-
     Card(
         modifier = Modifier.size(200.dp, 200.dp),
         shape = CornerStyle.large,
@@ -38,7 +38,7 @@ fun CategoryRailSnippet(
         Box(
             modifier = Modifier
                 .clickable { interaction.onCategoryRailSnippetClicked(data) }
-                .background(data.bgColor.resolvedColor)
+                .background(data.bgColor.getResolvedColor())
         ) {
             PhantomText(
                 data = data.firstCharacter,
@@ -67,13 +67,11 @@ private fun TestCategoryRailSnippet() {
     Surface {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopStart) {
             CategoryRailSnippet(
-                data = CategoryRailSnippetData.create(
-                    CategoryRailSnippetApiData(
-                        id = 1,
-                        firstCharacter = TextData("S", ColorData(PhantomColorName.YELLOW_400)),
-                        name = TextData("Shirts"),
-                        bgColor = ColorData(PhantomColorName.YELLOW_100)
-                    )
+                data = CategoryRailSnippetData(
+                    id = 1,
+                    firstCharacter = TextData("S", color = ColorData(PhantomColorName.YELLOW_400)),
+                    name = TextData("Shirts"),
+                    bgColor = ColorData(PhantomColorName.YELLOW_100)
                 ),
                 interaction = SnippetInteractions()
             )

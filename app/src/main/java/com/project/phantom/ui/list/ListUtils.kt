@@ -14,7 +14,10 @@ import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippet
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
 
-internal fun LazyListScope.handleListSnippetData(it: SnippetData, interaction: SnippetInteractions) {
+internal fun LazyListScope.handleListSnippetData(
+    it: SnippetData,
+    interaction: SnippetInteractions
+) {
     when (it) {
         is SectionHeaderSnippetData -> {
             item {

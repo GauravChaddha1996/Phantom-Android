@@ -27,7 +27,10 @@ import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
 @Composable
-fun ProductFullSnippet(data: ProductFullSnippetData?, interaction: ProductFullSnippetInteraction) {
+fun ProductFullSnippet(
+    data: ProductFullSnippetData?,
+    interaction: ProductFullSnippetInteraction
+) {
     data ?: return
 
     Box(
@@ -78,28 +81,26 @@ interface ProductFullSnippetInteraction {
 @Preview
 @Composable
 private fun TestProductFullSnippet() {
-    val data = ProductFullSnippetData.create(
-        ProductFullSnippetApiData(
-            1,
-            name = TextData("Solid black shirt"),
-            longDesc = TextData(
-                "Soft cotton shirt made by well paid hard Soft cotton shirt made by well " +
-                    "paid hard Soft cotton shirt made by well paid hard Soft cotton shirt " +
-                    "made by well paid hard"
-            ),
-            brandAndCategory = TextData(
-                "by Adidas in Shirts",
-                markdownConfig = MarkdownConfig(
-                    true,
-                    listOf(
-                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 3, end = 9),
-                        MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 13, end = 19)
-                    )
+    val data = ProductFullSnippetData(
+        1,
+        name = TextData("Solid black shirt"),
+        longDesc = TextData(
+            "Soft cotton shirt made by well paid hard Soft cotton shirt made by well " +
+                "paid hard Soft cotton shirt made by well paid hard Soft cotton shirt " +
+                "made by well paid hard"
+        ),
+        brandAndCategory = TextData(
+            "by Adidas in Shirts",
+            markdownConfig = MarkdownConfig(
+                true,
+                listOf(
+                    MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 3, end = 9),
+                    MarkdownFontSpan(PhantomFontStyle.SEMIBOLD_400, start = 13, end = 19)
                 )
-            ),
-            cost = TextData("$200"),
-            imageData = ImageData("url")
-        )
+            )
+        ),
+        cost = TextData("$200"),
+        imageData = ImageData("url")
     )
     Surface {
         Box(modifier = Modifier.fillMaxSize()) {

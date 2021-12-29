@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
-import com.project.phantom.ui.button.PhantomButtonData
 import com.project.phantom.ui.button.PhantomButtonType
 import com.project.phantom.ui.ghost.PhantomGhost
 import com.project.phantom.ui.ghost.PhantomGhostData
@@ -77,9 +76,7 @@ private fun BoxScope.LceError(
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             PhantomText(data = data.errorMessage, textAlign = TextAlign.Center)
             PhantomButton(
-                data = PhantomButtonData.create(
-                    ButtonData(data.retryTextData, PhantomButtonType.TEXT)
-                ),
+                data = ButtonData(data.retryTextData, PhantomButtonType.TEXT),
                 onClick = {
                     interaction.onRetryClicked()
                 }

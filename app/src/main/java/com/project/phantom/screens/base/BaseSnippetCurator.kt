@@ -3,19 +3,11 @@ package com.project.phantom.screens.base
 import com.project.phantom.Utils.isNotNullOrEmpty
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.list.HorizontalListData
-import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetApiData
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
-import com.project.phantom.ui.snippets.commons.SnippetApiData
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.snippets.commons.SnippetSectionData
-import com.project.phantom.ui.snippets.productDual.ProductDualSnippetApiData
 import com.project.phantom.ui.snippets.productDual.ProductDualSnippetData
-import com.project.phantom.ui.snippets.productFull.ProductFullSnippetApiData
-import com.project.phantom.ui.snippets.productFull.ProductFullSnippetData
-import com.project.phantom.ui.snippets.productRail.ProductRailSnippetApiData
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
-import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
-import com.project.phantom.ui.snippets.sectionHeader.SnippetSectionHeaderApiData
 import org.koin.core.component.KoinComponent
 
 class BaseSnippetCurator : KoinComponent {
@@ -25,11 +17,13 @@ class BaseSnippetCurator : KoinComponent {
         // For each snippet section
         snippetSectionList?.forEach { snippetSection ->
             // Add the section header
-            val headerSnippets = curateHeaderData(snippetSection.headerApiData)
-            finalList.addAll(headerSnippets)
+            snippetSection.headerData?.let {
+                it.setDefaults()
+                finalList.add(it)
+            }
 
             // Add the section actual stuff
-            val snippetsList = curateSnippetData(snippetSection.snippetApiList)
+            val snippetsList = curateSectionSnippetList(snippetSection.snippetList)
             if (snippetsList.isNotNullOrEmpty()) {
                 finalList.addAll(snippetsList)
             }
@@ -38,45 +32,33 @@ class BaseSnippetCurator : KoinComponent {
         return finalList
     }
 
-    private fun curateHeaderData(headerApiData: SnippetSectionHeaderApiData?): List<SnippetData> {
-        val headerSnippets = mutableListOf<SnippetData>()
-        headerApiData?.let {
-            headerSnippets.add(SectionHeaderSnippetData.create(it))
-        }
-        return headerSnippets
-    }
-
-    private fun curateSnippetData(apiSnippets: List<SnippetApiData>?): List<SnippetData> {
+    private fun curateSectionSnippetList(sectionSnippetList: List<SnippetData>?): List<SnippetData> {
         val curatedSnippets = mutableListOf<SnippetData>()
 
+        // Flags to help curate
         var isHorizontalRail = false
         var isGrid = false
         var gridNumberOfColumns = 1
 
-        apiSnippets?.forEach { apiSnippet ->
-            val snippetData: SnippetData? = when (apiSnippet) {
-                is ProductRailSnippetApiData -> {
+        // Set flags when iterating the section snippet list
+        sectionSnippetList?.forEach { snippetData ->
+            snippetData.setDefaults()
+            when (snippetData) {
+                is ProductRailSnippetData -> {
                     isHorizontalRail = true
-                    ProductRailSnippetData.create(apiSnippet)
                 }
-                is CategoryRailSnippetApiData -> {
+                is CategoryRailSnippetData -> {
                     isHorizontalRail = true
-                    CategoryRailSnippetData.create(apiSnippet)
                 }
-                is ProductFullSnippetApiData -> {
-                    ProductFullSnippetData.create(apiSnippet)
-                }
-                is ProductDualSnippetApiData -> {
+                is ProductDualSnippetData -> {
                     isGrid = true
                     gridNumberOfColumns = 2
-                    ProductDualSnippetData.create(apiSnippet)
                 }
-                else -> null
             }
-            snippetData ?: return@forEach
             curatedSnippets.add(snippetData)
         }
 
+        // Use the flags to return correct section snippet data list
         return when {
             isHorizontalRail -> {
                 listOf(HorizontalListData(curatedSnippets))

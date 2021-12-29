@@ -6,45 +6,46 @@ import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.commons.FontData
-import com.project.phantom.ui.text.PhantomTextData
 import com.project.phantom.ui.text.TextData
 
 class PhantomLceData(
     val showLoader: Boolean,
     val showError: Boolean,
-    val errorMessage: PhantomTextData
+    val errorMessage: TextData
 ) {
-    private val retryText = PhantomApplication.INSTANCE.getString(R.string.retry)
-    var retryTextData = TextData(
-        text = retryText,
-        font = FontData(PhantomFontStyle.SEMIBOLD_600),
-        color = ColorData(PhantomColorName.RED_500)
-    )
 
     companion object {
+        private val retryText =
+            PhantomApplication.INSTANCE.getString(R.string.retry)
+        private val somethingWentWrongText =
+            PhantomApplication.INSTANCE.getString(R.string.something_went_wrong)
 
         fun getLoadingData() = PhantomLceData(
             showLoader = true,
             showError = false,
-            errorMessage = PhantomTextData.create(null)
+            errorMessage = TextData()
         )
 
         fun getContentData() = PhantomLceData(
             showLoader = false,
             showError = false,
-            errorMessage = PhantomTextData.create(null)
+            errorMessage = TextData()
         )
 
         fun getErrorData(errorMessage: String?) = PhantomLceData(
             showLoader = false,
             showError = true,
-            errorMessage = PhantomTextData.create(
-                TextData(
-                    text = errorMessage,
-                    color = ColorData(PhantomColorName.GREY_700),
-                    font = FontData(PhantomFontStyle.MEDIUM_600)
-                )
+            errorMessage = TextData(
+                text = errorMessage ?: somethingWentWrongText,
+                color = ColorData(PhantomColorName.GREY_700),
+                font = FontData(PhantomFontStyle.MEDIUM_600)
             )
         )
     }
+
+    var retryTextData = TextData(
+        text = retryText,
+        font = FontData(PhantomFontStyle.SEMIBOLD_600),
+        color = ColorData(PhantomColorName.RED_500)
+    )
 }

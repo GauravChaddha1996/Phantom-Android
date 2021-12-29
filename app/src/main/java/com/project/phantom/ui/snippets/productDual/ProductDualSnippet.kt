@@ -81,24 +81,23 @@ interface ProductDualSnippetInteraction {
 @Preview
 @Composable
 private fun TestProductDualSnippet() {
-    val data = ProductDualSnippetData.create(
-        ProductDualSnippetApiData(
-            1,
-            name = TextData("Solid black shirt"),
-            shortDesc = TextData(
-                "Soft cotton shirt made by good workers"
-            ),
-            brand = TextData(
-                "by Adidas",
-                markdownConfig = MarkdownConfig(
-                    true,
-                    listOf(MarkdownFontSpan(PhantomFontStyle.MEDIUM_200, start = 3, end = 9))
-                )
-            ),
-            cost = TextData("$200"),
-            imageData = ImageData("url")
-        )
+    val data = ProductDualSnippetData(
+        1,
+        name = TextData("Solid black shirt"),
+        shortDesc = TextData(
+            "Soft cotton shirt made by good workers"
+        ),
+        brand = TextData(
+            "by Adidas",
+            markdownConfig = MarkdownConfig(
+                true,
+                listOf(MarkdownFontSpan(PhantomFontStyle.MEDIUM_200, start = 3, end = 9))
+            )
+        ),
+        cost = TextData("$200"),
+        imageData = ImageData("url")
     )
+
     Surface {
         PhantomGrid(
             GridData(2, listOf(data, data)),

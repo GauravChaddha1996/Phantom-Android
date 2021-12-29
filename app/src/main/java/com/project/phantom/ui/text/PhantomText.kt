@@ -20,17 +20,18 @@ internal val EmptyTextReplacement = "H".repeat(DefaultWidthCharCount) // just a 
 
 @Composable
 fun PhantomText(
-    data: PhantomTextData?,
+    data: TextData?,
     modifier: Modifier = Modifier,
     textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,
     autoSize: Boolean = false
 ) {
     // Cases to check for visibility
-    if (data == null || data.text.isEmpty()) {
+    if (data == null || data.text.isNullOrEmpty()) {
         return
     }
 
+    val processedText = MarkdownProcessor.processTextData(data)
     var finalModifier = modifier
     var readyToDraw by remember { mutableStateOf(false) }
     var finalTextStyle by remember { mutableStateOf(data.font.resolvedTextStyle) }
@@ -41,7 +42,7 @@ fun PhantomText(
     val layoutDirection = LocalLayoutDirection.current
     val minLineHeight = remember(data, density, resourceLoader, layoutDirection) {
         minLinesHeight(
-            minLines = data.minLines,
+            minLines = data.minLines ?: 0,
             textStyle = finalTextStyle,
             density = density,
             resourceLoader = resourceLoader,
@@ -60,7 +61,7 @@ fun PhantomText(
 
     // Add the final text
     Text(
-        text = data.text,
+        text = processedText,
         modifier = finalModifier
             .heightIn(
                 min = with(LocalDensity.current) {
@@ -71,7 +72,7 @@ fun PhantomText(
         style = finalTextStyle,
         textDecoration = textDecoration,
         textAlign = textAlign,
-        maxLines = data.maxLines,
+        maxLines = data.maxLines ?: Int.MAX_VALUE,
         overflow = data.overflow,
         softWrap = !autoSize,
         onTextLayout = {

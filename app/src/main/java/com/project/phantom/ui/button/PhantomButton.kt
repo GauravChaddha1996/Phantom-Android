@@ -13,12 +13,12 @@ import com.project.phantom.ui.text.PhantomText
 
 @Composable
 fun PhantomButton(
-    data: PhantomButtonData?,
+    data: ButtonData?,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
     // Cases to check for visibility
-    if (data == null || data.text.text.isEmpty()) {
+    if (data == null || data.text?.text.isNullOrEmpty()) {
         return
     }
 
@@ -27,10 +27,12 @@ fun PhantomButton(
             Color.Transparent,
             PhantomColors.resolve(RED_500)
         )
+        else -> ButtonDefaults.buttonColors()
     }
 
     val textDecoration = when (data.type) {
         PhantomButtonType.TEXT -> TextDecoration.Underline
+        else -> null
     }
 
     // Add the button
