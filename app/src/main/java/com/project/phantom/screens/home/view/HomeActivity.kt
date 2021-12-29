@@ -48,6 +48,7 @@ class HomeActivity : BaseActivity() {
         setContent {
             HomeScreen(SnippetInteractions(), homeViewModel)
         }
+        homeViewModel.loadPage()
     }
 
     @Composable

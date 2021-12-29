@@ -9,6 +9,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.component.KoinComponent
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 class PhantomApplication : Application(), KoinComponent {
 
@@ -23,7 +24,7 @@ class PhantomApplication : Application(), KoinComponent {
         // Start dependency injection
         startKoin {
             allowOverride(false)
-            androidLogger()
+            androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@PhantomApplication)
             modules(AppModule, HomeModule)
         }

@@ -1,5 +1,7 @@
 package com.project.phantom.ui.lce
 
+import com.project.phantom.PhantomApplication
+import com.project.phantom.R
 import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.ui.commons.ColorData
@@ -12,6 +14,13 @@ class PhantomLceData(
     val showError: Boolean,
     val errorMessage: PhantomTextData
 ) {
+    private val retryText = PhantomApplication.INSTANCE.getString(R.string.retry)
+    var retryTextData = TextData(
+        text = retryText,
+        font = FontData(PhantomFontStyle.SEMIBOLD_600),
+        color = ColorData(PhantomColorName.RED_500)
+    )
+
     companion object {
 
         fun getLoadingData() = PhantomLceData(
@@ -33,7 +42,7 @@ class PhantomLceData(
                 TextData(
                     text = errorMessage,
                     color = ColorData(PhantomColorName.GREY_700),
-                    font = FontData(PhantomFontStyle.MEDIUM_400)
+                    font = FontData(PhantomFontStyle.MEDIUM_600)
                 )
             )
         )

@@ -28,14 +28,10 @@ class HomeViewModelImpl(
     override var state by mutableStateOf(HomeScreenState())
         private set
 
-    init {
-        loadPage()
-    }
-
     override fun loadPage() {
         launch {
-            delay(LoadDelay)
             state = state.copy(lceState = getLoadingData())
+            delay(LoadDelay)
             val response = fetcher.fetchHomePage()
             val curatedList = curator.curate(response.snippetSectionList)
             if (curatedList.isNotEmpty()) {

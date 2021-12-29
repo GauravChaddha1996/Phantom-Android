@@ -33,7 +33,9 @@ object Libs {
 
     object Compose {
         const val version = "1.0.5"
+        private const val animationVersion = "1.1.0-rc01"
         const val ui = "androidx.compose.ui:ui:$version"
+        const val animation = "androidx.compose.animation:animation:$animationVersion"
         const val material = "androidx.compose.material:material:$version"
         const val activityIntegration = "androidx.activity:activity-compose:1.4.0"
         const val runtime = "androidx.compose.runtime:runtime:$version"

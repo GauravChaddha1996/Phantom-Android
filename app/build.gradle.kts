@@ -49,6 +49,7 @@ dependencies {
 
     // Compose related dependencies
     implementation(Libs.Compose.ui)
+    implementation(Libs.Compose.animation)
     implementation(Libs.Compose.material)
     implementation(Libs.Compose.runtime)
     implementation(Libs.Compose.activityIntegration)
@@ -93,6 +94,6 @@ kotlinter {
     disabledRules = emptyArray<String>()
 }
 
-afterEvaluate {
-    tasks.findByPath(":app:assembleDebug")?.dependsOn(":copyGitHooks")
-}
+//afterEvaluate {
+//    tasks.findByPath(":app:assembleDebug")?.dependsOn(":copyGitHooks")
+//}
