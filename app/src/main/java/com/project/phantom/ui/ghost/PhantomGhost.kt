@@ -8,6 +8,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -41,34 +42,42 @@ fun PhantomGhost(
     val eyeMovementValue by getEyeMovementAnim(infiniteTransition, data)
     val eyeBlinkValue by getEyeBlinkAnim(infiniteTransition, data)
 
+    val curveShape = getCurveShape(data, curveMovementValue, legsMovementValue)
     Box(
         modifier = modifier
             .size(data.size.dp)
             .graphicsLayer {
-                shape = getCurveShape(data, curveMovementValue, legsMovementValue)
+                shape = curveShape
                 clip = true
             }
             .background(PhantomColors.resolve(data.bgColor))
+            .border(data.borderWidth, PhantomColors.resolve(data.borderColor), curveShape)
     ) {
         Row(
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(top = data.eyeTopPadding.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.spacedBy(24.dp)
         ) {
             repeat(2) {
+                val eyeShape = getEyeShape(eyeBlinkValue)
                 Box(
                     Modifier
                         .size(data.eyeSize.dp)
                         .graphicsLayer {
-                            shape = getEyeShape(eyeBlinkValue)
+                            shape = eyeShape
                             clip = true
                             translationX = data.eyeMovementCircleRadius *
-                                sin((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
+                                    sin((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
                             translationY = data.eyeMovementCircleRadius *
-                                cos((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
+                                    cos((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
                         }
                         .background(PhantomColors.resolve(data.eyeColor))
+                        .border(
+                            data.borderWidth,
+                            PhantomColors.resolve(data.borderColor),
+                            eyeShape
+                        )
                 )
             }
         }
@@ -154,8 +163,8 @@ private fun getCurveShape(
 private fun getEyeShape(eyeBlinkValue: Float) = GenericShape { size, _ ->
     addOval(
         Rect(
-            topLeft = Offset(-eyeBlinkValue, eyeBlinkValue),
-            bottomRight = Offset(size.width + eyeBlinkValue, size.height - eyeBlinkValue)
+            topLeft = Offset(0f, eyeBlinkValue),
+            bottomRight = Offset(size.width, size.height - eyeBlinkValue)
         )
     )
 }
@@ -166,7 +175,7 @@ private fun getCurveMovementAnim(
     data: PhantomGhostData
 ): State<Float> {
     return infiniteTransition.animateFloat(
-        initialValue = -data.curveMaxMovementX,
+        initialValue = 0f,
         targetValue = data.curveMaxMovementX,
         animationSpec = InfiniteRepeatableSpec(
             tween(data.curveMovementDuration, easing = LinearEasing),
@@ -184,7 +193,11 @@ private fun getLegsMovementAnim(
         initialValue = 0.dp.value,
         targetValue = data.legsMovement,
         animationSpec = InfiniteRepeatableSpec(
-            tween(data.legsMovementDuration, easing = LinearEasing),
+            tween(
+                data.legsMovementDuration,
+                easing = LinearEasing,
+                delayMillis = data.legsMovementDelay
+            ),
             repeatMode = RepeatMode.Reverse
         )
     )
@@ -226,7 +239,7 @@ fun TestPhantomGhost() {
     Surface {
         Box(modifier = Modifier.fillMaxSize()) {
             PhantomGhost(
-                data = PhantomGhostData(240.dp.value, legs = 4),
+                data = PhantomGhostData(240.dp.value, legs = 3),
                 modifier = Modifier.align(Alignment.Center)
             )
         }

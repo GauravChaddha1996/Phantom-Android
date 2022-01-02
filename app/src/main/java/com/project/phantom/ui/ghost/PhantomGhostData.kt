@@ -1,5 +1,7 @@
 package com.project.phantom.ui.ghost
 
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.project.phantom.theme.PhantomColorName
 
 data class PhantomGhostData(
@@ -7,8 +9,10 @@ data class PhantomGhostData(
     val legs: Int,
 
     // Curve-related data points
-    val bgColor: PhantomColorName = PhantomColorName.RED_500,
-    val curveMaxMovementX: Float = size.times(other = 0.05f),
+    val bgColor: PhantomColorName = PhantomColorName.RED_400,
+    val borderColor: PhantomColorName = PhantomColorName.BLACK,
+    val borderWidth: Dp = 2.dp,
+    val curveMaxMovementX: Float = size.times(other = 0.035f),
     val curveMaxMovementY: Float = size.times(other = 0.12f),
     val curveMovementDuration: Int = 1100,
 
@@ -16,15 +20,16 @@ data class PhantomGhostData(
     val legsMaxWaveAmplitude: Float = size.times(other = 0.3f),
     val legsMovement: Float = legsMaxWaveAmplitude.times(other = 0.65f),
     val legsMovementDuration: Int = 1300,
+    val legsMovementDelay: Int = 300,
 
     // Eye-related data points
     val eyeColor: PhantomColorName = PhantomColorName.WHITE,
-    val eyeSize: Float = size.times(other = 0.15f),
+    val eyeSize: Float = size.times(other = 0.2f),
     val eyeTopPadding: Float = size.times(other = 0.25f),
     val eyeMovementDuration: Int = 2100,
     val eyeMovementCircleRadius: Float = eyeSize.times(other = 0.15f),
-    val eyeBlinkSize: Float = size.times(other = 0.25f),
-    val eyeBlinkDuration: Int = 150,
+    val eyeBlinkSize: Float = size.times(other = 0.26f),
+    val eyeBlinkDuration: Int = 125,
     val eyeBlinkDelay: Int = 900
 )
 
