@@ -7,6 +7,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -57,43 +58,55 @@ class SplashActivity : BaseActivity() {
     fun SplashScreen(
         ghostAnimationDelay: Long = 1000L,
         ghostAnimationScaleInDuration: Int = 1000,
-        screenTotalTime: Long = 5000L
+        screenTotalTime: Long = 5000L,
+        splashFadeOutDuration: Int = 500
     ) {
         var isGhostVisible by remember { mutableStateOf(false) }
+        var isSplashVisible by remember { mutableStateOf(true) }
+
         LaunchedEffect(key1 = true, block = {
             delay(ghostAnimationDelay)
             isGhostVisible = true
         })
         LaunchedEffect(key1 = true, block = {
             delay(screenTotalTime)
+            isSplashVisible = false
+            delay(splashFadeOutDuration.toLong())
             withContext(Dispatchers.Main) {
                 val intent = Intent(this@SplashActivity, HomeActivity::class.java)
                 startActivity(intent)
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                 finish()
             }
         })
         Box(Modifier.fillMaxSize()) {
-            Column(
-                Modifier
-                    .align(Alignment.Center)
-                    .animateContentSize(tween(durationMillis = ghostAnimationScaleInDuration)),
-                verticalArrangement = Arrangement.spacedBy(PaddingStyle.gigantic),
-                horizontalAlignment = Alignment.CenterHorizontally
+            AnimatedVisibility(
+                visible = isSplashVisible,
+                exit = fadeOut(tween(splashFadeOutDuration)),
+                modifier = Modifier.align(Alignment.Center)
             ) {
-                PhantomText(
-                    data = TextData(LocalContext.current.getString(R.string.app_name))
-                        .setDefaults(
-                            fontStyle = PhantomFontStyle.SEMIBOLD_940,
-                            colorName = PhantomColorName.RED_400
-                        )
-                )
-                AnimatedVisibility(
-                    visible = isGhostVisible,
-                    enter = scaleIn(animationSpec = tween(durationMillis = ghostAnimationScaleInDuration))
+                Column(
+                    Modifier.animateContentSize(tween(durationMillis = ghostAnimationScaleInDuration)),
+                    verticalArrangement = Arrangement.spacedBy(PaddingStyle.gigantic),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    PhantomGhost(
-                        data = PhantomGhostData(Utils.getScreenWidth().times(other = 0.5f).value)
+                    PhantomText(
+                        data = TextData(LocalContext.current.getString(R.string.app_name))
+                            .setDefaults(
+                                fontStyle = PhantomFontStyle.SEMIBOLD_940,
+                                colorName = PhantomColorName.RED_400
+                            )
                     )
+                    AnimatedVisibility(
+                        visible = isGhostVisible,
+                        enter = scaleIn(animationSpec = tween(durationMillis = ghostAnimationScaleInDuration))
+                    ) {
+                        PhantomGhost(
+                            data = PhantomGhostData(
+                                Utils.getScreenWidth().times(other = 0.5f).value
+                            )
+                        )
+                    }
                 }
             }
         }
