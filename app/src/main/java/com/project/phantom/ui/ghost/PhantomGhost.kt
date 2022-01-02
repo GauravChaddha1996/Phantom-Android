@@ -8,7 +8,6 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -27,6 +26,7 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.theme.PhantomColors
 import kotlin.math.cos
 import kotlin.math.sin
@@ -51,13 +51,12 @@ fun PhantomGhost(
                 clip = true
             }
             .background(PhantomColors.resolve(data.bgColor))
-            .border(data.borderWidth, PhantomColors.resolve(data.borderColor), curveShape)
     ) {
         Row(
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(top = data.eyeTopPadding.dp),
-            horizontalArrangement = Arrangement.spacedBy(24.dp)
+            horizontalArrangement = Arrangement.spacedBy(PaddingStyle.gigantic)
         ) {
             repeat(2) {
                 val eyeShape = getEyeShape(eyeBlinkValue)
@@ -68,16 +67,11 @@ fun PhantomGhost(
                             shape = eyeShape
                             clip = true
                             translationX = data.eyeMovementCircleRadius *
-                                    sin((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
+                                sin((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
                             translationY = data.eyeMovementCircleRadius *
-                                    cos((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
+                                cos((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
                         }
                         .background(PhantomColors.resolve(data.eyeColor))
-                        .border(
-                            data.borderWidth,
-                            PhantomColors.resolve(data.borderColor),
-                            eyeShape
-                        )
                 )
             }
         }
@@ -239,7 +233,7 @@ fun TestPhantomGhost() {
     Surface {
         Box(modifier = Modifier.fillMaxSize()) {
             PhantomGhost(
-                data = PhantomGhostData(240.dp.value, legs = 3),
+                data = PhantomGhostData(240.dp.value),
                 modifier = Modifier.align(Alignment.Center)
             )
         }

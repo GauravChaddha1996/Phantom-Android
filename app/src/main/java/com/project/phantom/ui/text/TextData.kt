@@ -10,7 +10,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class TextData(
-    @Json(name = "text") val text: String? = null,
+    @Json(name = "text") var text: String? = null,
     @Json(name = "font") val font: FontData = FontData(),
     @Json(name = "color") val color: ColorData = ColorData(),
     @Json(name = "min_lines") var minLines: Int? = null,
@@ -21,12 +21,14 @@ data class TextData(
     var overflow: TextOverflow = TextOverflow.Ellipsis
 
     fun setDefaults(
+        defaultText: String? = null,
         fontStyle: PhantomFontStyle? = null,
         colorName: PhantomColorName? = null,
         defaultMinLines: Int = 0,
         defaultMaxLines: Int = Int.MAX_VALUE,
         overflow: TextOverflow = TextOverflow.Ellipsis
     ): TextData {
+        text = text?.takeIf { it.isNotEmpty() } ?: defaultText
         font.setDefaults(fontStyle)
         color.setDefaults(colorName)
         minLines = minLines ?: defaultMinLines

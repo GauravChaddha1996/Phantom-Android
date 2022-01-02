@@ -6,24 +6,26 @@
 
     <application
         android:name=".PhantomApplication"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:allowBackup="false"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/PhantomTheme"
+        android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".screens.home.view.HomeActivity"
+            android:name=".screens.splash.SplashActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".screens.home.view.HomeActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

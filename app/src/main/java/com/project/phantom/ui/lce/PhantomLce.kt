@@ -18,16 +18,22 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.project.phantom.R
+import com.project.phantom.Utils
 import com.project.phantom.theme.PhantomColorName
+import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.button.PhantomButtonType
+import com.project.phantom.ui.commons.ColorData
+import com.project.phantom.ui.commons.FontData
 import com.project.phantom.ui.ghost.PhantomGhost
 import com.project.phantom.ui.ghost.PhantomGhostData
 import com.project.phantom.ui.text.PhantomText
+import com.project.phantom.ui.text.TextData
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -48,15 +54,10 @@ private fun BoxScope.LceLoader(data: PhantomLceData) {
         enter = fadeIn(spring(stiffness = Spring.StiffnessMediumLow)) +
             scaleIn(spring(stiffness = Spring.StiffnessMediumLow)),
         exit = fadeOut(spring(stiffness = Spring.StiffnessMediumLow)) +
-            scaleOut(spring(stiffness = Spring.StiffnessMediumLow), 2f)
+            scaleOut(spring(stiffness = Spring.StiffnessMediumLow), targetScale = 2f)
     ) {
         PhantomGhost(
-            data = PhantomGhostData(
-                size = 120.dp.value,
-                legs = 5,
-                bgColor = PhantomColorName.RED_300,
-                eyeColor = PhantomColorName.RED_400
-            )
+            data = PhantomGhostData(size = Utils.getScreenWidth().times(other = 0.35f).value)
         )
     }
 }
@@ -74,9 +75,19 @@ private fun BoxScope.LceError(
         exit = fadeOut(spring(stiffness = Spring.StiffnessMedium))
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            PhantomText(data = data.errorMessage, textAlign = TextAlign.Center)
+            val retryTextData = TextData(
+                text = LocalContext.current.getString(R.string.retry),
+                font = FontData(PhantomFontStyle.SEMIBOLD_600),
+                color = ColorData(PhantomColorName.RED_500)
+            )
+            PhantomText(
+                data = data.errorMessage.setDefaults(
+                    defaultText = LocalContext.current.getString(R.string.something_went_wrong)
+                ),
+                textAlign = TextAlign.Center
+            )
             PhantomButton(
-                data = ButtonData(data.retryTextData, PhantomButtonType.TEXT),
+                data = ButtonData(retryTextData, PhantomButtonType.TEXT),
                 onClick = {
                     interaction.onRetryClicked()
                 }

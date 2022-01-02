@@ -1,22 +1,18 @@
 package com.project.phantom.ui.ghost
 
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.project.phantom.theme.PhantomColorName
 
 data class PhantomGhostData(
     val size: Float,
-    val legs: Int,
 
     // Curve-related data points
-    val bgColor: PhantomColorName = PhantomColorName.RED_400,
-    val borderColor: PhantomColorName = PhantomColorName.BLACK,
-    val borderWidth: Dp = 2.dp,
+    val bgColor: PhantomColorName = PhantomColorName.RED_300,
     val curveMaxMovementX: Float = size.times(other = 0.035f),
     val curveMaxMovementY: Float = size.times(other = 0.12f),
     val curveMovementDuration: Int = 1100,
 
     // Legs-related data points
+    val legs: Int = 3,
     val legsMaxWaveAmplitude: Float = size.times(other = 0.3f),
     val legsMovement: Float = legsMaxWaveAmplitude.times(other = 0.65f),
     val legsMovementDuration: Int = 1300,
