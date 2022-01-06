@@ -11,7 +11,7 @@ import com.project.phantom.ui.snippets.productRail.ProductRailSnippetInteraction
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetInteraction
 
-open class SnippetInteractions :
+open class SnippetInteractions(private val activity: BaseActivity? = null) :
     ProductRailSnippetInteraction,
     ProductFullSnippetInteraction,
     CategoryRailSnippetInteraction,
@@ -19,22 +19,22 @@ open class SnippetInteractions :
     SectionHeaderSnippetInteraction {
 
     override fun onProductRailSnippetClicked(data: ProductRailSnippetData?) {
-        ClickDataResolver.resolve(data?.clickData)
+        ClickDataResolver.resolve(data?.clickData, activity)
     }
 
     override fun onProductFullSnippetClicked(data: ProductFullSnippetData?) {
-        ClickDataResolver.resolve(data?.clickData)
+        ClickDataResolver.resolve(data?.clickData, activity)
     }
 
     override fun onCategoryRailSnippetClicked(data: CategoryRailSnippetData?) {
-        ClickDataResolver.resolve(data?.clickData)
+        ClickDataResolver.resolve(data?.clickData, activity)
     }
 
     override fun onProductDualSnippetClicked(data: ProductDualSnippetData?) {
-        ClickDataResolver.resolve(data?.clickData)
+        ClickDataResolver.resolve(data?.clickData, activity)
     }
 
     override fun onSectionHeaderSnippetRightButtonClicked(data: SectionHeaderSnippetData?) {
-        ClickDataResolver.resolve(data?.rightButton?.clickData)
+        ClickDataResolver.resolve(data?.rightButton?.clickData, activity)
     }
 }

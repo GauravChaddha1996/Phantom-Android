@@ -45,7 +45,7 @@ class HomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HomeScreen(SnippetInteractions(), homeViewModel)
+            HomeScreen(SnippetInteractions(this), homeViewModel)
         }
         homeViewModel.loadPage()
     }
@@ -149,16 +149,6 @@ class HomeActivity : BaseActivity() {
                 PhantomText(
                     data = TextData("Phantom").setDefaults(fontStyle = PhantomFontStyle.SEMIBOLD_700)
 
-                )
-            },
-            navigationIcon = {
-                PhantomText(
-                    data = TextData("II").setDefaults(fontStyle = PhantomFontStyle.SEMIBOLD_700)
-                )
-            },
-            actions = {
-                PhantomText(
-                    data = TextData("A1").setDefaults(fontStyle = PhantomFontStyle.SEMIBOLD_700)
                 )
             }
         )

@@ -4,6 +4,7 @@ import android.app.Application
 import coil.Coil
 import coil.ImageLoader
 import com.project.phantom.koin.AppModule
+import com.project.phantom.koin.CategoryModule
 import com.project.phantom.koin.HomeModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -26,7 +27,7 @@ class PhantomApplication : Application(), KoinComponent {
             allowOverride(false)
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@PhantomApplication)
-            modules(AppModule, HomeModule)
+            modules(AppModule, HomeModule, CategoryModule)
         }
 
         // Setup coil for image loading

@@ -13,5 +13,5 @@ abstract class BaseViewModel : ViewModel(), KoinComponent, CoroutineScope {
         viewModelScope.coroutineContext + Dispatchers.Default + defaultPhantomCEH
     }
 
-    abstract val defaultPhantomCEH: CoroutineExceptionHandler
+    protected abstract val defaultPhantomCEH: CoroutineExceptionHandler
 }
