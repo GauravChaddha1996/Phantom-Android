@@ -728,7 +728,7 @@ style:
   RedundantVisibilityModifierRule:
     active: false
   ReturnCount:
-    active: true
+    active: false
     max: 2
     excludedFunctions: 'equals'
     excludeLabeled: false
@@ -737,7 +737,7 @@ style:
   SafeCast:
     active: true
   SerialVersionUIDInSerializableClass:
-    active: true
+    active: false
   SpacingBetweenPackageAndImports:
     active: false
   ThrowsCount:
