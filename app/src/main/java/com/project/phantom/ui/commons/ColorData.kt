@@ -5,21 +5,20 @@ import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomColors
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class ColorData(
-    @Json(name = "name") val name: PhantomColorName? = null
-) {
-    @Transient
-    var resolvedColor = PhantomColors.resolve(name)
+    @Json(name = "name") var name: PhantomColorName? = null
+) : Serializable {
 
     fun setDefaults(
         defaultColorName: PhantomColorName? = null
     ) {
-        resolvedColor = PhantomColors.resolve(name ?: defaultColorName)
+        this.name = name ?: defaultColorName
     }
 }
 
-fun ColorData?.getResolvedColor(): Color {
-    return this?.resolvedColor ?: Color.Unspecified
+fun ColorData?.getResolvedColor(defaultColorName: PhantomColorName? = null): Color {
+    return PhantomColors.resolve(this?.name ?: defaultColorName)
 }

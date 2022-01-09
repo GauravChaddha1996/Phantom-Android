@@ -17,7 +17,13 @@ object ClickDataResolver {
             }
             is OpenCategoryClickData -> {
                 clickData.categoryId ?: return
-                CategoryActivity.start(activity, CategoryPageInitModel(clickData.categoryId))
+                CategoryActivity.start(
+                    activity,
+                    CategoryPageInitModel(
+                        categoryId = clickData.categoryId,
+                        categoryColor = clickData.categoryColor
+                    )
+                )
             }
         }
     }

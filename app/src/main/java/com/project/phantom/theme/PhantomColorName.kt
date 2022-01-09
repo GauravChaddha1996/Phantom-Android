@@ -3,10 +3,11 @@ package com.project.phantom.theme
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 @Stable
 @Immutable
-enum class PhantomColorName {
+enum class PhantomColorName : Serializable {
     @Json(name = "black")
     BLACK,
 

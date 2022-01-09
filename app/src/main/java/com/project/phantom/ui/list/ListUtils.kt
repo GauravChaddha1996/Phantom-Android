@@ -13,6 +13,8 @@ import com.project.phantom.ui.snippets.productRail.ProductRailSnippet
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippet
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
+import com.project.phantom.ui.snippets.textSection.TextSectionSnippetData
+import com.project.phantom.ui.snippets.textSection.TextSnippet
 
 internal fun LazyListScope.handleListSnippetData(
     it: SnippetData,
@@ -47,6 +49,13 @@ internal fun LazyListScope.handleListSnippetData(
         is CategoryRailSnippetData -> {
             item {
                 CategoryRailSnippet(data = it, interaction = interaction)
+            }
+        }
+        is TextSectionSnippetData -> {
+            it.textSectionArr?.forEach {
+                item {
+                    TextSnippet(data = it)
+                }
             }
         }
     }

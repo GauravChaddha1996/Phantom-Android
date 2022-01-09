@@ -14,6 +14,7 @@ import androidx.compose.ui.platform.LocalFontLoader
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import com.project.phantom.ui.commons.getResolvedColor
 
 internal const val DefaultWidthCharCount = 10 // min width for TextField is 10 chars long
 internal val EmptyTextReplacement = "H".repeat(DefaultWidthCharCount) // just a reference character.
@@ -68,7 +69,7 @@ fun PhantomText(
                     minLineHeight.toDp()
                 }
             ),
-        color = data.color.resolvedColor,
+        color = data.color.getResolvedColor(),
         style = finalTextStyle,
         textDecoration = textDecoration,
         textAlign = textAlign,
