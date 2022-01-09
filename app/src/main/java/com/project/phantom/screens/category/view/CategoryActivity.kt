@@ -4,10 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -33,6 +37,7 @@ import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.domain.CategoryViewModel
 import com.project.phantom.theme.PhantomColorName
+import com.project.phantom.theme.PhantomColors
 import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.theme.PhantomTheme
 import com.project.phantom.ui.commons.getResolvedColor
@@ -171,11 +176,27 @@ class CategoryActivity : BaseActivity() {
         interactions: SnippetInteractions,
         viewModel: CategoryViewModel
     ) {
-        VerticalList(
-            rvDataState = state.rvDataState,
-            interaction = interactions,
-            contentPadding = PaddingValues()
-        )
+        Column {
+            PhantomText(
+                data = state.categoryTitle,
+                modifier = Modifier.padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 4.dp)
+            )
+            PhantomText(
+                data = state.categorySubtitle,
+                modifier = Modifier.padding(start = 12.dp, end = 12.dp, bottom = 12.dp)
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(1.5.dp)
+                    .background(PhantomColors.resolve(PhantomColorName.GREY_200))
+            )
+            VerticalList(
+                rvDataState = state.rvDataState,
+                interaction = interactions,
+                contentPadding = PaddingValues(vertical = 12.dp)
+            )
+        }
         PhantomLCE(
             data = state.lceState,
             interaction = object : PhantomLceInteraction {

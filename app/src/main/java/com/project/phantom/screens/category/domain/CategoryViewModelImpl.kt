@@ -7,6 +7,8 @@ import com.project.phantom.network.PhantomCEH
 import com.project.phantom.screens.base.BaseSnippetCurator
 import com.project.phantom.screens.category.view.CategoryPageInitModel
 import com.project.phantom.screens.category.view.CategoryScreenState
+import com.project.phantom.theme.PhantomColorName
+import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.ui.lce.PhantomLceData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -41,7 +43,15 @@ class CategoryViewModelImpl(
             if (curatedList.isNotEmpty()) {
                 state = state.copy(
                     lceState = PhantomLceData.getContentData(),
-                    rvDataState = curatedList
+                    rvDataState = curatedList,
+                    categoryTitle = response.categoryTitle?.setDefaults(
+                        fontStyle = PhantomFontStyle.SEMIBOLD_700,
+                        colorName = PhantomColorName.GREY_800
+                    ),
+                    categorySubtitle = response.categorySubtitle?.setDefaults(
+                        fontStyle = PhantomFontStyle.MEDIUM_400,
+                        colorName = PhantomColorName.GREY_400
+                    )
                 )
             } else {
                 throw CategoryCurationException()
