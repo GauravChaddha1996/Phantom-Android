@@ -2,6 +2,7 @@ package com.project.phantom.ui.list
 
 import androidx.compose.foundation.lazy.LazyListScope
 import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.grid.PhantomGrid
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippet
@@ -13,6 +14,7 @@ import com.project.phantom.ui.snippets.productRail.ProductRailSnippet
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippet
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
+import com.project.phantom.ui.snippets.sortMethod.SortMethodSnippet
 import com.project.phantom.ui.snippets.textSection.TextSectionSnippetData
 import com.project.phantom.ui.snippets.textSection.TextSnippet
 
@@ -56,6 +58,11 @@ internal fun LazyListScope.handleListSnippetData(
                 item {
                     TextSnippet(data = it)
                 }
+            }
+        }
+        is SortMethodData -> {
+            item {
+                SortMethodSnippet(data = it, interaction = interaction)
             }
         }
     }

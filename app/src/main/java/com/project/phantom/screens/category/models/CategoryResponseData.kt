@@ -13,12 +13,15 @@ class CategoryResponseData(
     @Json(name = "message")
     val message: String? = null,
 
-    @Json(name = "category_title")
-    val categoryTitle: TextData? = null,
+    @Json(name = "page_title")
+    val pageTitle: TextData? = null,
 
-    @Json(name = "category_subtitle")
-    val categorySubtitle: TextData? = null,
+    @Json(name = "snippet_section_header")
+    val snippetSectionHeader: TextData? = null,
 
     @Json(name = "snippet_section_list")
-    val snippetSectionList: List<SnippetSectionData>? = null
+    val snippetSectionList: List<SnippetSectionData>? = null,
+
+    @Json(name = "sort_sheet_ui_data")
+    val sortSheetData: SortSheetData? = null
 )

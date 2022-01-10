@@ -14,14 +14,15 @@ fun VerticalList(
     rvDataState: List<SnippetData>?,
     interaction: SnippetInteractions,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaddingValues(vertical = PaddingStyle.large)
+    contentPadding: PaddingValues = PaddingValues(vertical = PaddingStyle.large),
+    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(PaddingStyle.huge)
 ) {
     LazyColumn(
         content = {
             val list = rvDataState
             list?.forEach { handleListSnippetData(it, interaction) }
         },
-        verticalArrangement = Arrangement.spacedBy(PaddingStyle.huge),
+        verticalArrangement = verticalArrangement,
         contentPadding = contentPadding,
         modifier = modifier
     )

@@ -1,0 +1,32 @@
+package com.project.phantom.screens.category.models
+
+import com.project.phantom.theme.PhantomColorName
+import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.ui.snippets.commons.SnippetData
+import com.project.phantom.ui.text.TextData
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class SortSheetData(
+    @Json(name = "methods") val methods: List<SortMethodData>? = null
+) : SnippetData() {
+    override fun setDefaults() {
+        methods?.forEach { it.setDefaults() }
+    }
+}
+
+@JsonClass(generateAdapter = true)
+data class SortMethodData(
+    @Json(name = "id") val id: Int? = null,
+    @Json(name = "name") val name: TextData? = null,
+    @Json(name = "selected") val selected: Boolean? = null
+) : SnippetData() {
+
+    override fun setDefaults() {
+        name?.setDefaults(
+            fontStyle = PhantomFontStyle.MEDIUM_500,
+            colorName = PhantomColorName.GREY_100
+        )
+    }
+}
