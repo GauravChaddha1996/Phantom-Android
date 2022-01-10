@@ -6,6 +6,8 @@ import androidx.compose.runtime.setValue
 import com.project.phantom.network.PhantomCEH
 import com.project.phantom.screens.base.BaseSnippetCurator
 import com.project.phantom.screens.category.models.SortMethodData
+import com.project.phantom.screens.category.models.getSelectedPropertyValueIds
+import com.project.phantom.screens.category.models.getSelectedSortMethodData
 import com.project.phantom.screens.category.view.CategoryPageInitModel
 import com.project.phantom.screens.category.view.CategoryScreenState
 import com.project.phantom.theme.PhantomColorName
@@ -35,23 +37,37 @@ class CategoryViewModelImpl(
         loadPageImpl(null)
     }
 
-    override fun onSortMethodClicked(sortMethodData: SortMethodData) {
-        loadPageImpl(sortMethodData)
+    override fun onSortMethodSelected(sortMethodData: SortMethodData) {
+        val oldSortMethodData = state.selectedSortMethodData
+        val isSortMethodDifferent = oldSortMethodData?.id != sortMethodData.id
+        if (isSortMethodDifferent) {
+            loadPageImpl(sortMethodData)
+        }
     }
 
-    private fun loadPageImpl(sortMethodData: SortMethodData?) {
-        if (sortMethodData != null && state.sortMethodData?.id == sortMethodData.id) return
+    override fun onFilterApplied() {
+        val oldSelectedPropertyValueIds = state.selectedPropertyValueIds
+        val newSelectedPropertyValueIds = state.filterSheetData.getSelectedPropertyValueIds()
+        val areSelectedPropertyValueIdsDifferent =
+            oldSelectedPropertyValueIds != newSelectedPropertyValueIds
+        if (areSelectedPropertyValueIdsDifferent) {
+            loadPageImpl(state.selectedSortMethodData)
+        }
+    }
+
+    private fun loadPageImpl(newSortMethodData: SortMethodData?) {
         launch {
             state = state.copy(
                 lceState = PhantomLceData.getLoadingData(),
                 rvDataState = emptyList(),
-                sortMethodData = sortMethodData,
+                selectedSortMethodData = newSortMethodData,
                 frontLayerHeader = null
             )
             delay(LoadDelay)
             val response = fetcher.fetchCategoryPage(
                 initModel = initModel,
-                sortMethodData = sortMethodData
+                selectedSortMethodData = newSortMethodData,
+                selectedPropertyValueSet = state.filterSheetData.getSelectedPropertyValueIds()
             )
             val curatedList = curator.curate(response.snippetSectionList)
             if (curatedList.isNotEmpty()) {
@@ -67,7 +83,9 @@ class CategoryViewModelImpl(
                     ),
                     rvDataState = curatedList,
                     sortSheetData = response.sortSheetData?.also { it.setDefaults() },
-                    sortMethodData = response.sortSheetData?.methods?.firstOrNull { it.selected == true }
+                    selectedSortMethodData = response.sortSheetData.getSelectedSortMethodData(),
+                    filterSheetData = response.filterSheetData?.also { it.setDefaults() },
+                    selectedPropertyValueIds = response.filterSheetData.getSelectedPropertyValueIds()
                 )
             } else {
                 throw CategoryCurationException()

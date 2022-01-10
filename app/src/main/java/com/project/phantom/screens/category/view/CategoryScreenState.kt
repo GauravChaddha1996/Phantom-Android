@@ -1,5 +1,6 @@
 package com.project.phantom.screens.category.view
 
+import com.project.phantom.screens.category.models.FilterSheetData
 import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.screens.category.models.SortSheetData
 import com.project.phantom.ui.lce.PhantomLceData
@@ -12,5 +13,7 @@ data class CategoryScreenState(
     val frontLayerHeader: TextData? = null,
     val rvDataState: List<SnippetData> = emptyList(),
     val sortSheetData: SortSheetData? = null,
-    val sortMethodData: SortMethodData? = null
+    val selectedSortMethodData: SortMethodData? = null,
+    val filterSheetData: FilterSheetData? = null,
+    val selectedPropertyValueIds: Set<Int> = emptySet()
 )

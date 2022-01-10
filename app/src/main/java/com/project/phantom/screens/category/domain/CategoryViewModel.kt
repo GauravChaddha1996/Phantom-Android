@@ -7,5 +7,6 @@ import com.project.phantom.screens.category.view.CategoryScreenState
 abstract class CategoryViewModel : BaseViewModel() {
     abstract val state: CategoryScreenState
     abstract fun loadPage()
-    abstract fun onSortMethodClicked(sortMethodData: SortMethodData)
+    abstract fun onSortMethodSelected(sortMethodData: SortMethodData)
+    abstract fun onFilterApplied()
 }

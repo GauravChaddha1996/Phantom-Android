@@ -16,6 +16,8 @@ data class SortSheetData(
     }
 }
 
+fun SortSheetData?.getSelectedSortMethodData() = this?.methods?.firstOrNull { it.selected == true }
+
 @JsonClass(generateAdapter = true)
 data class SortMethodData(
     @Json(name = "id") val id: Int? = null,

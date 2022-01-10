@@ -7,6 +7,7 @@ import com.project.phantom.screens.category.view.CategoryPageInitModel
 interface CategoryFetcher {
     suspend fun fetchCategoryPage(
         initModel: CategoryPageInitModel,
-        sortMethodData: SortMethodData?
+        selectedSortMethodData: SortMethodData?,
+        selectedPropertyValueSet: Set<Int>
     ): CategoryResponseData
 }

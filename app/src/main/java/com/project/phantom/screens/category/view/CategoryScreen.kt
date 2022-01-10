@@ -26,11 +26,15 @@ import com.project.phantom.screens.category.domain.CategoryViewModel
 import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomColors
+import com.project.phantom.ui.button.ButtonData
+import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.commons.getResolvedColor
 import com.project.phantom.ui.lce.PhantomLCE
 import com.project.phantom.ui.lce.PhantomLceInteraction
 import com.project.phantom.ui.list.VerticalList
 import com.project.phantom.ui.text.PhantomText
+import com.project.phantom.ui.text.TextData
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class CategoryScreen {
@@ -46,11 +50,12 @@ class CategoryScreen {
         val state = viewModel.state
         val scaffoldState = rememberBackdropScaffoldState(initialValue = BackdropValue.Concealed)
         var showSortInBackLayer by remember { mutableStateOf(false) }
+        var showFilterInBackLayer by remember { mutableStateOf(false) }
         val interactions = remember {
             object : SnippetInteractions(activity = activity) {
                 override fun onSortMethodClicked(sortMethodData: SortMethodData) {
                     super.onSortMethodClicked(sortMethodData)
-                    viewModel.onSortMethodClicked(sortMethodData = sortMethodData)
+                    viewModel.onSortMethodSelected(sortMethodData = sortMethodData)
                     scope.launch { scaffoldState.conceal() }
                 }
             }
@@ -62,14 +67,18 @@ class CategoryScreen {
                 topAppBar.Get(
                     state = state,
                     backClickable = { activity.onBackPressed() },
+                    filterClickable = {
+                        scope.launch {
+                            showSortInBackLayer = false
+                            showFilterInBackLayer = true
+                            scaffoldState.reveal()
+                        }
+                    },
                     sortClickable = {
                         scope.launch {
                             showSortInBackLayer = true
-                            if (scaffoldState.isRevealed) {
-                                scaffoldState.conceal()
-                            } else {
-                                scaffoldState.reveal()
-                            }
+                            showFilterInBackLayer = false
+                            scaffoldState.reveal()
                         }
                     }
                 )
@@ -79,7 +88,10 @@ class CategoryScreen {
                     state = state,
                     scaffoldState = scaffoldState,
                     interactions = interactions,
-                    showSortInBackLayer = showSortInBackLayer
+                    showSortInBackLayer = showSortInBackLayer,
+                    showFilterInBackLayer = showFilterInBackLayer,
+                    viewModel = viewModel,
+                    scope = scope
                 )
             },
             frontLayerContent = {
@@ -102,16 +114,45 @@ class CategoryScreen {
         state: CategoryScreenState,
         scaffoldState: BackdropScaffoldState,
         interactions: SnippetInteractions,
-        showSortInBackLayer: Boolean
+        showSortInBackLayer: Boolean,
+        showFilterInBackLayer: Boolean,
+        viewModel: CategoryViewModel,
+        scope: CoroutineScope
     ) {
         if (scaffoldState.isRevealed) {
-            if (showSortInBackLayer) {
-                VerticalList(
-                    rvDataState = state.sortSheetData?.methods,
-                    interaction = interactions,
-                    contentPadding = PaddingValues(bottom = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                )
+            when {
+                showSortInBackLayer -> {
+                    VerticalList(
+                        rvDataState = state.sortSheetData?.methods,
+                        interaction = interactions,
+                        contentPadding = PaddingValues(bottom = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    )
+                }
+                showFilterInBackLayer -> {
+                    Column {
+                        VerticalList(
+                            rvDataState = state.filterSheetData?.let { listOf(it) },
+                            interaction = interactions,
+                            contentPadding = PaddingValues(bottom = 8.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp)
+                        )
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp)
+                        ) {
+                            PhantomButton(
+                                data = ButtonData(TextData("Apply")),
+                                modifier = Modifier.fillMaxWidth(),
+                                onClick = {
+                                    viewModel.onFilterApplied()
+                                    scope.launch { scaffoldState.conceal() }
+                                }
+                            )
+                        }
+                    }
+                }
             }
         }
     }

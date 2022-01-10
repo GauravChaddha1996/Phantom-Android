@@ -39,6 +39,7 @@ class CategoryPageTopAppBar {
     fun Get(
         state: CategoryScreenState,
         backClickable: () -> Unit,
+        filterClickable: () -> Unit,
         sortClickable: () -> Unit
     ) {
         TopAppBar(
@@ -80,7 +81,7 @@ class CategoryPageTopAppBar {
                                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_filter_list),
                                 text = stringResource(R.string.filter)
                             ) {
-                                // no-op
+                                filterClickable.invoke()
                             }
                             GetAction(
                                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_sort),

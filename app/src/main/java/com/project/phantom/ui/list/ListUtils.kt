@@ -1,13 +1,18 @@
 package com.project.phantom.ui.list
 
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.itemsIndexed
 import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.screens.category.models.FilterPropertyValueData
+import com.project.phantom.screens.category.models.FilterSheetData
 import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.grid.PhantomGrid
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippet
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
 import com.project.phantom.ui.snippets.commons.SnippetData
+import com.project.phantom.ui.snippets.filterProperty.FilterPropertySnippet
+import com.project.phantom.ui.snippets.filterPropertyValue.FilterPropertyValueSnippet
 import com.project.phantom.ui.snippets.productFull.ProductFullSnippet
 import com.project.phantom.ui.snippets.productFull.ProductFullSnippetData
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippet
@@ -63,6 +68,22 @@ internal fun LazyListScope.handleListSnippetData(
         is SortMethodData -> {
             item {
                 SortMethodSnippet(data = it, interaction = interaction)
+            }
+        }
+        is FilterSheetData -> {
+            it.propertyUiSections?.let {
+                itemsIndexed(it) { index, propertyUiSection ->
+                    FilterPropertySnippet(
+                        propertySection = propertyUiSection,
+                        showSeparator = index != it.lastIndex,
+                        interactions = interaction
+                    )
+                }
+            }
+        }
+        is FilterPropertyValueData -> {
+            item {
+                FilterPropertyValueSnippet(it)
             }
         }
     }

@@ -23,5 +23,8 @@ class CategoryResponseData(
     val snippetSectionList: List<SnippetSectionData>? = null,
 
     @Json(name = "sort_sheet_ui_data")
-    val sortSheetData: SortSheetData? = null
+    val sortSheetData: SortSheetData? = null,
+
+    @Json(name = "filter_sheet_ui_data")
+    val filterSheetData: FilterSheetData? = null
 )
