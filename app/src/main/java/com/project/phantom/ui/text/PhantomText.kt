@@ -9,6 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFontLoader
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -25,7 +26,8 @@ fun PhantomText(
     modifier: Modifier = Modifier,
     textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,
-    autoSize: Boolean = false
+    autoSize: Boolean = false,
+    color: Color? = null
 ) {
     // Cases to check for visibility
     if (data == null || data.text.isNullOrEmpty()) {
@@ -69,7 +71,7 @@ fun PhantomText(
                     minLineHeight.toDp()
                 }
             ),
-        color = data.color.getResolvedColor(),
+        color = color ?: data.color.getResolvedColor(),
         style = finalTextStyle,
         textDecoration = textDecoration,
         textAlign = textAlign,

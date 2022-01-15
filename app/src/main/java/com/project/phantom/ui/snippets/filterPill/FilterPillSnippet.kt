@@ -1,4 +1,4 @@
-package com.project.phantom.ui.snippets.filterPropertyValue
+package com.project.phantom.ui.snippets.filterPill
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,13 +21,11 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.category.models.FilterPropertyValueData
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomColors
-import com.project.phantom.ui.commons.ColorData
+import com.project.phantom.screens.category.view.LocalCategoryScreenColors
 import com.project.phantom.ui.text.PhantomText
 
 @Composable
-fun FilterPropertyValueSnippet(
+fun FilterPillSnippet(
     propertyValue: FilterPropertyValueData
 ) {
     var isSelected by remember {
@@ -37,13 +35,11 @@ fun FilterPropertyValueSnippet(
         modifier = Modifier
             .clip(RoundedCornerShape(64.dp))
             .background(
-                PhantomColors.resolve(
-                    if (isSelected) {
-                        PhantomColorName.RED_600
-                    } else {
-                        PhantomColorName.RED_400
-                    }
-                )
+                if (isSelected) {
+                    LocalCategoryScreenColors.current.filterPillSelectedBgColor
+                } else {
+                    LocalCategoryScreenColors.current.filterPillUnselectedBgColor
+                }
             )
             .clickable {
                 isSelected = !isSelected
@@ -53,22 +49,24 @@ fun FilterPropertyValueSnippet(
         horizontalArrangement = Arrangement.Center
     ) {
         PhantomText(
-            data = propertyValue.name?.copy(
-                color = ColorData(
-                    if (isSelected) {
-                        PhantomColorName.GREY_100
-                    } else {
-                        PhantomColorName.GREY_200
-                    }
-                )
-            ),
-            modifier = Modifier.padding(start = 8.dp, top = 8.dp, end = 4.dp, bottom = 8.dp)
+            data = propertyValue.name,
+            modifier = Modifier
+                .padding(start = 8.dp, top = 8.dp, end = 4.dp, bottom = 8.dp),
+            color = if (isSelected) {
+                LocalCategoryScreenColors.current.filterPillSelectedTextColor
+            } else {
+                LocalCategoryScreenColors.current.filterPillUnselectedTextColor
+            }
         )
         val iconAlpha = if (isSelected) ContentAlpha.high else ContentAlpha.disabled
         Icon(
             imageVector = Icons.Default.CheckCircle,
             contentDescription = null,
-            tint = PhantomColors.resolve(PhantomColorName.GREY_100),
+            tint = if (isSelected) {
+                LocalCategoryScreenColors.current.filterPillSelectedIconColor
+            } else {
+                LocalCategoryScreenColors.current.filterPillUnselectedIconColor
+            },
             modifier = Modifier
                 .alpha(alpha = iconAlpha)
                 .padding(start = 0.dp, top = 8.dp, end = 8.dp, bottom = 8.dp)

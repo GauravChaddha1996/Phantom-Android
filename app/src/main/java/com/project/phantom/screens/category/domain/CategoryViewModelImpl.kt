@@ -30,8 +30,15 @@ class CategoryViewModelImpl(
         state = state.copy(lceState = PhantomLceData.getErrorData(it.message))
     }
 
-    override var state by mutableStateOf(CategoryScreenState())
+    override var state by mutableStateOf(
+        CategoryScreenState(
+            lceState = getPhantomLceLoadingData()
+        )
+    )
         private set
+
+    private fun getPhantomLceLoadingData() = PhantomLceData.getLoadingData()
+        .copy(phantomGhostColor = initModel.categoryColor?.name ?: PhantomColorName.RED_300)
 
     override fun loadPage() {
         loadPageImpl(null)
@@ -58,7 +65,7 @@ class CategoryViewModelImpl(
     private fun loadPageImpl(newSortMethodData: SortMethodData?) {
         launch {
             state = state.copy(
-                lceState = PhantomLceData.getLoadingData(),
+                lceState = getPhantomLceLoadingData(),
                 rvDataState = emptyList(),
                 selectedSortMethodData = newSortMethodData,
                 frontLayerHeader = null

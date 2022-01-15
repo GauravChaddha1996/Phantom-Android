@@ -17,8 +17,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.category.models.SortMethodData
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomColors
+import com.project.phantom.screens.category.view.LocalCategoryScreenColors
 import com.project.phantom.ui.text.PhantomText
 
 @Composable
@@ -31,20 +30,21 @@ fun SortMethodSnippet(
             .padding(horizontal = 12.dp, vertical = 4.dp)
             .clip(RoundedCornerShape(16.dp))
             .clickable { interaction.onSortMethodClicked(data) }
-            .background(PhantomColors.resolve(PhantomColorName.RED_600))
+            .background(LocalCategoryScreenColors.current.sortButtonBgColor)
     ) {
         PhantomText(
             data = data.name,
             modifier = Modifier
                 .weight(1f)
-                .padding(12.dp)
+                .padding(12.dp),
+            color = LocalCategoryScreenColors.current.sortButtonTextColor
         )
         LocalContentAlpha
         val iconAlpha = if (data.selected == true) ContentAlpha.high else ContentAlpha.disabled
         Icon(
             imageVector = Icons.Default.CheckCircle,
             contentDescription = null,
-            tint = PhantomColors.resolve(PhantomColorName.GREY_100),
+            tint = LocalCategoryScreenColors.current.sortButtonTickColor,
             modifier = Modifier
                 .alpha(alpha = iconAlpha)
                 .align(Alignment.CenterVertically)

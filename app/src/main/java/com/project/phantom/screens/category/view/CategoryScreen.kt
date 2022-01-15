@@ -29,7 +29,6 @@ import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomColors
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
-import com.project.phantom.ui.commons.getResolvedColor
 import com.project.phantom.ui.lce.PhantomLCE
 import com.project.phantom.ui.lce.PhantomLceInteraction
 import com.project.phantom.ui.list.VerticalList
@@ -44,8 +43,7 @@ class CategoryScreen {
     @Composable
     fun Get(
         activity: CategoryActivity,
-        viewModel: CategoryViewModel,
-        initModel: CategoryPageInitModel
+        viewModel: CategoryViewModel
     ) {
         val scope = rememberCoroutineScope()
         val state = viewModel.state
@@ -103,7 +101,7 @@ class CategoryScreen {
             gesturesEnabled = false,
             peekHeight = 56.dp,
             headerHeight = 56.dp,
-            backLayerBackgroundColor = initModel.categoryColor.getResolvedColor()
+            backLayerBackgroundColor = LocalCategoryScreenColors.current.backLayerBackground
         )
     }
 

@@ -6,13 +6,14 @@ import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.commons.FontData
 import com.project.phantom.ui.text.TextData
 
-class PhantomLceData(
+data class PhantomLceData(
     val showLoader: Boolean,
     val showError: Boolean,
     val showSuccess: Boolean,
     val showNoResult: Boolean,
     val noResultMessage: TextData,
-    val errorMessage: TextData
+    val errorMessage: TextData,
+    val phantomGhostColor: PhantomColorName
 ) {
 
     companion object {
@@ -22,7 +23,8 @@ class PhantomLceData(
             showSuccess = false,
             showNoResult = false,
             noResultMessage = TextData(),
-            errorMessage = TextData()
+            errorMessage = TextData(),
+            phantomGhostColor = PhantomColorName.RED_300
         )
 
         fun getContentData() = PhantomLceData(
@@ -31,7 +33,8 @@ class PhantomLceData(
             showSuccess = true,
             showNoResult = false,
             noResultMessage = TextData(),
-            errorMessage = TextData()
+            errorMessage = TextData(),
+            phantomGhostColor = PhantomColorName.RED_300
         )
 
         fun getErrorData(errorMessage: String?) = PhantomLceData(
@@ -44,7 +47,8 @@ class PhantomLceData(
                 text = errorMessage,
                 color = ColorData(PhantomColorName.GREY_700),
                 font = FontData(PhantomFontStyle.MEDIUM_600)
-            )
+            ),
+            phantomGhostColor = PhantomColorName.RED_300
         )
 
         fun getEmptyResultData(emptyResultMessage: String?) = PhantomLceData(
@@ -57,7 +61,8 @@ class PhantomLceData(
                 color = ColorData(PhantomColorName.GREY_800),
                 font = FontData(PhantomFontStyle.SEMIBOLD_800)
             ),
-            errorMessage = TextData()
+            errorMessage = TextData(),
+            phantomGhostColor = PhantomColorName.RED_300
         )
     }
 }

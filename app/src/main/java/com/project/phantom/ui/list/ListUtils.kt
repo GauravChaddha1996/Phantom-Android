@@ -10,8 +10,8 @@ import com.project.phantom.ui.grid.PhantomGrid
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippet
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
 import com.project.phantom.ui.snippets.commons.SnippetData
+import com.project.phantom.ui.snippets.filterPill.FilterPillSnippet
 import com.project.phantom.ui.snippets.filterProperty.FilterPropertySnippet
-import com.project.phantom.ui.snippets.filterPropertyValue.FilterPropertyValueSnippet
 import com.project.phantom.ui.snippets.productFull.ProductFullSnippet
 import com.project.phantom.ui.snippets.productFull.ProductFullSnippetData
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippet
@@ -84,7 +84,7 @@ internal fun LazyListScope.handleListSnippetData(
         }
         is FilterPropertyValueData -> {
             item {
-                FilterPropertyValueSnippet(it)
+                FilterPillSnippet(it)
             }
         }
     }

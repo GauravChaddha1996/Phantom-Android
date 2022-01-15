@@ -49,6 +49,7 @@ import com.project.phantom.theme.PhantomColorName.YELLOW_600
 import com.project.phantom.theme.PhantomColorName.YELLOW_700
 import com.project.phantom.theme.PhantomColorName.YELLOW_800
 import com.project.phantom.theme.PhantomColorName.YELLOW_900
+import com.project.phantom.theme.PhantomColorName.valueOf
 
 object PhantomColors {
 
@@ -110,6 +111,18 @@ object PhantomColors {
     fun resolve(colorName: PhantomColorName?): Color {
         return colorNameToColorMap[colorName] ?: Color.Unspecified
     }
+}
+
+fun PhantomColorName.resolve(): Color {
+    return PhantomColors.resolve(this)
+}
+
+fun PhantomColorName.changeAndResolve(tint: Int): Color {
+    return PhantomColors.resolve(change(tint))
+}
+
+fun PhantomColorName.change(tint: Int): PhantomColorName {
+    return valueOf(name.substringBefore('_').plus("_$tint"))
 }
 
 fun phantomColor() = lightColors(

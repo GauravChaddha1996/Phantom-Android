@@ -58,7 +58,10 @@ private fun BoxScope.LceLoader(data: PhantomLceData) {
             scaleOut(spring(stiffness = Spring.StiffnessMediumLow), targetScale = 2f)
     ) {
         PhantomGhost(
-            data = PhantomGhostData(size = Utils.getScreenWidth().times(other = 0.35f).value)
+            data = PhantomGhostData(
+                bgColor = data.phantomGhostColor,
+                size = Utils.getScreenWidth().times(other = 0.35f).value
+            )
         )
     }
 }
