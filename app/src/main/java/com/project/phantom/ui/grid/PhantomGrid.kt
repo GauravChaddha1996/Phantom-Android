@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.theme.PaddingStyle.large
 
 @Composable
 fun PhantomGrid(gridData: GridData, interaction: SnippetInteractions) {
@@ -16,8 +16,8 @@ fun PhantomGrid(gridData: GridData, interaction: SnippetInteractions) {
     val numberOfColumns = gridData.noOfColumns
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier.padding(horizontal = 12.dp)
+        horizontalArrangement = Arrangement.spacedBy(large),
+        modifier = Modifier.padding(horizontal = large)
     ) {
         for (index in 0 until numberOfColumns) {
             val snippet = gridList.getOrNull(index)

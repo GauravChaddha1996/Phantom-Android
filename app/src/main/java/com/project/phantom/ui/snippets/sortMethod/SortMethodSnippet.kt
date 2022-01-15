@@ -15,9 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.screens.category.view.LocalCategoryScreenColors
+import com.project.phantom.theme.PaddingStyle.extra
+import com.project.phantom.theme.PaddingStyle.large
+import com.project.phantom.theme.PaddingStyle.small
 import com.project.phantom.ui.text.PhantomText
 
 @Composable
@@ -27,8 +29,8 @@ fun SortMethodSnippet(
 ) {
     Row(
         modifier = Modifier
-            .padding(horizontal = 12.dp, vertical = 4.dp)
-            .clip(RoundedCornerShape(16.dp))
+            .padding(horizontal = large, vertical = small)
+            .clip(RoundedCornerShape(extra))
             .clickable { interaction.onSortMethodClicked(data) }
             .background(LocalCategoryScreenColors.current.sortButtonBgColor)
     ) {
@@ -36,7 +38,7 @@ fun SortMethodSnippet(
             data = data.name,
             modifier = Modifier
                 .weight(1f)
-                .padding(12.dp),
+                .padding(large),
             color = LocalCategoryScreenColors.current.sortButtonTextColor
         )
         LocalContentAlpha
@@ -48,7 +50,7 @@ fun SortMethodSnippet(
             modifier = Modifier
                 .alpha(alpha = iconAlpha)
                 .align(Alignment.CenterVertically)
-                .padding(12.dp)
+                .padding(large)
         )
     }
 }

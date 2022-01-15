@@ -35,6 +35,9 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.project.phantom.R
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
+import com.project.phantom.theme.PaddingStyle.medium
+import com.project.phantom.theme.PaddingStyle.nano
+import com.project.phantom.theme.PaddingStyle.small
 import com.project.phantom.theme.PhantomColorName.GREY_800
 import com.project.phantom.theme.PhantomColorName.GREY_900
 import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_500
@@ -119,7 +122,7 @@ class CategoryPageTopAppBar {
         Box(
             modifier = Modifier
                 .size(36.dp)
-                .padding(start = 8.dp)
+                .padding(start = medium)
                 .clip(CircleShape)
                 .clickable { clickable.invoke() }
         ) {
@@ -140,7 +143,7 @@ class CategoryPageTopAppBar {
             data = textData,
             modifier = Modifier.Companion
                 .align(Alignment.CenterVertically)
-                .padding(start = 4.dp)
+                .padding(start = small)
         )
     }
 
@@ -152,9 +155,9 @@ class CategoryPageTopAppBar {
     ) {
         Row(
             modifier = Modifier
-                .padding(end = 4.dp)
+                .padding(end = small)
                 .fillMaxHeight()
-                .clip(RoundedCornerShape(8.dp))
+                .clip(RoundedCornerShape(medium))
                 .clickable {
                     clickable.invoke()
                 }
@@ -174,7 +177,7 @@ class CategoryPageTopAppBar {
                     colorName = GREY_800
                 ),
                 modifier = Modifier
-                    .padding(start = 2.dp, end = 8.dp)
+                    .padding(start = nano, end = medium)
                     .align(Alignment.CenterVertically)
             )
         }

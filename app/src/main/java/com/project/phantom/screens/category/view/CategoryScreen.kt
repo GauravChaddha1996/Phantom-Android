@@ -25,6 +25,9 @@ import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.domain.CategoryViewModel
 import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
+import com.project.phantom.theme.PaddingStyle.large
+import com.project.phantom.theme.PaddingStyle.medium
+import com.project.phantom.theme.PaddingStyle.small
 import com.project.phantom.theme.PhantomColorName.GREY_200
 import com.project.phantom.theme.resolve
 import com.project.phantom.ui.button.ButtonData
@@ -121,8 +124,8 @@ class CategoryScreen {
                     VerticalList(
                         rvDataState = state.sortSheetData?.methods,
                         interaction = interactions,
-                        contentPadding = PaddingValues(bottom = 8.dp),
-                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                        contentPadding = PaddingValues(bottom = medium),
+                        verticalArrangement = Arrangement.spacedBy(small)
                     )
                 }
                 backLayerData.showFilterInBackLayer -> {
@@ -130,13 +133,13 @@ class CategoryScreen {
                         VerticalList(
                             rvDataState = state.filterSheetData?.let { listOf(it) },
                             interaction = interactions,
-                            contentPadding = PaddingValues(bottom = 8.dp),
-                            verticalArrangement = Arrangement.spacedBy(4.dp)
+                            contentPadding = PaddingValues(bottom = medium),
+                            verticalArrangement = Arrangement.spacedBy(small)
                         )
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(12.dp)
+                                .padding(large)
                         ) {
                             PhantomButton(
                                 data = ButtonData(TextData("Apply")),
@@ -163,7 +166,7 @@ class CategoryScreen {
             if (state.frontLayerHeader != null) {
                 PhantomText(
                     data = state.frontLayerHeader,
-                    modifier = Modifier.padding(12.dp)
+                    modifier = Modifier.padding(large)
                 )
                 Box(
                     modifier = Modifier
@@ -175,7 +178,7 @@ class CategoryScreen {
             VerticalList(
                 rvDataState = state.rvDataState,
                 interaction = interactions,
-                contentPadding = PaddingValues(vertical = 12.dp)
+                contentPadding = PaddingValues(vertical = large)
             )
         }
         PhantomLCE(

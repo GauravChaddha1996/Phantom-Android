@@ -22,6 +22,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.category.models.FilterPropertyValueData
 import com.project.phantom.screens.category.view.LocalCategoryScreenColors
+import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.PaddingStyle.medium
+import com.project.phantom.theme.PaddingStyle.small
 import com.project.phantom.ui.text.PhantomText
 
 @Composable
@@ -33,7 +36,7 @@ fun FilterPillSnippet(
     }
     Row(
         modifier = Modifier
-            .clip(RoundedCornerShape(64.dp))
+            .clip(RoundedCornerShape(PaddingStyle.gigantic))
             .background(
                 if (isSelected) {
                     LocalCategoryScreenColors.current.filterPillSelectedBgColor
@@ -51,7 +54,7 @@ fun FilterPillSnippet(
         PhantomText(
             data = propertyValue.name,
             modifier = Modifier
-                .padding(start = 8.dp, top = 8.dp, end = 4.dp, bottom = 8.dp),
+                .padding(start = medium, top = medium, end = small, bottom = medium),
             color = if (isSelected) {
                 LocalCategoryScreenColors.current.filterPillSelectedTextColor
             } else {
@@ -69,7 +72,7 @@ fun FilterPillSnippet(
             },
             modifier = Modifier
                 .alpha(alpha = iconAlpha)
-                .padding(start = 0.dp, top = 8.dp, end = 8.dp, bottom = 8.dp)
+                .padding(start = 0.dp, top = medium, end = medium, bottom = medium)
         )
     }
 }

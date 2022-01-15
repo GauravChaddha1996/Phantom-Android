@@ -9,8 +9,8 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.theme.PaddingStyle.large
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.button.PhantomButtonType
@@ -23,7 +23,7 @@ fun SectionHeaderSnippet(
     interaction: SectionHeaderSnippetInteraction
 ) {
     Row(
-        modifier = Modifier.padding(start = 12.dp)
+        modifier = Modifier.padding(start = large)
     ) {
         Column(Modifier.weight(1f)) {
             PhantomText(data = data?.title)
