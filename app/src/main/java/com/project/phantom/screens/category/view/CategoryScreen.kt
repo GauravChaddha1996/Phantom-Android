@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.domain.CategoryViewModel
 import com.project.phantom.screens.category.models.SortMethodData
+import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
 import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomColors
 import com.project.phantom.ui.button.ButtonData
@@ -49,8 +50,7 @@ class CategoryScreen {
         val scope = rememberCoroutineScope()
         val state = viewModel.state
         val scaffoldState = rememberBackdropScaffoldState(initialValue = BackdropValue.Concealed)
-        var showSortInBackLayer by remember { mutableStateOf(false) }
-        var showFilterInBackLayer by remember { mutableStateOf(false) }
+        var backLayerData by remember { mutableStateOf(BackLayerData()) }
         val interactions = remember {
             object : SnippetInteractions(activity = activity) {
                 override fun onSortMethodClicked(sortMethodData: SortMethodData) {
@@ -69,15 +69,13 @@ class CategoryScreen {
                     backClickable = { activity.onBackPressed() },
                     filterClickable = {
                         scope.launch {
-                            showSortInBackLayer = false
-                            showFilterInBackLayer = true
+                            backLayerData = BackLayerData(showFilterInBackLayer = true)
                             scaffoldState.reveal()
                         }
                     },
                     sortClickable = {
                         scope.launch {
-                            showSortInBackLayer = true
-                            showFilterInBackLayer = false
+                            backLayerData = BackLayerData(showSortInBackLayer = true)
                             scaffoldState.reveal()
                         }
                     }
@@ -88,8 +86,7 @@ class CategoryScreen {
                     state = state,
                     scaffoldState = scaffoldState,
                     interactions = interactions,
-                    showSortInBackLayer = showSortInBackLayer,
-                    showFilterInBackLayer = showFilterInBackLayer,
+                    backLayerData = backLayerData,
                     viewModel = viewModel,
                     scope = scope
                 )
@@ -114,14 +111,13 @@ class CategoryScreen {
         state: CategoryScreenState,
         scaffoldState: BackdropScaffoldState,
         interactions: SnippetInteractions,
-        showSortInBackLayer: Boolean,
-        showFilterInBackLayer: Boolean,
+        backLayerData: BackLayerData,
         viewModel: CategoryViewModel,
         scope: CoroutineScope
     ) {
         if (scaffoldState.isRevealed) {
             when {
-                showSortInBackLayer -> {
+                backLayerData.showSortInBackLayer -> {
                     VerticalList(
                         rvDataState = state.sortSheetData?.methods,
                         interaction = interactions,
@@ -129,7 +125,7 @@ class CategoryScreen {
                         verticalArrangement = Arrangement.spacedBy(4.dp)
                     )
                 }
-                showFilterInBackLayer -> {
+                backLayerData.showFilterInBackLayer -> {
                     Column {
                         VerticalList(
                             rvDataState = state.filterSheetData?.let { listOf(it) },
@@ -140,7 +136,7 @@ class CategoryScreen {
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(horizontal = 12.dp)
+                                .padding(12.dp)
                         ) {
                             PhantomButton(
                                 data = ButtonData(TextData("Apply")),

@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.category.models.FilterPropertyValueData
 import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomColors
+import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.text.PhantomText
 
 @Composable
@@ -32,9 +33,9 @@ fun FilterPropertyValueSnippet(
             .background(
                 PhantomColors.resolve(
                     if (isSelected) {
-                        PhantomColorName.RED_400
+                        PhantomColorName.RED_600
                     } else {
-                        PhantomColorName.GREY_600
+                        PhantomColorName.RED_200
                     }
                 )
             )
@@ -44,7 +45,15 @@ fun FilterPropertyValueSnippet(
             }
     ) {
         PhantomText(
-            data = propertyValue.name,
+            data = propertyValue.name?.copy(
+                color = ColorData(
+                    if (isSelected) {
+                        PhantomColorName.GREY_100
+                    } else {
+                        PhantomColorName.GREY_800
+                    }
+                )
+            ),
             modifier = Modifier
                 .padding(8.dp)
                 .align(Alignment.Center)

@@ -88,7 +88,17 @@ class CategoryViewModelImpl(
                     selectedPropertyValueIds = response.filterSheetData.getSelectedPropertyValueIds()
                 )
             } else {
-                throw CategoryCurationException()
+                state = CategoryScreenState(
+                    lceState = PhantomLceData.getEmptyResultData(null),
+                    pageTitle = response.pageTitle?.setDefaults(
+                        fontStyle = PhantomFontStyle.SEMIBOLD_700,
+                        colorName = PhantomColorName.GREY_900
+                    ),
+                    sortSheetData = response.sortSheetData?.also { it.setDefaults() },
+                    selectedSortMethodData = response.sortSheetData.getSelectedSortMethodData(),
+                    filterSheetData = response.filterSheetData?.also { it.setDefaults() },
+                    selectedPropertyValueIds = response.filterSheetData.getSelectedPropertyValueIds()
+                )
             }
         }
     }

@@ -16,4 +16,9 @@ data class CategoryScreenState(
     val selectedSortMethodData: SortMethodData? = null,
     val filterSheetData: FilterSheetData? = null,
     val selectedPropertyValueIds: Set<Int> = emptySet()
-)
+) {
+    data class BackLayerData(
+        val showSortInBackLayer: Boolean = false,
+        val showFilterInBackLayer: Boolean = false
+    )
+}

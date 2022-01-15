@@ -1,7 +1,6 @@
 package com.project.phantom.ui.list
 
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.lazy.itemsIndexed
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.models.FilterPropertyValueData
 import com.project.phantom.screens.category.models.FilterSheetData
@@ -72,12 +71,15 @@ internal fun LazyListScope.handleListSnippetData(
         }
         is FilterSheetData -> {
             it.propertyUiSections?.let {
-                itemsIndexed(it) { index, propertyUiSection ->
-                    FilterPropertySnippet(
-                        propertySection = propertyUiSection,
-                        showSeparator = index != it.lastIndex,
-                        interactions = interaction
-                    )
+                it.forEachIndexed { index, propertyUiSection ->
+                    if (propertyUiSection.propertyValues.isNullOrEmpty()) return@forEachIndexed
+                    item {
+                        FilterPropertySnippet(
+                            propertySection = propertyUiSection,
+                            showSeparator = index != it.lastIndex,
+                            interactions = interaction
+                        )
+                    }
                 }
             }
         }

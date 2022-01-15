@@ -40,8 +40,8 @@ class FilterPropertyUiSection(
 ) : SnippetData() {
     override fun setDefaults() {
         name?.setDefaults(
-            fontStyle = PhantomFontStyle.SEMIBOLD_600,
-            colorName = PhantomColorName.GREY_100
+            fontStyle = PhantomFontStyle.SEMIBOLD_400,
+            colorName = PhantomColorName.GREY_800
         )
         propertyValues?.forEach { it.setDefaults() }
     }
@@ -61,7 +61,7 @@ class FilterPropertyValueData(
 
     override fun setDefaults() {
         name?.setDefaults(
-            fontStyle = PhantomFontStyle.MEDIUM_500,
+            fontStyle = PhantomFontStyle.MEDIUM_300,
             colorName = PhantomColorName.GREY_100
         )
     }

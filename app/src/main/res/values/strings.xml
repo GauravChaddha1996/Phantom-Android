@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Phantom</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="no_results_found">No results found</string>
     <string name="retry">Retry</string>
     <string name="filter">Filter</string>
     <string name="sort">Sort</string>

@@ -35,7 +35,7 @@ fun FilterPropertySnippet(
                 Modifier
                     .fillMaxWidth()
                     .height(1.dp)
-                    .padding(horizontal = 12.dp)
+                    .padding(start = 12.dp, end = 12.dp, top = 12.dp)
                     .alpha(ContentAlpha.medium)
                     .background(PhantomColors.resolve(PhantomColorName.GREY_100))
             )

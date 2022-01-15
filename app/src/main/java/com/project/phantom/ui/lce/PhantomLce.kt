@@ -42,6 +42,7 @@ fun PhantomLCE(data: PhantomLceData?, interaction: PhantomLceInteraction) {
     Box(modifier = Modifier.fillMaxSize()) {
         LceLoader(data)
         LceError(data, interaction)
+        LceNoResult(data)
     }
 }
 
@@ -96,6 +97,26 @@ private fun BoxScope.LceError(
     }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
+@Composable
+private fun BoxScope.LceNoResult(
+    data: PhantomLceData
+) {
+    AnimatedVisibility(
+        visible = data.showNoResult,
+        modifier = Modifier.Companion.align(Alignment.Center),
+        enter = fadeIn(spring(stiffness = Spring.StiffnessMedium)),
+        exit = fadeOut(spring(stiffness = Spring.StiffnessMedium))
+    ) {
+        PhantomText(
+            data = data.noResultMessage.setDefaults(
+                defaultText = LocalContext.current.getString(R.string.no_results_found)
+            ),
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
 interface PhantomLceInteraction {
     fun onRetryClicked()
 }
@@ -103,7 +124,7 @@ interface PhantomLceInteraction {
 @Preview
 @Composable
 fun TestPhantomLCE() {
-    val data = PhantomLceData.getLoadingData()
+    val data = PhantomLceData.getEmptyResultData(null)
     val state = remember { mutableStateOf(data) }
     Surface {
         PhantomLCE(

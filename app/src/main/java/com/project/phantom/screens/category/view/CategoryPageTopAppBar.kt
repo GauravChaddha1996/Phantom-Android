@@ -75,7 +75,7 @@ class CategoryPageTopAppBar {
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically,
                 content = {
-                    AnimatedVisibility(visible = state.lceState.showSuccess) {
+                    AnimatedVisibility(visible = state.lceState.showSuccess || state.lceState.showNoResult) {
                         Row {
                             GetAction(
                                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_filter_list),
