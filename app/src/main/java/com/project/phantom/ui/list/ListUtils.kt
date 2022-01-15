@@ -76,7 +76,6 @@ internal fun LazyListScope.handleListSnippetData(
                     item {
                         FilterPropertySnippet(
                             propertySection = propertyUiSection,
-                            showSeparator = index != it.lastIndex,
                             interactions = interaction
                         )
                     }

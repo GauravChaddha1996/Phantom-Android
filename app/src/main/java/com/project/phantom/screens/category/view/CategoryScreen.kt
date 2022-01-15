@@ -66,20 +66,22 @@ class CategoryScreen {
             appBar = {
                 topAppBar.Get(
                     state = state,
+                    scaffoldState = scaffoldState,
+                    backLayerData = backLayerData,
                     backClickable = { activity.onBackPressed() },
+                    closeClickable = { scope.launch { scaffoldState.conceal() } },
                     filterClickable = {
                         scope.launch {
                             backLayerData = BackLayerData(showFilterInBackLayer = true)
                             scaffoldState.reveal()
                         }
-                    },
-                    sortClickable = {
-                        scope.launch {
-                            backLayerData = BackLayerData(showSortInBackLayer = true)
-                            scaffoldState.reveal()
-                        }
                     }
-                )
+                ) {
+                    scope.launch {
+                        backLayerData = BackLayerData(showSortInBackLayer = true)
+                        scaffoldState.reveal()
+                    }
+                }
             },
             backLayerContent = {
                 GetBackLayer(
