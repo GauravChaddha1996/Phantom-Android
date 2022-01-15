@@ -2,7 +2,7 @@ package com.project.phantom.ui.commons
 
 import androidx.compose.ui.graphics.Color
 import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomColors
+import com.project.phantom.theme.resolve
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.io.Serializable
@@ -20,5 +20,5 @@ data class ColorData(
 }
 
 fun ColorData?.getResolvedColor(defaultColorName: PhantomColorName? = null): Color {
-    return PhantomColors.resolve(this?.name ?: defaultColorName)
+    return (this?.name ?: defaultColorName).resolve()
 }

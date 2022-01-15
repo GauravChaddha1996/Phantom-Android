@@ -1,7 +1,13 @@
 package com.project.phantom.ui.snippets.productFull
 
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.PhantomColorName.BLACK
+import com.project.phantom.theme.PhantomColorName.GREY_600
+import com.project.phantom.theme.PhantomColorName.GREY_800
+import com.project.phantom.theme.PhantomColorName.GREY_900
+import com.project.phantom.theme.PhantomFontStyle.MEDIUM_300
+import com.project.phantom.theme.PhantomFontStyle.MEDIUM_700
+import com.project.phantom.theme.PhantomFontStyle.REGULAR_300
+import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.snippets.commons.SnippetData
@@ -22,23 +28,23 @@ data class ProductFullSnippetData(
 
     override fun setDefaults() {
         name?.setDefaults(
-            fontStyle = PhantomFontStyle.MEDIUM_700,
-            colorName = PhantomColorName.GREY_900,
+            fontStyle = MEDIUM_700,
+            colorName = GREY_900,
             defaultMaxLines = 1
         )
         longDesc?.setDefaults(
-            fontStyle = PhantomFontStyle.REGULAR_300,
-            colorName = PhantomColorName.GREY_600,
+            fontStyle = REGULAR_300,
+            colorName = GREY_600,
             defaultMaxLines = 4
         )
         brandAndCategory?.setDefaults(
-            fontStyle = PhantomFontStyle.MEDIUM_300,
-            colorName = PhantomColorName.GREY_800,
+            fontStyle = MEDIUM_300,
+            colorName = GREY_800,
             defaultMaxLines = 1
         )
         cost?.setDefaults(
-            fontStyle = PhantomFontStyle.SEMIBOLD_700,
-            colorName = PhantomColorName.BLACK
+            fontStyle = SEMIBOLD_700,
+            colorName = BLACK
         )
     }
 }

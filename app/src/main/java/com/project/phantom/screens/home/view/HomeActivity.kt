@@ -28,7 +28,7 @@ import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.home.domain.HomeViewModel
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
 import com.project.phantom.theme.PhantomTheme
 import com.project.phantom.ui.lce.PhantomLCE
 import com.project.phantom.ui.lce.PhantomLceInteraction
@@ -147,7 +147,7 @@ class HomeActivity : BaseActivity() {
                 },
             title = {
                 PhantomText(
-                    data = TextData("Phantom").setDefaults(fontStyle = PhantomFontStyle.SEMIBOLD_700)
+                    data = TextData("Phantom").setDefaults(fontStyle = SEMIBOLD_700)
 
                 )
             }

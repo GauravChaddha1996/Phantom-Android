@@ -27,7 +27,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomColors
+import com.project.phantom.theme.resolve
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -50,7 +50,7 @@ fun PhantomGhost(
                 shape = curveShape
                 clip = true
             }
-            .background(PhantomColors.resolve(data.bgColor))
+            .background(data.bgColor.resolve())
     ) {
         Row(
             modifier = Modifier
@@ -71,7 +71,7 @@ fun PhantomGhost(
                             translationY = data.eyeMovementCircleRadius *
                                 cos((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
                         }
-                        .background(PhantomColors.resolve(data.eyeColor))
+                        .background(data.eyeColor.resolve())
                 )
             }
         }

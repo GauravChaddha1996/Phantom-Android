@@ -3,8 +3,12 @@ package com.project.phantom.screens.category.view
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomColors
-import com.project.phantom.theme.changeAndResolve
+import com.project.phantom.theme.PhantomColorName.GREY_100
+import com.project.phantom.theme.PhantomColorName.GREY_400
+import com.project.phantom.theme.PhantomColorName.GREY_500
+import com.project.phantom.theme.PhantomColorName.GREY_800
+import com.project.phantom.theme.PhantomColorName.RED_300
+import com.project.phantom.theme.change
 import com.project.phantom.theme.resolve
 
 data class CategoryScreenColors(
@@ -25,20 +29,20 @@ data class CategoryScreenColors(
         fun get(baseColorName: PhantomColorName) =
             CategoryScreenColors(
                 backLayerBackground = baseColorName.resolve(),
-                sortButtonBgColor = baseColorName.changeAndResolve(tint = 600),
-                sortButtonTextColor = PhantomColors.resolve(PhantomColorName.GREY_100),
-                sortButtonTickColor = PhantomColors.resolve(PhantomColorName.GREY_100),
-                filterUiSectionHeaderColor = PhantomColors.resolve(PhantomColorName.GREY_800),
-                filterPillUnselectedTextColor = PhantomColors.resolve(PhantomColorName.GREY_500),
-                filterPillUnselectedBgColor = baseColorName.changeAndResolve(tint = 200),
-                filterPillUnselectedIconColor = PhantomColors.resolve(PhantomColorName.GREY_400),
-                filterPillSelectedTextColor = PhantomColors.resolve(PhantomColorName.GREY_100),
-                filterPillSelectedBgColor = baseColorName.changeAndResolve(tint = 600),
-                filterPillSelectedIconColor = PhantomColors.resolve(PhantomColorName.GREY_100)
+                sortButtonBgColor = baseColorName.change(tint = 600).resolve(),
+                sortButtonTextColor = GREY_100.resolve(),
+                sortButtonTickColor = GREY_100.resolve(),
+                filterUiSectionHeaderColor = GREY_800.resolve(),
+                filterPillUnselectedTextColor = GREY_500.resolve(),
+                filterPillUnselectedBgColor = baseColorName.change(tint = 200).resolve(),
+                filterPillUnselectedIconColor = GREY_400.resolve(),
+                filterPillSelectedTextColor = GREY_100.resolve(),
+                filterPillSelectedBgColor = baseColorName.change(tint = 600).resolve(),
+                filterPillSelectedIconColor = GREY_100.resolve()
             )
     }
 }
 
 val LocalCategoryScreenColors = compositionLocalOf {
-    CategoryScreenColors.get(PhantomColorName.RED_300)
+    CategoryScreenColors.get(RED_300)
 }

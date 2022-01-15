@@ -113,12 +113,8 @@ object PhantomColors {
     }
 }
 
-fun PhantomColorName.resolve(): Color {
+fun PhantomColorName?.resolve(): Color {
     return PhantomColors.resolve(this)
-}
-
-fun PhantomColorName.changeAndResolve(tint: Int): Color {
-    return PhantomColors.resolve(change(tint))
 }
 
 fun PhantomColorName.change(tint: Int): PhantomColorName {

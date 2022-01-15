@@ -1,6 +1,7 @@
 package com.project.phantom.ui.snippets.textSection
 
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.PhantomFontStyle.REGULAR_400
+import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.TextData
 import com.squareup.moshi.Json
@@ -21,8 +22,8 @@ class TextSectionSnippetData(
     ) : SnippetData() {
 
         override fun setDefaults() {
-            title?.setDefaults(fontStyle = PhantomFontStyle.SEMIBOLD_700)
-            subtitle?.setDefaults(fontStyle = PhantomFontStyle.REGULAR_400)
+            title?.setDefaults(fontStyle = SEMIBOLD_700)
+            subtitle?.setDefaults(fontStyle = REGULAR_400)
         }
     }
 }

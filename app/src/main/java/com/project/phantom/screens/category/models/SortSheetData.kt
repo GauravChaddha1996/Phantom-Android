@@ -1,7 +1,7 @@
 package com.project.phantom.screens.category.models
 
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.PhantomColorName.GREY_100
+import com.project.phantom.theme.PhantomFontStyle.MEDIUM_500
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.TextData
 import com.squareup.moshi.Json
@@ -27,8 +27,8 @@ data class SortMethodData(
 
     override fun setDefaults() {
         name?.setDefaults(
-            fontStyle = PhantomFontStyle.MEDIUM_500,
-            colorName = PhantomColorName.GREY_100
+            fontStyle = MEDIUM_500,
+            colorName = GREY_100
         )
     }
 }

@@ -8,7 +8,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.category.domain.CategoryViewModel
-import com.project.phantom.theme.PhantomColorName
+import com.project.phantom.theme.PhantomColorName.RED_300
 import com.project.phantom.theme.PhantomTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -36,7 +36,7 @@ class CategoryActivity : BaseActivity() {
         setContent {
             PhantomTheme {
                 val categoryScreenColors = remember {
-                    CategoryScreenColors.get(initModel.categoryColor?.name ?: PhantomColorName.RED_300)
+                    CategoryScreenColors.get(initModel.categoryColor?.name ?: RED_300)
                 }
                 CompositionLocalProvider(
                     values = arrayOf(LocalCategoryScreenColors provides categoryScreenColors),

@@ -25,8 +25,8 @@ import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.domain.CategoryViewModel
 import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomColors
+import com.project.phantom.theme.PhantomColorName.GREY_200
+import com.project.phantom.theme.resolve
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.lce.PhantomLCE
@@ -169,7 +169,7 @@ class CategoryScreen {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(1.5.dp)
-                        .background(PhantomColors.resolve(PhantomColorName.GREY_200))
+                        .background(GREY_200.resolve())
                 )
             }
             VerticalList(

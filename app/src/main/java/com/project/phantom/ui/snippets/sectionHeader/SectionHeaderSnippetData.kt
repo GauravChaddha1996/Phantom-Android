@@ -1,6 +1,6 @@
 package com.project.phantom.ui.snippets.sectionHeader
 
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.TextData
@@ -14,6 +14,6 @@ class SectionHeaderSnippetData(
     @Json(name = "right_button") val rightButton: ButtonData? = null
 ) : SnippetData() {
     override fun setDefaults() {
-        title?.setDefaults(fontStyle = PhantomFontStyle.SEMIBOLD_700)
+        title?.setDefaults(fontStyle = SEMIBOLD_700)
     }
 }

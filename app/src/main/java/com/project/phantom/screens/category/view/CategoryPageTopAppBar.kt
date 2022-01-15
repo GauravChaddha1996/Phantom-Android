@@ -35,9 +35,11 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.project.phantom.R
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomColors
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.PhantomColorName.GREY_800
+import com.project.phantom.theme.PhantomColorName.GREY_900
+import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_500
+import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
+import com.project.phantom.theme.resolve
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -76,8 +78,8 @@ class CategoryPageTopAppBar {
                                     backLayerData.showSortInBackLayer -> stringResource(id = R.string.sort)
                                     else -> null
                                 },
-                                fontStyle = PhantomFontStyle.SEMIBOLD_700,
-                                colorName = PhantomColorName.GREY_900
+                                fontStyle = SEMIBOLD_700,
+                                colorName = GREY_900
                             )
 
                         )
@@ -124,7 +126,7 @@ class CategoryPageTopAppBar {
             Icon(
                 imageVector = imageVector,
                 contentDescription = null,
-                tint = PhantomColors.resolve(PhantomColorName.GREY_900),
+                tint = GREY_900.resolve(),
                 modifier = Modifier
                     .size(24.dp)
                     .align(Alignment.Center)
@@ -160,7 +162,7 @@ class CategoryPageTopAppBar {
             Icon(
                 imageVector = imageVector,
                 contentDescription = null,
-                tint = PhantomColors.resolve(PhantomColorName.GREY_800),
+                tint = GREY_800.resolve(),
                 modifier = Modifier
                     .size(24.dp)
                     .align(Alignment.CenterVertically)
@@ -168,8 +170,8 @@ class CategoryPageTopAppBar {
             PhantomText(
                 data = TextData().setDefaults(
                     defaultText = text,
-                    fontStyle = PhantomFontStyle.SEMIBOLD_500,
-                    colorName = PhantomColorName.GREY_800
+                    fontStyle = SEMIBOLD_500,
+                    colorName = GREY_800
                 ),
                 modifier = Modifier
                     .padding(start = 2.dp, end = 8.dp)

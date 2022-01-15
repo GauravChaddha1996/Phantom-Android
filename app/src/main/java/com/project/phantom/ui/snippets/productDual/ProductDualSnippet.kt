@@ -16,7 +16,7 @@ import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.CornerStyle
 import com.project.phantom.theme.ElevationStyle
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.PhantomFontStyle.MEDIUM_200
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.grid.PhantomGrid
 import com.project.phantom.ui.image.ImageData
@@ -91,7 +91,7 @@ private fun TestProductDualSnippet() {
             "by Adidas",
             markdownConfig = MarkdownConfig(
                 true,
-                listOf(MarkdownFontSpan(PhantomFontStyle.MEDIUM_200, start = 3, end = 9))
+                listOf(MarkdownFontSpan(MEDIUM_200, start = 3, end = 9))
             )
         ),
         cost = TextData("$200"),

@@ -1,7 +1,11 @@
 package com.project.phantom.ui.lce
 
 import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.PhantomColorName.GREY_700
+import com.project.phantom.theme.PhantomColorName.GREY_800
+import com.project.phantom.theme.PhantomColorName.RED_300
+import com.project.phantom.theme.PhantomFontStyle.MEDIUM_600
+import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_800
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.commons.FontData
 import com.project.phantom.ui.text.TextData
@@ -24,7 +28,7 @@ data class PhantomLceData(
             showNoResult = false,
             noResultMessage = TextData(),
             errorMessage = TextData(),
-            phantomGhostColor = PhantomColorName.RED_300
+            phantomGhostColor = RED_300
         )
 
         fun getContentData() = PhantomLceData(
@@ -34,7 +38,7 @@ data class PhantomLceData(
             showNoResult = false,
             noResultMessage = TextData(),
             errorMessage = TextData(),
-            phantomGhostColor = PhantomColorName.RED_300
+            phantomGhostColor = RED_300
         )
 
         fun getErrorData(errorMessage: String?) = PhantomLceData(
@@ -45,10 +49,10 @@ data class PhantomLceData(
             noResultMessage = TextData(),
             errorMessage = TextData(
                 text = errorMessage,
-                color = ColorData(PhantomColorName.GREY_700),
-                font = FontData(PhantomFontStyle.MEDIUM_600)
+                color = ColorData(GREY_700),
+                font = FontData(MEDIUM_600)
             ),
-            phantomGhostColor = PhantomColorName.RED_300
+            phantomGhostColor = RED_300
         )
 
         fun getEmptyResultData(emptyResultMessage: String?) = PhantomLceData(
@@ -58,11 +62,11 @@ data class PhantomLceData(
             showNoResult = true,
             noResultMessage = TextData(
                 text = emptyResultMessage,
-                color = ColorData(PhantomColorName.GREY_800),
-                font = FontData(PhantomFontStyle.SEMIBOLD_800)
+                color = ColorData(GREY_800),
+                font = FontData(SEMIBOLD_800)
             ),
             errorMessage = TextData(),
-            phantomGhostColor = PhantomColorName.RED_300
+            phantomGhostColor = RED_300
         )
     }
 }

@@ -11,7 +11,7 @@ import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import com.project.phantom.theme.PhantomColorName.GREY_100
 import com.project.phantom.theme.PhantomColorName.GREY_200
-import com.project.phantom.theme.PhantomColors
+import com.project.phantom.theme.resolve
 
 @Composable
 fun PhantomImage(data: ImageData?, modifier: Modifier = Modifier) {
@@ -22,7 +22,7 @@ fun PhantomImage(data: ImageData?, modifier: Modifier = Modifier) {
 
     // Some common stuff for our image request
     val builder: ImageRequest.Builder.() -> Unit = {
-        val placeholderColor = PhantomColors.resolve(GREY_200).toArgb()
+        val placeholderColor = GREY_200.resolve().toArgb()
         placeholder(ColorDrawable(placeholderColor))
     }
 
@@ -30,7 +30,7 @@ fun PhantomImage(data: ImageData?, modifier: Modifier = Modifier) {
     Image(
         painter = rememberImagePainter(data = data.url, builder = builder),
         contentDescription = null,
-        modifier = modifier.background(PhantomColors.resolve(GREY_100))
+        modifier = modifier.background(GREY_100.resolve())
     )
 }
 

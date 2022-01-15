@@ -1,12 +1,14 @@
 package com.project.phantom.ui.ghost
 
 import com.project.phantom.theme.PhantomColorName
+import com.project.phantom.theme.PhantomColorName.RED_300
+import com.project.phantom.theme.PhantomColorName.WHITE
 
 data class PhantomGhostData(
     val size: Float,
 
     // Curve-related data points
-    val bgColor: PhantomColorName = PhantomColorName.RED_300,
+    val bgColor: PhantomColorName = RED_300,
     val curveMaxMovementX: Float = size.times(other = 0.035f),
     val curveMaxMovementY: Float = size.times(other = 0.12f),
     val curveMovementDuration: Int = 1100,
@@ -19,7 +21,7 @@ data class PhantomGhostData(
     val legsMovementDelay: Int = 300,
 
     // Eye-related data points
-    val eyeColor: PhantomColorName = PhantomColorName.WHITE,
+    val eyeColor: PhantomColorName = WHITE,
     val eyeSize: Float = size.times(other = 0.2f),
     val eyeTopPadding: Float = size.times(other = 0.25f),
     val eyeMovementDuration: Int = 2100,

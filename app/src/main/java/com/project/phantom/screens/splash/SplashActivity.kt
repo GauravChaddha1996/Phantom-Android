@@ -29,8 +29,8 @@ import com.project.phantom.Utils
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.home.view.HomeActivity
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.PhantomColorName.RED_400
+import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_940
 import com.project.phantom.theme.PhantomTheme
 import com.project.phantom.ui.ghost.PhantomGhost
 import com.project.phantom.ui.ghost.PhantomGhostData
@@ -93,8 +93,8 @@ class SplashActivity : BaseActivity() {
                     PhantomText(
                         data = TextData(LocalContext.current.getString(R.string.app_name))
                             .setDefaults(
-                                fontStyle = PhantomFontStyle.SEMIBOLD_940,
-                                colorName = PhantomColorName.RED_400
+                                fontStyle = SEMIBOLD_940,
+                                colorName = RED_400
                             )
                     )
                     AnimatedVisibility(
