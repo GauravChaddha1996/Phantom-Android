@@ -3,6 +3,7 @@ package com.project.phantom.screens.category.view
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
@@ -65,13 +66,20 @@ class CategoryPageTopAppBar {
             contentPadding = PaddingValues()
         ) {
             AnimatedContent(
-                targetState = scaffoldState.isConcealed,
+                targetState = !scaffoldState.isRevealed,
                 modifier = Modifier.weight(1f)
             ) { isConcealed ->
                 Row {
                     if (isConcealed) {
                         GetNavigationIcon(Icons.Default.ArrowBack, backClickable)
-                        GetTitle(state.pageTitle)
+                        AnimatedVisibility(
+                            visible = state.pageTitle != null,
+                            enter = fadeIn() + slideInHorizontally(),
+                            exit = fadeOut(),
+                            modifier = Modifier.align(Alignment.CenterVertically)
+                        ) {
+                            GetTitle(state.pageTitle)
+                        }
                     } else {
                         GetNavigationIcon(Icons.Default.Close, closeClickable)
                         GetTitle(
@@ -90,7 +98,7 @@ class CategoryPageTopAppBar {
                 }
             }
             AnimatedVisibility(
-                visible = scaffoldState.isConcealed && (state.lceState.showSuccess || state.lceState.showNoResult),
+                visible = !scaffoldState.isRevealed && (state.lceState.showSuccess || state.lceState.showNoResult),
                 enter = slideInHorizontally { it },
                 exit = fadeOut() + slideOutHorizontally { it }
             ) {
