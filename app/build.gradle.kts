@@ -79,6 +79,10 @@ dependencies {
     // Swipe refresh
     implementation(Libs.Accompanist.swipeRefresh)
 
+    // Paager
+    implementation(Libs.Accompanist.pager)
+    implementation(Libs.Accompanist.pagerIndicators)
+
     // Test related
     testImplementation(Libs.Test.junit_core)
     androidTestImplementation(Libs.Test.junitTextExt)

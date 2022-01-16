@@ -29,6 +29,8 @@ object Libs {
 
     object Accompanist {
         const val swipeRefresh = "com.google.accompanist:accompanist-swiperefresh:0.18.0"
+        const val pager = "com.google.accompanist:accompanist-pager:0.20.3"
+        const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:0.20.3"
     }
 
     object Compose {

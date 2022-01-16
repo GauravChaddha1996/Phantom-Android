@@ -12,6 +12,8 @@ import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.snippets.filterPill.FilterPillSnippet
 import com.project.phantom.ui.snippets.filterProperty.FilterPropertySnippet
+import com.project.phantom.ui.snippets.imagePager.ImagePagerSnippet
+import com.project.phantom.ui.snippets.imagePager.ImagePagerSnippetData
 import com.project.phantom.ui.snippets.productFull.ProductFullSnippet
 import com.project.phantom.ui.snippets.productFull.ProductFullSnippetData
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippet
@@ -19,9 +21,12 @@ import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippet
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
 import com.project.phantom.ui.snippets.sortMethod.SortMethodSnippet
+import com.project.phantom.ui.snippets.stepper.StepperSnippet
+import com.project.phantom.ui.snippets.stepper.StepperSnippetData
 import com.project.phantom.ui.snippets.textSection.TextSectionSnippetData
 import com.project.phantom.ui.snippets.textSection.TextSnippet
 
+@Suppress("ComplexMethod", "NestedBlockDepth")
 internal fun LazyListScope.handleListSnippetData(
     it: SnippetData,
     interaction: SnippetInteractions
@@ -71,8 +76,8 @@ internal fun LazyListScope.handleListSnippetData(
         }
         is FilterSheetData -> {
             it.propertyUiSections?.let {
-                it.forEachIndexed { index, propertyUiSection ->
-                    if (propertyUiSection.propertyValues.isNullOrEmpty()) return@forEachIndexed
+                it.forEach { propertyUiSection ->
+                    if (propertyUiSection.propertyValues.isNullOrEmpty()) return@forEach
                     item {
                         FilterPropertySnippet(
                             propertySection = propertyUiSection,
@@ -85,6 +90,16 @@ internal fun LazyListScope.handleListSnippetData(
         is FilterPropertyValueData -> {
             item {
                 FilterPillSnippet(it)
+            }
+        }
+        is ImagePagerSnippetData -> {
+            item {
+                ImagePagerSnippet(data = it)
+            }
+        }
+        is StepperSnippetData -> {
+            item {
+                StepperSnippet(data = it)
             }
         }
     }

@@ -10,8 +10,8 @@ import com.project.phantom.ui.snippets.productDual.ProductDualSnippetData
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
 import org.koin.core.component.KoinComponent
 
-class BaseSnippetCurator : KoinComponent {
-    fun curate(snippetSectionList: List<SnippetSectionData>?): MutableList<SnippetData> {
+open class BaseSnippetCurator : KoinComponent {
+    open fun curate(snippetSectionList: List<SnippetSectionData>?): MutableList<SnippetData> {
         val finalList = mutableListOf<SnippetData>()
 
         // For each snippet section

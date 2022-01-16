@@ -3,6 +3,7 @@ package com.project.phantom.ui.button
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import com.project.phantom.ui.click.ClickData
+import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.text.TextData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -11,6 +12,7 @@ import com.squareup.moshi.JsonClass
 data class ButtonData(
     @Json(name = "text") val text: TextData? = null,
     @Json(name = "type") val type: PhantomButtonType? = null,
+    @Json(name = "color") val color: ColorData? = null,
     @Json(name = "click") val clickData: ClickData? = null
 )
 
@@ -18,5 +20,8 @@ data class ButtonData(
 @Immutable
 enum class PhantomButtonType {
     @Json(name = "text")
-    TEXT
+    TEXT,
+
+    @Json(name = "solid")
+    SOLID,
 }

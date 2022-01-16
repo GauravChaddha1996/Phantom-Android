@@ -15,4 +15,9 @@ object Utils {
     fun getScreenWidth(): Dp {
         return LocalConfiguration.current.screenWidthDp.dp
     }
+
+    @Composable
+    fun getScreenHeight(): Dp {
+        return LocalConfiguration.current.screenHeightDp.dp
+    }
 }

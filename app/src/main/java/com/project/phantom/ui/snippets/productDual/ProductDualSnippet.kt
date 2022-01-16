@@ -29,7 +29,6 @@ import com.project.phantom.ui.text.TextData
 @Composable
 fun ProductDualSnippet(
     data: ProductDualSnippetData?,
-    modifier: Modifier = Modifier,
     interaction: ProductDualSnippetInteraction
 ) {
     data ?: return

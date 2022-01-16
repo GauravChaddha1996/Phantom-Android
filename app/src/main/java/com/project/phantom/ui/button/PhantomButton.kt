@@ -1,5 +1,6 @@
 package com.project.phantom.ui.button
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.runtime.Composable
@@ -8,6 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.project.phantom.theme.PhantomColorName.RED_500
+import com.project.phantom.theme.PhantomColorName.WHITE
 import com.project.phantom.theme.resolve
 import com.project.phantom.ui.text.PhantomText
 
@@ -15,6 +17,7 @@ import com.project.phantom.ui.text.PhantomText
 fun PhantomButton(
     data: ButtonData?,
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     onClick: () -> Unit = {}
 ) {
     // Cases to check for visibility
@@ -26,6 +29,10 @@ fun PhantomButton(
         PhantomButtonType.TEXT -> ButtonDefaults.buttonColors(
             Color.Transparent,
             RED_500.resolve()
+        )
+        PhantomButtonType.SOLID -> ButtonDefaults.buttonColors(
+            RED_500.resolve(),
+            WHITE.resolve()
         )
         else -> ButtonDefaults.buttonColors()
     }
@@ -42,7 +49,8 @@ fun PhantomButton(
         },
         modifier = modifier,
         colors = colors,
-        elevation = ButtonDefaults.elevation(0.dp, 0.dp, 0.dp)
+        elevation = ButtonDefaults.elevation(0.dp, 0.dp, 0.dp),
+        contentPadding = contentPadding
     ) {
         PhantomText(data = data.text, textDecoration = textDecoration)
     }

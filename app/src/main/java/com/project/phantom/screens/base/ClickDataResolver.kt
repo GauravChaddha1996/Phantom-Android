@@ -1,8 +1,9 @@
 package com.project.phantom.screens.base
 
-import android.util.Log
 import com.project.phantom.screens.category.view.CategoryActivity
 import com.project.phantom.screens.category.view.CategoryPageInitModel
+import com.project.phantom.screens.product.ui.ProductActivity
+import com.project.phantom.screens.product.ui.ProductPageInitModel
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.click.OpenCategoryClickData
 import com.project.phantom.ui.click.OpenProductClickData
@@ -13,13 +14,17 @@ object ClickDataResolver {
         activity ?: return
         when (clickData) {
             is OpenProductClickData -> {
-                Log.d("phantom", "open product : ${clickData.productId}")
+                clickData.productId ?: return
+                ProductActivity.start(
+                    activity = activity,
+                    initModel = ProductPageInitModel(productId = clickData.productId)
+                )
             }
             is OpenCategoryClickData -> {
                 clickData.categoryId ?: return
                 CategoryActivity.start(
-                    activity,
-                    CategoryPageInitModel(
+                    activity = activity,
+                    initModel = CategoryPageInitModel(
                         categoryId = clickData.categoryId,
                         categoryColor = clickData.categoryColor
                     )

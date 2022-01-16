@@ -82,7 +82,8 @@ class CategoryViewModelImpl(
             val curatedList = curator.curate(response.snippetSectionList)
             if (curatedList.isNotEmpty()) {
                 state = state.copy(
-                    lceState = PhantomLceData.getContentData(),
+                    lceState = PhantomLceData.getContentData()
+                        .copy(phantomGhostColor = initModel.categoryColor?.name ?: RED_300),
                     pageTitle = response.pageTitle?.setDefaults(
                         fontStyle = SEMIBOLD_700,
                         colorName = GREY_900
