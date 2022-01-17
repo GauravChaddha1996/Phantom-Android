@@ -22,7 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.project.phantom.R
-import com.project.phantom.Utils
+import com.project.phantom.getScreenWidth
 import com.project.phantom.theme.PhantomColorName.RED_500
 import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_600
 import com.project.phantom.ui.button.ButtonData
@@ -60,7 +60,7 @@ private fun BoxScope.LceLoader(data: PhantomLceData) {
         PhantomGhost(
             data = PhantomGhostData(
                 bgColor = data.phantomGhostColor,
-                size = Utils.getScreenWidth().times(other = 0.35f).value
+                size = getScreenWidth(times = 0.35f).value
             )
         )
     }

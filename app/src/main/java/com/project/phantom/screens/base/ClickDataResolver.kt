@@ -2,7 +2,6 @@ package com.project.phantom.screens.base
 
 import com.project.phantom.screens.category.view.CategoryActivity
 import com.project.phantom.screens.category.view.CategoryPageInitModel
-import com.project.phantom.screens.product.ui.ProductActivity
 import com.project.phantom.screens.product.ui.ProductPageInitModel
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.click.OpenCategoryClickData
@@ -15,9 +14,9 @@ object ClickDataResolver {
         when (clickData) {
             is OpenProductClickData -> {
                 clickData.productId ?: return
-                ProductActivity.start(
-                    activity = activity,
-                    initModel = ProductPageInitModel(productId = clickData.productId)
+                activity.bottomSheetHelper.openBottomSheet(
+                    bottomSheetType = BottomSheetType.PRODUCT,
+                    bottomSheetData = ProductPageInitModel(productId = clickData.productId)
                 )
             }
             is OpenCategoryClickData -> {

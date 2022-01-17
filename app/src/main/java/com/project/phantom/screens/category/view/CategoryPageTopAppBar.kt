@@ -65,62 +65,62 @@ class CategoryPageTopAppBar {
             backgroundColor = Color.Transparent,
             contentPadding = PaddingValues()
         ) {
-            AnimatedContent(
-                targetState = !scaffoldState.isRevealed,
-                modifier = Modifier.weight(1f)
-            ) { isConcealed ->
-                Row {
-                    if (isConcealed) {
-                        GetNavigationIcon(Icons.Default.ArrowBack, backClickable)
-                        AnimatedVisibility(
-                            visible = state.pageTitle != null,
-                            enter = fadeIn() + slideInHorizontally(),
-                            exit = fadeOut(),
-                            modifier = Modifier.align(Alignment.CenterVertically)
-                        ) {
-                            GetTitle(state.pageTitle)
-                        }
-                    } else {
-                        GetNavigationIcon(Icons.Default.Close, closeClickable)
-                        GetTitle(
-                            TextData().setDefaults(
-                                defaultText = when {
-                                    backLayerData.showFilterInBackLayer -> stringResource(id = R.string.filter)
-                                    backLayerData.showSortInBackLayer -> stringResource(id = R.string.sort)
-                                    else -> null
-                                },
-                                fontStyle = SEMIBOLD_700,
-                                colorName = GREY_900
-                            )
+            GetNavigationIconAndTitle(
+                scaffoldState = scaffoldState,
+                backClickable = backClickable,
+                state = state,
+                closeClickable = closeClickable,
+                backLayerData = backLayerData
+            )
+            GetAppBarActions(
+                scaffoldState = scaffoldState,
+                state = state,
+                filterClickable = filterClickable,
+                sortClickable = sortClickable
+            )
+        }
+    }
 
+    @ExperimentalAnimationApi
+    @ExperimentalMaterialApi
+    @Composable
+    private fun RowScope.GetNavigationIconAndTitle(
+        scaffoldState: BackdropScaffoldState,
+        backClickable: () -> Unit,
+        state: CategoryScreenState,
+        closeClickable: () -> Unit,
+        backLayerData: BackLayerData
+    ) {
+        AnimatedContent(
+            targetState = !scaffoldState.isRevealed,
+            modifier = Modifier.Companion.weight(1f)
+        ) { isConcealed ->
+            Row {
+                if (isConcealed) {
+                    GetNavigationIcon(Icons.Default.ArrowBack, backClickable)
+                    AnimatedVisibility(
+                        visible = state.pageTitle != null,
+                        enter = fadeIn() + slideInHorizontally(),
+                        exit = fadeOut(),
+                        modifier = Modifier.align(Alignment.CenterVertically)
+                    ) {
+                        GetTitle(state.pageTitle)
+                    }
+                } else {
+                    GetNavigationIcon(Icons.Default.Close, closeClickable)
+                    GetTitle(
+                        TextData().setDefaults(
+                            defaultText = when {
+                                backLayerData.showFilterInBackLayer -> stringResource(id = R.string.filter)
+                                backLayerData.showSortInBackLayer -> stringResource(id = R.string.sort)
+                                else -> null
+                            },
+                            fontStyle = SEMIBOLD_700,
+                            colorName = GREY_900
                         )
-                    }
+
+                    )
                 }
-            }
-            AnimatedVisibility(
-                visible = !scaffoldState.isRevealed && (state.lceState.showSuccess || state.lceState.showNoResult),
-                enter = slideInHorizontally { it },
-                exit = fadeOut() + slideOutHorizontally { it }
-            ) {
-                Row(
-                    Modifier.fillMaxHeight(),
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.CenterVertically,
-                    content = {
-                        GetIconAndTextAction(
-                            imageVector = ImageVector.vectorResource(id = R.drawable.ic_filter_list),
-                            text = stringResource(R.string.filter)
-                        ) {
-                            filterClickable.invoke()
-                        }
-                        GetIconAndTextAction(
-                            imageVector = ImageVector.vectorResource(id = R.drawable.ic_sort),
-                            text = stringResource(R.string.sort)
-                        ) {
-                            sortClickable.invoke()
-                        }
-                    }
-                )
             }
         }
     }
@@ -153,6 +153,41 @@ class CategoryPageTopAppBar {
                 .align(Alignment.CenterVertically)
                 .padding(start = small)
         )
+    }
+
+    @ExperimentalMaterialApi
+    @Composable
+    private fun RowScope.GetAppBarActions(
+        scaffoldState: BackdropScaffoldState,
+        state: CategoryScreenState,
+        filterClickable: () -> Unit,
+        sortClickable: () -> Unit
+    ) {
+        AnimatedVisibility(
+            visible = !scaffoldState.isRevealed && (state.lceState.showSuccess || state.lceState.showNoResult),
+            enter = slideInHorizontally { it },
+            exit = fadeOut() + slideOutHorizontally { it }
+        ) {
+            Row(
+                Modifier.fillMaxHeight(),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically,
+                content = {
+                    GetIconAndTextAction(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_filter_list),
+                        text = stringResource(R.string.filter)
+                    ) {
+                        filterClickable.invoke()
+                    }
+                    GetIconAndTextAction(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_sort),
+                        text = stringResource(R.string.sort)
+                    ) {
+                        sortClickable.invoke()
+                    }
+                }
+            )
+        }
     }
 
     @Composable

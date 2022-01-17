@@ -26,7 +26,6 @@
 
         <activity android:name=".screens.home.view.HomeActivity" />
         <activity android:name=".screens.category.view.CategoryActivity" />
-        <activity android:name=".screens.product.ui.ProductActivity" />
     </application>
 
 </manifest>

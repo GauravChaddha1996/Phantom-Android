@@ -2,7 +2,6 @@ package com.project.phantom.screens.category.view
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
-import com.project.phantom.theme.PhantomColorName
 import com.project.phantom.theme.PhantomColorName.GREY_100
 import com.project.phantom.theme.PhantomColorName.GREY_400
 import com.project.phantom.theme.PhantomColorName.GREY_500
@@ -26,8 +25,9 @@ data class CategoryScreenColors(
 ) {
     companion object {
 
-        fun get(baseColorName: PhantomColorName) =
-            CategoryScreenColors(
+        fun get(initModel: CategoryPageInitModel?): CategoryScreenColors {
+            val baseColorName = initModel?.categoryColor?.name ?: RED_300
+            return CategoryScreenColors(
                 backLayerBackground = baseColorName.resolve(),
                 sortButtonBgColor = baseColorName.change(tint = 600).resolve(),
                 sortButtonTextColor = GREY_100.resolve(),
@@ -40,9 +40,10 @@ data class CategoryScreenColors(
                 filterPillSelectedBgColor = baseColorName.change(tint = 600).resolve(),
                 filterPillSelectedIconColor = GREY_100.resolve()
             )
+        }
     }
 }
 
 val LocalCategoryScreenColors = compositionLocalOf {
-    CategoryScreenColors.get(RED_300)
+    CategoryScreenColors.get(CategoryPageInitModel(-1, null))
 }

@@ -18,7 +18,7 @@ import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.PagerScope
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import com.google.accompanist.pager.rememberPagerState
-import com.project.phantom.Utils
+import com.project.phantom.getScreenHeight
 import com.project.phantom.theme.CornerStyle
 import com.project.phantom.theme.PaddingStyle.extra
 import com.project.phantom.ui.image.ImageData
@@ -57,7 +57,7 @@ private fun PagerScope.GetPagerItem(
     index: Int
 ) {
     Box(
-        Modifier.height(Utils.getScreenHeight().times(other = 0.625f))
+        Modifier.height(getScreenHeight(times = 0.625f))
     ) {
         PhantomImage(
             data = item,

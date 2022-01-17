@@ -1,6 +1,6 @@
 package com.project.phantom.screens.base
 
-import com.project.phantom.Utils.isNotNullOrEmpty
+import com.project.phantom.isNotNullOrEmpty
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.list.HorizontalListData
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData

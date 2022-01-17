@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.project.phantom.Utils
+import com.project.phantom.getScreenWidth
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.CornerStyle
 import com.project.phantom.theme.ElevationStyle
@@ -39,11 +39,7 @@ fun ProductRailSnippet(
 
     Card(
         modifier = Modifier
-            .width(
-                Utils
-                    .getScreenWidth()
-                    .times(other = 0.75f)
-            ),
+            .width(getScreenWidth(times = 0.75f)),
         elevation = ElevationStyle.medium,
         shape = CornerStyle.large
     ) {
