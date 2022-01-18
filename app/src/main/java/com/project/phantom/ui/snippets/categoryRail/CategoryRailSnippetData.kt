@@ -1,10 +1,9 @@
 package com.project.phantom.ui.snippets.categoryRail
 
 import androidx.compose.ui.text.style.TextOverflow
-import com.project.phantom.theme.PhantomColorName.GREY_900
-import com.project.phantom.theme.PhantomColorName.RED_100
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_940
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_950
+import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
+import com.project.phantom.theme.PhantomFontStyle.HeadlineLarge
+import com.project.phantom.theme.PhantomFontStyle.HeadlineMedium
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.snippets.commons.SnippetData
@@ -22,12 +21,11 @@ class CategoryRailSnippetData(
 ) : SnippetData() {
 
     override fun setDefaults() {
-        firstCharacter?.setDefaults(fontStyle = SEMIBOLD_950)
+        firstCharacter?.setDefaults(fontStyle = HeadlineLarge)
         name?.setDefaults(
-            fontStyle = SEMIBOLD_940,
-            colorName = GREY_900,
+            fontStyle = HeadlineMedium,
+            colorName = OnSurfaceVariant,
             overflow = TextOverflow.Visible
         )
-        bgColor?.setDefaults(defaultColorName = RED_100)
     }
 }

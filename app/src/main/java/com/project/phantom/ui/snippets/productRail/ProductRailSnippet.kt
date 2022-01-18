@@ -20,7 +20,7 @@ import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.CornerStyle
 import com.project.phantom.theme.ElevationStyle
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_400
+import com.project.phantom.theme.PhantomFontStyle.BodyMedium
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.image.PhantomImage
 import com.project.phantom.ui.list.HorizontalList
@@ -88,8 +88,8 @@ private fun TestProductRailSnippet() {
             markdownConfig = MarkdownConfig(
                 true,
                 listOf(
-                    MarkdownFontSpan(SEMIBOLD_400, start = 3, end = 9),
-                    MarkdownFontSpan(SEMIBOLD_400, start = 13, end = 19)
+                    MarkdownFontSpan(BodyMedium, start = 3, end = 9),
+                    MarkdownFontSpan(BodyMedium, start = 13, end = 19)
                 )
             )
         ),

@@ -20,11 +20,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BackdropScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material3.Icon
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,11 +39,9 @@ import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerDa
 import com.project.phantom.theme.PaddingStyle.medium
 import com.project.phantom.theme.PaddingStyle.nano
 import com.project.phantom.theme.PaddingStyle.small
-import com.project.phantom.theme.PhantomColorName.GREY_800
-import com.project.phantom.theme.PhantomColorName.GREY_900
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_500
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
-import com.project.phantom.theme.resolve
+import com.project.phantom.theme.PhantomColorName.OnPrimary
+import com.project.phantom.theme.PhantomFontStyle.TitleLarge
+import com.project.phantom.theme3.AppThemeColors
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -114,9 +112,7 @@ class CategoryPageTopAppBar {
                                 backLayerData.showFilterInBackLayer -> stringResource(id = R.string.filter)
                                 backLayerData.showSortInBackLayer -> stringResource(id = R.string.sort)
                                 else -> null
-                            },
-                            fontStyle = SEMIBOLD_700,
-                            colorName = GREY_900
+                            }
                         )
 
                     )
@@ -137,7 +133,7 @@ class CategoryPageTopAppBar {
             Icon(
                 imageVector = imageVector,
                 contentDescription = null,
-                tint = GREY_900.resolve(),
+                tint = AppThemeColors.onPrimary,
                 modifier = Modifier
                     .size(24.dp)
                     .align(Alignment.Center)
@@ -208,7 +204,7 @@ class CategoryPageTopAppBar {
             Icon(
                 imageVector = imageVector,
                 contentDescription = null,
-                tint = GREY_800.resolve(),
+                tint = AppThemeColors.onPrimary,
                 modifier = Modifier
                     .size(24.dp)
                     .align(Alignment.CenterVertically)
@@ -216,8 +212,8 @@ class CategoryPageTopAppBar {
             PhantomText(
                 data = TextData().setDefaults(
                     defaultText = text,
-                    fontStyle = SEMIBOLD_500,
-                    colorName = GREY_800
+                    fontStyle = TitleLarge,
+                    colorName = OnPrimary
                 ),
                 modifier = Modifier
                     .padding(start = nano, end = medium)

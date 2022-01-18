@@ -1,14 +1,13 @@
 package com.project.phantom.ui.ghost
 
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomColorName.RED_300
-import com.project.phantom.theme.PhantomColorName.WHITE
+import androidx.compose.ui.graphics.Color
+import com.project.phantom.theme3.AppThemeColors
 
 data class PhantomGhostData(
     val size: Float,
 
     // Curve-related data points
-    val bgColor: PhantomColorName = RED_300,
+    val bgColor: Color = AppThemeColors.primary,
     val curveMaxMovementX: Float = size.times(other = 0.035f),
     val curveMaxMovementY: Float = size.times(other = 0.12f),
     val curveMovementDuration: Int = 1100,
@@ -21,7 +20,7 @@ data class PhantomGhostData(
     val legsMovementDelay: Int = 300,
 
     // Eye-related data points
-    val eyeColor: PhantomColorName = WHITE,
+    val eyeColor: Color = AppThemeColors.onPrimary,
     val eyeSize: Float = size.times(other = 0.2f),
     val eyeTopPadding: Float = size.times(other = 0.25f),
     val eyeMovementDuration: Int = 2100,

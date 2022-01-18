@@ -1,9 +1,9 @@
 package com.project.phantom.screens.category.models
 
-import com.project.phantom.theme.PhantomColorName.GREY_100
-import com.project.phantom.theme.PhantomColorName.GREY_800
-import com.project.phantom.theme.PhantomFontStyle.MEDIUM_400
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_500
+import com.project.phantom.theme.PhantomColorName.OnPrimary
+import com.project.phantom.theme.PhantomColorName.OnPrimaryContainer
+import com.project.phantom.theme.PhantomFontStyle.BodyMedium
+import com.project.phantom.theme.PhantomFontStyle.LabelMedium
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.TextData
 import com.squareup.moshi.Json
@@ -42,8 +42,8 @@ class FilterPropertyUiSection(
 ) : SnippetData() {
     override fun setDefaults() {
         name?.setDefaults(
-            fontStyle = SEMIBOLD_500,
-            colorName = GREY_800
+            fontStyle = BodyMedium,
+            colorName = OnPrimary
         )
         propertyValues?.forEach { it.setDefaults() }
     }
@@ -63,8 +63,8 @@ class FilterPropertyValueData(
 
     override fun setDefaults() {
         name?.setDefaults(
-            fontStyle = MEDIUM_400,
-            colorName = GREY_100
+            fontStyle = LabelMedium,
+            colorName = OnPrimaryContainer
         )
     }
 }

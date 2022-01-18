@@ -10,11 +10,12 @@ import com.project.phantom.screens.category.models.getSelectedPropertyValueIds
 import com.project.phantom.screens.category.models.getSelectedSortMethodData
 import com.project.phantom.screens.category.view.CategoryPageInitModel
 import com.project.phantom.screens.category.view.CategoryScreenState
-import com.project.phantom.theme.PhantomColorName.GREY_700
-import com.project.phantom.theme.PhantomColorName.GREY_900
-import com.project.phantom.theme.PhantomColorName.RED_300
-import com.project.phantom.theme.PhantomFontStyle.MEDIUM_600
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
+import com.project.phantom.theme.PhantomColorName.OnBackground
+import com.project.phantom.theme.PhantomColorName.OnPrimary
+import com.project.phantom.theme.PhantomColorName.Primary
+import com.project.phantom.theme.PhantomFontStyle.TitleLarge
+import com.project.phantom.theme.PhantomFontStyle.TitleMedium
+import com.project.phantom.ui.commons.getResolvedColor
 import com.project.phantom.ui.lce.PhantomLceData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -41,7 +42,7 @@ class CategoryViewModelImpl(
         private set
 
     private fun getPhantomLceLoadingData() = PhantomLceData.getLoadingData()
-        .copy(phantomGhostColor = initModel.categoryColor?.name ?: RED_300)
+        .copy(phantomGhostColor = initModel.categoryColor.getResolvedColor(Primary))
 
     override fun loadPage() {
         loadPageImpl(null)
@@ -83,14 +84,14 @@ class CategoryViewModelImpl(
             if (curatedList.isNotEmpty()) {
                 state = state.copy(
                     lceState = PhantomLceData.getContentData()
-                        .copy(phantomGhostColor = initModel.categoryColor?.name ?: RED_300),
+                        .copy(phantomGhostColor = initModel.categoryColor.getResolvedColor(Primary)),
                     pageTitle = response.pageTitle?.setDefaults(
-                        fontStyle = SEMIBOLD_700,
-                        colorName = GREY_900
+                        fontStyle = TitleLarge,
+                        colorName = OnPrimary
                     ),
                     frontLayerHeader = response.snippetSectionHeader?.setDefaults(
-                        fontStyle = MEDIUM_600,
-                        colorName = GREY_700
+                        fontStyle = TitleMedium,
+                        colorName = OnBackground
                     ),
                     rvDataState = curatedList,
                     sortSheetData = response.sortSheetData?.also { it.setDefaults() },
@@ -102,8 +103,8 @@ class CategoryViewModelImpl(
                 state = CategoryScreenState(
                     lceState = PhantomLceData.getEmptyResultData(null),
                     pageTitle = response.pageTitle?.setDefaults(
-                        fontStyle = SEMIBOLD_700,
-                        colorName = GREY_900
+                        fontStyle = TitleLarge,
+                        colorName = OnPrimary
                     ),
                     sortSheetData = response.sortSheetData?.also { it.setDefaults() },
                     selectedSortMethodData = response.sortSheetData.getSelectedSortMethodData(),

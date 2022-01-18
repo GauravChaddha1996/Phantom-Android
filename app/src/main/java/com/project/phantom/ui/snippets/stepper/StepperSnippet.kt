@@ -16,7 +16,7 @@ fun StepperSnippet(data: StepperSnippetData) {
     PhantomButton(
         data = ButtonData(
             text = data.title?.setDefaults(
-                fontStyle = PhantomFontStyle.MEDIUM_700
+                fontStyle = PhantomFontStyle.LabelLarge
             ),
             type = PhantomButtonType.SOLID
         ),

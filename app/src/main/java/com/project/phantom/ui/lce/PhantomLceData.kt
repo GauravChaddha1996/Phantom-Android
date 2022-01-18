@@ -1,11 +1,9 @@
 package com.project.phantom.ui.lce
 
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomColorName.GREY_700
-import com.project.phantom.theme.PhantomColorName.GREY_800
-import com.project.phantom.theme.PhantomColorName.RED_300
-import com.project.phantom.theme.PhantomFontStyle.MEDIUM_600
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_800
+import androidx.compose.ui.graphics.Color
+import com.project.phantom.theme.PhantomColorName.OnBackground
+import com.project.phantom.theme.PhantomFontStyle.LabelLarge
+import com.project.phantom.theme3.AppThemeColors
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.commons.FontData
 import com.project.phantom.ui.text.TextData
@@ -17,7 +15,7 @@ data class PhantomLceData(
     val showNoResult: Boolean,
     val noResultMessage: TextData,
     val errorMessage: TextData,
-    val phantomGhostColor: PhantomColorName
+    val phantomGhostColor: Color
 ) {
 
     companion object {
@@ -28,7 +26,7 @@ data class PhantomLceData(
             showNoResult = false,
             noResultMessage = TextData(),
             errorMessage = TextData(),
-            phantomGhostColor = RED_300
+            phantomGhostColor = AppThemeColors.primary
         )
 
         fun getContentData() = PhantomLceData(
@@ -38,7 +36,7 @@ data class PhantomLceData(
             showNoResult = false,
             noResultMessage = TextData(),
             errorMessage = TextData(),
-            phantomGhostColor = RED_300
+            phantomGhostColor = AppThemeColors.primary
         )
 
         fun getErrorData(errorMessage: String?) = PhantomLceData(
@@ -49,10 +47,10 @@ data class PhantomLceData(
             noResultMessage = TextData(),
             errorMessage = TextData(
                 text = errorMessage,
-                color = ColorData(GREY_700),
-                font = FontData(MEDIUM_600)
+                color = ColorData(OnBackground),
+                font = FontData(LabelLarge)
             ),
-            phantomGhostColor = RED_300
+            phantomGhostColor = AppThemeColors.primary
         )
 
         fun getEmptyResultData(emptyResultMessage: String?) = PhantomLceData(
@@ -62,11 +60,11 @@ data class PhantomLceData(
             showNoResult = true,
             noResultMessage = TextData(
                 text = emptyResultMessage,
-                color = ColorData(GREY_800),
-                font = FontData(SEMIBOLD_800)
+                color = ColorData(OnBackground),
+                font = FontData(LabelLarge)
             ),
             errorMessage = TextData(),
-            phantomGhostColor = RED_300
+            phantomGhostColor = AppThemeColors.primary
         )
     }
 }

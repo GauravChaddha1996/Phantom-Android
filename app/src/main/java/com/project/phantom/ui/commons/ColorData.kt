@@ -9,7 +9,7 @@ import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class ColorData(
-    @Json(name = "name") var name: PhantomColorName? = null
+    @Json(name = "name") internal var name: PhantomColorName? = null
 ) : Serializable {
 
     fun setDefaults(

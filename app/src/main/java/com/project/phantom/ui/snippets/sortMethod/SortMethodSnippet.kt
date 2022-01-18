@@ -31,20 +31,20 @@ fun SortMethodSnippet(
             .padding(horizontal = large, vertical = small)
             .clip(RoundedCornerShape(extra))
             .clickable { interaction.onSortMethodClicked(data) }
-            .background(LocalCategoryScreenColors.current.sortButtonBgColor)
+            .background(LocalCategoryScreenColors.current.sortMethodBgColor)
     ) {
         PhantomText(
             data = data.name,
             modifier = Modifier
                 .weight(1f)
                 .padding(large),
-            color = LocalCategoryScreenColors.current.sortButtonTextColor
+            color = LocalCategoryScreenColors.current.sortMethodTextColor
         )
         val iconAlpha = if (data.selected == true) ContentAlpha.high else ContentAlpha.disabled
         Icon(
             imageVector = Icons.Default.CheckCircle,
             contentDescription = null,
-            tint = LocalCategoryScreenColors.current.sortButtonTickColor,
+            tint = LocalCategoryScreenColors.current.sortMethodTickColor,
             modifier = Modifier
                 .alpha(alpha = iconAlpha)
                 .align(Alignment.CenterVertically)

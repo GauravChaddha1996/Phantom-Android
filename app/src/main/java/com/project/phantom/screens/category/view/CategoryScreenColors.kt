@@ -2,19 +2,13 @@ package com.project.phantom.screens.category.view
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
-import com.project.phantom.theme.PhantomColorName.GREY_100
-import com.project.phantom.theme.PhantomColorName.GREY_400
-import com.project.phantom.theme.PhantomColorName.GREY_500
-import com.project.phantom.theme.PhantomColorName.GREY_800
-import com.project.phantom.theme.PhantomColorName.RED_300
-import com.project.phantom.theme.change
-import com.project.phantom.theme.resolve
+import com.project.phantom.theme3.AppThemeColors
 
 data class CategoryScreenColors(
     val backLayerBackground: Color,
-    val sortButtonBgColor: Color,
-    val sortButtonTextColor: Color,
-    val sortButtonTickColor: Color,
+    val sortMethodBgColor: Color,
+    val sortMethodTextColor: Color,
+    val sortMethodTickColor: Color,
     val filterUiSectionHeaderColor: Color,
     val filterPillUnselectedTextColor: Color,
     val filterPillSelectedTextColor: Color,
@@ -25,25 +19,28 @@ data class CategoryScreenColors(
 ) {
     companion object {
 
-        fun get(initModel: CategoryPageInitModel?): CategoryScreenColors {
-            val baseColorName = initModel?.categoryColor?.name ?: RED_300
+        fun get(): CategoryScreenColors {
             return CategoryScreenColors(
-                backLayerBackground = baseColorName.resolve(),
-                sortButtonBgColor = baseColorName.change(tint = 600).resolve(),
-                sortButtonTextColor = GREY_100.resolve(),
-                sortButtonTickColor = GREY_100.resolve(),
-                filterUiSectionHeaderColor = GREY_800.resolve(),
-                filterPillUnselectedTextColor = GREY_500.resolve(),
-                filterPillUnselectedBgColor = baseColorName.change(tint = 200).resolve(),
-                filterPillUnselectedIconColor = GREY_400.resolve(),
-                filterPillSelectedTextColor = GREY_100.resolve(),
-                filterPillSelectedBgColor = baseColorName.change(tint = 600).resolve(),
-                filterPillSelectedIconColor = GREY_100.resolve()
+                backLayerBackground = AppThemeColors.primary,
+
+                sortMethodBgColor = AppThemeColors.primaryContainer,
+                sortMethodTextColor = AppThemeColors.onPrimaryContainer,
+                sortMethodTickColor = AppThemeColors.onPrimaryContainer,
+
+                filterUiSectionHeaderColor = AppThemeColors.onPrimary,
+
+                filterPillUnselectedBgColor = AppThemeColors.primaryContainer,
+                filterPillUnselectedTextColor = AppThemeColors.onPrimaryContainer,
+                filterPillUnselectedIconColor = AppThemeColors.onPrimaryContainer,
+
+                filterPillSelectedBgColor = AppThemeColors.primaryContainer,
+                filterPillSelectedTextColor = AppThemeColors.onPrimaryContainer,
+                filterPillSelectedIconColor = AppThemeColors.onPrimaryContainer
             )
         }
     }
 }
 
 val LocalCategoryScreenColors = compositionLocalOf {
-    CategoryScreenColors.get(CategoryPageInitModel(-1, null))
+    CategoryScreenColors.get()
 }

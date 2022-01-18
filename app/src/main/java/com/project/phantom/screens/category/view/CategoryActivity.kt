@@ -31,7 +31,7 @@ import com.project.phantom.screens.category.domain.CategoryViewModel
 import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.resolve
+import com.project.phantom.theme3.AppThemeColors
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.lce.PhantomLCE
@@ -70,7 +70,7 @@ class CategoryActivity : BaseActivity() {
     @Composable
     override fun Content() {
         LaunchOnce { viewModel.loadPage() }
-        val categoryScreenColors = remember { CategoryScreenColors.get(initModel) }
+        val categoryScreenColors = remember { CategoryScreenColors.get() }
         CompositionLocalProvider(
             values = arrayOf(LocalCategoryScreenColors provides categoryScreenColors),
             content = {
@@ -205,7 +205,7 @@ class CategoryActivity : BaseActivity() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(1.5.dp)
-                        .background(com.project.phantom.theme.PhantomColorName.GREY_200.resolve())
+                        .background(AppThemeColors.onBackground)
                 )
             }
             VerticalList(

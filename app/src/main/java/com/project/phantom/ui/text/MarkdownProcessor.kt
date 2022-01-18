@@ -2,7 +2,7 @@ package com.project.phantom.ui.text
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
-import com.project.phantom.theme.PhantomTypography
+import com.project.phantom.theme.resolve
 
 object MarkdownProcessor {
 
@@ -21,7 +21,7 @@ object MarkdownProcessor {
     }
 
     private fun processFontSpan(it: MarkdownFontSpan): AnnotatedString.Range<SpanStyle> {
-        val textStyle = PhantomTypography.resolve(it.style)
+        val textStyle = it.style.resolve()
         return AnnotatedString.Range(
             SpanStyle(
                 fontSize = textStyle.fontSize,

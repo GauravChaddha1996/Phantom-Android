@@ -5,9 +5,9 @@ import androidx.compose.ui.unit.dp
 import com.project.phantom.theme.PaddingStyle.large
 import com.project.phantom.theme.PaddingStyle.medium
 import com.project.phantom.theme.PaddingStyle.small
-import com.project.phantom.theme.PhantomFontStyle.REGULAR_300
-import com.project.phantom.theme.PhantomFontStyle.REGULAR_400
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
+import com.project.phantom.theme.PhantomFontStyle.BodyMedium
+import com.project.phantom.theme.PhantomFontStyle.TitleMedium
+import com.project.phantom.theme.PhantomFontStyle.TitleSmall
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.TextData
 import com.squareup.moshi.Json
@@ -41,9 +41,9 @@ class TextSectionSnippetData(
             PaddingValues(start = large, end = large, top = 0.dp, bottom = small)
 
         override fun setDefaults() {
-            title?.setDefaults(fontStyle = SEMIBOLD_700)
-            subtitle?.setDefaults(fontStyle = REGULAR_400)
-            subtitle2?.setDefaults(fontStyle = REGULAR_300)
+            title?.setDefaults(fontStyle = TitleMedium)
+            subtitle?.setDefaults(fontStyle = TitleSmall)
+            subtitle2?.setDefaults(fontStyle = BodyMedium)
         }
     }
 }

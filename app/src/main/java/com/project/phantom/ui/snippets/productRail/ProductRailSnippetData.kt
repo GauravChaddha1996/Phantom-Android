@@ -1,13 +1,11 @@
 package com.project.phantom.ui.snippets.productRail
 
-import com.project.phantom.theme.PhantomColorName.BLACK
-import com.project.phantom.theme.PhantomColorName.GREY_600
-import com.project.phantom.theme.PhantomColorName.GREY_800
-import com.project.phantom.theme.PhantomColorName.GREY_900
-import com.project.phantom.theme.PhantomFontStyle.MEDIUM_300
-import com.project.phantom.theme.PhantomFontStyle.MEDIUM_700
-import com.project.phantom.theme.PhantomFontStyle.REGULAR_300
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
+import com.project.phantom.theme.PhantomColorName.OnSurface
+import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
+import com.project.phantom.theme.PhantomFontStyle.BodyLarge
+import com.project.phantom.theme.PhantomFontStyle.BodyMedium
+import com.project.phantom.theme.PhantomFontStyle.DisplayMedium
+import com.project.phantom.theme.PhantomFontStyle.TitleLarge
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.snippets.commons.SnippetData
@@ -28,24 +26,24 @@ data class ProductRailSnippetData(
 
     override fun setDefaults() {
         name?.setDefaults(
-            fontStyle = MEDIUM_700,
-            colorName = GREY_900,
+            fontStyle = TitleLarge,
+            colorName = OnSurface,
             defaultMaxLines = 1
         )
         shortDesc?.setDefaults(
-            fontStyle = REGULAR_300,
-            colorName = GREY_600,
+            fontStyle = BodyMedium,
+            colorName = OnSurface,
             defaultMaxLines = 2,
             defaultMinLines = 2
         )
         brandAndCategory?.setDefaults(
-            fontStyle = MEDIUM_300,
-            colorName = GREY_800,
+            fontStyle = BodyLarge,
+            colorName = OnSurface,
             defaultMaxLines = 1
         )
         cost?.setDefaults(
-            fontStyle = SEMIBOLD_700,
-            colorName = BLACK
+            fontStyle = DisplayMedium,
+            colorName = OnSurfaceVariant
         )
     }
 }

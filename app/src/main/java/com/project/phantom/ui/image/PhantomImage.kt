@@ -2,16 +2,14 @@ package com.project.phantom.ui.image
 
 import android.graphics.drawable.ColorDrawable
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
-import com.project.phantom.theme.PhantomColorName.GREY_100
-import com.project.phantom.theme.PhantomColorName.GREY_200
-import com.project.phantom.theme.resolve
+import com.project.phantom.theme3.AppThemeColors
 
 @Composable
 fun PhantomImage(data: ImageData?, modifier: Modifier = Modifier) {
@@ -22,7 +20,7 @@ fun PhantomImage(data: ImageData?, modifier: Modifier = Modifier) {
 
     // Some common stuff for our image request
     val builder: ImageRequest.Builder.() -> Unit = {
-        val placeholderColor = GREY_200.resolve().toArgb()
+        val placeholderColor = AppThemeColors.primary.copy(alpha = 0.6f).toArgb()
         placeholder(ColorDrawable(placeholderColor))
     }
 
@@ -30,7 +28,8 @@ fun PhantomImage(data: ImageData?, modifier: Modifier = Modifier) {
     Image(
         painter = rememberImagePainter(data = data.url, builder = builder),
         contentDescription = null,
-        modifier = modifier.background(GREY_100.resolve())
+        modifier = modifier,
+        contentScale = ContentScale.Inside
     )
 }
 

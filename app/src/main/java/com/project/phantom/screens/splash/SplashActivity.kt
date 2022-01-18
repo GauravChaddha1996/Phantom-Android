@@ -26,8 +26,8 @@ import com.project.phantom.getScreenWidth
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.home.view.HomeActivity
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomColorName.RED_400
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_940
+import com.project.phantom.theme.PhantomColorName.Primary
+import com.project.phantom.theme.PhantomFontStyle.HeadlineLarge
 import com.project.phantom.ui.ghost.PhantomGhost
 import com.project.phantom.ui.ghost.PhantomGhostData
 import com.project.phantom.ui.text.PhantomText
@@ -99,8 +99,8 @@ class SplashActivity : BaseActivity() {
         PhantomText(
             data = TextData().setDefaults(
                 defaultText = stringResource(id = R.string.app_name),
-                fontStyle = SEMIBOLD_940,
-                colorName = RED_400
+                fontStyle = HeadlineLarge,
+                colorName = Primary
             )
         )
     }

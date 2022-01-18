@@ -18,8 +18,8 @@ import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.CornerStyle
 import com.project.phantom.theme.ElevationStyle
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomColorName.YELLOW_100
-import com.project.phantom.theme.PhantomColorName.YELLOW_400
+import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
+import com.project.phantom.theme.PhantomColorName.Surface
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.commons.getResolvedColor
 import com.project.phantom.ui.text.PhantomText
@@ -70,9 +70,9 @@ private fun TestCategoryRailSnippet() {
             CategoryRailSnippet(
                 data = CategoryRailSnippetData(
                     id = 1,
-                    firstCharacter = TextData("S", color = ColorData(YELLOW_400)),
+                    firstCharacter = TextData("S", color = ColorData(OnSurfaceVariant)),
                     name = TextData("Shirts"),
-                    bgColor = ColorData(YELLOW_100)
+                    bgColor = ColorData(Surface)
                 ),
                 interaction = SnippetInteractions()
             )

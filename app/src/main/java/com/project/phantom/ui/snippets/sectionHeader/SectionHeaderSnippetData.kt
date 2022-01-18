@@ -2,7 +2,7 @@ package com.project.phantom.ui.snippets.sectionHeader
 
 import androidx.compose.foundation.layout.PaddingValues
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_700
+import com.project.phantom.theme.PhantomFontStyle.TitleLarge
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.TextData
@@ -20,6 +20,6 @@ class SectionHeaderSnippetData(
     var paddingValues: PaddingValues = PaddingValues(start = PaddingStyle.large)
 
     override fun setDefaults() {
-        title?.setDefaults(fontStyle = SEMIBOLD_700)
+        title?.setDefaults(fontStyle = TitleLarge)
     }
 }

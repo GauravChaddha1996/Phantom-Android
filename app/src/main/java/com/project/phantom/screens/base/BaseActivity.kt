@@ -14,9 +14,9 @@ import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material3.Surface
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,9 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.product.ui.ProductBottomSheet
 import com.project.phantom.screens.product.ui.ProductPageInitModel
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomTheme
-import com.project.phantom.theme.resolve
+import com.project.phantom.theme3.AppTheme
+import com.project.phantom.theme3.AppThemeColors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -44,7 +43,7 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent {
         setContent {
             var currentBottomSheetType by remember { mutableStateOf(BottomSheetType.INVALID) }
             var currentBottomSheetData: Any? by remember { mutableStateOf(null) }
-            PhantomTheme {
+            AppTheme {
                 Surface {
                     val scope = rememberCoroutineScope()
                     val scaffoldState = rememberBottomSheetScaffoldState(
@@ -136,11 +135,7 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(
-                        PhantomColorName.BLACK
-                            .resolve()
-                            .copy(alpha = 0.95f)
-                    )
+                    .background(AppThemeColors.onBackground)
                     .clickable { scope.launch { bottomSheetHelper.closeCurrentBottomSheet() } }
             )
         }
