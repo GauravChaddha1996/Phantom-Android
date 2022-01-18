@@ -6,10 +6,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Icon
-import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,7 +40,6 @@ fun SortMethodSnippet(
                 .padding(large),
             color = LocalCategoryScreenColors.current.sortButtonTextColor
         )
-        LocalContentAlpha
         val iconAlpha = if (data.selected == true) ContentAlpha.high else ContentAlpha.disabled
         Icon(
             imageVector = Icons.Default.CheckCircle,

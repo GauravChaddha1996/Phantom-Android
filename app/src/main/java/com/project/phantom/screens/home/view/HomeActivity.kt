@@ -5,7 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -147,7 +147,7 @@ class HomeActivity : BaseActivity() {
     @Composable
     private fun GetTopAppBar(topAppBarShowing: Boolean) {
         val topAppBarHeightAnim by getTopAppBarHeightAnim(topAppBarShowing)
-        TopAppBar(
+        CenterAlignedTopAppBar(
             modifier = Modifier
                 .height(appBarHeight)
                 .graphicsLayer {

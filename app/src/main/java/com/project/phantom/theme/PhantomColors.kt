@@ -1,6 +1,6 @@
 package com.project.phantom.theme
 
-import androidx.compose.material.lightColors
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 import com.project.phantom.theme.PhantomColorName.BLACK
 import com.project.phantom.theme.PhantomColorName.BLUE_100
@@ -121,6 +121,4 @@ fun PhantomColorName.change(tint: Int): PhantomColorName {
     return valueOf(name.substringBefore('_').plus("_$tint"))
 }
 
-fun phantomColor() = lightColors(
-    background = Color.Yellow
-)
+fun phantomColor() = lightColorScheme()

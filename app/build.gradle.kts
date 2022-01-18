@@ -48,14 +48,16 @@ dependencies {
     implementation(Libs.AndroidX.lifecycleRuntime)
 
     // Compose related dependencies
-    implementation(Libs.Compose.ui)
-    implementation(Libs.Compose.animation)
-    implementation(Libs.Compose.material)
+    implementation(Libs.Compose.compiler)
+    implementation(Libs.Compose.foundation)
     implementation(Libs.Compose.runtime)
-    implementation(Libs.Compose.activityIntegration)
     implementation(Libs.Compose.runtimeLivedata)
+    implementation(Libs.Compose.ui)
+    implementation(Libs.Compose.material3)
+    implementation(Libs.Compose.animation)
     implementation(Libs.Compose.uiTooling)
     debugImplementation(Libs.Compose.uiToolingPreview)
+    implementation(Libs.Compose.activityIntegration)
 
     // Moshi
     implementation(Libs.Moshi.core)
@@ -79,7 +81,7 @@ dependencies {
     // Swipe refresh
     implementation(Libs.Accompanist.swipeRefresh)
 
-    // Paager
+    // Pager
     implementation(Libs.Accompanist.pager)
     implementation(Libs.Accompanist.pagerIndicators)
 

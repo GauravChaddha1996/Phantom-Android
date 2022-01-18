@@ -1,8 +1,8 @@
 package com.project.phantom.ui.button
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -49,7 +49,7 @@ fun PhantomButton(
         },
         modifier = modifier,
         colors = colors,
-        elevation = ButtonDefaults.elevation(0.dp, 0.dp, 0.dp),
+        elevation = ButtonDefaults.filledTonalButtonElevation(),
         contentPadding = contentPadding
     ) {
         PhantomText(data = data.text, textDecoration = textDecoration)

@@ -36,14 +36,18 @@ object Libs {
     object Compose {
         const val version = "1.0.5"
         private const val animationVersion = "1.1.0-rc01"
-        const val ui = "androidx.compose.ui:ui:$version"
-        const val animation = "androidx.compose.animation:animation:$animationVersion"
-        const val material = "androidx.compose.material:material:$version"
-        const val activityIntegration = "androidx.activity:activity-compose:1.4.0"
+        private const val material3Version = "1.0.0-alpha03"
+        const val compiler = "androidx.compose.compiler:compiler:$version"
+        const val foundation = "androidx.compose.foundation:foundation:$version"
         const val runtime = "androidx.compose.runtime:runtime:$version"
         const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
+        const val ui = "androidx.compose.ui:ui:$version"
+        const val material = "androidx.compose.material:material:$version"
+        const val material3 = "androidx.compose.material3:material3:$material3Version"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
+        const val animation = "androidx.compose.animation:animation:$animationVersion"
+        const val activityIntegration = "androidx.activity:activity-compose:1.4.0"
     }
 
     object Moshi {

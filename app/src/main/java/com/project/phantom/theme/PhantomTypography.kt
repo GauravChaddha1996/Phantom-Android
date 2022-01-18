@@ -1,6 +1,6 @@
 package com.project.phantom.theme
 
-import androidx.compose.material.Typography
+import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -49,7 +49,6 @@ import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_800
 import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_900
 import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_940
 import com.project.phantom.theme.PhantomFontStyle.SEMIBOLD_950
-import com.project.phantom.theme.PhantomTypography.RalewayFontFamily
 
 object PhantomTypography {
     private val FontLight = Font(R.font.raleway_light, Light, FontStyle.Normal)
@@ -281,6 +280,4 @@ object PhantomTypography {
     }
 }
 
-fun phantomTypography() = Typography(
-    defaultFontFamily = RalewayFontFamily
-)
+fun phantomTypography() = Typography()
