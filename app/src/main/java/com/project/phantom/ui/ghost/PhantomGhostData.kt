@@ -20,7 +20,7 @@ data class PhantomGhostData(
     val legsMovementDelay: Int = 300,
 
     // Eye-related data points
-    val eyeColor: Color = AppThemeColors.onPrimary,
+    val eyeColor: Color = AppThemeColors.primaryContainer,
     val eyeSize: Float = size.times(other = 0.2f),
     val eyeTopPadding: Float = size.times(other = 0.25f),
     val eyeMovementDuration: Int = 2100,

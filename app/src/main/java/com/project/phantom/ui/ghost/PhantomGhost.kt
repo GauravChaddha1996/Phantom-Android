@@ -66,9 +66,9 @@ fun PhantomGhost(
                             shape = eyeShape
                             clip = true
                             translationX = data.eyeMovementCircleRadius *
-                                    sin((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
+                                sin((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
                             translationY = data.eyeMovementCircleRadius *
-                                    cos((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
+                                cos((Math.PI.toFloat() * 2 * eyeMovementValue).div(other = 360f))
                         }
                         .background(data.eyeColor)
                 )

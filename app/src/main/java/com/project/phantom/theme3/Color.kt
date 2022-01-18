@@ -59,8 +59,7 @@ val md_theme_dark_inverseSurface = Color(0xFFe0e3e3)
 val seed = Color(0xFFff7878)
 val error = Color(0xFFba1b1b)
 
-
-private val LightThemeColors = lightColorScheme(
+val LightThemeColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
     primaryContainer = md_theme_light_primaryContainer,
@@ -85,7 +84,7 @@ private val LightThemeColors = lightColorScheme(
     onSurfaceVariant = md_theme_light_onSurfaceVariant,
     outline = md_theme_light_outline,
     inverseOnSurface = md_theme_light_inverseOnSurface,
-    inverseSurface = md_theme_light_inverseSurface,
+    inverseSurface = md_theme_light_inverseSurface
 )
 
 val DarkThemeColors = darkColorScheme(
@@ -113,7 +112,5 @@ val DarkThemeColors = darkColorScheme(
     onSurfaceVariant = md_theme_dark_onSurfaceVariant,
     outline = md_theme_dark_outline,
     inverseOnSurface = md_theme_dark_inverseOnSurface,
-    inverseSurface = md_theme_dark_inverseSurface,
+    inverseSurface = md_theme_dark_inverseSurface
 )
-
-val AppThemeColors = LightThemeColors
