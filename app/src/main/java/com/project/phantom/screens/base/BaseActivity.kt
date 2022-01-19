@@ -16,7 +16,6 @@ import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,47 +43,45 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent {
             var currentBottomSheetType by remember { mutableStateOf(BottomSheetType.INVALID) }
             var currentBottomSheetData: Any? by remember { mutableStateOf(null) }
             AppTheme {
-                Surface {
-                    val scope = rememberCoroutineScope()
-                    val scaffoldState = rememberBottomSheetScaffoldState(
-                        bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
-                    )
-                    bottomSheetHelper = makeBottomSheetHelper(
-                        scope = scope,
-                        scaffoldState = scaffoldState,
-                        updateCurrentStates = { bottomSheetType: BottomSheetType, bottomSheetData: Any? ->
-                            currentBottomSheetType = bottomSheetType
-                            currentBottomSheetData = bottomSheetData
-                        },
-                        getCurrentBottomSheetType = {
-                            currentBottomSheetType
+                val scope = rememberCoroutineScope()
+                val scaffoldState = rememberBottomSheetScaffoldState(
+                    bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
+                )
+                bottomSheetHelper = makeBottomSheetHelper(
+                    scope = scope,
+                    scaffoldState = scaffoldState,
+                    updateCurrentStates = { bottomSheetType: BottomSheetType, bottomSheetData: Any? ->
+                        currentBottomSheetType = bottomSheetType
+                        currentBottomSheetData = bottomSheetData
+                    },
+                    getCurrentBottomSheetType = {
+                        currentBottomSheetType
+                    }
+                )
+                BottomSheetScaffold(
+                    sheetContent = {
+                        // If sheet is collapsed anytime, reset the data to invalid sheet
+                        // so that the last shown sheet isn't shown again
+                        if (scaffoldState.bottomSheetState.isCollapsed) {
+                            bottomSheetHelper.resetCurrentBottomSheet()
                         }
-                    )
-                    BottomSheetScaffold(
-                        sheetContent = {
-                            // If sheet is collapsed anytime, reset the data to invalid sheet
-                            // so that the last shown sheet isn't shown again
-                            if (scaffoldState.bottomSheetState.isCollapsed) {
-                                bottomSheetHelper.resetCurrentBottomSheet()
-                            }
-                            when (currentBottomSheetType) {
-                                BottomSheetType.PRODUCT -> ProductBottomSheet(
-                                    initModel = currentBottomSheetData as ProductPageInitModel
-                                )
-                                BottomSheetType.INVALID -> {}
-                            }
-                        },
-                        scaffoldState = scaffoldState,
-                        content = {
-                            Box {
-                                // Actual content
-                                Content()
-                                ScrimForBottomSheet(scope, scaffoldState, currentBottomSheetType)
-                            }
-                        },
-                        sheetPeekHeight = 0.dp
-                    )
-                }
+                        when (currentBottomSheetType) {
+                            BottomSheetType.PRODUCT -> ProductBottomSheet(
+                                initModel = currentBottomSheetData as ProductPageInitModel
+                            )
+                            BottomSheetType.INVALID -> {}
+                        }
+                    },
+                    scaffoldState = scaffoldState,
+                    content = {
+                        Box {
+                            // Actual content
+                            Content()
+                            ScrimForBottomSheet(scope, scaffoldState, currentBottomSheetType)
+                        }
+                    },
+                    sheetPeekHeight = 0.dp
+                )
             }
         }
     }

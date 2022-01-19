@@ -1,37 +1,35 @@
 package com.project.phantom.screens.home.view
 
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
-import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.SwipeRefreshState
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.project.phantom.LaunchOnce
+import com.project.phantom.R
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.home.domain.HomeViewModel
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomFontStyle.TitleLarge
+import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme3.AppThemeColors
 import com.project.phantom.ui.lce.PhantomLCE
 import com.project.phantom.ui.lce.PhantomLceInteraction
 import com.project.phantom.ui.list.VerticalList
+import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -39,96 +37,71 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeActivity : BaseActivity() {
 
     private val homeViewModel: HomeViewModel by viewModel()
-    private val appBarHeight = 56.dp
 
+    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun Content() {
-        LaunchOnce { homeViewModel.loadPage() }
         val state = homeViewModel.state
-        var topAppBarShowing by remember { mutableStateOf(true) }
-        val topAppBarHeightAnim by getTopAppBarHeightAnim(topAppBarShowing)
-        val nestedScrollConnection = rvNestedScrollConnection(
-            topAppBarShowing = topAppBarShowing,
-            updateTopAppBarShowing = { topAppBarShowing = it }
-        )
-        if (state.lceState.showError) topAppBarShowing = true
+        val systemUiController = rememberSystemUiController()
 
-        // Add views here
-        SwipeRefresh(
-            state = rememberSwipeRefreshState(isRefreshing = state.isRefreshing),
-            onRefresh = homeViewModel::refreshPage,
-            indicator = { swipeRefreshState, refreshTriggerDistance ->
-                GetSwipeRefreshIndicator(
-                    swipeRefreshState,
-                    refreshTriggerDistance,
-                    topAppBarHeightAnim
-                )
-            }
-        ) {
-            GetVerticalList(state, nestedScrollConnection)
-            GetPhantomLce(state)
-        }
-        GetTopAppBar(topAppBarShowing)
-    }
+        LaunchOnce { homeViewModel.loadPage() }
+        SideEffect { systemUiController.setStatusBarColor(AppThemeColors.primaryContainer) }
 
-    @Composable
-    private fun rvNestedScrollConnection(
-        topAppBarShowing: Boolean,
-        updateTopAppBarShowing: (Boolean) -> Unit
-    ): NestedScrollConnection {
-        val nestedScrollConnection = object : NestedScrollConnection {
-            var finalOffset: Float = 0f
-            val finalOffsetLimit = 200f
-
-            override fun onPreScroll(
-                available: Offset,
-                source: NestedScrollSource
-            ): Offset {
-                val yScroll = available.y
-                finalOffset += yScroll
-                finalOffset = finalOffset.coerceIn(-finalOffsetLimit, finalOffsetLimit)
-                if (finalOffset == finalOffsetLimit && !topAppBarShowing) {
-                    updateTopAppBarShowing.invoke(true)
-                } else if (finalOffset == -finalOffsetLimit && topAppBarShowing) {
-                    updateTopAppBarShowing.invoke(false)
+        Column {
+            val scrollBehaviour = remember { TopAppBarDefaults.pinnedScrollBehavior() }
+            val nestedScrollConnection = remember { scrollBehaviour.nestedScrollConnection }
+            CenterAlignedTopAppBar(
+                title = {
+                    PhantomText(
+                        data = TextData().setDefaults(
+                            defaultText = stringResource(id = R.string.app_name),
+                            fontStyle = PhantomFontStyle.CenterTopAppBarLarge
+                        )
+                    )
+                },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = AppThemeColors.primaryContainer,
+                    titleContentColor = AppThemeColors.primary
+                ),
+                scrollBehavior = scrollBehaviour
+            )
+            SwipeRefresh(
+                state = rememberSwipeRefreshState(isRefreshing = state.isRefreshing),
+                onRefresh = homeViewModel::refreshPage,
+                indicator = { swipeRefreshState, refreshTriggerDistance ->
+                    GetSwipeRefreshIndicator(swipeRefreshState, refreshTriggerDistance)
                 }
-
-                return super.onPreScroll(available, source)
+            ) {
+                GetVerticalList(state.rvDataState, nestedScrollConnection)
+                GetPhantomLce(state)
             }
         }
-        return nestedScrollConnection
     }
 
     @Composable
     private fun GetSwipeRefreshIndicator(
         swipeRefreshState: SwipeRefreshState,
-        refreshTriggerDistance: Dp,
-        topAppBarHeightAnim: Dp
+        refreshTriggerDistance: Dp
     ) {
         SwipeRefreshIndicator(
             state = swipeRefreshState,
-            refreshTriggerDistance = refreshTriggerDistance,
-            modifier = Modifier
-                .padding(top = appBarHeight)
-                .graphicsLayer {
-                    translationY = topAppBarHeightAnim.value
-                }
+            refreshTriggerDistance = refreshTriggerDistance
         )
     }
 
     @Composable
     private fun GetVerticalList(
-        state: HomeScreenState,
+        rvDataState: List<SnippetData>,
         nestedScrollConnection: NestedScrollConnection
     ) {
         VerticalList(
-            rvDataState = state.rvDataState,
+            rvDataState = rvDataState,
             interaction = remember { SnippetInteractions(this) },
-            modifier = Modifier.nestedScroll(nestedScrollConnection),
             contentPadding = PaddingValues(
-                top = appBarHeight + PaddingStyle.large,
+                top = PaddingStyle.large,
                 bottom = PaddingStyle.large
-            )
+            ),
+            modifier = Modifier.nestedScroll(nestedScrollConnection)
         )
     }
 
@@ -143,27 +116,4 @@ class HomeActivity : BaseActivity() {
             }
         )
     }
-
-    @Composable
-    private fun GetTopAppBar(topAppBarShowing: Boolean) {
-        val topAppBarHeightAnim by getTopAppBarHeightAnim(topAppBarShowing)
-        CenterAlignedTopAppBar(
-            modifier = Modifier
-                .height(appBarHeight)
-                .graphicsLayer {
-                    translationY = topAppBarHeightAnim.value
-                },
-            title = {
-                PhantomText(
-                    data = TextData("Phantom").setDefaults(fontStyle = TitleLarge)
-                )
-            }
-        )
-    }
-
-    @Composable
-    private fun getTopAppBarHeightAnim(topAppBarShowing: Boolean) = animateDpAsState(
-        targetValue = if (topAppBarShowing) 0.dp else appBarHeight.unaryMinus().times(other = 3),
-        animationSpec = tween(durationMillis = 700)
-    )
 }

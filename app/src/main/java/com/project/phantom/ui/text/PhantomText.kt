@@ -1,6 +1,7 @@
 package com.project.phantom.ui.text
 
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,7 +38,8 @@ fun PhantomText(
     val processedText = MarkdownProcessor.processTextData(data)
     var finalModifier = modifier
     var readyToDraw by remember { mutableStateOf(false) }
-    var finalTextStyle by remember { mutableStateOf(data.font.resolvedTextStyle) }
+    val localCurrentTextStyle = LocalTextStyle.current
+    var finalTextStyle by remember { mutableStateOf(data.font.resolve() ?: localCurrentTextStyle) }
 
     // minLines height logic
     val density = LocalDensity.current

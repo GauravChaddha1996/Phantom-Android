@@ -81,6 +81,9 @@ dependencies {
     // Swipe refresh
     implementation(Libs.Accompanist.swipeRefresh)
 
+    // System UI controller
+    implementation(Libs.Accompanist.systemUiController)
+
     // Pager
     implementation(Libs.Accompanist.pager)
     implementation(Libs.Accompanist.pagerIndicators)

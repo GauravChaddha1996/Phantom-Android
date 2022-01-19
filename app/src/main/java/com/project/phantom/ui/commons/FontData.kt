@@ -10,10 +10,14 @@ import com.squareup.moshi.JsonClass
 data class FontData(
     @Json(name = "style") val style: PhantomFontStyle? = null
 ) {
-    @Transient
-    var resolvedTextStyle: TextStyle = style.resolve()
+    @Json(name = "defaultStyle")
+    var defaultFontStyle: PhantomFontStyle? = null
 
     fun setDefaults(defaultFontStyle: PhantomFontStyle?) {
-        resolvedTextStyle = (style ?: defaultFontStyle).resolve()
+        this.defaultFontStyle = defaultFontStyle
+    }
+
+    fun resolve(): TextStyle? {
+        return style?.resolve() ?: defaultFontStyle?.resolve()
     }
 }
