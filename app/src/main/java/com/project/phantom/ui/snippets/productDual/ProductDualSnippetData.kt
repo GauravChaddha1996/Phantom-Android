@@ -27,12 +27,14 @@ data class ProductDualSnippetData(
         name?.setDefaults(
             fontStyle = TitleMedium,
             colorName = OnSurface,
-            defaultMaxLines = 2
+            defaultMaxLines = 2,
+            defaultMinLines = 2
         )
         shortDesc?.setDefaults(
             fontStyle = BodySmall,
             colorName = OnSurface,
-            defaultMaxLines = 2
+            defaultMaxLines = 2,
+            defaultMinLines = 2
         )
         brand?.setDefaults(
             fontStyle = BodyMedium,

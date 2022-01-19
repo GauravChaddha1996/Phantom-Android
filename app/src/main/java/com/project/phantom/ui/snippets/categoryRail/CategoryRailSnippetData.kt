@@ -2,8 +2,8 @@ package com.project.phantom.ui.snippets.categoryRail
 
 import androidx.compose.ui.text.style.TextOverflow
 import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
-import com.project.phantom.theme.PhantomFontStyle.HeadlineLarge
-import com.project.phantom.theme.PhantomFontStyle.HeadlineMedium
+import com.project.phantom.theme.PhantomFontStyle.DisplayMedium
+import com.project.phantom.theme.PhantomFontStyle.SingleCharacterLarge
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.snippets.commons.SnippetData
@@ -21,9 +21,9 @@ class CategoryRailSnippetData(
 ) : SnippetData() {
 
     override fun setDefaults() {
-        firstCharacter?.setDefaults(fontStyle = HeadlineLarge)
+        firstCharacter?.setDefaults(fontStyle = SingleCharacterLarge)
         name?.setDefaults(
-            fontStyle = HeadlineMedium,
+            fontStyle = DisplayMedium,
             colorName = OnSurfaceVariant,
             overflow = TextOverflow.Visible
         )

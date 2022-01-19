@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import com.project.phantom.theme.PhantomFontStyle.BodyLarge
 import com.project.phantom.theme.PhantomFontStyle.BodyMedium
 import com.project.phantom.theme.PhantomFontStyle.BodySmall
@@ -17,6 +18,7 @@ import com.project.phantom.theme.PhantomFontStyle.HeadlineSmall
 import com.project.phantom.theme.PhantomFontStyle.LabelLarge
 import com.project.phantom.theme.PhantomFontStyle.LabelMedium
 import com.project.phantom.theme.PhantomFontStyle.LabelSmall
+import com.project.phantom.theme.PhantomFontStyle.SingleCharacterLarge
 import com.project.phantom.theme.PhantomFontStyle.Splash
 import com.project.phantom.theme.PhantomFontStyle.TitleLarge
 import com.project.phantom.theme.PhantomFontStyle.TitleMedium
@@ -44,7 +46,8 @@ enum class PhantomFontStyle {
 
     // Custom ones
     Splash,
-    CenterTopAppBarLarge
+    CenterTopAppBarLarge,
+    SingleCharacterLarge
 }
 
 @Suppress("ComplexMethod")
@@ -69,5 +72,9 @@ fun PhantomFontStyle.resolve(): TextStyle {
         // Custom ones
         Splash -> AppTypography.displayLarge.copy(fontWeight = FontWeight.Bold)
         CenterTopAppBarLarge -> AppTypography.headlineMedium.copy(fontWeight = FontWeight.Bold)
+        SingleCharacterLarge -> AppTypography.displayLarge.copy(
+            fontSize = 57.sp.times(other = 2.5),
+            lineHeight = 64.sp.times(other = 3)
+        )
     }
 }

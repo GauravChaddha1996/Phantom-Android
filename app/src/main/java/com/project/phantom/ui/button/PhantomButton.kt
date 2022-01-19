@@ -1,20 +1,27 @@
 package com.project.phantom.ui.button
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextDecoration
-import com.project.phantom.theme3.AppThemeColors
+import androidx.compose.ui.unit.dp
+import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.ui.text.PhantomText
 
 @Composable
 fun PhantomButton(
     data: ButtonData?,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
+    contentPadding: PaddingValues? = null,
     onClick: () -> Unit = {}
 ) {
     // Cases to check for visibility
@@ -22,33 +29,50 @@ fun PhantomButton(
         return
     }
 
-    val colors = when (data.type) {
-        PhantomButtonType.TEXT -> ButtonDefaults.buttonColors(
-            Color.Transparent,
-            AppThemeColors.primary
-        )
-        PhantomButtonType.SOLID -> ButtonDefaults.buttonColors(
-            AppThemeColors.primary,
-            AppThemeColors.onPrimary
-        )
-        else -> ButtonDefaults.buttonColors()
+    when (data.type) {
+        PhantomButtonType.SOLID -> GetSolidButton(data, modifier, contentPadding, onClick)
+        PhantomButtonType.TEXT, null -> GetTextButton(data, modifier, contentPadding, onClick)
     }
+}
 
-    val textDecoration = when (data.type) {
-        PhantomButtonType.TEXT -> TextDecoration.Underline
-        else -> null
-    }
-
-    // Add the button
-    Button(
-        onClick = {
-            onClick.invoke()
-        },
+@Composable
+private fun GetTextButton(
+    data: ButtonData,
+    modifier: Modifier,
+    contentPadding: PaddingValues?,
+    onClick: () -> Unit
+) {
+    TextButton(
+        onClick = { onClick.invoke() },
         modifier = modifier,
-        colors = colors,
-        elevation = ButtonDefaults.filledTonalButtonElevation(),
-        contentPadding = contentPadding
+        colors = ButtonDefaults.textButtonColors(),
+        contentPadding = contentPadding ?: ButtonDefaults.TextButtonContentPadding
     ) {
-        PhantomText(data = data.text, textDecoration = textDecoration)
+        PhantomText(data = data.text)
+        Icon(
+            imageVector = Icons.Default.ArrowForward,
+            contentDescription = null,
+            modifier = Modifier
+                .size(LocalTextStyle.current.fontSize.value.dp)
+                .padding(start = PaddingStyle.nano)
+                .offset(y = 1.dp)
+        )
+    }
+}
+
+@Composable
+private fun GetSolidButton(
+    data: ButtonData,
+    modifier: Modifier,
+    contentPadding: PaddingValues?,
+    onClick: () -> Unit
+) {
+    FilledTonalButton(
+        onClick = { onClick.invoke() },
+        modifier = modifier,
+        colors = ButtonDefaults.filledTonalButtonColors(),
+        contentPadding = contentPadding ?: ButtonDefaults.ContentPadding
+    ) {
+        PhantomText(data = data.text)
     }
 }

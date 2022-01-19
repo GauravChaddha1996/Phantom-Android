@@ -6,22 +6,22 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Card
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
-import com.project.phantom.theme.CornerStyle
-import com.project.phantom.theme.ElevationStyle
 import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
 import com.project.phantom.theme.PhantomColorName.Surface
+import com.project.phantom.theme3.AppThemeColors
+import com.project.phantom.ui.card.FilledCard
 import com.project.phantom.ui.commons.ColorData
-import com.project.phantom.ui.commons.getResolvedColor
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -31,21 +31,21 @@ fun CategoryRailSnippet(
     interaction: CategoryRailSnippetInteraction
 ) {
     data ?: return
-    Card(
-        modifier = Modifier.size(200.dp, 200.dp),
-        shape = CornerStyle.large,
-        elevation = ElevationStyle.large
+    FilledCard(
+        modifier = Modifier.size(200.dp, 200.dp)
     ) {
         Box(
             modifier = Modifier
                 .clickable { interaction.onCategoryRailSnippetClicked(data) }
-                .background(data.bgColor.getResolvedColor())
+                .background(AppThemeColors.secondary.copy(alpha = 0.01f))
         ) {
             PhantomText(
                 data = data.firstCharacter,
                 modifier = Modifier
-                    .align(Alignment.TopCenter)
-                    .alpha(alpha = 0.25f)
+                    .align(Alignment.Center)
+                    .scale(scale = 1.3f)
+                    .alpha(alpha = 0.45f),
+                textAlign = TextAlign.Center
             )
             PhantomText(
                 data = data.name,
@@ -73,7 +73,7 @@ private fun TestCategoryRailSnippet() {
                     firstCharacter = TextData("S", color = ColorData(OnSurfaceVariant)),
                     name = TextData("Shirts"),
                     bgColor = ColorData(Surface)
-                ),
+                ).apply { setDefaults() },
                 interaction = SnippetInteractions()
             )
         }

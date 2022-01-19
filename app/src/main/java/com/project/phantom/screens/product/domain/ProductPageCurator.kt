@@ -18,8 +18,7 @@ class ProductPageCurator : BaseSnippetCurator() {
         results.forEach {
             when (it) {
                 is SectionHeaderSnippetData -> {
-                    it.paddingValues =
-                        PaddingValues(start = large, top = huge)
+                    it.paddingValues = PaddingValues(start = large, top = huge)
                 }
                 is TextSectionSnippetData -> {
                     curateTextSection(it)

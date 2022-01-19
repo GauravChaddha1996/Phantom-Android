@@ -3,9 +3,9 @@ package com.project.phantom.ui.snippets.productRail
 import com.project.phantom.theme.PhantomColorName.OnSurface
 import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
 import com.project.phantom.theme.PhantomFontStyle.BodyLarge
-import com.project.phantom.theme.PhantomFontStyle.BodyMedium
-import com.project.phantom.theme.PhantomFontStyle.DisplayMedium
+import com.project.phantom.theme.PhantomFontStyle.BodySmall
 import com.project.phantom.theme.PhantomFontStyle.TitleLarge
+import com.project.phantom.theme.PhantomFontStyle.TitleMedium
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.snippets.commons.SnippetData
@@ -26,12 +26,12 @@ data class ProductRailSnippetData(
 
     override fun setDefaults() {
         name?.setDefaults(
-            fontStyle = TitleLarge,
+            fontStyle = TitleMedium,
             colorName = OnSurface,
             defaultMaxLines = 1
         )
         shortDesc?.setDefaults(
-            fontStyle = BodyMedium,
+            fontStyle = BodySmall,
             colorName = OnSurface,
             defaultMaxLines = 2,
             defaultMinLines = 2
@@ -42,7 +42,7 @@ data class ProductRailSnippetData(
             defaultMaxLines = 1
         )
         cost?.setDefaults(
-            fontStyle = DisplayMedium,
+            fontStyle = TitleLarge,
             colorName = OnSurfaceVariant
         )
     }

@@ -4,7 +4,7 @@ import com.project.phantom.theme.PhantomColorName.OnSurface
 import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
 import com.project.phantom.theme.PhantomFontStyle.BodyLarge
 import com.project.phantom.theme.PhantomFontStyle.BodyMedium
-import com.project.phantom.theme.PhantomFontStyle.DisplayMedium
+import com.project.phantom.theme.PhantomFontStyle.DisplaySmall
 import com.project.phantom.theme.PhantomFontStyle.TitleLarge
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.image.ImageData
@@ -41,7 +41,7 @@ data class ProductFullSnippetData(
             defaultMaxLines = 1
         )
         cost?.setDefaults(
-            fontStyle = DisplayMedium,
+            fontStyle = DisplaySmall,
             colorName = OnSurfaceVariant
         )
     }

@@ -12,7 +12,11 @@ import coil.request.ImageRequest
 import com.project.phantom.theme3.AppThemeColors
 
 @Composable
-fun PhantomImage(data: ImageData?, modifier: Modifier = Modifier) {
+fun PhantomImage(
+    data: ImageData?,
+    modifier: Modifier = Modifier,
+    contentScale: ContentScale = ContentScale.Inside
+) {
     // Check for visibility
     if (data == null || data.url.isNullOrEmpty()) {
         return
@@ -20,7 +24,7 @@ fun PhantomImage(data: ImageData?, modifier: Modifier = Modifier) {
 
     // Some common stuff for our image request
     val builder: ImageRequest.Builder.() -> Unit = {
-        val placeholderColor = AppThemeColors.primary.copy(alpha = 0.6f).toArgb()
+        val placeholderColor = AppThemeColors.primary.copy(alpha = 0.2f).toArgb()
         placeholder(ColorDrawable(placeholderColor))
     }
 
@@ -29,7 +33,7 @@ fun PhantomImage(data: ImageData?, modifier: Modifier = Modifier) {
         painter = rememberImagePainter(data = data.url, builder = builder),
         contentDescription = null,
         modifier = modifier,
-        contentScale = ContentScale.Inside
+        contentScale = contentScale
     )
 }
 
