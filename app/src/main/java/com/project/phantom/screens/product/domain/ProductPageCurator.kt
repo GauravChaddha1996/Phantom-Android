@@ -5,6 +5,7 @@ import com.project.phantom.screens.base.BaseSnippetCurator
 import com.project.phantom.theme.PaddingStyle.huge
 import com.project.phantom.theme.PaddingStyle.large
 import com.project.phantom.theme.PaddingStyle.small
+import com.project.phantom.theme.PhantomFontStyle
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.snippets.commons.SnippetSectionData
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
@@ -19,6 +20,9 @@ class ProductPageCurator : BaseSnippetCurator() {
             when (it) {
                 is SectionHeaderSnippetData -> {
                     it.paddingValues = PaddingValues(start = large, top = huge)
+                    it.title?.setDefaults(
+                        fontStyle = PhantomFontStyle.TitleMedium
+                    )
                 }
                 is TextSectionSnippetData -> {
                     curateTextSection(it)

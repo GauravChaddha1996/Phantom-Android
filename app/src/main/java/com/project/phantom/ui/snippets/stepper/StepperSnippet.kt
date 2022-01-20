@@ -23,6 +23,11 @@ fun StepperSnippet(data: StepperSnippetData) {
         contentPadding = PaddingValues(PaddingStyle.large, PaddingStyle.medium),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(PaddingStyle.large)
+            .padding(
+                start = PaddingStyle.large,
+                end = PaddingStyle.large,
+                top = PaddingStyle.large,
+                bottom = PaddingStyle.nano
+            )
     )
 }

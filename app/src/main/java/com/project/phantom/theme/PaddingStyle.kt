@@ -11,4 +11,5 @@ object PaddingStyle {
     val extra: Dp = 16.dp
     val huge: Dp = 20.dp
     val gigantic: Dp = 24.dp
+    val nova: Dp = 60.dp
 }

@@ -31,7 +31,8 @@ class ProductViewModelImpl(
             if (curatedResults.isNotEmpty()) {
                 state = state.copy(
                     lceState = PhantomLceData.getContentData(),
-                    rvDataState = curatedResults
+                    rvDataState = curatedResults,
+                    stepperSnippetData = response.stepperSnippetData?.apply { setDefaults() }
                 )
             } else {
                 throw Exception("Product page curation exception")

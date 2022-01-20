@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -57,7 +58,7 @@ private fun PagerScope.GetPagerItem(
     index: Int
 ) {
     Box(
-        Modifier.height(getScreenHeight(times = 0.625f))
+        Modifier.height(getScreenHeight(times = 0.5f))
     ) {
         PhantomImage(
             data = item,
@@ -84,7 +85,8 @@ private fun PagerScope.GetPagerItem(
                         stop = 1.dp,
                         fraction = 1f - pageOffset.coerceIn(0f, 1f)
                     ).value
-                }
+                },
+            contentScale = ContentScale.Fit
         )
     }
 }

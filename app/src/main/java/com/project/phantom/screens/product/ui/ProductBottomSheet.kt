@@ -1,11 +1,16 @@
 package com.project.phantom.screens.product.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.project.phantom.LaunchOnce
@@ -15,9 +20,11 @@ import com.project.phantom.screens.product.domain.ProductFetcherImpl
 import com.project.phantom.screens.product.domain.ProductPageCurator
 import com.project.phantom.screens.product.domain.ProductService
 import com.project.phantom.screens.product.domain.ProductViewModelImpl
+import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.ui.lce.PhantomLCE
 import com.project.phantom.ui.lce.PhantomLceInteraction
 import com.project.phantom.ui.list.VerticalList
+import com.project.phantom.ui.snippets.stepper.StepperSnippet
 import org.koin.android.ext.android.get
 import retrofit2.Retrofit
 
@@ -44,7 +51,11 @@ fun ProductBottomSheet(initModel: ProductPageInitModel) {
         VerticalList(
             rvDataState = state.rvDataState,
             interaction = remember { SnippetInteractions() },
-            verticalArrangement = Arrangement.spacedBy(0.dp)
+            verticalArrangement = Arrangement.spacedBy(0.dp),
+            contentPadding = PaddingValues(
+                top = PaddingStyle.large,
+                bottom = PaddingStyle.nova
+            )
         )
         PhantomLCE(
             data = state.lceState,
@@ -54,5 +65,14 @@ fun ProductBottomSheet(initModel: ProductPageInitModel) {
                 }
             }
         )
+        AnimatedVisibility(
+            visible = state.stepperSnippetData != null,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = PaddingStyle.medium),
+            enter = slideInVertically { it / 2 }
+        ) {
+            StepperSnippet(data = state.stepperSnippetData!!)
+        }
     }
 }

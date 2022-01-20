@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.product.ui.ProductBottomSheet
 import com.project.phantom.screens.product.ui.ProductPageInitModel
+import com.project.phantom.theme.CornerStyle
 import com.project.phantom.theme3.AppTheme
 import com.project.phantom.theme3.AppThemeColors
 import kotlinx.coroutines.CoroutineScope
@@ -59,6 +60,8 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent {
                     }
                 )
                 BottomSheetScaffold(
+                    sheetPeekHeight = 0.dp,
+                    sheetShape = CornerStyle.large,
                     sheetContent = {
                         // If sheet is collapsed anytime, reset the data to invalid sheet
                         // so that the last shown sheet isn't shown again
@@ -79,8 +82,7 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent {
                             Content()
                             ScrimForBottomSheet(scope, scaffoldState, currentBottomSheetType)
                         }
-                    },
-                    sheetPeekHeight = 0.dp
+                    }
                 )
             }
         }
