@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.GraphicsLayerScope
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
@@ -66,27 +67,30 @@ private fun PagerScope.GetPagerItem(
                 .graphicsLayer {
                     shape = CornerStyle.large
                     clip = true
-
                     val pageOffset = calculateCurrentOffsetForPage(index).absoluteValue
-
-                    // We animate the scaleX + scaleY, between 85% and 100%
-                    lerp(
-                        start = 0.85.dp,
-                        stop = 1.dp,
-                        fraction = (1f - pageOffset.coerceIn(0f, 1f))
-                    ).also { scale ->
-                        scaleX = scale.value
-                        scaleY = scale.value
-                    }
-
-                    // We animate the alpha, between 50% and 100%
-                    alpha = lerp(
-                        start = 0.5.dp,
-                        stop = 1.dp,
-                        fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                    ).value
+                    setPagerMovementAnimation(pageOffset)
                 },
             contentScale = ContentScale.Fit
         )
     }
+}
+
+@OptIn(ExperimentalPagerApi::class)
+private fun GraphicsLayerScope.setPagerMovementAnimation(pageOffset: Float) {
+    // We animate the scaleX + scaleY, between 85% and 100%
+    lerp(
+        start = 0.85.dp,
+        stop = 1.dp,
+        fraction = (1f - pageOffset.coerceIn(0f, 1f))
+    ).also { scale ->
+        scaleX = scale.value
+        scaleY = scale.value
+    }
+
+    // We animate the alpha, between 50% and 100%
+    alpha = lerp(
+        start = 0.5.dp,
+        stop = 1.dp,
+        fraction = 1f - pageOffset.coerceIn(0f, 1f)
+    ).value
 }

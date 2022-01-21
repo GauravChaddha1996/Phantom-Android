@@ -1,4 +1,4 @@
-package com.project.phantom.ui.snippets.filterProperty
+package com.project.phantom.ui.snippets.filterSheet
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -24,13 +24,13 @@ fun FilterPropertySnippet(
                 start = PaddingStyle.large,
                 end = PaddingStyle.large,
                 top = PaddingStyle.nano,
-                bottom = PaddingStyle.medium
+                bottom = PaddingStyle.large
             )
         )
         HorizontalList(
+            modifier = Modifier.padding(bottom = PaddingStyle.large),
             rvData = HorizontalListData(propertySection.pills),
-            interaction = interactions,
-            modifier = Modifier.padding(bottom = PaddingStyle.large)
+            interaction = interactions
         )
     }
 }

@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -20,22 +21,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.project.phantom.R
 import com.project.phantom.getScreenWidth
 import com.project.phantom.screens.base.SnippetInteractions
-import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.color.PhantomColor
-import com.project.phantom.theme.font.PhantomTextStyle
+import com.project.phantom.theme.color.AppThemeColors
 import com.project.phantom.ui.card.OutlinedCard
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.image.PhantomImage
 import com.project.phantom.ui.list.HorizontalList
 import com.project.phantom.ui.list.HorizontalListData
-import com.project.phantom.ui.text.MarkdownConfig
-import com.project.phantom.ui.text.MarkdownFontSpan
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -55,58 +50,69 @@ fun ProductRailSnippet(
             }
         ) {
             Box {
-                PhantomImage(
-                    data = data.imageData,
-                    modifier = Modifier.aspectRatio(ratio = 1.83f),
-                    contentScale = ContentScale.None
-                )
-                Box(
-                    modifier = Modifier
-                        .padding(PaddingStyle.medium)
-                        .align(Alignment.TopEnd)
-                        .clip(
-                            RoundedCornerShape(
-                                topStart = CornerSize(PaddingStyle.zero),
-                                topEnd = CornerSize(PaddingStyle.medium),
-                                bottomStart = CornerSize(PaddingStyle.medium),
-                                bottomEnd = CornerSize(PaddingStyle.zero)
-                            )
-                        )
-                        .background(AppThemeColors.primary)
-                ) {
-                    PhantomText(
-                        data = TextData().setDefaults(
-                            defaultText = stringResource(id = R.string.new3),
-                            textStyle = PhantomTextStyle.LabelLarge,
-                            color = PhantomColor.OnPrimary
-                        ),
-                        modifier = Modifier.padding(
-                            horizontal = PaddingStyle.medium,
-                            vertical = PaddingStyle.small
-                        )
-                    )
-                }
+                GetImage(data.imageData)
+                GetNewTag(data.newTag)
             }
-            Row(
-                modifier = Modifier.padding(PaddingStyle.large),
-                verticalAlignment = Alignment.Top
-            ) {
-                Column(
-                    modifier = Modifier
-                        .weight(1f, true)
-                        .padding(end = PaddingStyle.large),
-                    verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
-                ) {
-                    PhantomText(data = data.name)
-                    PhantomText(
-                        data = data.shortDesc,
-                        modifier = Modifier.alpha(ContentAlpha.medium)
-                    )
-                    PhantomText(data = data.brandAndCategory)
-                }
-                PhantomText(data = data.cost)
-            }
+            GetTextSection(data)
         }
+    }
+}
+
+@Composable
+private fun GetImage(imageData: ImageData?) {
+    PhantomImage(
+        data = imageData,
+        modifier = Modifier.aspectRatio(ratio = 1.83f),
+        contentScale = ContentScale.None
+    )
+}
+
+@Composable
+private fun BoxScope.GetNewTag(newTag: TextData?) {
+    Box(
+        modifier = Modifier
+            .padding(PaddingStyle.medium)
+            .align(Alignment.TopEnd)
+            .clip(
+                RoundedCornerShape(
+                    topStart = CornerSize(PaddingStyle.zero),
+                    topEnd = CornerSize(PaddingStyle.medium),
+                    bottomStart = CornerSize(PaddingStyle.medium),
+                    bottomEnd = CornerSize(PaddingStyle.zero)
+                )
+            )
+            .background(AppThemeColors.primary)
+    ) {
+        PhantomText(
+            data = newTag,
+            modifier = Modifier.padding(
+                horizontal = PaddingStyle.medium,
+                vertical = PaddingStyle.small
+            )
+        )
+    }
+}
+
+@Composable
+private fun GetTextSection(data: ProductRailSnippetData) {
+    Row(
+        modifier = Modifier.padding(PaddingStyle.large),
+        verticalAlignment = Alignment.Top
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f, true)
+                .padding(end = PaddingStyle.large),
+            verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
+        ) {
+            PhantomText(data = data.name)
+            PhantomText(
+                data = data.shortDesc,
+                modifier = Modifier.alpha(ContentAlpha.medium)
+            )
+            PhantomText(data = data.brandAndCategory)
+        }
+        PhantomText(data = data.cost)
     }
 }
 
@@ -121,16 +127,7 @@ private fun TestProductRailSnippet() {
         id = 1,
         name = TextData("Solid black shirt"),
         shortDesc = TextData("Soft cotton shirt made by well paid work"),
-        brandAndCategory = TextData(
-            "by Adidas in Shirts",
-            markdownConfig = MarkdownConfig(
-                true,
-                listOf(
-                    MarkdownFontSpan(PhantomTextStyle.BodyMedium, start = 3, end = 9),
-                    MarkdownFontSpan(PhantomTextStyle.BodyMedium, start = 13, end = 19)
-                )
-            )
-        ),
+        brandAndCategory = TextData("By Adidas In Shirts"),
         cost = TextData("$200"),
         imageData = ImageData("url")
     )
@@ -139,7 +136,7 @@ private fun TestProductRailSnippet() {
     Surface {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopStart) {
             HorizontalList(
-                HorizontalListData(
+                rvData = HorizontalListData(
                     listOf(data, data)
                 ),
                 interaction = SnippetInteractions()

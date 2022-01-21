@@ -1,7 +1,6 @@
 package com.project.phantom.ui.snippets.productDual
 
-import com.project.phantom.theme.color.PhantomColor.OnSurface
-import com.project.phantom.theme.color.PhantomColor.OnSurfaceVariant
+import com.project.phantom.theme.color.PhantomColor
 import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.image.ImageData
@@ -22,25 +21,25 @@ data class ProductDualSnippetData(
 ) : SnippetData() {
     override fun setDefaults() {
         name?.setDefaults(
-            textStyle = PhantomTextStyle.TitleMedium,
-            color = OnSurface,
+            textStyle = PhantomTextStyle.TitleSmall,
+            color = PhantomColor.OnSurface,
             defaultMaxLines = 2,
             defaultMinLines = 2
         )
         shortDesc?.setDefaults(
             textStyle = PhantomTextStyle.BodySmall,
-            color = OnSurface,
+            color = PhantomColor.OnSurface,
             defaultMaxLines = 2,
             defaultMinLines = 2
         )
         brand?.setDefaults(
             textStyle = PhantomTextStyle.BodyMedium,
-            color = OnSurface,
+            color = PhantomColor.OnSurface,
             defaultMaxLines = 1
         )
         cost?.setDefaults(
-            textStyle = PhantomTextStyle.LabelLarge,
-            color = OnSurfaceVariant
+            textStyle = PhantomTextStyle.LabelExtra,
+            color = PhantomColor.OnSurfaceVariant
         )
     }
 }

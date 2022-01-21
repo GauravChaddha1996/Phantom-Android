@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.color.AppThemeColors
 import com.project.phantom.ui.text.PhantomText
 
 @Composable
@@ -24,7 +25,8 @@ fun PhantomButton(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues? = null,
     onClick: () -> Unit = {},
-    colors: ButtonColors? = null
+    colors: ButtonColors? = null,
+    showArrowIcon: Boolean = false
 ) {
     // Cases to check for visibility
     if (data == null || data.text?.text.isNullOrEmpty()) {
@@ -32,13 +34,19 @@ fun PhantomButton(
     }
 
     when (data.type) {
-        PhantomButtonType.TEXT -> GetTextButton(data, modifier, contentPadding, onClick)
+        PhantomButtonType.TEXT -> GetTextButton(
+            data = data,
+            modifier = modifier,
+            contentPadding = contentPadding,
+            onClick = onClick,
+            showArrowIcon = showArrowIcon
+        )
         PhantomButtonType.SOLID, null -> GetSolidButton(
-            data,
-            modifier,
-            contentPadding,
-            colors,
-            onClick
+            data = data,
+            modifier = modifier,
+            contentPadding = contentPadding,
+            colors = colors,
+            onClick = onClick
         )
     }
 }
@@ -48,7 +56,8 @@ private fun GetTextButton(
     data: ButtonData,
     modifier: Modifier,
     contentPadding: PaddingValues?,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    showArrowIcon: Boolean
 ) {
     TextButton(
         onClick = { onClick.invoke() },
@@ -57,14 +66,16 @@ private fun GetTextButton(
         contentPadding = contentPadding ?: ButtonDefaults.TextButtonContentPadding
     ) {
         PhantomText(data = data.text)
-        Icon(
-            imageVector = Icons.Default.ArrowForward,
-            contentDescription = null,
-            modifier = Modifier
-                .size(LocalTextStyle.current.fontSize.value.dp)
-                .padding(start = PaddingStyle.nano)
-                .offset(y = 1.dp)
-        )
+        if (showArrowIcon) {
+            Icon(
+                imageVector = Icons.Default.ArrowForward,
+                contentDescription = null,
+                modifier = Modifier
+                    .size(LocalTextStyle.current.fontSize.value.dp)
+                    .padding(start = PaddingStyle.nano)
+                    .offset(y = 1.dp)
+            )
+        }
     }
 }
 
@@ -79,7 +90,10 @@ private fun GetSolidButton(
     FilledTonalButton(
         onClick = { onClick.invoke() },
         modifier = modifier,
-        colors = colors ?: ButtonDefaults.filledTonalButtonColors(),
+        colors = colors ?: ButtonDefaults.filledTonalButtonColors(
+            containerColor = AppThemeColors.primary,
+            contentColor = AppThemeColors.onPrimary
+        ),
         contentPadding = contentPadding ?: ButtonDefaults.ContentPadding
     ) {
         PhantomText(data = data.text)

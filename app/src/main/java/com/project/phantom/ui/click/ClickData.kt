@@ -16,13 +16,3 @@ val ClickDataPolymorphicAdapter: PolymorphicJsonAdapterFactory<ClickData> =
     PolymorphicJsonAdapterFactory.of(ClickData::class.java, ClickData.CLICK_TYPE)
         .withSubtype(OpenProductClickData::class.java, ClickTypes.OPEN_PRODUCT.name)
         .withSubtype(OpenCategoryClickData::class.java, ClickTypes.OPEN_CATEGORY.name)
-
-data class PhantomClickData(
-    val clickData: ClickData?
-) {
-    companion object {
-        fun create(clickData: ClickData?): PhantomClickData {
-            return PhantomClickData(clickData = clickData)
-        }
-    }
-}

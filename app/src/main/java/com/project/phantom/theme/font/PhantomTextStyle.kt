@@ -26,9 +26,12 @@ enum class PhantomTextStyle {
     LabelSmall,
 
     // Custom ones
-    Splash,
-    CenterTopAppBarLarge,
-    SingleCharacterLarge
+    DisplayXXXLarge,
+    DisplayLargeBold,
+    HeadlineMediumBold,
+    TitleSemiLarge,
+    BodyExtra,
+    LabelExtra
 }
 
 @Suppress("ComplexMethod")
@@ -51,11 +54,14 @@ fun PhantomTextStyle.resolve(): TextStyle {
         PhantomTextStyle.LabelSmall -> AppTypography.labelSmall
 
         // Custom ones
-        PhantomTextStyle.Splash -> AppTypography.displayLarge.copy(fontWeight = FontWeight.Bold)
-        PhantomTextStyle.CenterTopAppBarLarge -> AppTypography.headlineMedium.copy(fontWeight = FontWeight.Bold)
-        PhantomTextStyle.SingleCharacterLarge -> AppTypography.displayLarge.copy(
+        PhantomTextStyle.DisplayXXXLarge -> AppTypography.displayLarge.copy(
             fontSize = 57.sp.times(other = 2.5),
             lineHeight = 64.sp.times(other = 3)
         )
+        PhantomTextStyle.DisplayLargeBold -> AppTypography.displayLarge.copy(fontWeight = FontWeight.Bold)
+        PhantomTextStyle.HeadlineMediumBold -> AppTypography.headlineMedium.copy(fontWeight = FontWeight.Bold)
+        PhantomTextStyle.TitleSemiLarge -> AppTypography.titleLarge.copy(fontSize = 20.sp)
+        PhantomTextStyle.BodyExtra -> AppTypography.bodyLarge.copy(fontSize = 20.sp)
+        PhantomTextStyle.LabelExtra -> AppTypography.labelLarge.copy(fontSize = 16.sp)
     }
 }

@@ -7,7 +7,7 @@ import com.project.phantom.ui.snippets.productDual.ProductDualSnippetData
 import com.project.phantom.ui.snippets.productFull.ProductFullSnippetData
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
 import com.project.phantom.ui.snippets.stepper.StepperSnippetData
-import com.project.phantom.ui.snippets.textSection.TextSectionSnippetData
+import com.project.phantom.ui.snippets.textSection.TextSnippetData
 import com.squareup.moshi.Json
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
 
@@ -22,7 +22,7 @@ abstract class SnippetData(
     abstract fun setDefaults()
 }
 
-val SNIPPET_DATA_POLYMORPHIC_ADAPTER: PolymorphicJsonAdapterFactory<SnippetData> =
+val SnippetDataPolymorphicAdapter: PolymorphicJsonAdapterFactory<SnippetData> =
     PolymorphicJsonAdapterFactory.of(SnippetData::class.java, SNIPPET_TYPE)
         .withSubtype(ProductRailSnippetData::class.java, SnippetType.ProductRailSnippet.name)
         .withSubtype(ProductFullSnippetData::class.java, SnippetType.ProductFullSnippet.name)
@@ -30,4 +30,4 @@ val SNIPPET_DATA_POLYMORPHIC_ADAPTER: PolymorphicJsonAdapterFactory<SnippetData>
         .withSubtype(ProductDualSnippetData::class.java, SnippetType.ProductDualSnippet.name)
         .withSubtype(ImagePagerSnippetData::class.java, SnippetType.ImagePagerSnippet.name)
         .withSubtype(StepperSnippetData::class.java, SnippetType.StepperSnippet.name)
-        .withSubtype(TextSectionSnippetData::class.java, SnippetType.TextSnippet.name)
+        .withSubtype(TextSnippetData::class.java, SnippetType.TextSnippet.name)

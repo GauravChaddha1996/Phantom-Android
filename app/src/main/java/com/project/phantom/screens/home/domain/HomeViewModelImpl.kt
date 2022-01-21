@@ -52,7 +52,7 @@ class HomeViewModelImpl(
             if (curatedList.isNotEmpty()) {
                 state = state.copy(lceState = getContentData(), rvDataState = curatedList)
             } else {
-                throw HomeCurationException()
+                throw Exception("Curated list is empty")
             }
         }
     }
@@ -71,7 +71,7 @@ class HomeViewModelImpl(
                 )
             } else {
                 state = state.copy(isRefreshing = false)
-                throw HomeCurationException()
+                throw Exception("Curated list is empty")
             }
         }
     }

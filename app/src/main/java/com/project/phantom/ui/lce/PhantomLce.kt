@@ -18,12 +18,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.project.phantom.R
 import com.project.phantom.getScreenWidth
-import com.project.phantom.theme.color.PhantomColor.Error
+import com.project.phantom.theme.color.PhantomColor
 import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
@@ -80,13 +80,13 @@ private fun BoxScope.LceError(
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             val retryTextData = TextData(
-                text = LocalContext.current.getString(R.string.retry),
+                text = stringResource(R.string.retry),
                 font = FontData(PhantomTextStyle.LabelLarge),
-                color = ColorData(Error)
+                color = ColorData(PhantomColor.Error)
             )
             PhantomText(
                 data = data.errorMessage.setDefaults(
-                    defaultText = LocalContext.current.getString(R.string.something_went_wrong)
+                    text = stringResource(R.string.something_went_wrong)
                 ),
                 textAlign = TextAlign.Center
             )
@@ -113,7 +113,7 @@ private fun BoxScope.LceNoResult(
     ) {
         PhantomText(
             data = data.noResultMessage.setDefaults(
-                defaultText = LocalContext.current.getString(R.string.no_results_found)
+                text = stringResource(R.string.no_results_found)
             ),
             textAlign = TextAlign.Center
         )

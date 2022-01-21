@@ -33,8 +33,8 @@ import com.project.phantom.koin.SplashAndHomeScopeName
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.home.domain.HomeRepo
 import com.project.phantom.screens.home.view.HomeActivity
-import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.color.AppThemeColors
 import com.project.phantom.theme.color.PhantomColor
 import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.ghost.PhantomGhost
@@ -136,8 +136,8 @@ class SplashActivity : BaseActivity() {
         ) {
             PhantomText(
                 data = TextData().setDefaults(
-                    defaultText = stringResource(id = R.string.app_name),
-                    textStyle = PhantomTextStyle.Splash,
+                    text = stringResource(id = R.string.app_name),
+                    textStyle = PhantomTextStyle.DisplayLargeBold,
                     color = PhantomColor.Primary
                 )
             )

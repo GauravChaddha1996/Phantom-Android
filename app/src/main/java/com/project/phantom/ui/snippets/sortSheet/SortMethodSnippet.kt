@@ -18,9 +18,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.category.models.SortMethodData
-import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.CornerStyle
 import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.color.AppThemeColors
 import com.project.phantom.ui.text.PhantomText
 
 @Composable

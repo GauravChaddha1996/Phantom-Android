@@ -39,7 +39,7 @@ fun PhantomText(
     var finalModifier = modifier
     var readyToDraw by remember { mutableStateOf(false) }
     val localCurrentTextStyle = LocalTextStyle.current
-    var finalTextStyle by remember { mutableStateOf(data.font.resolve() ?: localCurrentTextStyle) }
+    var finalTextStyle by remember { mutableStateOf(data.font?.resolve() ?: localCurrentTextStyle) }
 
     // minLines height logic
     val density = LocalDensity.current

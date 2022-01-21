@@ -9,7 +9,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
-import com.project.phantom.theme.AppThemeColors
+import com.project.phantom.theme.color.AppThemeColors
 
 @Composable
 fun PhantomImage(

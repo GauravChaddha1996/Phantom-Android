@@ -31,8 +31,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.project.phantom.R
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
-import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.color.AppThemeColors
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -70,7 +70,7 @@ class CategoryPageTopAppBar {
             PhantomText(
                 data = when {
                     backLayerActive -> TextData().setDefaults(
-                        defaultText = when {
+                        text = when {
                             backLayerData.showFilterInBackLayer -> stringResource(id = R.string.filter)
                             backLayerData.showSortInBackLayer -> stringResource(id = R.string.sort)
                             else -> null

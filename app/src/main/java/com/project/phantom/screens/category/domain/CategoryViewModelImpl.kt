@@ -20,7 +20,7 @@ class CategoryViewModelImpl(
 ) : CategoryViewModel() {
 
     companion object {
-        const val LoadDelay = 2000L
+        const val LoadDelay = 1000L
     }
 
     override val defaultPhantomCEH = PhantomCEH {

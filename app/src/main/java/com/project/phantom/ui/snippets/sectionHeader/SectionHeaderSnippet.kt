@@ -35,7 +35,8 @@ fun SectionHeaderSnippet(
         )
         PhantomButton(
             data = data?.rightButton,
-            onClick = { interaction.onSectionHeaderSnippetRightButtonClicked(data) }
+            onClick = { interaction.onSectionHeaderSnippetRightButtonClicked(data) },
+            showArrowIcon = true
         )
     }
 }

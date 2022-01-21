@@ -19,8 +19,7 @@ fun VerticalList(
 ) {
     LazyColumn(
         content = {
-            val list = rvDataState
-            list?.forEach { handleListSnippetData(it, interaction) }
+            rvDataState?.forEach { handleListSnippetData(it, interaction) }
         },
         verticalArrangement = verticalArrangement,
         contentPadding = contentPadding,

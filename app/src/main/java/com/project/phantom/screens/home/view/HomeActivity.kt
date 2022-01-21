@@ -23,8 +23,8 @@ import com.project.phantom.R
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.home.domain.HomeViewModel
-import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.color.AppThemeColors
 import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.lce.PhantomLCE
 import com.project.phantom.ui.lce.PhantomLceInteraction
@@ -54,8 +54,8 @@ class HomeActivity : BaseActivity() {
                 title = {
                     PhantomText(
                         data = TextData().setDefaults(
-                            defaultText = stringResource(id = R.string.app_name),
-                            textStyle = PhantomTextStyle.CenterTopAppBarLarge
+                            text = stringResource(id = R.string.app_name),
+                            textStyle = PhantomTextStyle.HeadlineMediumBold
                         )
                     )
                 },

@@ -18,12 +18,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.card.ElevatedCard
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.image.PhantomImage
-import com.project.phantom.ui.text.MarkdownConfig
-import com.project.phantom.ui.text.MarkdownFontSpan
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -45,32 +42,42 @@ fun ProductFullSnippet(
             modifier = Modifier.clickable { interaction.onProductFullSnippetClicked(data = data) }
         ) {
             Column {
-                PhantomImage(
-                    data = data.imageData,
-                    modifier = Modifier.aspectRatio(ratio = 1f),
-                    contentScale = ContentScale.Crop
-                )
-                Row(
-                    modifier = Modifier.padding(PaddingStyle.large),
-                    verticalAlignment = Alignment.Top
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .weight(1f, true)
-                            .padding(end = PaddingStyle.large),
-                        verticalArrangement = Arrangement.spacedBy(PaddingStyle.medium)
-                    ) {
-                        PhantomText(data = data.name)
-                        PhantomText(
-                            data = data.longDesc,
-                            modifier = Modifier.alpha(ContentAlpha.medium)
-                        )
-                        PhantomText(data = data.brandAndCategory)
-                    }
-                    PhantomText(data = data.cost)
-                }
+                GetImage(data.imageData)
+                GetTextSection(data)
             }
         }
+    }
+}
+
+@Composable
+private fun GetImage(imageData: ImageData?) {
+    PhantomImage(
+        data = imageData,
+        modifier = Modifier.aspectRatio(ratio = 1f),
+        contentScale = ContentScale.Crop
+    )
+}
+
+@Composable
+private fun GetTextSection(data: ProductFullSnippetData) {
+    Row(
+        modifier = Modifier.padding(PaddingStyle.large),
+        verticalAlignment = Alignment.Top
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f, true)
+                .padding(end = PaddingStyle.large),
+            verticalArrangement = Arrangement.spacedBy(PaddingStyle.medium)
+        ) {
+            PhantomText(data = data.name)
+            PhantomText(
+                data = data.longDesc,
+                modifier = Modifier.alpha(ContentAlpha.medium)
+            )
+            PhantomText(data = data.brandAndCategory)
+        }
+        PhantomText(data = data.cost)
     }
 }
 
@@ -82,23 +89,14 @@ interface ProductFullSnippetInteraction {
 @Composable
 private fun TestProductFullSnippet() {
     val data = ProductFullSnippetData(
-        1,
+        id = 1,
         name = TextData("Solid black shirt"),
         longDesc = TextData(
             "Soft cotton shirt made by well paid hard Soft cotton shirt made by well " +
                 "paid hard Soft cotton shirt made by well paid hard Soft cotton shirt " +
                 "made by well paid hard"
         ),
-        brandAndCategory = TextData(
-            "by Adidas in Shirts",
-            markdownConfig = MarkdownConfig(
-                true,
-                listOf(
-                    MarkdownFontSpan(PhantomTextStyle.BodyMedium, start = 3, end = 9),
-                    MarkdownFontSpan(PhantomTextStyle.BodyMedium, start = 13, end = 19)
-                )
-            )
-        ),
+        brandAndCategory = TextData("By Adidas In Shirts"),
         cost = TextData("$200"),
         imageData = ImageData("url")
     )

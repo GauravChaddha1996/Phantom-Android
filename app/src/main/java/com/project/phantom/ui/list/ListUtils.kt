@@ -9,8 +9,8 @@ import com.project.phantom.ui.grid.PhantomGrid
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippet
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
 import com.project.phantom.ui.snippets.commons.SnippetData
-import com.project.phantom.ui.snippets.filterPill.FilterPillSnippet
-import com.project.phantom.ui.snippets.filterProperty.FilterPropertySnippet
+import com.project.phantom.ui.snippets.filterSheet.FilterPillSnippet
+import com.project.phantom.ui.snippets.filterSheet.FilterPropertySnippet
 import com.project.phantom.ui.snippets.imagePager.ImagePagerSnippet
 import com.project.phantom.ui.snippets.imagePager.ImagePagerSnippetData
 import com.project.phantom.ui.snippets.productFull.ProductFullSnippet
@@ -21,8 +21,8 @@ import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippet
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
 import com.project.phantom.ui.snippets.stepper.StepperSnippet
 import com.project.phantom.ui.snippets.stepper.StepperSnippetData
-import com.project.phantom.ui.snippets.textSection.TextSectionSnippetData
 import com.project.phantom.ui.snippets.textSection.TextSnippet
+import com.project.phantom.ui.snippets.textSection.TextSnippetData
 
 @Suppress("ComplexMethod", "NestedBlockDepth")
 internal fun LazyListScope.handleListSnippetData(
@@ -60,11 +60,9 @@ internal fun LazyListScope.handleListSnippetData(
                 CategoryRailSnippet(data = it, interaction = interaction)
             }
         }
-        is TextSectionSnippetData -> {
-            it.textSectionArr?.forEach {
-                item {
-                    TextSnippet(data = it)
-                }
+        is TextSnippetData -> {
+            item {
+                TextSnippet(data = it)
             }
         }
         is FilterPropertySection -> {

@@ -18,6 +18,6 @@ class SectionHeaderSnippetData(
     var paddingValues: PaddingValues? = null
 
     override fun setDefaults() {
-        title?.setDefaults(textStyle = PhantomTextStyle.TitleLarge, defaultMaxLines = 1)
+        title?.setDefaults(textStyle = PhantomTextStyle.TitleSemiLarge, defaultMaxLines = 1)
     }
 }

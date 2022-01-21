@@ -34,8 +34,8 @@ import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.domain.CategoryViewModel
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
-import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.color.AppThemeColors
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.lce.PhantomLCE
@@ -188,7 +188,9 @@ class CategoryActivity : BaseActivity() {
             if (state.frontLayerHeader != null) {
                 PhantomText(
                     data = state.frontLayerHeader,
-                    modifier = Modifier.padding(PaddingStyle.large)
+                    modifier = Modifier
+                        .padding(PaddingStyle.large)
+                        .alpha(ContentAlpha.medium)
                 )
                 Box(
                     modifier = Modifier

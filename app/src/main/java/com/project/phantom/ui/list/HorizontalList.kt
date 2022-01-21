@@ -10,11 +10,11 @@ import com.project.phantom.theme.PaddingStyle
 
 @Composable
 fun HorizontalList(
+    modifier: Modifier = Modifier,
     rvData: HorizontalListData,
     interaction: SnippetInteractions,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(PaddingStyle.large),
-    contentPadding: PaddingValues = PaddingValues(horizontal = PaddingStyle.large),
-    modifier: Modifier = Modifier
+    contentPadding: PaddingValues = PaddingValues(horizontal = PaddingStyle.large)
 ) {
     LazyRow(
         content = {

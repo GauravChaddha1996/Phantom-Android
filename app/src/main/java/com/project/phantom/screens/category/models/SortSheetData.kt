@@ -25,6 +25,6 @@ data class SortMethodData(
 ) : SnippetData() {
 
     override fun setDefaults() {
-        name?.setDefaults(textStyle = PhantomTextStyle.TitleSmall)
+        name?.setDefaults(textStyle = PhantomTextStyle.TitleMedium)
     }
 }

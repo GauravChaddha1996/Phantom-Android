@@ -1,7 +1,6 @@
 package com.project.phantom.ui.snippets.productFull
 
-import com.project.phantom.theme.color.PhantomColor.OnSurface
-import com.project.phantom.theme.color.PhantomColor.OnSurfaceVariant
+import com.project.phantom.theme.color.PhantomColor
 import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.image.ImageData
@@ -23,23 +22,23 @@ data class ProductFullSnippetData(
 
     override fun setDefaults() {
         name?.setDefaults(
-            textStyle = PhantomTextStyle.TitleLarge,
-            color = OnSurface,
+            textStyle = PhantomTextStyle.TitleSemiLarge,
+            color = PhantomColor.OnSurface,
             defaultMaxLines = 1
         )
         longDesc?.setDefaults(
             textStyle = PhantomTextStyle.BodyMedium,
-            color = OnSurface,
+            color = PhantomColor.OnSurface,
             defaultMaxLines = 4
         )
         brandAndCategory?.setDefaults(
             textStyle = PhantomTextStyle.BodyLarge,
-            color = OnSurface,
+            color = PhantomColor.OnSurface,
             defaultMaxLines = 1
         )
         cost?.setDefaults(
-            textStyle = PhantomTextStyle.DisplaySmall,
-            color = OnSurfaceVariant
+            textStyle = PhantomTextStyle.TitleSemiLarge,
+            color = PhantomColor.OnSurfaceVariant
         )
     }
 }

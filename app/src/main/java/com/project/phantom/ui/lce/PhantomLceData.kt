@@ -1,8 +1,8 @@
 package com.project.phantom.ui.lce
 
 import androidx.compose.ui.graphics.Color
-import com.project.phantom.theme.AppThemeColors
-import com.project.phantom.theme.color.PhantomColor.OnBackground
+import com.project.phantom.theme.color.AppThemeColors
+import com.project.phantom.theme.color.PhantomColor
 import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.commons.FontData
@@ -47,8 +47,8 @@ data class PhantomLceData(
             noResultMessage = TextData(),
             errorMessage = TextData(
                 text = errorMessage,
-                color = ColorData(OnBackground),
-                font = FontData(PhantomTextStyle.LabelLarge)
+                color = ColorData(PhantomColor.OnBackground),
+                font = FontData(PhantomTextStyle.TitleSemiLarge)
             ),
             phantomGhostColor = AppThemeColors.primary
         )
@@ -60,8 +60,8 @@ data class PhantomLceData(
             showNoResult = true,
             noResultMessage = TextData(
                 text = emptyResultMessage,
-                color = ColorData(OnBackground),
-                font = FontData(PhantomTextStyle.LabelLarge)
+                color = ColorData(PhantomColor.OnBackground),
+                font = FontData(PhantomTextStyle.TitleSemiLarge)
             ),
             errorMessage = TextData(),
             phantomGhostColor = AppThemeColors.primary

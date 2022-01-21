@@ -1,5 +1,6 @@
 package com.project.phantom.screens.home.domain
 
+import com.project.phantom.logger.PhantomLogger
 import com.project.phantom.network.PhantomCEH
 import com.project.phantom.screens.home.models.HomeResponseData
 import kotlinx.coroutines.CoroutineScope
@@ -13,7 +14,7 @@ class HomeRepo(
 ) {
     private val coroutineScope = CoroutineScope(
         Dispatchers.IO +
-            PhantomCEH { it.printStackTrace() }
+            PhantomCEH { PhantomLogger.logException(it) }
     )
     private var homeResponseFetchJob: Job? = null
     var homeResponse: HomeResponseData? = null

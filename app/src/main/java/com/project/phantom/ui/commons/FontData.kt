@@ -13,8 +13,9 @@ data class FontData(
     @Json(name = "defaultStyle")
     var defaultTextStyle: PhantomTextStyle? = null
 
-    fun setDefaults(defaultTextStyle: PhantomTextStyle?) {
+    fun setDefaults(defaultTextStyle: PhantomTextStyle?): FontData {
         this.defaultTextStyle = defaultTextStyle
+        return this
     }
 
     fun resolve(): TextStyle? {

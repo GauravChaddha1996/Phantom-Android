@@ -11,8 +11,8 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class TextData(
     @Json(name = "text") var text: String? = null,
-    @Json(name = "font") val font: FontData = FontData(),
-    @Json(name = "color") val color: ColorData = ColorData(),
+    @Json(name = "font") var font: FontData? = null,
+    @Json(name = "color") var color: ColorData? = null,
     @Json(name = "min_lines") var minLines: Int? = null,
     @Json(name = "max_lines") var maxLines: Int? = null,
     @Json(name = "markdown_config") val markdownConfig: MarkdownConfig? = null
@@ -21,18 +21,18 @@ data class TextData(
     var overflow: TextOverflow = TextOverflow.Ellipsis
 
     fun setDefaults(
-        defaultText: String? = null,
+        text: String? = null,
         textStyle: PhantomTextStyle? = null,
         color: PhantomColor? = null,
         defaultMinLines: Int = 0,
         defaultMaxLines: Int = Int.MAX_VALUE,
         overflow: TextOverflow = TextOverflow.Ellipsis
     ): TextData {
-        text = text?.takeIf { it.isNotEmpty() } ?: defaultText
-        font.setDefaults(textStyle)
-        this.color.setDefaults(color)
-        minLines = minLines ?: defaultMinLines
-        maxLines = maxLines ?: defaultMaxLines
+        this.text = this.text?.takeIf { it.isNotEmpty() } ?: text
+        this.font = (this.font ?: FontData()).setDefaults(textStyle)
+        this.color = (this.color ?: ColorData()).setDefaults(color)
+        this.minLines = minLines ?: defaultMinLines
+        this.maxLines = maxLines ?: defaultMaxLines
         this.overflow = overflow
         return this
     }

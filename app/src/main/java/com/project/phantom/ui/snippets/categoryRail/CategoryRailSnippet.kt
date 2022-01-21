@@ -16,10 +16,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
-import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.color.PhantomColor.OnSurfaceVariant
-import com.project.phantom.theme.color.PhantomColor.Surface
+import com.project.phantom.theme.color.AppThemeColors
+import com.project.phantom.theme.color.PhantomColor
 import com.project.phantom.ui.card.FilledCard
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.text.PhantomText
@@ -44,7 +43,7 @@ fun CategoryRailSnippet(
                 modifier = Modifier
                     .align(Alignment.Center)
                     .scale(scale = 1.3f)
-                    .alpha(alpha = 0.45f),
+                    .alpha(alpha = 0.15f),
                 textAlign = TextAlign.Center
             )
             PhantomText(
@@ -70,9 +69,9 @@ private fun TestCategoryRailSnippet() {
             CategoryRailSnippet(
                 data = CategoryRailSnippetData(
                     id = 1,
-                    firstCharacter = TextData("S", color = ColorData(OnSurfaceVariant)),
+                    firstCharacter = TextData("S", color = ColorData(PhantomColor.OnSurfaceVariant)),
                     name = TextData("Shirts"),
-                    bgColor = ColorData(Surface)
+                    bgColor = ColorData(PhantomColor.Surface)
                 ).apply { setDefaults() },
                 interaction = SnippetInteractions()
             )

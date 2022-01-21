@@ -16,14 +16,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.card.ElevatedCard
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.grid.PhantomGrid
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.image.PhantomImage
-import com.project.phantom.ui.text.MarkdownConfig
-import com.project.phantom.ui.text.MarkdownFontSpan
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -37,38 +34,48 @@ fun ProductDualSnippet(
         modifier = Modifier.clickable { interaction.onProductDualSnippetClicked(data) }
     ) {
         Column {
-            PhantomImage(
-                data = data.imageData,
-                modifier = Modifier.aspectRatio(ratio = 1.05f),
-                contentScale = ContentScale.Crop
+            GetImage(data.imageData)
+            GetTextSection(data)
+        }
+    }
+}
+
+@Composable
+private fun GetImage(imageData: ImageData?) {
+    PhantomImage(
+        data = imageData,
+        modifier = Modifier.aspectRatio(ratio = 1.05f),
+        contentScale = ContentScale.Crop
+    )
+}
+
+@Composable
+private fun GetTextSection(data: ProductDualSnippetData) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(PaddingStyle.small),
+        modifier = Modifier.padding(vertical = PaddingStyle.large)
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = PaddingStyle.large),
+            verticalAlignment = Alignment.Top
+        ) {
+            PhantomText(
+                data = data.name,
+                modifier = Modifier
+                    .weight(1f, true)
+                    .padding(end = PaddingStyle.medium)
             )
-            Column(
-                verticalArrangement = Arrangement.spacedBy(PaddingStyle.small),
-                modifier = Modifier.padding(vertical = PaddingStyle.large)
-            ) {
-                Row(
-                    modifier = Modifier.padding(horizontal = PaddingStyle.large),
-                    verticalAlignment = Alignment.Top
-                ) {
-                    PhantomText(
-                        data = data.name,
-                        modifier = Modifier
-                            .weight(1f, true)
-                            .padding(end = PaddingStyle.medium)
-                    )
-                    PhantomText(data = data.cost)
-                }
-                Column(
-                    modifier = Modifier.padding(horizontal = PaddingStyle.large),
-                    verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
-                ) {
-                    PhantomText(
-                        data = data.shortDesc,
-                        modifier = Modifier.alpha(ContentAlpha.medium)
-                    )
-                    PhantomText(data = data.brand)
-                }
-            }
+            PhantomText(data = data.cost)
+        }
+        Column(
+            modifier = Modifier.padding(horizontal = PaddingStyle.large),
+            verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
+        ) {
+            PhantomText(
+                data = data.shortDesc,
+                modifier = Modifier.alpha(ContentAlpha.medium)
+            )
+            PhantomText(data = data.brand)
         }
     }
 }
@@ -81,18 +88,10 @@ interface ProductDualSnippetInteraction {
 @Composable
 private fun TestProductDualSnippet() {
     val data = ProductDualSnippetData(
-        1,
+        id = 1,
         name = TextData("Solid black shirt"),
-        shortDesc = TextData(
-            "Soft cotton shirt made by good workers"
-        ),
-        brand = TextData(
-            "by Adidas",
-            markdownConfig = MarkdownConfig(
-                true,
-                listOf(MarkdownFontSpan(PhantomTextStyle.BodyMedium, start = 3, end = 9))
-            )
-        ),
+        shortDesc = TextData("Soft cotton shirt made by good workers"),
+        brand = TextData("By Adidas"),
         cost = TextData("$200"),
         imageData = ImageData("url")
     )

@@ -14,8 +14,9 @@ data class ColorData(
 
     fun setDefaults(
         defaultColor: PhantomColor? = null
-    ) {
+    ): ColorData {
         this.name = name ?: defaultColor
+        return this
     }
 }
 
