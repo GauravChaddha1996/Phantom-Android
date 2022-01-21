@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -22,7 +23,8 @@ fun PhantomButton(
     data: ButtonData?,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues? = null,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    colors: ButtonColors? = null
 ) {
     // Cases to check for visibility
     if (data == null || data.text?.text.isNullOrEmpty()) {
@@ -30,8 +32,14 @@ fun PhantomButton(
     }
 
     when (data.type) {
-        PhantomButtonType.SOLID -> GetSolidButton(data, modifier, contentPadding, onClick)
-        PhantomButtonType.TEXT, null -> GetTextButton(data, modifier, contentPadding, onClick)
+        PhantomButtonType.TEXT -> GetTextButton(data, modifier, contentPadding, onClick)
+        PhantomButtonType.SOLID, null -> GetSolidButton(
+            data,
+            modifier,
+            contentPadding,
+            colors,
+            onClick
+        )
     }
 }
 
@@ -65,12 +73,13 @@ private fun GetSolidButton(
     data: ButtonData,
     modifier: Modifier,
     contentPadding: PaddingValues?,
+    colors: ButtonColors?,
     onClick: () -> Unit
 ) {
     FilledTonalButton(
         onClick = { onClick.invoke() },
         modifier = modifier,
-        colors = ButtonDefaults.filledTonalButtonColors(),
+        colors = colors ?: ButtonDefaults.filledTonalButtonColors(),
         contentPadding = contentPadding ?: ButtonDefaults.ContentPadding
     ) {
         PhantomText(data = data.text)

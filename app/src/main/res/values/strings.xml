@@ -6,4 +6,5 @@
     <string name="filter">Filter</string>
     <string name="sort">Sort</string>
     <string name="new3">New</string>
+    <string name="apply">Apply</string>
 </resources>

@@ -13,8 +13,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BackdropScaffold
 import androidx.compose.material.BackdropScaffoldState
 import androidx.compose.material.BackdropValue
+import androidx.compose.material.ContentAlpha
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBackdropScaffoldState
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -23,14 +25,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.project.phantom.LaunchOnce
+import com.project.phantom.R
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.domain.CategoryViewModel
 import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
 import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.PaddingStyle.large
 import com.project.phantom.theme3.AppThemeColors
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
@@ -121,9 +127,7 @@ class CategoryActivity : BaseActivity() {
                         )
                     },
                     gesturesEnabled = false,
-                    peekHeight = 56.dp,
-                    headerHeight = 56.dp,
-                    backLayerBackgroundColor = LocalCategoryScreenColors.current.backLayerBackground
+                    backLayerBackgroundColor = AppThemeColors.primaryContainer
                 )
             }
         )
@@ -166,23 +170,23 @@ class CategoryActivity : BaseActivity() {
                         VerticalList(
                             rvDataState = state.filterSheetData?.let { listOf(it) },
                             interaction = interactions,
-                            contentPadding = PaddingValues(bottom = PaddingStyle.medium),
-                            verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
+                            verticalArrangement = Arrangement.spacedBy(PaddingStyle.small),
+                            contentPadding = PaddingValues(0.dp)
                         )
-                        Box(
+                        PhantomButton(
+                            data = ButtonData(TextData(stringResource(R.string.apply))),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(PaddingStyle.large)
-                        ) {
-                            PhantomButton(
-                                data = ButtonData(TextData("Apply")),
-                                modifier = Modifier.fillMaxWidth(),
-                                onClick = {
-                                    viewModel.onFilterApplied()
-                                    scope.launch { scaffoldState.conceal() }
-                                }
-                            )
-                        }
+                                .padding(start = large, end = large, bottom = large, top = 0.dp),
+                            colors = ButtonDefaults.filledTonalButtonColors(
+                                containerColor = AppThemeColors.primary,
+                                contentColor = AppThemeColors.onPrimary
+                            ),
+                            onClick = {
+                                viewModel.onFilterApplied()
+                                scope.launch { scaffoldState.conceal() }
+                            }
+                        )
                     }
                 }
             }
@@ -199,19 +203,20 @@ class CategoryActivity : BaseActivity() {
             if (state.frontLayerHeader != null) {
                 PhantomText(
                     data = state.frontLayerHeader,
-                    modifier = Modifier.padding(PaddingStyle.large)
+                    modifier = Modifier.padding(large)
                 )
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(1.5.dp)
+                        .height(0.25.dp)
                         .background(AppThemeColors.onBackground)
+                        .alpha(ContentAlpha.medium)
                 )
             }
             VerticalList(
                 rvDataState = state.rvDataState,
                 interaction = interactions,
-                contentPadding = PaddingValues(vertical = PaddingStyle.large)
+                contentPadding = PaddingValues(vertical = PaddingStyle.extra)
             )
         }
         PhantomLCE(

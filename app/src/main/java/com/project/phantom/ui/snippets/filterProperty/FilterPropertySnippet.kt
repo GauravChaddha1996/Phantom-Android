@@ -7,6 +7,8 @@ import androidx.compose.ui.Modifier
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.models.FilterPropertyUiSection
 import com.project.phantom.theme.PaddingStyle.large
+import com.project.phantom.theme.PaddingStyle.medium
+import com.project.phantom.theme.PaddingStyle.nano
 import com.project.phantom.ui.list.HorizontalList
 import com.project.phantom.ui.list.HorizontalListData
 import com.project.phantom.ui.text.PhantomText
@@ -17,9 +19,21 @@ fun FilterPropertySnippet(
     interactions: SnippetInteractions
 ) {
     Column {
-        PhantomText(data = propertySection.name, modifier = Modifier.padding(large))
+        PhantomText(
+            data = propertySection.name,
+            modifier = Modifier.padding(
+                start = large,
+                end = large,
+                top = nano,
+                bottom = medium
+            )
+        )
         propertySection.propertyValues?.let {
-            HorizontalList(rvData = HorizontalListData(it), interaction = interactions)
+            HorizontalList(
+                rvData = HorizontalListData(it),
+                interaction = interactions,
+                modifier = Modifier.padding(bottom = large)
+            )
         }
     }
 }

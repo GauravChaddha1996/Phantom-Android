@@ -1,7 +1,6 @@
 package com.project.phantom.screens.category.models
 
-import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
-import com.project.phantom.theme.PhantomFontStyle.LabelLarge
+import com.project.phantom.theme.PhantomFontStyle.TitleSmall
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.TextData
 import com.squareup.moshi.Json
@@ -26,9 +25,6 @@ data class SortMethodData(
 ) : SnippetData() {
 
     override fun setDefaults() {
-        name?.setDefaults(
-            fontStyle = LabelLarge,
-            colorName = OnSurfaceVariant
-        )
+        name?.setDefaults(fontStyle = TitleSmall)
     }
 }

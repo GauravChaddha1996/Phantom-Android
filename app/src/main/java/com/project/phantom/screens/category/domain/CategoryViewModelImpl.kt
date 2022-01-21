@@ -10,11 +10,9 @@ import com.project.phantom.screens.category.models.getSelectedPropertyValueIds
 import com.project.phantom.screens.category.models.getSelectedSortMethodData
 import com.project.phantom.screens.category.view.CategoryPageInitModel
 import com.project.phantom.screens.category.view.CategoryScreenState
-import com.project.phantom.theme.PhantomColorName.OnBackground
 import com.project.phantom.theme.PhantomColorName.OnPrimary
 import com.project.phantom.theme.PhantomColorName.Primary
 import com.project.phantom.theme.PhantomFontStyle.TitleLarge
-import com.project.phantom.theme.PhantomFontStyle.TitleMedium
 import com.project.phantom.ui.commons.getResolvedColor
 import com.project.phantom.ui.lce.PhantomLceData
 import kotlinx.coroutines.delay
@@ -85,14 +83,8 @@ class CategoryViewModelImpl(
                 state = state.copy(
                     lceState = PhantomLceData.getContentData()
                         .copy(phantomGhostColor = initModel.categoryColor.getResolvedColor(Primary)),
-                    pageTitle = response.pageTitle?.setDefaults(
-                        fontStyle = TitleLarge,
-                        colorName = OnPrimary
-                    ),
-                    frontLayerHeader = response.snippetSectionHeader?.setDefaults(
-                        fontStyle = TitleMedium,
-                        colorName = OnBackground
-                    ),
+                    pageTitle = response.pageTitle,
+                    frontLayerHeader = response.snippetSectionHeader,
                     rvDataState = curatedList,
                     sortSheetData = response.sortSheetData?.also { it.setDefaults() },
                     selectedSortMethodData = response.sortSheetData.getSelectedSortMethodData(),

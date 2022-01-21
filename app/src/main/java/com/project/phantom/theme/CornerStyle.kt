@@ -7,4 +7,5 @@ object CornerStyle {
     val small = RoundedCornerShape(4.dp)
     val medium = RoundedCornerShape(8.dp)
     val large = RoundedCornerShape(12.dp)
+    val extra = RoundedCornerShape(16.dp)
 }

@@ -1,35 +1,32 @@
 package com.project.phantom.screens.category.view
 
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BackdropScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SmallTopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -37,10 +34,7 @@ import androidx.compose.ui.unit.dp
 import com.project.phantom.R
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
 import com.project.phantom.theme.PaddingStyle.medium
-import com.project.phantom.theme.PaddingStyle.nano
 import com.project.phantom.theme.PaddingStyle.small
-import com.project.phantom.theme.PhantomColorName.OnPrimary
-import com.project.phantom.theme.PhantomFontStyle.TitleLarge
 import com.project.phantom.theme3.AppThemeColors
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
@@ -58,104 +52,78 @@ class CategoryPageTopAppBar {
         filterClickable: () -> Unit,
         sortClickable: () -> Unit
     ) {
-        TopAppBar(
-            elevation = 0.dp,
-            backgroundColor = Color.Transparent,
-            contentPadding = PaddingValues()
-        ) {
-            GetNavigationIconAndTitle(
-                scaffoldState = scaffoldState,
-                backClickable = backClickable,
-                state = state,
-                closeClickable = closeClickable,
-                backLayerData = backLayerData
+        SmallTopAppBar(
+            title = { GetTitle(state, scaffoldState, backLayerData) },
+            navigationIcon = { GetNavigationIcon(scaffoldState, backClickable, closeClickable) },
+            actions = { GetAppBarActions(state, scaffoldState, filterClickable, sortClickable) },
+            colors = TopAppBarDefaults.smallTopAppBarColors(
+                containerColor = AppThemeColors.primaryContainer,
+                titleContentColor = AppThemeColors.onPrimaryContainer,
+                navigationIconContentColor = AppThemeColors.onPrimaryContainer,
+                actionIconContentColor = AppThemeColors.onPrimaryContainer
             )
-            GetAppBarActions(
-                scaffoldState = scaffoldState,
-                state = state,
-                filterClickable = filterClickable,
-                sortClickable = sortClickable
-            )
+        )
+    }
+
+    @ExperimentalAnimationApi
+    @ExperimentalMaterialApi
+    @Composable
+    private fun GetNavigationIcon(
+        scaffoldState: BackdropScaffoldState,
+        backClickable: () -> Unit,
+        closeClickable: () -> Unit
+    ) {
+        AnimatedContent(!scaffoldState.isRevealed) { isConcealed ->
+            val clickable = if (isConcealed) backClickable else closeClickable
+            val imageVector = if (isConcealed) Icons.Default.ArrowBack else Icons.Default.Close
+            Box(
+                modifier = Modifier
+                    .size(36.dp)
+                    .padding(start = medium)
+                    .clip(CircleShape)
+                    .clickable { clickable.invoke() }
+            ) {
+                Icon(
+                    imageVector = imageVector,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(24.dp)
+                        .align(Alignment.Center)
+                )
+            }
         }
     }
 
     @ExperimentalAnimationApi
     @ExperimentalMaterialApi
     @Composable
-    private fun RowScope.GetNavigationIconAndTitle(
-        scaffoldState: BackdropScaffoldState,
-        backClickable: () -> Unit,
+    private fun GetTitle(
         state: CategoryScreenState,
-        closeClickable: () -> Unit,
+        scaffoldState: BackdropScaffoldState,
         backLayerData: BackLayerData
     ) {
-        AnimatedContent(
-            targetState = !scaffoldState.isRevealed,
-            modifier = Modifier.Companion.weight(1f)
-        ) { isConcealed ->
-            Row {
-                if (isConcealed) {
-                    GetNavigationIcon(Icons.Default.ArrowBack, backClickable)
-                    AnimatedVisibility(
-                        visible = state.pageTitle != null,
-                        enter = fadeIn() + slideInHorizontally(),
-                        exit = fadeOut(),
-                        modifier = Modifier.align(Alignment.CenterVertically)
-                    ) {
-                        GetTitle(state.pageTitle)
-                    }
-                } else {
-                    GetNavigationIcon(Icons.Default.Close, closeClickable)
-                    GetTitle(
-                        TextData().setDefaults(
-                            defaultText = when {
-                                backLayerData.showFilterInBackLayer -> stringResource(id = R.string.filter)
-                                backLayerData.showSortInBackLayer -> stringResource(id = R.string.sort)
-                                else -> null
-                            }
-                        )
-
+        AnimatedContent(!scaffoldState.isRevealed) { isConcealed ->
+            PhantomText(
+                data = when {
+                    isConcealed -> state.pageTitle
+                    else -> TextData().setDefaults(
+                        defaultText = when {
+                            backLayerData.showFilterInBackLayer -> stringResource(id = R.string.filter)
+                            backLayerData.showSortInBackLayer -> stringResource(id = R.string.sort)
+                            else -> null
+                        }
                     )
-                }
-            }
-        }
-    }
-
-    @Composable
-    private fun GetNavigationIcon(imageVector: ImageVector, clickable: () -> Unit) {
-        Box(
-            modifier = Modifier
-                .size(36.dp)
-                .padding(start = medium)
-                .clip(CircleShape)
-                .clickable { clickable.invoke() }
-        ) {
-            Icon(
-                imageVector = imageVector,
-                contentDescription = null,
-                tint = AppThemeColors.onPrimary,
-                modifier = Modifier
-                    .size(24.dp)
-                    .align(Alignment.Center)
+                },
+                modifier = Modifier.Companion.padding(start = small)
             )
         }
-    }
-
-    @Composable
-    private fun RowScope.GetTitle(textData: TextData?) {
-        PhantomText(
-            data = textData,
-            modifier = Modifier.Companion
-                .align(Alignment.CenterVertically)
-                .padding(start = small)
-        )
     }
 
     @ExperimentalMaterialApi
     @Composable
     private fun RowScope.GetAppBarActions(
-        scaffoldState: BackdropScaffoldState,
         state: CategoryScreenState,
+        scaffoldState: BackdropScaffoldState,
         filterClickable: () -> Unit,
         sortClickable: () -> Unit
     ) {
@@ -165,60 +133,26 @@ class CategoryPageTopAppBar {
             exit = fadeOut() + slideOutHorizontally { it }
         ) {
             Row(
-                Modifier.fillMaxHeight(),
-                horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(medium),
                 content = {
-                    GetIconAndTextAction(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_filter_list),
-                        text = stringResource(R.string.filter)
-                    ) {
-                        filterClickable.invoke()
-                    }
-                    GetIconAndTextAction(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_sort),
-                        text = stringResource(R.string.sort)
-                    ) {
-                        sortClickable.invoke()
-                    }
+                    GetActionIcon(R.drawable.ic_filter_list, filterClickable)
+                    GetActionIcon(R.drawable.ic_sort, sortClickable)
                 }
             )
         }
     }
 
     @Composable
-    private fun GetIconAndTextAction(
-        imageVector: ImageVector,
-        text: String,
-        clickable: () -> Unit
-    ) {
-        Row(
+    private fun GetActionIcon(@DrawableRes drawableId: Int, clickable: () -> Unit) {
+        Icon(
+            imageVector = ImageVector.vectorResource(id = drawableId),
+            contentDescription = null,
             modifier = Modifier
-                .padding(end = small)
-                .fillMaxHeight()
-                .clip(RoundedCornerShape(medium))
-                .clickable {
-                    clickable.invoke()
-                }
-        ) {
-            Icon(
-                imageVector = imageVector,
-                contentDescription = null,
-                tint = AppThemeColors.onPrimary,
-                modifier = Modifier
-                    .size(24.dp)
-                    .align(Alignment.CenterVertically)
-            )
-            PhantomText(
-                data = TextData().setDefaults(
-                    defaultText = text,
-                    fontStyle = TitleLarge,
-                    colorName = OnPrimary
-                ),
-                modifier = Modifier
-                    .padding(start = nano, end = medium)
-                    .align(Alignment.CenterVertically)
-            )
-        }
+                .size(36.dp)
+                .clip(CircleShape)
+                .clickable { clickable.invoke() }
+                .padding(small)
+        )
     }
 }
