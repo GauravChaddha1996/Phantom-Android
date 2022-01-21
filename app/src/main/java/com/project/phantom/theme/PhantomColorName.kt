@@ -25,5 +25,8 @@ enum class PhantomColorName : Serializable {
     TertiaryContainer,
     OnTertiaryContainer,
     Error,
-    Outline
+    Outline,
+
+    // Custom colors
+    Scrim
 }

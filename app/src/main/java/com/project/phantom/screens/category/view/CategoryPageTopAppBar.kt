@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.BackdropScaffoldState
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
@@ -41,11 +39,9 @@ import com.project.phantom.ui.text.TextData
 
 class CategoryPageTopAppBar {
 
-    @OptIn(ExperimentalMaterialApi::class, ExperimentalAnimationApi::class)
     @Composable
     fun Get(
         state: CategoryScreenState,
-        scaffoldState: BackdropScaffoldState,
         backLayerData: BackLayerData,
         backClickable: () -> Unit,
         closeClickable: () -> Unit,
@@ -53,9 +49,9 @@ class CategoryPageTopAppBar {
         sortClickable: () -> Unit
     ) {
         SmallTopAppBar(
-            title = { GetTitle(state, scaffoldState, backLayerData) },
-            navigationIcon = { GetNavigationIcon(scaffoldState, backClickable, closeClickable) },
-            actions = { GetAppBarActions(state, scaffoldState, filterClickable, sortClickable) },
+            title = { GetTitle(state, backLayerData) },
+            navigationIcon = { GetNavigationIcon(backLayerData, backClickable, closeClickable) },
+            actions = { GetAppBarActions(state, backLayerData, filterClickable, sortClickable) },
             colors = TopAppBarDefaults.smallTopAppBarColors(
                 containerColor = AppThemeColors.primaryContainer,
                 titleContentColor = AppThemeColors.onPrimaryContainer,
@@ -65,17 +61,39 @@ class CategoryPageTopAppBar {
         )
     }
 
-    @ExperimentalAnimationApi
-    @ExperimentalMaterialApi
+    @OptIn(ExperimentalAnimationApi::class)
+    @Composable
+    private fun GetTitle(
+        state: CategoryScreenState,
+        backLayerData: BackLayerData
+    ) {
+        AnimatedContent(backLayerData.isActive()) { backLayerActive ->
+            PhantomText(
+                data = when {
+                    backLayerActive -> TextData().setDefaults(
+                        defaultText = when {
+                            backLayerData.showFilterInBackLayer -> stringResource(id = R.string.filter)
+                            backLayerData.showSortInBackLayer -> stringResource(id = R.string.sort)
+                            else -> null
+                        }
+                    )
+                    else -> state.pageTitle
+                },
+                modifier = Modifier.Companion.padding(start = small)
+            )
+        }
+    }
+
+    @OptIn(ExperimentalAnimationApi::class)
     @Composable
     private fun GetNavigationIcon(
-        scaffoldState: BackdropScaffoldState,
+        backLayerData: BackLayerData,
         backClickable: () -> Unit,
         closeClickable: () -> Unit
     ) {
-        AnimatedContent(!scaffoldState.isRevealed) { isConcealed ->
-            val clickable = if (isConcealed) backClickable else closeClickable
-            val imageVector = if (isConcealed) Icons.Default.ArrowBack else Icons.Default.Close
+        AnimatedContent(backLayerData.isActive()) { backLayerActive ->
+            val clickable = if (backLayerActive) closeClickable else backClickable
+            val imageVector = if (backLayerActive) Icons.Default.Close else Icons.Default.ArrowBack
             Box(
                 modifier = Modifier
                     .size(36.dp)
@@ -94,41 +112,15 @@ class CategoryPageTopAppBar {
         }
     }
 
-    @ExperimentalAnimationApi
-    @ExperimentalMaterialApi
-    @Composable
-    private fun GetTitle(
-        state: CategoryScreenState,
-        scaffoldState: BackdropScaffoldState,
-        backLayerData: BackLayerData
-    ) {
-        AnimatedContent(!scaffoldState.isRevealed) { isConcealed ->
-            PhantomText(
-                data = when {
-                    isConcealed -> state.pageTitle
-                    else -> TextData().setDefaults(
-                        defaultText = when {
-                            backLayerData.showFilterInBackLayer -> stringResource(id = R.string.filter)
-                            backLayerData.showSortInBackLayer -> stringResource(id = R.string.sort)
-                            else -> null
-                        }
-                    )
-                },
-                modifier = Modifier.Companion.padding(start = small)
-            )
-        }
-    }
-
-    @ExperimentalMaterialApi
     @Composable
     private fun RowScope.GetAppBarActions(
         state: CategoryScreenState,
-        scaffoldState: BackdropScaffoldState,
+        backLayerData: BackLayerData,
         filterClickable: () -> Unit,
         sortClickable: () -> Unit
     ) {
         AnimatedVisibility(
-            visible = !scaffoldState.isRevealed && (state.lceState.showSuccess || state.lceState.showNoResult),
+            visible = !backLayerData.isActive() && (state.lceState.showSuccess || state.lceState.showNoResult),
             enter = slideInHorizontally { it },
             exit = fadeOut() + slideOutHorizontally { it }
         ) {

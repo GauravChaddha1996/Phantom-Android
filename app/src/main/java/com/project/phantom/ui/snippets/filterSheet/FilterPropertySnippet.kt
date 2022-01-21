@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.project.phantom.screens.base.SnippetInteractions
-import com.project.phantom.screens.category.models.FilterPropertyUiSection
+import com.project.phantom.screens.category.models.FilterPropertySection
 import com.project.phantom.theme.PaddingStyle.large
 import com.project.phantom.theme.PaddingStyle.medium
 import com.project.phantom.theme.PaddingStyle.nano
@@ -15,9 +15,10 @@ import com.project.phantom.ui.text.PhantomText
 
 @Composable
 fun FilterPropertySnippet(
-    propertySection: FilterPropertyUiSection,
+    propertySection: FilterPropertySection,
     interactions: SnippetInteractions
 ) {
+    if (propertySection.pills.isNullOrEmpty()) return
     Column {
         PhantomText(
             data = propertySection.name,
@@ -28,12 +29,10 @@ fun FilterPropertySnippet(
                 bottom = medium
             )
         )
-        propertySection.propertyValues?.let {
-            HorizontalList(
-                rvData = HorizontalListData(it),
-                interaction = interactions,
-                modifier = Modifier.padding(bottom = large)
-            )
-        }
+        HorizontalList(
+            rvData = HorizontalListData(propertySection.pills),
+            interaction = interactions,
+            modifier = Modifier.padding(bottom = large)
+        )
     }
 }

@@ -15,13 +15,13 @@ data class SortSheetData(
     }
 }
 
-fun SortSheetData?.getSelectedSortMethodData() = this?.methods?.firstOrNull { it.selected == true }
+fun SortSheetData?.getSelectedSortMethod() = this?.methods?.firstOrNull { it.selected == true }
 
 @JsonClass(generateAdapter = true)
 data class SortMethodData(
     @Json(name = "id") val id: Int? = null,
     @Json(name = "name") val name: TextData? = null,
-    @Json(name = "selected") val selected: Boolean? = null
+    @Json(name = "selected") var selected: Boolean? = null
 ) : SnippetData() {
 
     override fun setDefaults() {

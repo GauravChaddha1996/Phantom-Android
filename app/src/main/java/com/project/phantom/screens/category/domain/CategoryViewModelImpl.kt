@@ -5,15 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.project.phantom.network.PhantomCEH
 import com.project.phantom.screens.base.BaseSnippetCurator
-import com.project.phantom.screens.category.models.SortMethodData
-import com.project.phantom.screens.category.models.getSelectedPropertyValueIds
-import com.project.phantom.screens.category.models.getSelectedSortMethodData
+import com.project.phantom.screens.category.models.getSelectedFilters
+import com.project.phantom.screens.category.models.getSelectedSortMethod
 import com.project.phantom.screens.category.view.CategoryPageInitModel
 import com.project.phantom.screens.category.view.CategoryScreenState
-import com.project.phantom.theme.PhantomColorName.OnPrimary
-import com.project.phantom.theme.PhantomColorName.Primary
-import com.project.phantom.theme.PhantomFontStyle.TitleLarge
-import com.project.phantom.ui.commons.getResolvedColor
 import com.project.phantom.ui.lce.PhantomLceData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -40,70 +35,53 @@ class CategoryViewModelImpl(
         private set
 
     private fun getPhantomLceLoadingData() = PhantomLceData.getLoadingData()
-        .copy(phantomGhostColor = initModel.categoryColor.getResolvedColor(Primary))
 
-    override fun loadPage() {
-        loadPageImpl(null)
-    }
+    override fun loadPage() = loadPageImpl()
 
-    override fun onSortMethodSelected(sortMethodData: SortMethodData) {
-        val oldSortMethodData = state.selectedSortMethodData
-        val isSortMethodDifferent = oldSortMethodData?.id != sortMethodData.id
-        if (isSortMethodDifferent) {
-            loadPageImpl(sortMethodData)
+    override fun onApplyClicked() {
+        val oldSortMethodData = state.selectedSortMethod
+        val newSortMethodData = state.sortSheetData.getSelectedSortMethod()
+
+        val oldFilters = state.selectedFilters
+        val newFilters = state.filterSheetData.getSelectedFilters()
+
+        val isSortMethodDifferent = oldSortMethodData != newSortMethodData
+        val areFiltersDifferent = oldFilters != newFilters
+
+        if (isSortMethodDifferent || areFiltersDifferent) {
+            loadPageImpl()
         }
     }
 
-    override fun onFilterApplied() {
-        val oldSelectedPropertyValueIds = state.selectedPropertyValueIds
-        val newSelectedPropertyValueIds = state.filterSheetData.getSelectedPropertyValueIds()
-        val areSelectedPropertyValueIdsDifferent =
-            oldSelectedPropertyValueIds != newSelectedPropertyValueIds
-        if (areSelectedPropertyValueIdsDifferent) {
-            loadPageImpl(state.selectedSortMethodData)
-        }
-    }
-
-    private fun loadPageImpl(newSortMethodData: SortMethodData?) {
+    private fun loadPageImpl() {
         launch {
             state = state.copy(
                 lceState = getPhantomLceLoadingData(),
                 rvDataState = emptyList(),
-                selectedSortMethodData = newSortMethodData,
                 frontLayerHeader = null
             )
             delay(LoadDelay)
             val response = fetcher.fetchCategoryPage(
                 initModel = initModel,
-                selectedSortMethodData = newSortMethodData,
-                selectedPropertyValueSet = state.filterSheetData.getSelectedPropertyValueIds()
+                selectedSortMethodData = state.sortSheetData.getSelectedSortMethod(),
+                selectedFilters = state.filterSheetData.getSelectedFilters()
             )
             val curatedList = curator.curate(response.snippetSectionList)
-            if (curatedList.isNotEmpty()) {
-                state = state.copy(
-                    lceState = PhantomLceData.getContentData()
-                        .copy(phantomGhostColor = initModel.categoryColor.getResolvedColor(Primary)),
-                    pageTitle = response.pageTitle,
-                    frontLayerHeader = response.snippetSectionHeader,
-                    rvDataState = curatedList,
-                    sortSheetData = response.sortSheetData?.also { it.setDefaults() },
-                    selectedSortMethodData = response.sortSheetData.getSelectedSortMethodData(),
-                    filterSheetData = response.filterSheetData?.also { it.setDefaults() },
-                    selectedPropertyValueIds = response.filterSheetData.getSelectedPropertyValueIds()
-                )
-            } else {
-                state = CategoryScreenState(
-                    lceState = PhantomLceData.getEmptyResultData(null),
-                    pageTitle = response.pageTitle?.setDefaults(
-                        fontStyle = TitleLarge,
-                        colorName = OnPrimary
-                    ),
-                    sortSheetData = response.sortSheetData?.also { it.setDefaults() },
-                    selectedSortMethodData = response.sortSheetData.getSelectedSortMethodData(),
-                    filterSheetData = response.filterSheetData?.also { it.setDefaults() },
-                    selectedPropertyValueIds = response.filterSheetData.getSelectedPropertyValueIds()
-                )
-            }
+            val isCuratedListNotEmpty = curatedList.isNotEmpty()
+            state = state.copy(
+                lceState = if (isCuratedListNotEmpty) {
+                    PhantomLceData.getContentData()
+                } else {
+                    PhantomLceData.getEmptyResultData(null)
+                },
+                pageTitle = response.pageTitle,
+                frontLayerHeader = response.snippetSectionHeader.takeIf { isCuratedListNotEmpty },
+                rvDataState = curatedList,
+                sortSheetData = response.sortSheetData?.apply { setDefaults() },
+                selectedSortMethod = response.sortSheetData.getSelectedSortMethod(),
+                filterSheetData = response.filterSheetData?.apply { setDefaults() },
+                selectedFilters = response.filterSheetData.getSelectedFilters()
+            )
         }
     }
 }

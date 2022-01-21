@@ -17,14 +17,14 @@ class CategoryFetcherImpl(private val service: CategoryService) : CategoryFetche
     override suspend fun fetchCategoryPage(
         initModel: CategoryPageInitModel,
         selectedSortMethodData: SortMethodData?,
-        selectedPropertyValueSet: Set<Int>
+        selectedFilters: Set<Int>
     ): CategoryResponseData = withContext(Dispatchers.IO) {
         val map = hashMapOf<String, String>()
         map[KEY_CATEGORY_ID] = initModel.categoryId.toString()
         selectedSortMethodData?.id?.let {
             map[KEY_SORT_ID] = it.toString()
         }
-        selectedPropertyValueSet.takeIf { it.isNotEmpty() }?.toIntArray()?.let {
+        selectedFilters.takeIf { it.isNotEmpty() }?.toIntArray()?.let {
             map[KEY_PROPERTY_VALUE_IDS] = it.toList().toString()
         }
         return@withContext service.getCategoryPage(map)

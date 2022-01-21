@@ -1,4 +1,4 @@
-package com.project.phantom.ui.snippets.sortMethod
+package com.project.phantom.ui.snippets.sortSheet
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -19,50 +19,50 @@ import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.theme.CornerStyle
-import com.project.phantom.theme.PaddingStyle.large
-import com.project.phantom.theme.PaddingStyle.small
+import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.theme3.AppThemeColors
 import com.project.phantom.ui.text.PhantomText
 
 @Composable
 fun SortMethodSnippet(
     data: SortMethodData,
-    interaction: SortMethodSnippetInteraction
+    isSelected: Boolean,
+    onClick: () -> Unit
 ) {
-    val isSelected = data.selected == true
     Row(
         modifier = Modifier
-            .padding(horizontal = large, vertical = small)
+            .padding(horizontal = PaddingStyle.large, vertical = PaddingStyle.small)
             .clip(CornerStyle.extra)
-            .border(if (isSelected) 0.dp else 1.dp, AppThemeColors.outline, CornerStyle.extra)
-            .background(
-                if (isSelected) AppThemeColors.primary
-                    .copy(alpha = 0.2f)
-                    .compositeOver(
-                        AppThemeColors.primaryContainer
-                    ) else Color.Transparent
+            .border(
+                width = if (isSelected) 0.dp else 1.dp,
+                color = if (isSelected) Color.Transparent else AppThemeColors.outline,
+                shape = CornerStyle.extra
             )
-            .clickable { interaction.onSortMethodClicked(data) }
+            .background(
+                color = if (isSelected) {
+                    AppThemeColors.primary
+                        .copy(alpha = 0.2f)
+                        .compositeOver(AppThemeColors.primaryContainer)
+                } else {
+                    Color.Transparent
+                }
+            )
+            .clickable { onClick.invoke() }
     ) {
         PhantomText(
             data = data.name,
             modifier = Modifier
                 .weight(weight = 1f)
-                .padding(large),
+                .padding(PaddingStyle.large),
             color = AppThemeColors.onPrimaryContainer
         )
-        val iconAlpha = if (data.selected == true) ContentAlpha.high else ContentAlpha.disabled
         Icon(
             imageVector = Icons.Default.CheckCircle,
             contentDescription = null,
             modifier = Modifier
-                .alpha(alpha = iconAlpha)
+                .alpha(alpha = if (isSelected) ContentAlpha.high else ContentAlpha.disabled)
                 .align(Alignment.CenterVertically)
-                .padding(large)
+                .padding(PaddingStyle.large)
         )
     }
-}
-
-interface SortMethodSnippetInteraction {
-    fun onSortMethodClicked(sortMethodData: SortMethodData)
 }

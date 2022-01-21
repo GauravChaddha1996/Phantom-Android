@@ -9,18 +9,18 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 class FilterSheetData(
     @Json(name = "property_ui_sections")
-    val propertyUiSections: List<FilterPropertyUiSection>? = null
+    val propertySections: List<FilterPropertySection>? = null
 ) : SnippetData() {
 
     override fun setDefaults() {
-        propertyUiSections?.forEach { it.setDefaults() }
+        propertySections?.forEach { it.setDefaults() }
     }
 }
 
-fun FilterSheetData?.getSelectedPropertyValueIds(): Set<Int> {
+fun FilterSheetData?.getSelectedFilters(): Set<Int> {
     val set = hashSetOf<Int>()
-    this?.propertyUiSections?.forEach { propertyUiSection ->
-        propertyUiSection.propertyValues?.forEach { propertyValueData ->
+    this?.propertySections?.forEach { propertyUiSection ->
+        propertyUiSection.pills?.forEach { propertyValueData ->
             if (propertyValueData.selected == true && propertyValueData.id != null) {
                 set.add(propertyValueData.id)
             }
@@ -30,21 +30,21 @@ fun FilterSheetData?.getSelectedPropertyValueIds(): Set<Int> {
 }
 
 @JsonClass(generateAdapter = true)
-class FilterPropertyUiSection(
+class FilterPropertySection(
     @Json(name = "name")
     val name: TextData? = null,
 
     @Json(name = "property_values")
-    val propertyValues: List<FilterPropertyValueData>? = null
+    val pills: List<FilterPillData>? = null
 ) : SnippetData() {
     override fun setDefaults() {
         name?.setDefaults(fontStyle = TitleMedium)
-        propertyValues?.forEach { it.setDefaults() }
+        pills?.forEach { it.setDefaults() }
     }
 }
 
 @JsonClass(generateAdapter = true)
-class FilterPropertyValueData(
+class FilterPillData(
     @Json(name = "id")
     val id: Int? = null,
 

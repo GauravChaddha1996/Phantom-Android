@@ -1,6 +1,5 @@
 package com.project.phantom.theme
 
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 import com.project.phantom.theme.PhantomColorName.Background
 import com.project.phantom.theme.PhantomColorName.Error
@@ -16,6 +15,7 @@ import com.project.phantom.theme.PhantomColorName.OnTertiaryContainer
 import com.project.phantom.theme.PhantomColorName.Outline
 import com.project.phantom.theme.PhantomColorName.Primary
 import com.project.phantom.theme.PhantomColorName.PrimaryContainer
+import com.project.phantom.theme.PhantomColorName.Scrim
 import com.project.phantom.theme.PhantomColorName.Secondary
 import com.project.phantom.theme.PhantomColorName.SecondaryContainer
 import com.project.phantom.theme.PhantomColorName.Surface
@@ -44,7 +44,9 @@ object PhantomColors {
         TertiaryContainer to AppThemeColors.tertiaryContainer,
         OnTertiaryContainer to AppThemeColors.onTertiaryContainer,
         Error to AppThemeColors.error,
-        Outline to AppThemeColors.outline
+        Outline to AppThemeColors.outline,
+        // Custom colors
+        Scrim to AppThemeColors.onBackground.copy(0.6f)
     )
 
     fun resolve(colorName: PhantomColorName?): Color {
@@ -55,5 +57,3 @@ object PhantomColors {
 fun PhantomColorName?.resolve(): Color {
     return PhantomColors.resolve(this)
 }
-
-fun phantomColor() = lightColorScheme()

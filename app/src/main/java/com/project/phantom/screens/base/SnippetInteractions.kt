@@ -1,6 +1,5 @@
 package com.project.phantom.screens.base
 
-import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetInteraction
 import com.project.phantom.ui.snippets.productDual.ProductDualSnippetData
@@ -11,15 +10,13 @@ import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippetInteraction
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetInteraction
-import com.project.phantom.ui.snippets.sortMethod.SortMethodSnippetInteraction
 
 open class SnippetInteractions(private val activity: BaseActivity? = null) :
     ProductRailSnippetInteraction,
     ProductFullSnippetInteraction,
     CategoryRailSnippetInteraction,
     ProductDualSnippetInteraction,
-    SectionHeaderSnippetInteraction,
-    SortMethodSnippetInteraction {
+    SectionHeaderSnippetInteraction {
 
     override fun onProductRailSnippetClicked(data: ProductRailSnippetData?) {
         ClickDataResolver.resolve(data?.clickData, activity)
@@ -39,9 +36,5 @@ open class SnippetInteractions(private val activity: BaseActivity? = null) :
 
     override fun onSectionHeaderSnippetRightButtonClicked(data: SectionHeaderSnippetData?) {
         ClickDataResolver.resolve(data?.rightButton?.clickData, activity)
-    }
-
-    override fun onSortMethodClicked(sortMethodData: SortMethodData) {
-        // no-op
     }
 }

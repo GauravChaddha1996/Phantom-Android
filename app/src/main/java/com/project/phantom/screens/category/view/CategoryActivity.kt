@@ -3,7 +3,6 @@ package com.project.phantom.screens.category.view
 import android.content.Intent
 import android.os.Bundle
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,7 +17,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBackdropScaffoldState
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,12 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.project.phantom.LaunchOnce
 import com.project.phantom.R
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.domain.CategoryViewModel
-import com.project.phantom.screens.category.models.SortMethodData
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
 import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.theme.PaddingStyle.large
@@ -43,6 +42,8 @@ import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.lce.PhantomLCE
 import com.project.phantom.ui.lce.PhantomLceInteraction
 import com.project.phantom.ui.list.VerticalList
+import com.project.phantom.ui.snippets.filterSheet.FilterSheet
+import com.project.phantom.ui.snippets.sortSheet.SortSheet
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 import kotlinx.coroutines.CoroutineScope
@@ -75,74 +76,62 @@ class CategoryActivity : BaseActivity() {
     @ExperimentalMaterialApi
     @Composable
     override fun Content() {
-        LaunchOnce { viewModel.loadPage() }
-        val categoryScreenColors = remember { CategoryScreenColors.get() }
-        CompositionLocalProvider(
-            values = arrayOf(LocalCategoryScreenColors provides categoryScreenColors),
-            content = {
-                val scope = rememberCoroutineScope()
-                val state = viewModel.state
-                val scaffoldState = rememberBackdropScaffoldState(BackdropValue.Concealed)
-                var backLayerData by remember { mutableStateOf(BackLayerData()) }
-                val interactions = remember { getSnippetInteractions(scope, scaffoldState) }
-                val topAppBar = remember { CategoryPageTopAppBar() }
-                BackdropScaffold(
-                    scaffoldState = scaffoldState,
-                    appBar = {
-                        topAppBar.Get(
-                            state = state,
-                            scaffoldState = scaffoldState,
-                            backLayerData = backLayerData,
-                            backClickable = { onBackPressed() },
-                            closeClickable = { scope.launch { scaffoldState.conceal() } },
-                            filterClickable = {
-                                scope.launch {
-                                    backLayerData = BackLayerData(showFilterInBackLayer = true)
-                                    scaffoldState.reveal()
-                                }
-                            },
-                            sortClickable = {
-                                scope.launch {
-                                    backLayerData = BackLayerData(showSortInBackLayer = true)
-                                    scaffoldState.reveal()
-                                }
-                            }
-                        )
-                    },
-                    backLayerContent = {
-                        GetBackLayer(
-                            state = state,
-                            scaffoldState = scaffoldState,
-                            interactions = interactions,
-                            backLayerData = backLayerData,
-                            viewModel = viewModel,
-                            scope = scope
-                        )
-                    },
-                    frontLayerContent = {
-                        GetFrontLayer(
-                            state = state,
-                            interactions = interactions,
-                            viewModel = viewModel
-                        )
-                    },
-                    gesturesEnabled = false,
-                    backLayerBackgroundColor = AppThemeColors.primaryContainer
-                )
-            }
-        )
-    }
+        val state = viewModel.state
+        val systemUiController = rememberSystemUiController()
+        val scope = rememberCoroutineScope()
+        val scaffoldState = rememberBackdropScaffoldState(BackdropValue.Concealed)
+        var backLayerData by remember { mutableStateOf(BackLayerData()) }
+        val interactions = remember { SnippetInteractions(this) }
+        val topAppBar = remember { CategoryPageTopAppBar() }
 
-    @ExperimentalMaterialApi
-    private fun getSnippetInteractions(
-        scope: CoroutineScope,
-        scaffoldState: BackdropScaffoldState
-    ) = object : SnippetInteractions(activity = this) {
-        override fun onSortMethodClicked(sortMethodData: SortMethodData) {
-            super.onSortMethodClicked(sortMethodData)
-            viewModel.onSortMethodSelected(sortMethodData = sortMethodData)
-            scope.launch { scaffoldState.conceal() }
-        }
+        SideEffect { systemUiController.setStatusBarColor(AppThemeColors.primaryContainer) }
+        LaunchOnce { viewModel.loadPage() }
+
+        BackdropScaffold(
+            scaffoldState = scaffoldState,
+            appBar = {
+                topAppBar.Get(
+                    state = state,
+                    backLayerData = backLayerData,
+                    backClickable = { onBackPressed() },
+                    closeClickable = {
+                        backLayerData = BackLayerData()
+                        scope.launch { scaffoldState.conceal() }
+                    },
+                    filterClickable = {
+                        scope.launch {
+                            backLayerData = BackLayerData(showFilterInBackLayer = true)
+                            scaffoldState.reveal()
+                        }
+                    },
+                    sortClickable = {
+                        scope.launch {
+                            backLayerData = BackLayerData(showSortInBackLayer = true)
+                            scaffoldState.reveal()
+                        }
+                    }
+                )
+            },
+            backLayerContent = {
+                GetBackLayer(
+                    state = state,
+                    scaffoldState = scaffoldState,
+                    interactions = interactions,
+                    backLayerData = backLayerData,
+                    viewModel = viewModel,
+                    scope = scope
+                ) { backLayerData = BackLayerData() }
+            },
+            frontLayerContent = {
+                GetFrontLayer(
+                    state = state,
+                    interactions = interactions,
+                    viewModel = viewModel
+                )
+            },
+            gesturesEnabled = false,
+            backLayerBackgroundColor = AppThemeColors.primaryContainer
+        )
     }
 
     @OptIn(ExperimentalMaterialApi::class)
@@ -153,42 +142,34 @@ class CategoryActivity : BaseActivity() {
         interactions: SnippetInteractions,
         backLayerData: BackLayerData,
         viewModel: CategoryViewModel,
-        scope: CoroutineScope
+        scope: CoroutineScope,
+        clearBackLayerData: () -> Unit
     ) {
-        if (scaffoldState.isRevealed) {
-            when {
-                backLayerData.showSortInBackLayer -> {
-                    VerticalList(
-                        rvDataState = state.sortSheetData?.methods,
-                        interaction = interactions,
-                        contentPadding = PaddingValues(bottom = PaddingStyle.medium),
-                        verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
-                    )
-                }
-                backLayerData.showFilterInBackLayer -> {
-                    Column {
-                        VerticalList(
-                            rvDataState = state.filterSheetData?.let { listOf(it) },
-                            interaction = interactions,
-                            verticalArrangement = Arrangement.spacedBy(PaddingStyle.small),
-                            contentPadding = PaddingValues(0.dp)
-                        )
-                        PhantomButton(
-                            data = ButtonData(TextData(stringResource(R.string.apply))),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(start = large, end = large, bottom = large, top = 0.dp),
-                            colors = ButtonDefaults.filledTonalButtonColors(
-                                containerColor = AppThemeColors.primary,
-                                contentColor = AppThemeColors.onPrimary
-                            ),
-                            onClick = {
-                                viewModel.onFilterApplied()
-                                scope.launch { scaffoldState.conceal() }
-                            }
-                        )
+        if (backLayerData.isActive()) {
+            Column {
+                when {
+                    backLayerData.showSortInBackLayer -> {
+                        SortSheet(state.sortSheetData)
+                    }
+                    backLayerData.showFilterInBackLayer -> {
+                        FilterSheet(state.filterSheetData, interactions)
                     }
                 }
+                PhantomButton(
+                    data = ButtonData(TextData(stringResource(R.string.apply))),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = large, end = large, bottom = large, top = 0.dp),
+                    colors = ButtonDefaults.filledTonalButtonColors(
+                        containerColor = AppThemeColors.primary,
+                        contentColor = AppThemeColors.onPrimary
+                    ),
+                    onClick = {
+                        clearBackLayerData.invoke()
+                        viewModel.onApplyClicked()
+                        scope.launch { scaffoldState.conceal() }
+                    }
+                )
             }
         }
     }

@@ -23,7 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.unit.dp
-import com.project.phantom.screens.category.models.FilterPropertyValueData
+import com.project.phantom.screens.category.models.FilterPillData
 import com.project.phantom.theme.CornerStyle
 import com.project.phantom.theme.PaddingStyle.medium
 import com.project.phantom.theme.PaddingStyle.small
@@ -33,11 +33,9 @@ import com.project.phantom.ui.text.PhantomText
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun FilterPillSnippet(
-    propertyValue: FilterPropertyValueData
+    pill: FilterPillData
 ) {
-    var isSelected by remember {
-        mutableStateOf(propertyValue.selected == true)
-    }
+    var isSelected by remember { mutableStateOf(pill.selected == true) }
     Row(
         modifier = Modifier
             .clip(CornerStyle.medium)
@@ -53,14 +51,14 @@ fun FilterPillSnippet(
             )
             .clickable {
                 isSelected = !isSelected
-                propertyValue.selected = isSelected
+                pill.selected = isSelected
             }
             .alpha(if (isSelected) ContentAlpha.high else ContentAlpha.disabled)
             .padding(medium, small),
         verticalAlignment = Alignment.CenterVertically
     ) {
         PhantomText(
-            data = propertyValue.name,
+            data = pill.name,
             modifier = Modifier.padding(0.dp)
         )
         Icon(

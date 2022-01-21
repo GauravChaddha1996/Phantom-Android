@@ -2,9 +2,8 @@ package com.project.phantom.ui.list
 
 import androidx.compose.foundation.lazy.LazyListScope
 import com.project.phantom.screens.base.SnippetInteractions
-import com.project.phantom.screens.category.models.FilterPropertyValueData
-import com.project.phantom.screens.category.models.FilterSheetData
-import com.project.phantom.screens.category.models.SortMethodData
+import com.project.phantom.screens.category.models.FilterPillData
+import com.project.phantom.screens.category.models.FilterPropertySection
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.grid.PhantomGrid
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippet
@@ -20,7 +19,6 @@ import com.project.phantom.ui.snippets.productRail.ProductRailSnippet
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippet
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
-import com.project.phantom.ui.snippets.sortMethod.SortMethodSnippet
 import com.project.phantom.ui.snippets.stepper.StepperSnippet
 import com.project.phantom.ui.snippets.stepper.StepperSnippetData
 import com.project.phantom.ui.snippets.textSection.TextSectionSnippetData
@@ -69,25 +67,12 @@ internal fun LazyListScope.handleListSnippetData(
                 }
             }
         }
-        is SortMethodData -> {
+        is FilterPropertySection -> {
             item {
-                SortMethodSnippet(data = it, interaction = interaction)
+                FilterPropertySnippet(propertySection = it, interactions = interaction)
             }
         }
-        is FilterSheetData -> {
-            it.propertyUiSections?.let {
-                it.forEach { propertyUiSection ->
-                    if (propertyUiSection.propertyValues.isNullOrEmpty()) return@forEach
-                    item {
-                        FilterPropertySnippet(
-                            propertySection = propertyUiSection,
-                            interactions = interaction
-                        )
-                    }
-                }
-            }
-        }
-        is FilterPropertyValueData -> {
+        is FilterPillData -> {
             item {
                 FilterPillSnippet(it)
             }

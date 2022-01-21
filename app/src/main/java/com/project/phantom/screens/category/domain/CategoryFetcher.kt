@@ -8,6 +8,6 @@ interface CategoryFetcher {
     suspend fun fetchCategoryPage(
         initModel: CategoryPageInitModel,
         selectedSortMethodData: SortMethodData?,
-        selectedPropertyValueSet: Set<Int>
+        selectedFilters: Set<Int>
     ): CategoryResponseData
 }

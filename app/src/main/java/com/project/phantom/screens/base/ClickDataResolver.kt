@@ -23,10 +23,7 @@ object ClickDataResolver {
                 clickData.categoryId ?: return
                 CategoryActivity.start(
                     activity = activity,
-                    initModel = CategoryPageInitModel(
-                        categoryId = clickData.categoryId,
-                        categoryColor = clickData.categoryColor
-                    )
+                    initModel = CategoryPageInitModel(categoryId = clickData.categoryId)
                 )
             }
         }
