@@ -11,14 +11,16 @@ import com.project.phantom.ui.lce.PhantomLceData.Companion.getErrorData
 import com.project.phantom.ui.lce.PhantomLceData.Companion.getLoadingData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.core.scope.Scope
 
 class HomeViewModelImpl(
+    private val splashAndHomeScope: Scope,
     private val fetcher: HomeFetcher,
+    private val repo: HomeRepo,
     private val curator: BaseSnippetCurator
 ) : HomeViewModel() {
 
     companion object {
-        const val LoadDelay = 2000L
         const val RefreshDelay = 1000L
     }
 
@@ -34,9 +36,18 @@ class HomeViewModelImpl(
 
     override fun loadPage() {
         launch {
-            state = state.copy(lceState = getLoadingData())
-            delay(LoadDelay)
-            val response = fetcher.fetchHomePage()
+            // If we have cached response already - great!
+            // If we don't have it, we wait for the response to come
+            //      - If it comes from the repo - great!
+            //      - If it doesn't come (maybe some exception happened),
+            //        then we try to fetch it ourselves.
+            val cachedResponse = repo.homeResponse
+            val response = cachedResponse ?: run {
+                // Show a loader since we don't have cached response
+                state = state.copy(lceState = getLoadingData())
+                repo.waitForResponse() ?: fetcher.fetchHomePage()
+            }
+
             val curatedList = curator.curate(response.snippetSectionList)
             if (curatedList.isNotEmpty()) {
                 state = state.copy(lceState = getContentData(), rvDataState = curatedList)
@@ -63,5 +74,10 @@ class HomeViewModelImpl(
                 throw HomeCurationException()
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        splashAndHomeScope.close()
     }
 }

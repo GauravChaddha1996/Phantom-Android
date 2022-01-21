@@ -8,6 +8,6 @@ data class HomeScreenState(
     val rvDataState: List<SnippetData> = emptyList(),
 
     // Lce states
-    val lceState: PhantomLceData = PhantomLceData.getLoadingData(),
+    val lceState: PhantomLceData = PhantomLceData.getContentData(),
     val isRefreshing: Boolean = false
 )

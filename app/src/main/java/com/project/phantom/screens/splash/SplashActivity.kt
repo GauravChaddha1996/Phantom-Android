@@ -28,7 +28,10 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.project.phantom.LaunchOnce
 import com.project.phantom.R
 import com.project.phantom.getScreenWidth
+import com.project.phantom.koin.SplashAndHomeScopeId
+import com.project.phantom.koin.SplashAndHomeScopeName
 import com.project.phantom.screens.base.BaseActivity
+import com.project.phantom.screens.home.domain.HomeRepo
 import com.project.phantom.screens.home.view.HomeActivity
 import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.theme.PhantomColorName
@@ -41,6 +44,8 @@ import com.project.phantom.ui.text.TextData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import org.koin.core.qualifier.named
+import org.koin.core.scope.Scope
 
 class SplashActivity : BaseActivity() {
 
@@ -49,6 +54,11 @@ class SplashActivity : BaseActivity() {
     private val splashFadeOutDuration = 500
     private val ghostEntryAnimDelay = 1000L
     private val ghostScaleInAnimDuration = 1000
+    private val splashAndHomeScope: Scope = getKoin().getOrCreateScope(
+        scopeId = SplashAndHomeScopeId,
+        qualifier = named(SplashAndHomeScopeName)
+    )
+    private val homeRepo: HomeRepo by splashAndHomeScope.inject()
 
     @OptIn(ExperimentalAnimationApi::class)
     @Composable
@@ -59,7 +69,10 @@ class SplashActivity : BaseActivity() {
         var isAppNameVisible by remember { mutableStateOf(false) }
         val systemUiController = rememberSystemUiController()
 
-        LaunchOnce { isAppNameVisible = true }
+        LaunchOnce {
+            isAppNameVisible = true
+            homeRepo.fetch()
+        }
         LaunchGhostEntryAnimEffect(onCompletion = { isGhostVisible = true })
         LaunchSplashExitEffect(onScreenExitAnimationStart = { isSplashVisible = false })
         SideEffect { systemUiController.setStatusBarColor(AppThemeColors.primaryContainer) }
