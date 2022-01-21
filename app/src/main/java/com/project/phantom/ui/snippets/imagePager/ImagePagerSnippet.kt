@@ -21,7 +21,7 @@ import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import com.google.accompanist.pager.rememberPagerState
 import com.project.phantom.getScreenHeight
 import com.project.phantom.theme.CornerStyle
-import com.project.phantom.theme.PaddingStyle.extra
+import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.image.PhantomImage
 import kotlin.math.absoluteValue
@@ -34,7 +34,7 @@ fun ImagePagerSnippet(data: ImagePagerSnippetData) {
 
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(extra)
+        verticalArrangement = Arrangement.spacedBy(PaddingStyle.extra)
     ) {
         val pagerState = rememberPagerState()
         HorizontalPager(

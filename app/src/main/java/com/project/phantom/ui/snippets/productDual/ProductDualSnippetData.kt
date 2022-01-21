@@ -1,11 +1,8 @@
 package com.project.phantom.ui.snippets.productDual
 
-import com.project.phantom.theme.PhantomColorName.OnSurface
-import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
-import com.project.phantom.theme.PhantomFontStyle.BodyMedium
-import com.project.phantom.theme.PhantomFontStyle.BodySmall
-import com.project.phantom.theme.PhantomFontStyle.LabelLarge
-import com.project.phantom.theme.PhantomFontStyle.TitleMedium
+import com.project.phantom.theme.color.PhantomColor.OnSurface
+import com.project.phantom.theme.color.PhantomColor.OnSurfaceVariant
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.snippets.commons.SnippetData
@@ -25,25 +22,25 @@ data class ProductDualSnippetData(
 ) : SnippetData() {
     override fun setDefaults() {
         name?.setDefaults(
-            fontStyle = TitleMedium,
-            colorName = OnSurface,
+            textStyle = PhantomTextStyle.TitleMedium,
+            color = OnSurface,
             defaultMaxLines = 2,
             defaultMinLines = 2
         )
         shortDesc?.setDefaults(
-            fontStyle = BodySmall,
-            colorName = OnSurface,
+            textStyle = PhantomTextStyle.BodySmall,
+            color = OnSurface,
             defaultMaxLines = 2,
             defaultMinLines = 2
         )
         brand?.setDefaults(
-            fontStyle = BodyMedium,
-            colorName = OnSurface,
+            textStyle = PhantomTextStyle.BodyMedium,
+            color = OnSurface,
             defaultMaxLines = 1
         )
         cost?.setDefaults(
-            fontStyle = LabelLarge,
-            colorName = OnSurfaceVariant
+            textStyle = PhantomTextStyle.LabelLarge,
+            color = OnSurfaceVariant
         )
     }
 }

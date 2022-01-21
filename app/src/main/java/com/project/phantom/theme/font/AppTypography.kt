@@ -1,4 +1,4 @@
-package com.project.phantom.theme3
+package com.project.phantom.theme.font
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

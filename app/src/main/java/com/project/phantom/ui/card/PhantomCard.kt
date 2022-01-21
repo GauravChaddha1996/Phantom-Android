@@ -5,9 +5,9 @@ import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.CornerStyle
 import com.project.phantom.theme.ElevationStyle
-import com.project.phantom.theme3.AppThemeColors
 
 @Composable
 fun OutlinedCard(modifier: Modifier = Modifier, content: @Composable () -> Unit) {

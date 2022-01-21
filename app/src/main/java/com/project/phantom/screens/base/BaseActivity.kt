@@ -18,9 +18,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.BottomSheetHelperImpl.BottomSheetDataHolder
 import com.project.phantom.screens.base.BottomSheetType.INVALID
+import com.project.phantom.theme.AppTheme
+import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.CornerStyle
-import com.project.phantom.theme3.AppTheme
-import com.project.phantom.theme3.AppThemeColors
 import org.koin.core.component.KoinComponent
 
 abstract class BaseActivity : AppCompatActivity(), KoinComponent {

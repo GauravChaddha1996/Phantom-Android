@@ -16,10 +16,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
-import com.project.phantom.theme.PhantomColorName.Surface
-import com.project.phantom.theme3.AppThemeColors
+import com.project.phantom.theme.color.PhantomColor.OnSurfaceVariant
+import com.project.phantom.theme.color.PhantomColor.Surface
 import com.project.phantom.ui.card.FilledCard
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.text.PhantomText

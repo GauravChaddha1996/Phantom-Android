@@ -31,9 +31,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.project.phantom.R
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
-import com.project.phantom.theme.PaddingStyle.medium
-import com.project.phantom.theme.PaddingStyle.small
-import com.project.phantom.theme3.AppThemeColors
+import com.project.phantom.theme.AppThemeColors
+import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -79,7 +78,7 @@ class CategoryPageTopAppBar {
                     )
                     else -> state.pageTitle
                 },
-                modifier = Modifier.Companion.padding(start = small)
+                modifier = Modifier.Companion.padding(start = PaddingStyle.small)
             )
         }
     }
@@ -97,7 +96,7 @@ class CategoryPageTopAppBar {
             Box(
                 modifier = Modifier
                     .size(36.dp)
-                    .padding(start = medium)
+                    .padding(start = PaddingStyle.medium)
                     .clip(CircleShape)
                     .clickable { clickable.invoke() }
             ) {
@@ -126,7 +125,7 @@ class CategoryPageTopAppBar {
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(medium),
+                horizontalArrangement = Arrangement.spacedBy(PaddingStyle.medium),
                 content = {
                     GetActionIcon(R.drawable.ic_filter_list, filterClickable)
                     GetActionIcon(R.drawable.ic_sort, sortClickable)
@@ -144,7 +143,7 @@ class CategoryPageTopAppBar {
                 .size(36.dp)
                 .clip(CircleShape)
                 .clickable { clickable.invoke() }
-                .padding(small)
+                .padding(PaddingStyle.small)
         )
     }
 }

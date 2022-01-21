@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.button.PhantomButtonType
@@ -16,7 +16,7 @@ fun StepperSnippet(data: StepperSnippetData) {
     PhantomButton(
         data = ButtonData(
             text = data.title?.setDefaults(
-                fontStyle = PhantomFontStyle.LabelLarge
+                textStyle = PhantomTextStyle.LabelLarge
             ),
             type = PhantomButtonType.SOLID
         ),

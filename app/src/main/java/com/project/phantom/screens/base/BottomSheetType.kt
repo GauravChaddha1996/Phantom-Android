@@ -18,8 +18,8 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.project.phantom.screens.base.BottomSheetType.INVALID
 import com.project.phantom.screens.product.ui.ProductBottomSheet
 import com.project.phantom.screens.product.ui.ProductPageInitModel
-import com.project.phantom.theme.PhantomColorName.Scrim
-import com.project.phantom.theme.resolve
+import com.project.phantom.theme.color.PhantomColor.Scrim
+import com.project.phantom.theme.color.resolve
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

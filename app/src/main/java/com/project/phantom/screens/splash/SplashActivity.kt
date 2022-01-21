@@ -33,10 +33,10 @@ import com.project.phantom.koin.SplashAndHomeScopeName
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.home.domain.HomeRepo
 import com.project.phantom.screens.home.view.HomeActivity
+import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomFontStyle
-import com.project.phantom.theme3.AppThemeColors
+import com.project.phantom.theme.color.PhantomColor
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.ghost.PhantomGhost
 import com.project.phantom.ui.ghost.PhantomGhostData
 import com.project.phantom.ui.text.PhantomText
@@ -49,11 +49,11 @@ import org.koin.core.scope.Scope
 
 class SplashActivity : BaseActivity() {
 
-    private val splashTotalTime = 5000L
+    private val splashTotalTime = 3000L
     private val appNameFadeInDuration = 600
     private val splashFadeOutDuration = 500
-    private val ghostEntryAnimDelay = 1000L
-    private val ghostScaleInAnimDuration = 1000
+    private val ghostEntryAnimDelay = 800L
+    private val ghostScaleInAnimDuration = 600
     private val splashAndHomeScope: Scope = getKoin().getOrCreateScope(
         scopeId = SplashAndHomeScopeId,
         qualifier = named(SplashAndHomeScopeName)
@@ -137,8 +137,8 @@ class SplashActivity : BaseActivity() {
             PhantomText(
                 data = TextData().setDefaults(
                     defaultText = stringResource(id = R.string.app_name),
-                    fontStyle = PhantomFontStyle.Splash,
-                    colorName = PhantomColorName.Primary
+                    textStyle = PhantomTextStyle.Splash,
+                    color = PhantomColor.Primary
                 )
             )
         }

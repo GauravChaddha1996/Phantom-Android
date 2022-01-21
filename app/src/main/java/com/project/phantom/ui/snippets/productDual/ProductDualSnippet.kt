@@ -16,7 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomFontStyle.BodyMedium
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.card.ElevatedCard
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.grid.PhantomGrid
@@ -90,7 +90,7 @@ private fun TestProductDualSnippet() {
             "by Adidas",
             markdownConfig = MarkdownConfig(
                 true,
-                listOf(MarkdownFontSpan(BodyMedium, start = 3, end = 9))
+                listOf(MarkdownFontSpan(PhantomTextStyle.BodyMedium, start = 3, end = 9))
             )
         ),
         cost = TextData("$200"),

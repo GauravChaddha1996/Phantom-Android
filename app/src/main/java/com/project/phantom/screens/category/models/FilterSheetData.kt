@@ -1,6 +1,6 @@
 package com.project.phantom.screens.category.models
 
-import com.project.phantom.theme.PhantomFontStyle.TitleMedium
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.TextData
 import com.squareup.moshi.Json
@@ -38,7 +38,7 @@ class FilterPropertySection(
     val pills: List<FilterPillData>? = null
 ) : SnippetData() {
     override fun setDefaults() {
-        name?.setDefaults(fontStyle = TitleMedium)
+        name?.setDefaults(textStyle = PhantomTextStyle.TitleMedium)
         pills?.forEach { it.setDefaults() }
     }
 }
@@ -56,6 +56,6 @@ class FilterPillData(
 ) : SnippetData() {
 
     override fun setDefaults() {
-        name?.setDefaults(fontStyle = TitleMedium)
+        name?.setDefaults(textStyle = PhantomTextStyle.TitleMedium)
     }
 }

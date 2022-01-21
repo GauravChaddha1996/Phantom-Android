@@ -1,7 +1,7 @@
 package com.project.phantom.ui.ghost
 
 import androidx.compose.ui.graphics.Color
-import com.project.phantom.theme3.AppThemeColors
+import com.project.phantom.theme.AppThemeColors
 
 data class PhantomGhostData(
     val size: Float,

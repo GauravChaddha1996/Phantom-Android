@@ -22,15 +22,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.project.phantom.R
 import com.project.phantom.getScreenWidth
 import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomFontStyle.BodyMedium
-import com.project.phantom.theme.PhantomFontStyle.LabelLarge
-import com.project.phantom.theme3.AppThemeColors
+import com.project.phantom.theme.color.PhantomColor
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.card.OutlinedCard
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.image.PhantomImage
@@ -68,10 +66,10 @@ fun ProductRailSnippet(
                         .align(Alignment.TopEnd)
                         .clip(
                             RoundedCornerShape(
-                                topStart = CornerSize(0.dp),
+                                topStart = CornerSize(PaddingStyle.zero),
                                 topEnd = CornerSize(PaddingStyle.medium),
                                 bottomStart = CornerSize(PaddingStyle.medium),
-                                bottomEnd = CornerSize(0.dp)
+                                bottomEnd = CornerSize(PaddingStyle.zero)
                             )
                         )
                         .background(AppThemeColors.primary)
@@ -79,8 +77,8 @@ fun ProductRailSnippet(
                     PhantomText(
                         data = TextData().setDefaults(
                             defaultText = stringResource(id = R.string.new3),
-                            fontStyle = LabelLarge,
-                            colorName = PhantomColorName.OnPrimary
+                            textStyle = PhantomTextStyle.LabelLarge,
+                            color = PhantomColor.OnPrimary
                         ),
                         modifier = Modifier.padding(
                             horizontal = PaddingStyle.medium,
@@ -128,8 +126,8 @@ private fun TestProductRailSnippet() {
             markdownConfig = MarkdownConfig(
                 true,
                 listOf(
-                    MarkdownFontSpan(BodyMedium, start = 3, end = 9),
-                    MarkdownFontSpan(BodyMedium, start = 13, end = 19)
+                    MarkdownFontSpan(PhantomTextStyle.BodyMedium, start = 3, end = 9),
+                    MarkdownFontSpan(PhantomTextStyle.BodyMedium, start = 13, end = 19)
                 )
             )
         ),

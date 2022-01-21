@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.project.phantom.LaunchOnce
 import com.project.phantom.PhantomApplication
 import com.project.phantom.screens.base.SnippetInteractions
@@ -51,7 +50,7 @@ fun ProductBottomSheet(initModel: ProductPageInitModel) {
         VerticalList(
             rvDataState = state.rvDataState,
             interaction = remember { SnippetInteractions() },
-            verticalArrangement = Arrangement.spacedBy(0.dp),
+            verticalArrangement = Arrangement.spacedBy(PaddingStyle.zero),
             contentPadding = PaddingValues(
                 top = PaddingStyle.large,
                 bottom = PaddingStyle.nova

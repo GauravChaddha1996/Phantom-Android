@@ -1,8 +1,11 @@
-package com.project.phantom.theme3
+package com.project.phantom.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import com.project.phantom.theme.color.DarkThemeColors
+import com.project.phantom.theme.color.LightThemeColors
+import com.project.phantom.theme.font.AppTypography
 
 var AppThemeColors = LightThemeColors
 

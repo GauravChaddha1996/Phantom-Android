@@ -1,6 +1,6 @@
 package com.project.phantom.ui.text
 
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
@@ -24,7 +24,7 @@ open class BaseMarkdownSpan {
 
 @JsonClass(generateAdapter = true)
 class MarkdownFontSpan(
-    @Json(name = "style") val style: PhantomFontStyle,
+    @Json(name = "style") val style: PhantomTextStyle,
     @Json(name = "start") val start: Int,
     @Json(name = "end") val end: Int
 ) : BaseMarkdownSpan()

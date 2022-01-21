@@ -24,10 +24,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.category.models.FilterPillData
+import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.CornerStyle
-import com.project.phantom.theme.PaddingStyle.medium
-import com.project.phantom.theme.PaddingStyle.small
-import com.project.phantom.theme3.AppThemeColors
+import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.ui.text.PhantomText
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -54,18 +53,18 @@ fun FilterPillSnippet(
                 pill.selected = isSelected
             }
             .alpha(if (isSelected) ContentAlpha.high else ContentAlpha.disabled)
-            .padding(medium, small),
+            .padding(PaddingStyle.medium, PaddingStyle.small),
         verticalAlignment = Alignment.CenterVertically
     ) {
         PhantomText(
             data = pill.name,
-            modifier = Modifier.padding(0.dp)
+            modifier = Modifier.padding(PaddingStyle.zero)
         )
         Icon(
             imageVector = Icons.Default.Check,
             contentDescription = null,
             modifier = Modifier
-                .padding(start = small)
+                .padding(start = PaddingStyle.small)
                 .size(20.dp)
         )
     }

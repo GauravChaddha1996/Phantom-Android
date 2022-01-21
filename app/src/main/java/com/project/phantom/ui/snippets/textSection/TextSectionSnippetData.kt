@@ -1,13 +1,8 @@
 package com.project.phantom.ui.snippets.textSection
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.ui.unit.dp
-import com.project.phantom.theme.PaddingStyle.large
-import com.project.phantom.theme.PaddingStyle.medium
-import com.project.phantom.theme.PaddingStyle.small
-import com.project.phantom.theme.PhantomFontStyle.BodyLarge
-import com.project.phantom.theme.PhantomFontStyle.BodyMedium
-import com.project.phantom.theme.PhantomFontStyle.TitleLarge
+import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.TextData
 import com.squareup.moshi.Json
@@ -30,20 +25,35 @@ class TextSectionSnippetData(
 
         @Transient
         var titlePaddingValues =
-            PaddingValues(start = large, end = large, top = large, bottom = small)
+            PaddingValues(
+                start = PaddingStyle.large,
+                end = PaddingStyle.large,
+                top = PaddingStyle.large,
+                bottom = PaddingStyle.small
+            )
 
         @Transient
         var subtitlePaddingValues =
-            PaddingValues(start = large, end = large, top = 0.dp, bottom = medium)
+            PaddingValues(
+                start = PaddingStyle.large,
+                end = PaddingStyle.large,
+                top = PaddingStyle.zero,
+                bottom = PaddingStyle.medium
+            )
 
         @Transient
         var subtitle2PaddingValues =
-            PaddingValues(start = large, end = large, top = 0.dp, bottom = small)
+            PaddingValues(
+                start = PaddingStyle.large,
+                end = PaddingStyle.large,
+                top = PaddingStyle.zero,
+                bottom = PaddingStyle.small
+            )
 
         override fun setDefaults() {
-            title?.setDefaults(fontStyle = TitleLarge)
-            subtitle?.setDefaults(fontStyle = BodyMedium)
-            subtitle2?.setDefaults(fontStyle = BodyLarge)
+            title?.setDefaults(textStyle = PhantomTextStyle.TitleLarge)
+            subtitle?.setDefaults(textStyle = PhantomTextStyle.BodyMedium)
+            subtitle2?.setDefaults(textStyle = PhantomTextStyle.BodyLarge)
         }
     }
 }

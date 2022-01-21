@@ -1,8 +1,8 @@
 package com.project.phantom.ui.text
 
 import androidx.compose.ui.text.style.TextOverflow
-import com.project.phantom.theme.PhantomColorName
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.color.PhantomColor
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.commons.ColorData
 import com.project.phantom.ui.commons.FontData
 import com.squareup.moshi.Json
@@ -22,15 +22,15 @@ data class TextData(
 
     fun setDefaults(
         defaultText: String? = null,
-        fontStyle: PhantomFontStyle? = null,
-        colorName: PhantomColorName? = null,
+        textStyle: PhantomTextStyle? = null,
+        color: PhantomColor? = null,
         defaultMinLines: Int = 0,
         defaultMaxLines: Int = Int.MAX_VALUE,
         overflow: TextOverflow = TextOverflow.Ellipsis
     ): TextData {
         text = text?.takeIf { it.isNotEmpty() } ?: defaultText
-        font.setDefaults(fontStyle)
-        color.setDefaults(colorName)
+        font.setDefaults(textStyle)
+        this.color.setDefaults(color)
         minLines = minLines ?: defaultMinLines
         maxLines = maxLines ?: defaultMaxLines
         this.overflow = overflow

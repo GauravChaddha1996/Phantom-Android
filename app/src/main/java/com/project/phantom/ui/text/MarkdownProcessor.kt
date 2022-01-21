@@ -2,7 +2,7 @@ package com.project.phantom.ui.text
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
-import com.project.phantom.theme.resolve
+import com.project.phantom.theme.font.resolve
 
 object MarkdownProcessor {
 

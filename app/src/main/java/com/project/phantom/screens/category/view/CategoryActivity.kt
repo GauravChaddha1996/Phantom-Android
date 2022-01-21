@@ -34,9 +34,8 @@ import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.domain.CategoryViewModel
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
+import com.project.phantom.theme.AppThemeColors
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PaddingStyle.large
-import com.project.phantom.theme3.AppThemeColors
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.lce.PhantomLCE
@@ -159,7 +158,12 @@ class CategoryActivity : BaseActivity() {
                     data = ButtonData(TextData(stringResource(R.string.apply))),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = large, end = large, bottom = large, top = 0.dp),
+                        .padding(
+                            start = PaddingStyle.large,
+                            end = PaddingStyle.large,
+                            bottom = PaddingStyle.large,
+                            top = PaddingStyle.zero
+                        ),
                     colors = ButtonDefaults.filledTonalButtonColors(
                         containerColor = AppThemeColors.primary,
                         contentColor = AppThemeColors.onPrimary
@@ -184,7 +188,7 @@ class CategoryActivity : BaseActivity() {
             if (state.frontLayerHeader != null) {
                 PhantomText(
                     data = state.frontLayerHeader,
-                    modifier = Modifier.padding(large)
+                    modifier = Modifier.padding(PaddingStyle.large)
                 )
                 Box(
                     modifier = Modifier

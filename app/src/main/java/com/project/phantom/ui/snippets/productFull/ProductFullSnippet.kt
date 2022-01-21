@@ -18,7 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.PhantomFontStyle.BodyMedium
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.card.ElevatedCard
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.image.PhantomImage
@@ -94,8 +94,8 @@ private fun TestProductFullSnippet() {
             markdownConfig = MarkdownConfig(
                 true,
                 listOf(
-                    MarkdownFontSpan(BodyMedium, start = 3, end = 9),
-                    MarkdownFontSpan(BodyMedium, start = 13, end = 19)
+                    MarkdownFontSpan(PhantomTextStyle.BodyMedium, start = 3, end = 9),
+                    MarkdownFontSpan(PhantomTextStyle.BodyMedium, start = 13, end = 19)
                 )
             )
         ),

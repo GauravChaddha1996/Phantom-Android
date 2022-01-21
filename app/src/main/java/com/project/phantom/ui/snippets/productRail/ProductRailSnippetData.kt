@@ -1,11 +1,8 @@
 package com.project.phantom.ui.snippets.productRail
 
-import com.project.phantom.theme.PhantomColorName.OnSurface
-import com.project.phantom.theme.PhantomColorName.OnSurfaceVariant
-import com.project.phantom.theme.PhantomFontStyle.BodyLarge
-import com.project.phantom.theme.PhantomFontStyle.BodySmall
-import com.project.phantom.theme.PhantomFontStyle.TitleLarge
-import com.project.phantom.theme.PhantomFontStyle.TitleMedium
+import com.project.phantom.theme.color.PhantomColor.OnSurface
+import com.project.phantom.theme.color.PhantomColor.OnSurfaceVariant
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.click.ClickData
 import com.project.phantom.ui.image.ImageData
 import com.project.phantom.ui.snippets.commons.SnippetData
@@ -26,24 +23,24 @@ data class ProductRailSnippetData(
 
     override fun setDefaults() {
         name?.setDefaults(
-            fontStyle = TitleMedium,
-            colorName = OnSurface,
+            textStyle = PhantomTextStyle.TitleMedium,
+            color = OnSurface,
             defaultMaxLines = 1
         )
         shortDesc?.setDefaults(
-            fontStyle = BodySmall,
-            colorName = OnSurface,
+            textStyle = PhantomTextStyle.BodySmall,
+            color = OnSurface,
             defaultMaxLines = 2,
             defaultMinLines = 2
         )
         brandAndCategory?.setDefaults(
-            fontStyle = BodyLarge,
-            colorName = OnSurface,
+            textStyle = PhantomTextStyle.BodyLarge,
+            color = OnSurface,
             defaultMaxLines = 1
         )
         cost?.setDefaults(
-            fontStyle = TitleLarge,
-            colorName = OnSurfaceVariant
+            textStyle = PhantomTextStyle.TitleLarge,
+            color = OnSurfaceVariant
         )
     }
 }

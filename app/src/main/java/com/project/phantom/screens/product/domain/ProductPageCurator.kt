@@ -2,10 +2,8 @@ package com.project.phantom.screens.product.domain
 
 import androidx.compose.foundation.layout.PaddingValues
 import com.project.phantom.screens.base.BaseSnippetCurator
-import com.project.phantom.theme.PaddingStyle.huge
-import com.project.phantom.theme.PaddingStyle.large
-import com.project.phantom.theme.PaddingStyle.small
-import com.project.phantom.theme.PhantomFontStyle
+import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.snippets.commons.SnippetSectionData
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
@@ -19,9 +17,10 @@ class ProductPageCurator : BaseSnippetCurator() {
         results.forEach {
             when (it) {
                 is SectionHeaderSnippetData -> {
-                    it.paddingValues = PaddingValues(start = large, top = huge)
+                    it.paddingValues =
+                        PaddingValues(start = PaddingStyle.large, top = PaddingStyle.huge)
                     it.title?.setDefaults(
-                        fontStyle = PhantomFontStyle.TitleMedium
+                        textStyle = PhantomTextStyle.TitleMedium
                     )
                 }
                 is TextSectionSnippetData -> {
@@ -35,7 +34,13 @@ class ProductPageCurator : BaseSnippetCurator() {
     private fun curateTextSection(it: TextSectionSnippetData) {
         it.textSectionArr?.forEach { textSnippet ->
             textSnippet.subtitle2?.let {
-                textSnippet.titlePaddingValues = PaddingValues(large, large, huge, small)
+                val titlePadding = PaddingValues(
+                    PaddingStyle.large,
+                    PaddingStyle.large,
+                    PaddingStyle.huge,
+                    PaddingStyle.small
+                )
+                textSnippet.titlePaddingValues = titlePadding
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.project.phantom.theme3
+package com.project.phantom.theme.color
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme

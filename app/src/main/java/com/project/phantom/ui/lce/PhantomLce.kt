@@ -23,8 +23,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.project.phantom.R
 import com.project.phantom.getScreenWidth
-import com.project.phantom.theme.PhantomColorName.Error
-import com.project.phantom.theme.PhantomFontStyle.LabelLarge
+import com.project.phantom.theme.color.PhantomColor.Error
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.button.ButtonData
 import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.button.PhantomButtonType
@@ -81,7 +81,7 @@ private fun BoxScope.LceError(
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             val retryTextData = TextData(
                 text = LocalContext.current.getString(R.string.retry),
-                font = FontData(LabelLarge),
+                font = FontData(PhantomTextStyle.LabelLarge),
                 color = ColorData(Error)
             )
             PhantomText(

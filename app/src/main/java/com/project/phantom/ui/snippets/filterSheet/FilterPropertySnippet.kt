@@ -6,9 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.category.models.FilterPropertySection
-import com.project.phantom.theme.PaddingStyle.large
-import com.project.phantom.theme.PaddingStyle.medium
-import com.project.phantom.theme.PaddingStyle.nano
+import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.ui.list.HorizontalList
 import com.project.phantom.ui.list.HorizontalListData
 import com.project.phantom.ui.text.PhantomText
@@ -23,16 +21,16 @@ fun FilterPropertySnippet(
         PhantomText(
             data = propertySection.name,
             modifier = Modifier.padding(
-                start = large,
-                end = large,
-                top = nano,
-                bottom = medium
+                start = PaddingStyle.large,
+                end = PaddingStyle.large,
+                top = PaddingStyle.nano,
+                bottom = PaddingStyle.medium
             )
         )
         HorizontalList(
             rvData = HorizontalListData(propertySection.pills),
             interaction = interactions,
-            modifier = Modifier.padding(bottom = large)
+            modifier = Modifier.padding(bottom = PaddingStyle.large)
         )
     }
 }
