@@ -1,21 +1,28 @@
 package com.project.phantom.ui.snippets.productDual
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.PaddingStyle
+import com.project.phantom.theme.color.AppThemeColors
 import com.project.phantom.ui.card.ElevatedCard
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.grid.PhantomGrid
@@ -34,7 +41,10 @@ fun ProductDualSnippet(
         modifier = Modifier.clickable { interaction.onProductDualSnippetClicked(data) }
     ) {
         Column {
-            GetImage(data.imageData)
+            Box {
+                GetImage(data.imageData)
+                GetNewTag(newTag = data.newTagText)
+            }
             GetTextSection(data)
         }
     }
@@ -47,6 +57,33 @@ private fun GetImage(imageData: ImageData?) {
         modifier = Modifier.aspectRatio(ratio = 0.87f),
         contentScale = ContentScale.FillWidth
     )
+}
+
+@Composable
+private fun BoxScope.GetNewTag(newTag: TextData?) {
+    newTag ?: return
+    Box(
+        modifier = Modifier
+            .padding(PaddingStyle.medium)
+            .align(Alignment.TopEnd)
+            .clip(
+                RoundedCornerShape(
+                    topStart = CornerSize(PaddingStyle.zero),
+                    topEnd = CornerSize(PaddingStyle.medium),
+                    bottomStart = CornerSize(PaddingStyle.medium),
+                    bottomEnd = CornerSize(PaddingStyle.zero)
+                )
+            )
+            .background(AppThemeColors.primary)
+    ) {
+        PhantomText(
+            data = newTag,
+            modifier = Modifier.padding(
+                horizontal = PaddingStyle.medium,
+                vertical = PaddingStyle.small
+            )
+        )
+    }
 }
 
 @Composable

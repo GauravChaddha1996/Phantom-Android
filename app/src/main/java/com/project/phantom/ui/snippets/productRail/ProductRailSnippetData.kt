@@ -1,7 +1,5 @@
 package com.project.phantom.ui.snippets.productRail
 
-import com.project.phantom.PhantomApplication
-import com.project.phantom.R
 import com.project.phantom.theme.color.PhantomColor
 import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.click.ClickData
@@ -18,9 +16,9 @@ data class ProductRailSnippetData(
     @Json(name = "short_desc") val shortDesc: TextData? = null,
     @Json(name = "brand_and_category") val brandAndCategory: TextData? = null,
     @Json(name = "cost") val cost: TextData? = null,
+    @Json(name = "new_tag_text") val newTagText: TextData? = null,
     @Json(name = "image") val imageData: ImageData? = null,
-    @Json(name = "click") val clickData: ClickData? = null,
-    @Json(name = "new_tag") var newTag: TextData? = null
+    @Json(name = "click") val clickData: ClickData? = null
 ) : SnippetData() {
 
     override fun setDefaults() {
@@ -44,8 +42,7 @@ data class ProductRailSnippetData(
             textStyle = PhantomTextStyle.TitleSemiLarge,
             color = PhantomColor.OnSurfaceVariant
         )
-        newTag = TextData().setDefaults(
-            text = PhantomApplication.INSTANCE.getString(R.string.new3),
+        newTagText?.setDefaults(
             textStyle = PhantomTextStyle.LabelLarge,
             color = PhantomColor.OnPrimary
         )

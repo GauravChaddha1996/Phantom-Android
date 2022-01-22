@@ -51,7 +51,7 @@ fun ProductRailSnippet(
         ) {
             Box {
                 GetImage(data.imageData)
-                GetNewTag(data.newTag)
+                GetNewTag(data.newTagText)
             }
             GetTextSection(data)
         }
@@ -70,6 +70,7 @@ private fun GetImage(imageData: ImageData?) {
 
 @Composable
 private fun BoxScope.GetNewTag(newTag: TextData?) {
+    newTag ?: return
     Box(
         modifier = Modifier
             .padding(PaddingStyle.medium)

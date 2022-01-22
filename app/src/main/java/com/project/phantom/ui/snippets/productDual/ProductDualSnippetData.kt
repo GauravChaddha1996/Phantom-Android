@@ -16,6 +16,7 @@ data class ProductDualSnippetData(
     @Json(name = "short_desc") val shortDesc: TextData? = null,
     @Json(name = "brand") val brand: TextData? = null,
     @Json(name = "cost") val cost: TextData? = null,
+    @Json(name = "new_tag_text") val newTagText: TextData? = null,
     @Json(name = "image") val imageData: ImageData? = null,
     @Json(name = "click") val clickData: ClickData? = null
 ) : SnippetData() {
@@ -40,6 +41,10 @@ data class ProductDualSnippetData(
         cost?.setDefaults(
             textStyle = PhantomTextStyle.LabelLarge,
             color = PhantomColor.OnSurfaceVariant
+        )
+        newTagText?.setDefaults(
+            textStyle = PhantomTextStyle.LabelLarge,
+            color = PhantomColor.OnPrimary
         )
     }
 }
