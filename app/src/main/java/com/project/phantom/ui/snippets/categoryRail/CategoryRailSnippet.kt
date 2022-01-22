@@ -1,6 +1,5 @@
 package com.project.phantom.ui.snippets.categoryRail
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,7 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.theme.PaddingStyle
-import com.project.phantom.theme.color.AppThemeColors
 import com.project.phantom.theme.color.PhantomColor
 import com.project.phantom.ui.card.FilledCard
 import com.project.phantom.ui.commons.ColorData
@@ -36,14 +34,14 @@ fun CategoryRailSnippet(
         Box(
             modifier = Modifier
                 .clickable { interaction.onCategoryRailSnippetClicked(data) }
-                .background(AppThemeColors.secondary.copy(alpha = 0.01f))
+                .alpha(alpha = 0.8f)
         ) {
             PhantomText(
                 data = data.firstCharacter,
                 modifier = Modifier
                     .align(Alignment.Center)
                     .scale(scale = 1.3f)
-                    .alpha(alpha = 0.15f),
+                    .alpha(alpha = 0.18f),
                 textAlign = TextAlign.Center
             )
             PhantomText(

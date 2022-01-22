@@ -195,9 +195,9 @@ class CategoryActivity : BaseActivity() {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(0.25.dp)
-                        .background(AppThemeColors.onBackground)
-                        .alpha(ContentAlpha.medium)
+                        .height(1.5.dp)
+                        .background(AppThemeColors.onBackground.copy(alpha = 0.05f))
+
                 )
             }
             VerticalList(

@@ -62,8 +62,9 @@ fun ProductRailSnippet(
 private fun GetImage(imageData: ImageData?) {
     PhantomImage(
         data = imageData,
-        modifier = Modifier.aspectRatio(ratio = 1.83f),
-        contentScale = ContentScale.None
+        modifier = Modifier.aspectRatio(ratio = 1.2f),
+        contentScale = ContentScale.Crop,
+        alignment = Alignment.Center
     )
 }
 
@@ -95,24 +96,19 @@ private fun BoxScope.GetNewTag(newTag: TextData?) {
 
 @Composable
 private fun GetTextSection(data: ProductRailSnippetData) {
-    Row(
+    Column(
         modifier = Modifier.padding(PaddingStyle.large),
-        verticalAlignment = Alignment.Top
+        verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
     ) {
-        Column(
-            modifier = Modifier
-                .weight(1f, true)
-                .padding(end = PaddingStyle.large),
-            verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
-        ) {
-            PhantomText(data = data.name)
-            PhantomText(
-                data = data.shortDesc,
-                modifier = Modifier.alpha(ContentAlpha.medium)
-            )
-            PhantomText(data = data.brandAndCategory)
+        Row {
+            PhantomText(data = data.name, modifier = Modifier.weight(1f))
+            PhantomText(data = data.cost, modifier = Modifier.padding(start = PaddingStyle.medium))
         }
-        PhantomText(data = data.cost)
+        PhantomText(
+            data = data.shortDesc,
+            modifier = Modifier.alpha(ContentAlpha.medium)
+        )
+        PhantomText(data = data.brandAndCategory)
     }
 }
 

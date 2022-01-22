@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
@@ -53,31 +52,26 @@ fun ProductFullSnippet(
 private fun GetImage(imageData: ImageData?) {
     PhantomImage(
         data = imageData,
-        modifier = Modifier.aspectRatio(ratio = 1f),
-        contentScale = ContentScale.Crop
+        modifier = Modifier.aspectRatio(ratio = 0.87f),
+        contentScale = ContentScale.FillWidth
     )
 }
 
 @Composable
 private fun GetTextSection(data: ProductFullSnippetData) {
-    Row(
+    Column(
         modifier = Modifier.padding(PaddingStyle.large),
-        verticalAlignment = Alignment.Top
+        verticalArrangement = Arrangement.spacedBy(PaddingStyle.small)
     ) {
-        Column(
-            modifier = Modifier
-                .weight(1f, true)
-                .padding(end = PaddingStyle.large),
-            verticalArrangement = Arrangement.spacedBy(PaddingStyle.medium)
-        ) {
-            PhantomText(data = data.name)
-            PhantomText(
-                data = data.longDesc,
-                modifier = Modifier.alpha(ContentAlpha.medium)
-            )
-            PhantomText(data = data.brandAndCategory)
+        Row {
+            PhantomText(data = data.name, modifier = Modifier.weight(1f))
+            PhantomText(data = data.cost, modifier = Modifier.padding(start = PaddingStyle.medium))
         }
-        PhantomText(data = data.cost)
+        PhantomText(
+            data = data.longDesc,
+            modifier = Modifier.alpha(ContentAlpha.medium)
+        )
+        PhantomText(data = data.brandAndCategory)
     }
 }
 

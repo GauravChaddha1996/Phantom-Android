@@ -41,7 +41,7 @@ fun FilledCard(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
     Card(
         modifier = modifier,
         shape = CornerStyle.large,
-        backgroundColor = AppThemeColors.surfaceVariant,
+        backgroundColor = AppThemeColors.surfaceVariant.copy(alpha = 0.75f),
         contentColor = AppThemeColors.onSurfaceVariant,
         elevation = ElevationStyle.none
     ) {

@@ -38,7 +38,7 @@ data class ProductDualSnippetData(
             defaultMaxLines = 1
         )
         cost?.setDefaults(
-            textStyle = PhantomTextStyle.LabelExtra,
+            textStyle = PhantomTextStyle.LabelLarge,
             color = PhantomColor.OnSurfaceVariant
         )
     }

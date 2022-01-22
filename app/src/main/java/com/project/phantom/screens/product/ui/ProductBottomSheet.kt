@@ -45,7 +45,7 @@ fun ProductBottomSheet(initModel: ProductPageInitModel) {
     Box(
         Modifier
             .fillMaxWidth()
-            .fillMaxHeight(fraction = 0.8f)
+            .fillMaxHeight(fraction = 0.925f)
     ) {
         VerticalList(
             rvDataState = state.rvDataState,

@@ -59,7 +59,7 @@ private fun PagerScope.GetPagerItem(
     index: Int
 ) {
     Box(
-        Modifier.height(getScreenHeight(times = 0.5f))
+        Modifier.height(getScreenHeight(times = 0.63f))
     ) {
         PhantomImage(
             data = item,

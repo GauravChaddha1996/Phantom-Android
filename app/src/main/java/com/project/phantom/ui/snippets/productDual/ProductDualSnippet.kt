@@ -44,8 +44,8 @@ fun ProductDualSnippet(
 private fun GetImage(imageData: ImageData?) {
     PhantomImage(
         data = imageData,
-        modifier = Modifier.aspectRatio(ratio = 1.05f),
-        contentScale = ContentScale.Crop
+        modifier = Modifier.aspectRatio(ratio = 0.87f),
+        contentScale = ContentScale.FillWidth
     )
 }
 
