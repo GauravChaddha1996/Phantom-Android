@@ -1,58 +1,22 @@
 package com.project.phantom.ui.ghost
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.project.phantom.theme.color.AppThemeColors
 
 data class PhantomGhostData(
-    val size: Float,
-
-    // Curve-related data points
+    val width: Float,
+    val aspectRatio: Float = 0.7f,
+    val height: Float = width.div(aspectRatio),
+    val numberOfLegs: Int = 3,
     val bgColor: Color = AppThemeColors.primary,
-    val curveMaxMovementX: Float = size.times(other = 0.035f),
-    val curveMaxMovementY: Float = size.times(other = 0.12f),
-    val curveMovementDuration: Int = 1100,
-
-    // Legs-related data points
-    val legs: Int = 3,
-    val legsMaxWaveAmplitude: Float = size.times(other = 0.3f),
-    val legsMovement: Float = legsMaxWaveAmplitude.times(other = 0.65f),
-    val legsMovementDuration: Int = 1300,
-    val legsMovementDelay: Int = 300,
-
-    // Eye-related data points
+    val borderColor: Color = AppThemeColors.inversePrimary,
     val eyeColor: Color = AppThemeColors.primaryContainer,
-    val eyeSize: Float = size.times(other = 0.2f),
-    val eyeTopPadding: Float = size.times(other = 0.25f),
-    val eyeMovementDuration: Int = 2100,
-    val eyeMovementCircleRadius: Float = eyeSize.times(other = 0.15f),
-    val eyeBlinkSize: Float = size.times(other = 0.26f),
-    val eyeBlinkDuration: Int = 125,
-    val eyeBlinkDelay: Int = 900
+
+    val eyeOneWidth: Dp = width.times(other = 0.21f).dp,
+    val eyeOneHeight: Dp = height.times(other = 0.18f).dp,
+    val eyeTwoWidth: Dp = width.times(other = 0.15f).dp,
+    val eyeTwoHeight: Dp = height.times(other = 0.14f).dp,
+    val eyeGap: Dp = width.times(other = 0.08f).dp
 )
-
-data class PhantomGhostCurveAnimationData(
-    val size: Float,
-    val legs: Int,
-    val curveMaxMovementX: Float,
-    val curveMaxMovementY: Float,
-    val legsMaxWaveAmplitude: Float,
-    val curveMovementValue: Float,
-    val legsMovementValue: Float
-) {
-    // General data points
-    val startX: Float = curveMaxMovementX - curveMovementValue
-    val startY: Float = curveMaxMovementY - curveMovementValue
-    val endX: Float = size - curveMaxMovementX + curveMovementValue
-    val endY = size - curveMaxMovementY.times(2)
-    val midX = (endX - startX).times(0.5f)
-
-    // Curve-related data points
-    val curveWidth = endX - startX
-    val curveHeight = endY - startY
-
-    // Legs-related data points
-    val legsWavelength = curveWidth.div(legs + 0.5f)
-    val legsHalfWavelength = legsWavelength.times(0.5f)
-    val legsQuarterWavelength = legsHalfWavelength.times(0.5f)
-    val legsWaveAmplitude = legsMaxWaveAmplitude - legsMovementValue
-}

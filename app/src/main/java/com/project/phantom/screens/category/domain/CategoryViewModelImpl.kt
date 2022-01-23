@@ -20,21 +20,15 @@ class CategoryViewModelImpl(
 ) : CategoryViewModel() {
 
     companion object {
-        const val LoadDelay = 1000L
+        const val LoadDelay = 500L
     }
 
     override val defaultPhantomCEH = PhantomCEH {
         state = state.copy(lceState = PhantomLceData.getErrorData(it.message))
     }
 
-    override var state by mutableStateOf(
-        CategoryScreenState(
-            lceState = getPhantomLceLoadingData()
-        )
-    )
+    override var state by mutableStateOf(CategoryScreenState())
         private set
-
-    private fun getPhantomLceLoadingData() = PhantomLceData.getLoadingData()
 
     override fun loadPage() = loadPageImpl()
 
@@ -56,7 +50,7 @@ class CategoryViewModelImpl(
     private fun loadPageImpl() {
         launch {
             state = state.copy(
-                lceState = getPhantomLceLoadingData(),
+                lceState = PhantomLceData.getLoadingData(),
                 rvDataState = emptyList(),
                 frontLayerHeader = null
             )

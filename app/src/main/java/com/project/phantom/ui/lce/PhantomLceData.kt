@@ -1,7 +1,5 @@
 package com.project.phantom.ui.lce
 
-import androidx.compose.ui.graphics.Color
-import com.project.phantom.theme.color.AppThemeColors
 import com.project.phantom.theme.color.PhantomColor
 import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.commons.ColorData
@@ -14,9 +12,9 @@ data class PhantomLceData(
     val showSuccess: Boolean,
     val showNoResult: Boolean,
     val noResultMessage: TextData,
-    val errorMessage: TextData,
-    val phantomGhostColor: Color
+    val errorMessage: TextData
 ) {
+    fun isSuccessOrNoResultState() = showSuccess || showNoResult
 
     companion object {
         fun getLoadingData() = PhantomLceData(
@@ -25,8 +23,7 @@ data class PhantomLceData(
             showSuccess = false,
             showNoResult = false,
             noResultMessage = TextData(),
-            errorMessage = TextData(),
-            phantomGhostColor = AppThemeColors.primary
+            errorMessage = TextData()
         )
 
         fun getContentData() = PhantomLceData(
@@ -35,8 +32,7 @@ data class PhantomLceData(
             showSuccess = true,
             showNoResult = false,
             noResultMessage = TextData(),
-            errorMessage = TextData(),
-            phantomGhostColor = AppThemeColors.primary
+            errorMessage = TextData()
         )
 
         fun getErrorData(errorMessage: String?) = PhantomLceData(
@@ -49,8 +45,7 @@ data class PhantomLceData(
                 text = errorMessage,
                 color = ColorData(PhantomColor.OnBackground),
                 font = FontData(PhantomTextStyle.TitleSemiLarge)
-            ),
-            phantomGhostColor = AppThemeColors.primary
+            )
         )
 
         fun getEmptyResultData(emptyResultMessage: String?) = PhantomLceData(
@@ -63,8 +58,7 @@ data class PhantomLceData(
                 color = ColorData(PhantomColor.OnBackground),
                 font = FontData(PhantomTextStyle.TitleSemiLarge)
             ),
-            errorMessage = TextData(),
-            phantomGhostColor = AppThemeColors.primary
+            errorMessage = TextData()
         )
     }
 }

@@ -9,6 +9,7 @@ import com.project.phantom.screens.product.ui.ProductPageInitModel
 import com.project.phantom.screens.product.ui.ProductScreenState
 import com.project.phantom.ui.lce.PhantomLceData
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ProductViewModelImpl(
@@ -16,6 +17,10 @@ class ProductViewModelImpl(
     private val fetcher: ProductFetcher,
     private val curator: BaseSnippetCurator
 ) : ProductViewModel() {
+
+    companion object {
+        const val LoadDelay = 500L
+    }
 
     override val defaultPhantomCEH: CoroutineExceptionHandler = PhantomCEH {
         state = ProductScreenState(lceState = PhantomLceData.getErrorData(it.message))
@@ -26,6 +31,7 @@ class ProductViewModelImpl(
     override fun loadPage() {
         launch {
             state = state.copy(lceState = PhantomLceData.getLoadingData())
+            delay(LoadDelay)
             val response = fetcher.fetchProductPage(initModel = initModel)
             val curatedResults = curator.curate(response.snippetSectionList)
             if (curatedResults.isNotEmpty()) {

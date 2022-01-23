@@ -6,8 +6,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import coil.transition.CrossfadeTransition
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun PhantomImage(
     data: ImageData?,
@@ -19,10 +22,11 @@ fun PhantomImage(
     if (data == null || data.url.isNullOrEmpty()) {
         return
     }
-
     // add the view here
     Image(
-        painter = rememberImagePainter(data = data.url),
+        painter = rememberImagePainter(data = data.url, builder = {
+            transition(CrossfadeTransition())
+        }),
         contentDescription = null,
         modifier = modifier,
         contentScale = contentScale,

@@ -119,7 +119,7 @@ class CategoryPageTopAppBar {
         sortClickable: () -> Unit
     ) {
         AnimatedVisibility(
-            visible = !backLayerData.isActive() && (state.lceState.showSuccess || state.lceState.showNoResult),
+            visible = backLayerData.isInactive() && state.lceState.isSuccessOrNoResultState(),
             enter = slideInHorizontally { it },
             exit = fadeOut() + slideOutHorizontally { it }
         ) {

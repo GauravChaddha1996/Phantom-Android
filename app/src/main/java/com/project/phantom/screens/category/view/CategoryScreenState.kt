@@ -22,5 +22,6 @@ data class CategoryScreenState(
         val showFilterInBackLayer: Boolean = false
     ) {
         fun isActive() = showFilterInBackLayer || showSortInBackLayer
+        fun isInactive() = isActive().not()
     }
 }

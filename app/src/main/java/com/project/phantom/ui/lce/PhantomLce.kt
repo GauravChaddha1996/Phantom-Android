@@ -6,8 +6,6 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
@@ -52,16 +50,11 @@ private fun BoxScope.LceLoader(data: PhantomLceData) {
     AnimatedVisibility(
         visible = data.showLoader,
         modifier = Modifier.Companion.align(Alignment.Center),
-        enter = fadeIn(spring(stiffness = Spring.StiffnessMediumLow)) +
-            scaleIn(spring(stiffness = Spring.StiffnessMediumLow)),
-        exit = fadeOut(spring(stiffness = Spring.StiffnessMediumLow)) +
-            scaleOut(spring(stiffness = Spring.StiffnessMediumLow), targetScale = 2f)
+        enter = fadeIn(spring(stiffness = Spring.StiffnessMediumLow)),
+        exit = fadeOut(spring(stiffness = Spring.StiffnessMediumLow))
     ) {
         PhantomGhost(
-            data = PhantomGhostData(
-                bgColor = data.phantomGhostColor,
-                size = getScreenWidth(times = 0.35f).value
-            )
+            data = PhantomGhostData(getScreenWidth(times = 0.35f).value)
         )
     }
 }
