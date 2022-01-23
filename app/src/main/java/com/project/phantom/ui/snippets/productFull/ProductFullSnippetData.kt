@@ -23,17 +23,14 @@ data class ProductFullSnippetData(
     override fun setDefaults() {
         name?.setDefaults(
             textStyle = PhantomTextStyle.TitleSemiLarge,
-            color = PhantomColor.OnSurface,
             defaultMaxLines = 1
         )
         longDesc?.setDefaults(
             textStyle = PhantomTextStyle.BodyMedium,
-            color = PhantomColor.OnSurface,
             defaultMaxLines = 4
         )
         brandAndCategory?.setDefaults(
             textStyle = PhantomTextStyle.BodyLarge,
-            color = PhantomColor.OnSurface,
             defaultMaxLines = 1
         )
         cost?.setDefaults(

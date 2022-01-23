@@ -35,14 +35,19 @@ fun FilterPillSnippet(
     pill: FilterPillData
 ) {
     var isSelected by remember { mutableStateOf(pill.selected == true) }
+    val borderAlpha = if (isSelected) 1.0f else 0.2f
     Row(
         modifier = Modifier
             .clip(CornerStyle.medium)
-            .border(1.dp, AppThemeColors.outline, CornerStyle.medium)
+            .border(
+                width = 1.dp,
+                color = AppThemeColors.outline.copy(alpha = borderAlpha),
+                shape = CornerStyle.medium
+            )
             .background(
                 if (isSelected) {
                     AppThemeColors.primary
-                        .copy(alpha = 0.2f)
+                        .copy(alpha = 0.4f)
                         .compositeOver(AppThemeColors.primaryContainer)
                 } else {
                     Color.Transparent

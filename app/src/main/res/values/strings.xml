@@ -7,4 +7,10 @@
     <string name="sort">Sort</string>
     <string name="new3">New</string>
     <string name="apply">Apply</string>
+    <string name="color_schemes">Color schemes</string>
+    <string name="quantity">Qty. %d</string>
+    <string name="place_order">Place order for ₹%d</string>
+    <string name="cart">Cart</string>
+    <string name="rupee_cost">₹%d</string>
+    <string name="order_placed">Order placed!!\nThank you</string>
 </resources>

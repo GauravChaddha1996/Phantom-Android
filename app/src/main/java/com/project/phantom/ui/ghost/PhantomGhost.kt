@@ -31,20 +31,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.project.phantom.getScreenWidth
-import com.project.phantom.theme.AppTheme
 import com.project.phantom.theme.color.AppThemeColors
 
 @Preview
 @Composable
 fun TestPhantomGhost() {
-    AppTheme {
-        Surface {
-            Box(modifier = Modifier.fillMaxSize()) {
-                PhantomGhost(
-                    modifier = Modifier.align(Alignment.Center),
-                    data = PhantomGhostData(getScreenWidth(times = 0.5f).value)
-                )
-            }
+    Surface {
+        Box(modifier = Modifier.fillMaxSize()) {
+            PhantomGhost(
+                modifier = Modifier.align(Alignment.Center),
+                data = PhantomGhostData(getScreenWidth(times = 0.5f).value)
+            )
         }
     }
 }

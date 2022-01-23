@@ -1,15 +1,17 @@
 package com.project.phantom.theme.color
 
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
-import java.io.Serializable
 
-var AppThemeColors = LightThemeColors
+var AppThemeColors = ColorScheme1.getLightScheme()
+var PhantomColorToColorMap: Map<PhantomColor, Color> = emptyMap()
 
 @Stable
 @Immutable
-enum class PhantomColor : Serializable {
+enum class PhantomColor {
     Background,
     OnBackground,
     Surface,
@@ -34,7 +36,7 @@ enum class PhantomColor : Serializable {
     Scrim
 }
 
-private val phantomColorToColorMap = mapOf(
+internal fun formPhantomColorToColorMap() = mapOf(
     PhantomColor.Background to AppThemeColors.background,
     PhantomColor.OnBackground to AppThemeColors.onBackground,
     PhantomColor.Surface to AppThemeColors.surface,
@@ -55,9 +57,10 @@ private val phantomColorToColorMap = mapOf(
     PhantomColor.Error to AppThemeColors.error,
     PhantomColor.Outline to AppThemeColors.outline,
     // Custom colors
-    PhantomColor.Scrim to AppThemeColors.onBackground.copy(0.6f)
+    PhantomColor.Scrim to Color.Black.copy(alpha = 0.6f)
 )
 
+@Composable
 fun PhantomColor?.resolve(): Color {
-    return phantomColorToColorMap[this] ?: Color.Unspecified
+    return PhantomColorToColorMap[this] ?: LocalContentColor.current
 }

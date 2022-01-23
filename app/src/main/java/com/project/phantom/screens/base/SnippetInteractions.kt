@@ -1,5 +1,7 @@
 package com.project.phantom.screens.base
 
+import com.project.phantom.ui.snippets.cartItem.CartItemData
+import com.project.phantom.ui.snippets.cartItem.CartItemSnippetInteraction
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetInteraction
 import com.project.phantom.ui.snippets.productDual.ProductDualSnippetData
@@ -16,7 +18,8 @@ open class SnippetInteractions(private val activity: BaseActivity? = null) :
     ProductFullSnippetInteraction,
     CategoryRailSnippetInteraction,
     ProductDualSnippetInteraction,
-    SectionHeaderSnippetInteraction {
+    SectionHeaderSnippetInteraction,
+    CartItemSnippetInteraction {
 
     override fun onProductRailSnippetClicked(data: ProductRailSnippetData?) {
         ClickDataResolver.resolve(data?.clickData, activity)
@@ -36,5 +39,13 @@ open class SnippetInteractions(private val activity: BaseActivity? = null) :
 
     override fun onSectionHeaderSnippetRightButtonClicked(data: SectionHeaderSnippetData?) {
         ClickDataResolver.resolve(data?.rightButton?.clickData, activity)
+    }
+
+    override fun addItem(cartItemData: CartItemData) {
+        // no-op
+    }
+
+    override fun removeItem(cartItemData: CartItemData) {
+        // no-op
     }
 }

@@ -37,10 +37,10 @@ fun ProductDualSnippet(
     interaction: ProductDualSnippetInteraction
 ) {
     data ?: return
-    ElevatedCard(
-        modifier = Modifier.clickable { interaction.onProductDualSnippetClicked(data) }
-    ) {
-        Column {
+    ElevatedCard {
+        Column(
+            modifier = Modifier.clickable { interaction.onProductDualSnippetClicked(data) }
+        ) {
             Box {
                 GetImage(data.imageData)
                 GetNewTag(newTag = data.newTagText)

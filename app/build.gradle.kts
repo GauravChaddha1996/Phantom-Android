@@ -88,6 +88,11 @@ dependencies {
     implementation(Libs.Accompanist.pager)
     implementation(Libs.Accompanist.pagerIndicators)
 
+    // Room
+    implementation(Libs.Room.runtime)
+    annotationProcessor(Libs.Room.compiler)
+    kapt(Libs.Room.compiler)
+
     // Test related
     testImplementation(Libs.Test.junit_core)
     androidTestImplementation(Libs.Test.junitTextExt)

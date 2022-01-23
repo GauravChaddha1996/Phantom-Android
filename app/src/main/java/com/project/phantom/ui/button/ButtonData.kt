@@ -23,5 +23,5 @@ enum class PhantomButtonType {
     TEXT,
 
     @Json(name = "solid")
-    SOLID,
+    SOLID
 }

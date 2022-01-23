@@ -14,6 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.project.phantom.LaunchOnce
 import com.project.phantom.PhantomApplication
+import com.project.phantom.screens.base.BaseActivity
+import com.project.phantom.screens.base.ClickDataResolver
 import com.project.phantom.screens.base.SnippetInteractions
 import com.project.phantom.screens.product.domain.ProductFetcherImpl
 import com.project.phantom.screens.product.domain.ProductPageCurator
@@ -28,7 +30,7 @@ import org.koin.android.ext.android.get
 import retrofit2.Retrofit
 
 @Composable
-fun ProductBottomSheet(initModel: ProductPageInitModel) {
+fun ProductBottomSheet(initModel: ProductPageInitModel, activity: BaseActivity) {
     val viewModel = remember {
         val retrofit: Retrofit = PhantomApplication.INSTANCE.get()
         val service = retrofit.create(ProductService::class.java)
@@ -49,7 +51,7 @@ fun ProductBottomSheet(initModel: ProductPageInitModel) {
     ) {
         VerticalList(
             rvDataState = state.rvDataState,
-            interaction = remember { SnippetInteractions() },
+            interaction = remember { SnippetInteractions(activity = activity) },
             verticalArrangement = Arrangement.spacedBy(PaddingStyle.zero),
             contentPadding = PaddingValues(
                 top = PaddingStyle.large,
@@ -64,14 +66,21 @@ fun ProductBottomSheet(initModel: ProductPageInitModel) {
                 }
             }
         )
+        val stepperData = state.stepperSnippetData
         AnimatedVisibility(
-            visible = state.stepperSnippetData != null,
+            visible = stepperData != null,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = PaddingStyle.medium),
             enter = slideInVertically { it / 2 }
         ) {
-            StepperSnippet(data = state.stepperSnippetData!!)
+            StepperSnippet(
+                data = stepperData!!,
+                onClick = {
+                    ClickDataResolver.resolve(stepperData.clickData, activity)
+                    activity.bottomSheetHelper.closeCurrentBottomSheet()
+                }
+            )
         }
     }
 }

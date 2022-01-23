@@ -24,15 +24,25 @@ data class TextData(
         text: String? = null,
         textStyle: PhantomTextStyle? = null,
         color: PhantomColor? = null,
-        defaultMinLines: Int = 0,
-        defaultMaxLines: Int = Int.MAX_VALUE,
+        defaultMinLines: Int? = null,
+        defaultMaxLines: Int? = null,
         overflow: TextOverflow = TextOverflow.Ellipsis
     ): TextData {
-        this.text = this.text?.takeIf { it.isNotEmpty() } ?: text
-        this.font = (this.font ?: FontData()).setDefaults(textStyle)
-        this.color = (this.color ?: ColorData()).setDefaults(color)
-        this.minLines = minLines ?: defaultMinLines
-        this.maxLines = maxLines ?: defaultMaxLines
+        text?.takeIf { it.isNotEmpty() }?.let {
+            this.text = this.text?.takeIf { it.isNotEmpty() } ?: text
+        }
+        textStyle?.let {
+            this.font = (this.font ?: FontData()).setDefaults(textStyle)
+        }
+        color?.let {
+            this.color = (this.color ?: ColorData()).setDefaults(color)
+        }
+        defaultMinLines?.let {
+            this.minLines = minLines ?: defaultMinLines
+        }
+        defaultMaxLines?.let {
+            this.maxLines = maxLines ?: defaultMaxLines
+        }
         this.overflow = overflow
         return this
     }

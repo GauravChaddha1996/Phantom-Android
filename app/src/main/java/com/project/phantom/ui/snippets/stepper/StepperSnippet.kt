@@ -12,7 +12,7 @@ import com.project.phantom.ui.button.PhantomButton
 import com.project.phantom.ui.button.PhantomButtonType
 
 @Composable
-fun StepperSnippet(data: StepperSnippetData) {
+fun StepperSnippet(data: StepperSnippetData, onClick: () -> Unit = {}) {
     PhantomButton(
         data = ButtonData(
             text = data.title?.setDefaults(
@@ -28,6 +28,7 @@ fun StepperSnippet(data: StepperSnippetData) {
                 end = PaddingStyle.large,
                 top = PaddingStyle.large,
                 bottom = PaddingStyle.nano
-            )
+            ),
+        onClick = onClick
     )
 }

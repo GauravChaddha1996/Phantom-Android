@@ -6,6 +6,8 @@ import com.project.phantom.screens.category.models.FilterPillData
 import com.project.phantom.screens.category.models.FilterPropertySection
 import com.project.phantom.ui.grid.GridData
 import com.project.phantom.ui.grid.PhantomGrid
+import com.project.phantom.ui.snippets.cartItem.CartItemData
+import com.project.phantom.ui.snippets.cartItem.CartItemSnippet
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippet
 import com.project.phantom.ui.snippets.categoryRail.CategoryRailSnippetData
 import com.project.phantom.ui.snippets.commons.SnippetData
@@ -19,8 +21,6 @@ import com.project.phantom.ui.snippets.productRail.ProductRailSnippet
 import com.project.phantom.ui.snippets.productRail.ProductRailSnippetData
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippet
 import com.project.phantom.ui.snippets.sectionHeader.SectionHeaderSnippetData
-import com.project.phantom.ui.snippets.stepper.StepperSnippet
-import com.project.phantom.ui.snippets.stepper.StepperSnippetData
 import com.project.phantom.ui.snippets.textSection.TextSnippet
 import com.project.phantom.ui.snippets.textSection.TextSnippetData
 
@@ -80,9 +80,9 @@ internal fun LazyListScope.handleListSnippetData(
                 ImagePagerSnippet(data = it)
             }
         }
-        is StepperSnippetData -> {
+        is CartItemData -> {
             item {
-                StepperSnippet(data = it)
+                CartItemSnippet(data = it, interaction = interaction)
             }
         }
     }

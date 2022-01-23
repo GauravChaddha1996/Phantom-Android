@@ -3,12 +3,12 @@ package com.project.phantom.screens.base
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.Box
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetValue.Collapsed
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,14 +31,14 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var currentBottomSheetDataHolder by remember {
-                mutableStateOf(BottomSheetDataHolder(INVALID, null))
-            }
             AppTheme {
                 val scope = rememberCoroutineScope()
                 val scaffoldState = rememberBottomSheetScaffoldState(
                     bottomSheetState = rememberBottomSheetState(initialValue = Collapsed)
                 )
+                var currentBottomSheetDataHolder by remember {
+                    mutableStateOf(BottomSheetDataHolder(INVALID, null))
+                }
                 bottomSheetHelper = BottomSheetHelperImpl(
                     scope = scope,
                     scaffoldState = scaffoldState,
@@ -49,15 +49,25 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent {
                 )
                 BottomSheetScaffold(
                     sheetPeekHeight = 0.dp,
-                    sheetShape = CornerStyle.large,
+                    sheetShape = CornerStyle.topLarge,
                     sheetBackgroundColor = AppThemeColors.surface,
                     sheetContentColor = AppThemeColors.onSurface,
                     contentColor = AppThemeColors.onBackground,
                     backgroundColor = AppThemeColors.background,
-                    sheetContent = { bottomSheetHelper.BottomSheetContent() },
+                    sheetContent = {
+                        Surface(
+                            color = AppThemeColors.surface,
+                            contentColor = AppThemeColors.onSurface
+                        ) {
+                            bottomSheetHelper.BottomSheetContent(this@BaseActivity)
+                        }
+                    },
                     scaffoldState = scaffoldState,
                     content = {
-                        Box {
+                        Surface(
+                            color = getSurfaceBackgroundColor(),
+                            contentColor = getSurfaceContentColor()
+                        ) {
                             // Actual content
                             Content()
                             bottomSheetHelper.ScrimForBottomSheet(
@@ -71,6 +81,9 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent {
             }
         }
     }
+
+    open fun getSurfaceBackgroundColor() = AppThemeColors.background
+    open fun getSurfaceContentColor() = AppThemeColors.onBackground
 
     override fun onBackPressed() {
         if (!bottomSheetHelper.canHandleBackPress()) {

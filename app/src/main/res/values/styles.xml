@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="PhantomTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="PhantomTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/splash_screen_background</item>
         <item name="android:statusBarColor">@color/splash_screen_background</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">@bool/windowLightStatusBar</item>
     </style>
 </resources>

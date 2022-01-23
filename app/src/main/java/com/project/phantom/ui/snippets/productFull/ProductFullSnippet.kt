@@ -37,10 +37,11 @@ fun ProductFullSnippet(
             bottom = PaddingStyle.large
         )
     ) {
-        ElevatedCard(
-            modifier = Modifier.clickable { interaction.onProductFullSnippetClicked(data = data) }
-        ) {
-            Column {
+        ElevatedCard {
+            Column(
+                modifier = Modifier
+                    .clickable { interaction.onProductFullSnippetClicked(data = data) }
+            ) {
                 GetImage(data.imageData)
                 GetTextSection(data)
             }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,6 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
@@ -32,6 +34,7 @@ import com.project.phantom.LaunchOnce
 import com.project.phantom.R
 import com.project.phantom.screens.base.BaseActivity
 import com.project.phantom.screens.base.SnippetInteractions
+import com.project.phantom.screens.cart.view.CartFab
 import com.project.phantom.screens.category.domain.CategoryViewModel
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
 import com.project.phantom.theme.PaddingStyle
@@ -129,8 +132,25 @@ class CategoryActivity : BaseActivity() {
                 )
             },
             gesturesEnabled = false,
-            backLayerBackgroundColor = AppThemeColors.primaryContainer
+            backLayerBackgroundColor = AppThemeColors.primaryContainer,
+            backLayerContentColor = AppThemeColors.onPrimaryContainer,
+            frontLayerBackgroundColor = AppThemeColors.background,
+            frontLayerContentColor = AppThemeColors.onBackground,
+            frontLayerScrimColor = AppThemeColors.onPrimary.copy(alpha = 0.6f)
         )
+        Box(modifier = Modifier.fillMaxSize()) {
+            Box(
+                modifier = Modifier
+                    .padding(PaddingStyle.large)
+                    .align(Alignment.BottomEnd)
+            ) {
+                CartFab(
+                    activity = this@CategoryActivity,
+                    externalVisibilityCheck = { state.lceState.isSuccessOrNoResultState() },
+                    disable = backLayerData.isActive()
+                )
+            }
+        }
     }
 
     @OptIn(ExperimentalMaterialApi::class)

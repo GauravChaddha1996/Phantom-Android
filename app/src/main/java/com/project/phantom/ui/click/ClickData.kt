@@ -16,3 +16,6 @@ val ClickDataPolymorphicAdapter: PolymorphicJsonAdapterFactory<ClickData> =
     PolymorphicJsonAdapterFactory.of(ClickData::class.java, ClickData.CLICK_TYPE)
         .withSubtype(OpenProductClickData::class.java, ClickTypes.OPEN_PRODUCT.name)
         .withSubtype(OpenCategoryClickData::class.java, ClickTypes.OPEN_CATEGORY.name)
+        .withSubtype(AddProductClickData::class.java, ClickTypes.ADD_PRODUCT.name)
+        .withSubtype(OpenCartClickData::class.java, ClickTypes.OPEN_CART.name)
+        .withSubtype(PlaceOrderClickData::class.java, ClickTypes.PLACE_ORDER.name)

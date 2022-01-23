@@ -24,23 +24,20 @@ data class ProductRailSnippetData(
     override fun setDefaults() {
         name?.setDefaults(
             textStyle = PhantomTextStyle.TitleSemiLarge,
-            color = PhantomColor.OnSurface,
             defaultMaxLines = 1
         )
         shortDesc?.setDefaults(
             textStyle = PhantomTextStyle.BodyMedium,
-            color = PhantomColor.OnSurface,
             defaultMaxLines = 2,
             defaultMinLines = 2
         )
         brandAndCategory?.setDefaults(
             textStyle = PhantomTextStyle.BodyLarge,
-            color = PhantomColor.OnSurface,
             defaultMaxLines = 1
         )
         cost?.setDefaults(
             textStyle = PhantomTextStyle.TitleSemiLarge,
-            color = PhantomColor.OnSurfaceVariant
+            color = PhantomColor.OnSurface
         )
         newTagText?.setDefaults(
             textStyle = PhantomTextStyle.LabelLarge,

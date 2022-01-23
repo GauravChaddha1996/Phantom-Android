@@ -41,7 +41,7 @@ fun SortMethodSnippet(
             .background(
                 color = if (isSelected) {
                     AppThemeColors.primary
-                        .copy(alpha = 0.2f)
+                        .copy(alpha = 0.4f)
                         .compositeOver(AppThemeColors.primaryContainer)
                 } else {
                     Color.Transparent
@@ -53,8 +53,7 @@ fun SortMethodSnippet(
             data = data.name,
             modifier = Modifier
                 .weight(weight = 1f)
-                .padding(PaddingStyle.large),
-            color = AppThemeColors.onPrimaryContainer
+                .padding(PaddingStyle.large)
         )
         Icon(
             imageVector = Icons.Default.CheckCircle,

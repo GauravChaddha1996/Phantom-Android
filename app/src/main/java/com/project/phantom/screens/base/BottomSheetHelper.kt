@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.project.phantom.screens.base.BottomSheetType.INVALID
+import com.project.phantom.screens.cart.view.CartBottomSheet
 import com.project.phantom.screens.product.ui.ProductBottomSheet
 import com.project.phantom.screens.product.ui.ProductPageInitModel
 import com.project.phantom.theme.color.PhantomColor
@@ -24,11 +25,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 enum class BottomSheetType {
-    PRODUCT, INVALID
+    PRODUCT, CART, INVALID
 }
 
 interface BottomSheetHelper {
     fun openBottomSheet(bottomSheetType: BottomSheetType, bottomSheetData: Any?)
+    fun closeCurrentBottomSheet(): Boolean
     fun canHandleBackPress(): Boolean
 }
 
@@ -52,11 +54,7 @@ class BottomSheetHelperImpl(
         }
     }
 
-    override fun canHandleBackPress(): Boolean {
-        return closeCurrentBottomSheet()
-    }
-
-    private fun closeCurrentBottomSheet(): Boolean {
+    override fun closeCurrentBottomSheet(): Boolean {
         val currentBottomSheetDataHolder = getCurrentBottomSheetDataHolder.invoke()
         if (bottomSheetState.isExpanded && currentBottomSheetDataHolder.type != INVALID) {
             scope.launch {
@@ -68,9 +66,14 @@ class BottomSheetHelperImpl(
         return false
     }
 
+    override fun canHandleBackPress(): Boolean {
+        return closeCurrentBottomSheet()
+    }
+
     @Composable
-    fun BottomSheetContent() {
+    fun BottomSheetContent(baseActivity: BaseActivity) {
         val systemUiController = rememberSystemUiController()
+        val scrimColor = PhantomColor.Scrim.resolve()
         val currentBottomSheetDataHolder = getCurrentBottomSheetDataHolder.invoke()
 
         // If sheet is collapsed anytime, reset the data to invalid sheet
@@ -80,12 +83,18 @@ class BottomSheetHelperImpl(
         }
         if (currentBottomSheetDataHolder.type != INVALID) {
             SideEffect {
-                systemUiController.setStatusBarColor(PhantomColor.Scrim.resolve())
+                systemUiController.setStatusBarColor(scrimColor)
             }
         }
         when (currentBottomSheetDataHolder.type) {
             BottomSheetType.PRODUCT -> {
-                ProductBottomSheet(initModel = currentBottomSheetDataHolder.data as ProductPageInitModel)
+                ProductBottomSheet(
+                    initModel = currentBottomSheetDataHolder.data as ProductPageInitModel,
+                    activity = baseActivity
+                )
+            }
+            BottomSheetType.CART -> {
+                CartBottomSheet(activity = baseActivity)
             }
             INVALID -> {
             }
