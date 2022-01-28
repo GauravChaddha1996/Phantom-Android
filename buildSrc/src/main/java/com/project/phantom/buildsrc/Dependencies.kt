@@ -84,6 +84,11 @@ object Libs {
         const val compiler = "androidx.room:room-compiler:$version"
     }
 
+    object LeakCanary {
+        private const val version = "2.8.1"
+        const val core = "com.squareup.leakcanary:leakcanary-android:$version"
+    }
+
     object Test {
         const val junit_core = "junit:junit:4.13.2"
         const val junitTextExt = "androidx.test.ext:junit:1.1.3"

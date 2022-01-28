@@ -1,5 +1,6 @@
 import com.project.phantom.buildsrc.Libs
 
+// Plugins this module depends on
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -93,6 +94,9 @@ dependencies {
     annotationProcessor(Libs.Room.compiler)
     kapt(Libs.Room.compiler)
 
+    // Leak canary
+    debugImplementation(Libs.LeakCanary.core)
+
     // Test related
     testImplementation(Libs.Test.junit_core)
     androidTestImplementation(Libs.Test.junitTextExt)
@@ -107,7 +111,3 @@ kotlinter {
     experimentalRules = true
     disabledRules = emptyArray<String>()
 }
-
-//afterEvaluate {
-//    tasks.findByPath(":app:assembleDebug")?.dependsOn(":copyGitHooks")
-//}
