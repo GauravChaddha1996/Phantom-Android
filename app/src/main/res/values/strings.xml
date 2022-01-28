@@ -13,4 +13,5 @@
     <string name="cart">Cart</string>
     <string name="rupee_cost">₹%d</string>
     <string name="order_placed">Order placed!!\nThank you</string>
+    <string name="clear">Clear</string>
 </resources>

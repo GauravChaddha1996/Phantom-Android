@@ -35,6 +35,7 @@ fun FilterPillSnippet(
     pill: FilterPillData
 ) {
     var isSelected by remember { mutableStateOf(pill.selected == true) }
+    isSelected = pill.selected == true
     val borderAlpha = if (isSelected) 1.0f else 0.2f
     Row(
         modifier = Modifier

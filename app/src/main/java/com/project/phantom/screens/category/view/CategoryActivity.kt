@@ -111,6 +111,9 @@ class CategoryActivity : BaseActivity() {
                             backLayerData = BackLayerData(showSortInBackLayer = true)
                             scaffoldState.reveal()
                         }
+                    },
+                    filterClearClickable = {
+                        viewModel.onFilterClearClicked()
                     }
                 )
             },

@@ -1,5 +1,6 @@
 package com.project.phantom.screens.category.models
 
+import com.project.phantom.theme.color.PhantomColor
 import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.snippets.commons.SnippetData
 import com.project.phantom.ui.text.TextData
@@ -38,7 +39,10 @@ class FilterPropertySection(
     val pills: List<FilterPillData>? = null
 ) : SnippetData() {
     override fun setDefaults() {
-        name?.setDefaults(textStyle = PhantomTextStyle.TitleMedium)
+        name?.setDefaults(
+            textStyle = PhantomTextStyle.TitleMedium,
+            color = PhantomColor.OnPrimaryContainer
+        )
         pills?.forEach { it.setDefaults() }
     }
 }

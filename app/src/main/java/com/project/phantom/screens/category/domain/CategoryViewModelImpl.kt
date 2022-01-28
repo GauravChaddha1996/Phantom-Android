@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.project.phantom.network.PhantomCEH
 import com.project.phantom.screens.base.BaseSnippetCurator
+import com.project.phantom.screens.category.models.FilterPropertySection
+import com.project.phantom.screens.category.models.FilterSheetData
 import com.project.phantom.screens.category.models.getSelectedFilters
 import com.project.phantom.screens.category.models.getSelectedSortMethod
 import com.project.phantom.screens.category.view.CategoryPageInitModel
@@ -45,6 +47,22 @@ class CategoryViewModelImpl(
         if (isSortMethodDifferent || areFiltersDifferent) {
             loadPageImpl()
         }
+    }
+
+    override fun onFilterClearClicked() {
+        val oldFilterSheetData = state.filterSheetData
+        val newFilterSheetData = FilterSheetData(
+            oldFilterSheetData?.propertySections?.map {
+                FilterPropertySection(
+                    it.name,
+                    it.pills?.map { pillData ->
+                        pillData.selected = false
+                        pillData
+                    }
+                )
+            }
+        )
+        state = state.copy(filterSheetData = newFilterSheetData)
     }
 
     private fun loadPageImpl() {

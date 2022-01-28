@@ -11,7 +11,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -31,8 +30,10 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.project.phantom.R
 import com.project.phantom.screens.category.view.CategoryScreenState.BackLayerData
+import com.project.phantom.theme.CornerStyle
 import com.project.phantom.theme.PaddingStyle
 import com.project.phantom.theme.color.AppThemeColors
+import com.project.phantom.theme.font.PhantomTextStyle
 import com.project.phantom.ui.text.PhantomText
 import com.project.phantom.ui.text.TextData
 
@@ -45,12 +46,21 @@ class CategoryPageTopAppBar {
         backClickable: () -> Unit,
         closeClickable: () -> Unit,
         filterClickable: () -> Unit,
-        sortClickable: () -> Unit
+        sortClickable: () -> Unit,
+        filterClearClickable: () -> Unit
     ) {
         SmallTopAppBar(
             title = { GetTitle(state, backLayerData) },
             navigationIcon = { GetNavigationIcon(backLayerData, backClickable, closeClickable) },
-            actions = { GetAppBarActions(state, backLayerData, filterClickable, sortClickable) },
+            actions = {
+                GetAppBarActions(
+                    state = state,
+                    backLayerData = backLayerData,
+                    filterClickable = filterClickable,
+                    sortClickable = sortClickable,
+                    filterClearClickable = filterClearClickable
+                )
+            },
             colors = TopAppBarDefaults.smallTopAppBarColors(
                 containerColor = AppThemeColors.primaryContainer,
                 titleContentColor = AppThemeColors.onPrimaryContainer,
@@ -112,25 +122,52 @@ class CategoryPageTopAppBar {
     }
 
     @Composable
-    private fun RowScope.GetAppBarActions(
+    private fun GetAppBarActions(
         state: CategoryScreenState,
         backLayerData: BackLayerData,
         filterClickable: () -> Unit,
-        sortClickable: () -> Unit
+        sortClickable: () -> Unit,
+        filterClearClickable: () -> Unit
     ) {
-        AnimatedVisibility(
-            visible = backLayerData.isInactive() && state.lceState.isSuccessOrNoResultState(),
-            enter = slideInHorizontally { it },
-            exit = fadeOut() + slideOutHorizontally { it }
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(PaddingStyle.medium),
-                content = {
-                    GetActionIcon(R.drawable.ic_filter_list, filterClickable)
-                    GetActionIcon(R.drawable.ic_sort, sortClickable)
+        val areGlobalActionsVisible =
+            backLayerData.isInactive() && state.lceState.isSuccessOrNoResultState()
+        val areFilterActionsVisible =
+            !areGlobalActionsVisible && backLayerData.showFilterInBackLayer
+        Box {
+            AnimatedVisibility(
+                visible = areGlobalActionsVisible,
+                enter = slideInHorizontally { it },
+                exit = fadeOut() + slideOutHorizontally { it },
+                modifier = Modifier.align(Alignment.Center)
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(PaddingStyle.medium),
+                    content = {
+                        GetActionIcon(R.drawable.ic_filter_list, filterClickable)
+                        GetActionIcon(R.drawable.ic_sort, sortClickable)
+                    }
+                )
+            }
+            AnimatedVisibility(
+                visible = areFilterActionsVisible,
+                enter = slideInHorizontally(),
+                exit = fadeOut() + slideOutHorizontally(),
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .clip(CornerStyle.large)
+                    .clickable { filterClearClickable() }
+                    .padding(horizontal = PaddingStyle.huge, vertical = PaddingStyle.large)
+            ) {
+                Box {
+                    PhantomText(
+                        data = TextData().setDefaults(
+                            text = stringResource(R.string.clear),
+                            textStyle = PhantomTextStyle.TitleMedium
+                        )
+                    )
                 }
-            )
+            }
         }
     }
 

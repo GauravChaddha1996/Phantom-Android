@@ -7,4 +7,5 @@ abstract class CategoryViewModel : BaseViewModel() {
     abstract val state: CategoryScreenState
     abstract fun loadPage()
     abstract fun onApplyClicked()
+    abstract fun onFilterClearClicked()
 }
