@@ -1,6 +1,8 @@
 # Phantom-Android
 A fashion e-commerce app made with **Jetpack Compose**, **Koin**, **Moshi**, **Material Design 3** and **Coil**.
+
 It's powered by a Golang backend using MySQL as database and Redis cache for querying and filtering. 
+
 The backend repository is hosted ![here](https://github.com/GauravChaddha1996/Phantom-Backend).
 
 ## The app
